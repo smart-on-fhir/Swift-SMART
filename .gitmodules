@@ -1,0 +1,3 @@
+[submodule "OAuth2"]
+	path = OAuth2
+	url = https://github.com/p2/OAuth2.git

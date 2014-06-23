@@ -1,0 +1,21 @@
+{"rest": [
+	{
+		"mode": {"value": "server"},
+		"security": {
+			"extension": [
+				{
+					"url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register",
+					"valueUri": "https://ci-auth.fhir.me/register"
+				},
+				{
+					"url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize",
+					"valueUri": "https://ci-auth.fhir.me/authorize"
+				},
+				{
+					"url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token",
+					"valueUri": "https://ci-auth.fhir.me/token"
+				}
+			]
+		}
+	}
+]}
