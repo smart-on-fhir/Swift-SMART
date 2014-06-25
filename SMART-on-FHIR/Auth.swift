@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import OAuth2iOS			// TODO: figure out a way to use the iOS framework as simply "OAuth"
+import OAuth2iOS			// TODO: figure out a way to use the iOS framework as simply "OAuth2"
 
 
 enum AuthMethod {
@@ -25,14 +25,18 @@ class Auth {
 	/*! The authentication type; only "oauth2" is supported. */
 	let type: AuthMethod
 	
-	/*! Settings to be used to initialize the OAuth2 subclass. */
+	/*! The redirect to be used. */
+	let redirect: String
+	
+	/*! Additional settings to be used to initialize the OAuth2 subclass. */
 	let settings: NSDictionary
 	
 	/*! The authentication object to be used. */
 	var oauth: OAuth2?
 	
-	init(type: AuthMethod, settings: NSDictionary) {
+	init(type: AuthMethod, redirect: String, settings: NSDictionary) {
 		self.type = type
+		self.redirect = redirect
 		self.settings = settings
 	}
 	
@@ -43,13 +47,17 @@ class Auth {
 	}
 	}
 	
-	func create(# auth: NSURL, token: NSURL?) {
+	
+	// MARK: OAuth
+	
+	func create(# authURL: NSURL, tokenURL: NSURL?) {
 		// TODO: make a nice factory method
 		var settings = self.settings.mutableCopy() as NSMutableDictionary
-		settings["authorize_uri"] = auth.absoluteString
-		if token {
-			settings["token_uri"] = token!.absoluteString
+		settings["authorize_uri"] = authURL.absoluteString
+		if tokenURL {
+			settings["token_uri"] = tokenURL!.absoluteString
 		}
+		//settings["redirect_uris"] = [redirect]
 		
 		switch type {
 		case .CodeGrant:
@@ -58,4 +66,17 @@ class Auth {
 			fatalError("Invalid auth method type")
 		}
 	}
+	
+	func authorizeURL() -> NSURL? {
+		switch type {
+		case .CodeGrant:
+			if let cg = oauth as? OAuth2CodeGrant {
+				return cg.authorizeURLWithRedirect(redirect, scope: "launch search user/*.* patient/*.read profile", params: nil)
+			}
+		default:
+			break
+		}
+		return nil
+	}
 }
+

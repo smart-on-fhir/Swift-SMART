@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
-		EE29E70419583A04008882C8 /* metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata.json */; };
+		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
+		EE29EAC0195B0E87008882C8 /* Client+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29EABF195B0E87008882C8 /* Client+iOS.swift */; };
 		EE43B1AE19546D880017679A /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE43B1B419546D880017679A /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43B1A919546D880017679A /* SMART.framework */; };
 		EE43B1BB19546D880017679A /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1BA19546D880017679A /* ClientTests.swift */; };
@@ -58,7 +59,8 @@
 
 /* Begin PBXFileReference section */
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
-		EE29E70319583A04008882C8 /* metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = metadata.json; sourceTree = "<group>"; };
+		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; };
+		EE29EABF195B0E87008882C8 /* Client+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+iOS.swift"; sourceTree = "<group>"; };
 		EE43B1A919546D880017679A /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE43B1AC19546D880017679A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE43B1AD19546D880017679A /* SMART-on-FHIR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR.h"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				EE43B1AD19546D880017679A /* SMART-on-FHIR.h */,
 				EE43B1C319546DB20017679A /* Client.swift */,
+				EE29EABF195B0E87008882C8 /* Client+iOS.swift */,
 				EE43B1C419546DB20017679A /* Server.swift */,
 				EE43B1C219546DB20017679A /* Auth.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
@@ -116,7 +119,7 @@
 			children = (
 				EE43B1BA19546D880017679A /* ClientTests.swift */,
 				EE29E701195838DD008882C8 /* ServerTests.swift */,
-				EE29E70319583A04008882C8 /* metadata.json */,
+				EE29E70319583A04008882C8 /* metadata */,
 				EE43B1B819546D880017679A /* Supporting Files */,
 			);
 			path = "SMART-on-FHIRTests";
@@ -296,7 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE29E70419583A04008882C8 /* metadata.json in Resources */,
+				EE29E70419583A04008882C8 /* metadata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE29EAC0195B0E87008882C8 /* Client+iOS.swift in Sources */,
 				EE43B1C619546DB20017679A /* Client.swift in Sources */,
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
 				EE43B1C519546DB20017679A /* Auth.swift in Sources */,

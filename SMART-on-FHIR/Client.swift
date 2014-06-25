@@ -13,7 +13,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 
 
 /*!
- *  A client instance handles authentication and connection to a FHIR resource server.
+ *  A client instance handles authentication and connection to a SMART on FHIR resource server.
  */
 class Client {
 	
@@ -31,20 +31,22 @@ class Client {
 	}
 	
 	/*! Use this initializer with the server settings needed to connect. */
-	convenience init(serverURL: String, clientId: String, clientSecret: String?) {
+	convenience init(serverURL: String, clientId: String, clientSecret: String?, redirect: String) {
 		let srv = Server(base: serverURL)
 		
 		var settings = ["client_id": clientId]
 		if clientSecret {
 			settings["client_secret"] = clientSecret!
 		}
-		let myAuth = Auth(type: AuthMethod.CodeGrant, settings: settings)
+		let myAuth = Auth(type: AuthMethod.CodeGrant, redirect: redirect, settings: settings)
 		
 		self.init(auth: myAuth, server: srv)
 	}
 	
 	
 	// MARK: - Preparations
+	
+	var authCallback: ((error: NSError?) -> ())?
 	
 	func ready(callback: (error: NSError?) -> ()) {
 		if auth.oauth {
@@ -58,11 +60,37 @@ class Client {
 				callback(error: error)
 			}
 			else if self.server.authURL {
-				self.auth.create(auth: self.server.authURL!, token: self.server.tokenURL)
+				self.auth.create(authURL: self.server.authURL!, tokenURL: self.server.tokenURL)
 				callback(error: nil)
 			}
 			else {
 				callback(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to extract `authorize` URL from server metadata"]))
+			}
+		}
+	}
+	
+	func authorize(callback: (error: NSError?) -> ()) {
+		self.ready { error in
+			if error {
+				callback(error: error)
+			}
+			else {
+				if self.authCallback {
+					self.authCallback!(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Timeout"]))
+				}
+				
+				// open authorize URL
+				if let url = self.auth.authorizeURL() {
+					if self.openURL(url) {
+						self.authCallback = callback
+					}
+					else {
+						callback(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to open authorize webpage"]))
+					}
+				}
+				else {
+					callback(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine authorize URL"]))
+				}
 			}
 		}
 	}
@@ -82,8 +110,8 @@ class Client {
 
 
 func logIfDebug(log: String) {
-#if DEBUG
+//#if DEBUG
 	println("SoF: \(log)")
-#endif
+//#endif
 }
 

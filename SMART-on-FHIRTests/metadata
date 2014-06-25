@@ -1,0 +1,69 @@
+{
+  "resourceType": "Conformance",
+  "text": {
+    "status": "generated",
+    "div": "<div>Generated Conformance Statement -- see structured representation.</div>"
+  },
+  "identifier": "https://fhir-api.smartplatforms.org/conformance",
+  "version": "0.0.81.????",
+  "name": "SMART on FHIR Conformance Statement",
+  "publisher": "SMART on FHIR",
+  "telecom": [
+    {
+      "system": "url",
+      "value": "https://fhir-api.smartplatforms.org"
+    }
+  ],
+  "description": "Describes capabilities of this SMART on FHIR server",
+  "status": "draft",
+  "date": "2014-06-23T04:49:25.469-00:00",
+  "fhirVersion": "0.0.81",
+  "acceptUnknown": false,
+  "format": [
+    "xml",
+    "json"
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "documentation": "All the functionality defined in FHIR",
+      "security": {
+        "extension": [
+          {
+            "url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register",
+            "valueUri": "https://authorize.smartplatforms.org/register"
+          },
+          {
+            "url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize",
+            "valueUri": "https://authorize.smartplatforms.org/authorize"
+          },
+          {
+            "url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token",
+            "valueUri": "https://authorize.smartplatforms.org/token"
+          }
+        ],
+        "service": [
+          {
+            "coding": [
+              {
+                "system": "http://hl7.org/fhir/vs/restful-security-service",
+                "code": "OAuth2"
+              }
+            ],
+            "text": "OAuth version 2 (see oauth.net)."
+          }
+        ],
+        "description": "SMART on FHIR uses OAuth2 for authorization"
+      },
+      "resource": [],
+      "operation": [
+        {
+          "code": "transaction"
+        },
+        {
+          "code": "history-system"
+        }
+      ]
+    }
+  ]
+}

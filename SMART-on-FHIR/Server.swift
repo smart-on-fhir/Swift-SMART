@@ -16,8 +16,12 @@ class Server {
 	/*! The server base. */
 	let baseURL: NSURL
 	
-	init(base: String) {
-		baseURL = NSURL(string: base)
+	init(baseURL: NSURL) {
+		self.baseURL = baseURL
+	}
+	
+	convenience init(base: String) {
+		self.init(baseURL: NSURL(string: base))
 	}
 	
 	
@@ -69,8 +73,10 @@ class Server {
 		logIfDebug("Requesting server metadata from \(url)")
 		
 		let req = NSMutableURLRequest(URL: url)
-		req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		NSURLConnection.sendAsynchronousRequest(req, queue: NSOperationQueue.mainQueue(), completionHandler: { response, data, error in
+		req.setValue("application/json", forHTTPHeaderField: "Accept")
+		
+		let session = NSURLSession.sharedSession()
+		let task = session.dataTaskWithRequest(req) { data, response, error in
 			var finalError: NSError?
 			
 			if error {
@@ -86,8 +92,20 @@ class Server {
 								callback(error: nil)
 								return
 							}
+							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
+							finalError = NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: errstr])
+						}
+						else {
+							let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
+							finalError = NSError(domain: SMARTErrorDomain, code: http.statusCode, userInfo: [NSLocalizedDescriptionKey: errstr])
 						}
 					}
+					else {
+						finalError = NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not an HTTP response"])
+					}
+				}
+				else {
+					finalError = NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])
 				}
 			}
 			
@@ -97,6 +115,9 @@ class Server {
 			}
 			
 			callback(error: finalError)
-		})
+		}
+		
+		task.resume()
 	}
 }
+
