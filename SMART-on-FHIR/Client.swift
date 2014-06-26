@@ -69,6 +69,17 @@ class Client {
 		}
 	}
 	
+	var authorizing: Bool {
+	get {
+		return nil != authCallback
+	}
+	}
+	
+	/*!
+	 *  Call this to start the authorization process.
+	 *
+	 *  For now we are using Safari so you will need to call `didAuthorize` when the app delegate intercepts the redirect URL call.
+	 */
 	func authorize(callback: (error: NSError?) -> ()) {
 		self.ready { error in
 			if error {
@@ -77,6 +88,7 @@ class Client {
 			else {
 				if self.authCallback {
 					self.authCallback!(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Timeout"]))
+					self.authCallback = nil;
 				}
 				
 				// open authorize URL
@@ -93,6 +105,28 @@ class Client {
 				}
 			}
 		}
+	}
+	
+	func abortAuthorize() {
+		if authCallback {
+			server.abortSession()
+			
+			authCallback!(error: nil)
+			authCallback = nil
+		}
+	}
+	
+	/*!
+	 *  Call this with the redirect URL when intercepting the redirect callback in the app delegate.
+	 */
+	func didRedirect(redirect: NSURL) -> Bool {
+		if !authCallback {
+			return false
+		}
+		
+		auth.handleRedirect(redirect, callback: authCallback!)
+		authCallback = nil
+		return true
 	}
 	
 	

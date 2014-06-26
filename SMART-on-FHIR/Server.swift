@@ -31,6 +31,8 @@ class Server {
 	var authURL: NSURL?
 	var tokenURL: NSURL?
 	
+	var sessionTask: NSURLSessionTask?
+	
 	var metadata: NSDictionary? {
 	didSet(oldMeta) {
 		if metadata {
@@ -70,13 +72,11 @@ class Server {
 		
 		// not yet fetched, fetch it
 		let url = baseURL.URLByAppendingPathComponent("metadata")
-		logIfDebug("Requesting server metadata from \(url)")
-		
 		let req = NSMutableURLRequest(URL: url)
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
 		
 		let session = NSURLSession.sharedSession()
-		let task = session.dataTaskWithRequest(req) { data, response, error in
+		sessionTask = session.dataTaskWithRequest(req) { data, response, error in
 			var finalError: NSError?
 			
 			if error {
@@ -114,10 +114,19 @@ class Server {
 				finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
 			}
 			
+			logIfDebug("Failed to fetch metadata: \(finalError!.localizedDescription)")
 			callback(error: finalError)
 		}
 		
-		task.resume()
+		logIfDebug("Requesting server metadata from \(req.URL)")
+		sessionTask!.resume()
+	}
+	
+	func abortSession() {
+		if sessionTask {
+			sessionTask!.cancel()
+			sessionTask = nil
+		}
 	}
 }
 

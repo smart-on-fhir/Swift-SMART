@@ -78,5 +78,11 @@ class Auth {
 		}
 		return nil
 	}
+	
+	func handleRedirect(redirect: NSURL, callback: (error: NSError?) -> ()) {
+		if oauth {
+			oauth!.handleRedirectURL(redirect, callback: callback)
+		}
+	}
 }
 
