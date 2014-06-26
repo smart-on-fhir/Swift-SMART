@@ -30,14 +30,11 @@ class Client {
 		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
 	}
 	
-	/*! Use this initializer with the server settings needed to connect. */
-	convenience init(serverURL: String, clientId: String, clientSecret: String?, redirect: String) {
+	/*! Use this initializer with the appropriate server settings. */
+	convenience init(serverURL: String, clientId: String, redirect: String) {
 		let srv = Server(base: serverURL)
 		
 		var settings = ["client_id": clientId]
-		if clientSecret {
-			settings["client_secret"] = clientSecret!
-		}
 		let myAuth = Auth(type: AuthMethod.CodeGrant, redirect: redirect, settings: settings)
 		
 		self.init(auth: myAuth, server: srv)
@@ -147,5 +144,9 @@ func logIfDebug(log: String) {
 //#if DEBUG
 	println("SoF: \(log)")
 //#endif
+}
+
+func genSMARTError(text: String, code: Int?) -> NSError {
+	return NSError(domain: SMARTErrorDomain, code: code ? code! : 0, userInfo: [NSLocalizedDescriptionKey: text])
 }
 

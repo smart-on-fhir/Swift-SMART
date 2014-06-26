@@ -23,3 +23,42 @@ Documentation
 
 Technical documentation for framework usage TBD.
 Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smartplatforms.org).
+
+
+Running Apps
+------------
+
+Apps running against a SMART provider must be **registered** with the server.
+If you are simply testing grounds you can use our sandbox server and the shared ~my_ios_app~`175dfc73-9c06-49b4-a79a-110fa50241f0` client-id:
+
+```Swift
+@lazy var smart = Client(
+    serverURL: "https://fhir-api.smartplatforms.org",
+    clientId: "175dfc73-9c06-49b4-a79a-110fa50241f0",
+    redirect: "sofmedlist://callback"    // must match a registered redirect uri
+)
+```
+
+### Dynamic Client Registration
+
+Our sandbox also supports _dynamic client registration_, which is based on the OAuth 2.0 Dynamic Client Registration [protocol](http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-17) and the Blue Button open registration [specification](http://blue-button.github.io/blue-button-plus-pull/#registration-open).
+You can register your app by posting an appropriately formatted JSON app manifest to the registration server, the app manifest looks like this:
+
+```json
+{
+    "client_name": "Smart-on-FHIR iOS Med List",
+    "redirect_uris": [
+        "sofmedlist://callback"
+    ],
+    "token_endpoint_auth_method": "none",
+    "grant_types": [
+        "authorization_code"
+    ],
+    "initiate_login_uri": "https://srv.me/app/launch.html",
+    "logo_uri": "https://srv.me/img/cool.jpg",
+    "scope": "launch search user/*.* patient/*.read profile smart/orchestrate_launch"
+}
+```
+
+You can POST this manifest to [https://authorize.smartplatforms.org/register]() for registration with our sandbox server, or any SMART on FHIR server for that matter.
+

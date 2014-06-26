@@ -93,19 +93,19 @@ class Server {
 								return
 							}
 							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
-							finalError = NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: errstr])
+							finalError = genSMARTError(errstr, nil)
 						}
 						else {
 							let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
-							finalError = NSError(domain: SMARTErrorDomain, code: http.statusCode, userInfo: [NSLocalizedDescriptionKey: errstr])
+							finalError = genSMARTError(errstr, http.statusCode)
 						}
 					}
 					else {
-						finalError = NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Not an HTTP response"])
+						finalError = genSMARTError("Not an HTTP response", nil)
 					}
 				}
 				else {
-					finalError = NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])
+					finalError = genSMARTError("No data received", nil)
 				}
 			}
 			

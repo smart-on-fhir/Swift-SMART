@@ -1,0 +1,12 @@
+{
+	"client_name": "Smart-on-FHIR iOS Med List",
+	"redirect_uris": [
+		"sofmedlist://callback"
+	],
+	"token_endpoint_auth_method": "none",
+	"grant_types": [
+		"authorization_code"
+	],
+	"logo_uri": "https://srv.me/img/cool.jpg",
+	"scope": "launch search user/*.* patient/*.read profile smart/orchestrate_launch"
+}
