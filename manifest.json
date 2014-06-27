@@ -8,5 +8,5 @@
 		"authorization_code"
 	],
 	"logo_uri": "https://srv.me/img/cool.jpg",
-	"scope": "launch search user/*.* patient/*.read profile smart/orchestrate_launch"
+	"scope": "launch user/*.* patient/*.read openid profile"
 }

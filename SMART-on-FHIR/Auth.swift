@@ -65,13 +65,17 @@ class Auth {
 		default:
 			fatalError("Invalid auth method type")
 		}
+		
+//#if DEBUG
+		oauth!.verbose = true
+//#endif
 	}
 	
 	func authorizeURL() -> NSURL? {
 		switch type {
 		case .CodeGrant:
 			if let cg = oauth as? OAuth2CodeGrant {
-				return cg.authorizeURLWithRedirect(redirect, scope: "launch search user/*.* patient/*.read profile", params: nil)
+				return cg.authorizeURLWithRedirect(redirect, scope: "launch user/*.* patient/*.read openid profile", params: nil)
 			}
 		default:
 			break
