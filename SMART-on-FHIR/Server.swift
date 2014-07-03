@@ -103,6 +103,11 @@ class Server {
 		performJSONRequest(url, auth: nil, callback: callback)
 	}
 	
+	/*!
+	 *  Requests JSON data from the given `url`, using a signed request if `auth` is provided.
+	 *
+	 *  The callback is always dispatched to the main queue.
+	 */
 	func performJSONRequest(url: NSURL, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
 		let req = auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -120,7 +125,9 @@ class Server {
 						if 200 == http.statusCode {
 							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
 								logIfDebug("Did receive valid JSON data")
-								callback(json: json, error: nil)
+								dispatch_sync(dispatch_get_main_queue()) {
+									callback(json: json, error: nil)
+								}
 								return
 							}
 							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
@@ -146,7 +153,9 @@ class Server {
 			}
 			
 			logIfDebug("Failed to fetch JSON data: \(finalError!.localizedDescription)")
-			callback(json: nil, error: finalError)
+			dispatch_sync(dispatch_get_main_queue()) {
+				callback(json: nil, error: finalError)
+			}
 		}
 		
 		logIfDebug("Requesting data from \(req.URL)")

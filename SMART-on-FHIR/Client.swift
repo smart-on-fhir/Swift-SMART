@@ -68,9 +68,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	}
 	
 	var authorizing: Bool {
-	get {
-		return nil != authCallback
-	}
+		get { return nil != authCallback }
 	}
 	
 	/*!
@@ -106,7 +104,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	}
 	
 	/*!
-	 *  Stops any request currently in progress
+	 *  Stops any request currently in progress.
 	 */
 	func abort() {
 		server.abortSession()
@@ -146,9 +144,9 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 
 
 func logIfDebug(log: String) {
-//#if DEBUG
+#if DEBUG
 	println("SoF: \(log)")
-//#endif
+#endif
 }
 
 func genSMARTError(text: String, code: Int?) -> NSError {
