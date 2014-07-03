@@ -17,9 +17,83 @@
 		EE43B1C619546DB20017679A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EE43B1CA195478070017679A /* OAuth2iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */; };
+		EEB69C1F1965F4B8009F4BD4 /* FHIRElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */; };
+		EEB69C201965F4B8009F4BD4 /* FHIRResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */; };
+		EEB69C621965F4C3009F4BD4 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C221965F4C3009F4BD4 /* Address.swift */; };
+		EEB69C631965F4C3009F4BD4 /* AdverseReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C231965F4C3009F4BD4 /* AdverseReaction.swift */; };
+		EEB69C641965F4C3009F4BD4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C241965F4C3009F4BD4 /* Alert.swift */; };
+		EEB69C651965F4C3009F4BD4 /* AllergyIntolerance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C251965F4C3009F4BD4 /* AllergyIntolerance.swift */; };
+		EEB69C661965F4C3009F4BD4 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C261965F4C3009F4BD4 /* Attachment.swift */; };
+		EEB69C671965F4C3009F4BD4 /* CarePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C271965F4C3009F4BD4 /* CarePlan.swift */; };
+		EEB69C681965F4C3009F4BD4 /* CodeableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C281965F4C3009F4BD4 /* CodeableConcept.swift */; };
+		EEB69C691965F4C3009F4BD4 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C291965F4C3009F4BD4 /* Coding.swift */; };
+		EEB69C6A1965F4C3009F4BD4 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C2A1965F4C3009F4BD4 /* Composition.swift */; };
+		EEB69C6B1965F4C3009F4BD4 /* ConceptMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C2B1965F4C3009F4BD4 /* ConceptMap.swift */; };
+		EEB69C6C1965F4C3009F4BD4 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C2C1965F4C3009F4BD4 /* Condition.swift */; };
+		EEB69C6D1965F4C3009F4BD4 /* Conformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C2D1965F4C3009F4BD4 /* Conformance.swift */; };
+		EEB69C6E1965F4C3009F4BD4 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C2E1965F4C3009F4BD4 /* Contact.swift */; };
+		EEB69C6F1965F4C3009F4BD4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C2F1965F4C3009F4BD4 /* Device.swift */; };
+		EEB69C701965F4C3009F4BD4 /* DeviceObservationReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C301965F4C3009F4BD4 /* DeviceObservationReport.swift */; };
+		EEB69C711965F4C3009F4BD4 /* DiagnosticOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C311965F4C3009F4BD4 /* DiagnosticOrder.swift */; };
+		EEB69C721965F4C3009F4BD4 /* DiagnosticReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C321965F4C3009F4BD4 /* DiagnosticReport.swift */; };
+		EEB69C731965F4C3009F4BD4 /* DocumentManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C331965F4C3009F4BD4 /* DocumentManifest.swift */; };
+		EEB69C741965F4C3009F4BD4 /* DocumentReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C341965F4C3009F4BD4 /* DocumentReference.swift */; };
+		EEB69C751965F4C3009F4BD4 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C351965F4C3009F4BD4 /* Encounter.swift */; };
+		EEB69C761965F4C3009F4BD4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C361965F4C3009F4BD4 /* Extension.swift */; };
+		EEB69C771965F4C3009F4BD4 /* FamilyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C371965F4C3009F4BD4 /* FamilyHistory.swift */; };
+		EEB69C781965F4C3009F4BD4 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C381965F4C3009F4BD4 /* Group.swift */; };
+		EEB69C791965F4C3009F4BD4 /* HumanName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C391965F4C3009F4BD4 /* HumanName.swift */; };
+		EEB69C7A1965F4C3009F4BD4 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C3A1965F4C3009F4BD4 /* Identifier.swift */; };
+		EEB69C7B1965F4C3009F4BD4 /* ImagingStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C3B1965F4C3009F4BD4 /* ImagingStudy.swift */; };
+		EEB69C7C1965F4C3009F4BD4 /* Immunization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C3C1965F4C3009F4BD4 /* Immunization.swift */; };
+		EEB69C7D1965F4C3009F4BD4 /* ImmunizationRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C3D1965F4C3009F4BD4 /* ImmunizationRecommendation.swift */; };
+		EEB69C7E1965F4C3009F4BD4 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C3E1965F4C3009F4BD4 /* List.swift */; };
+		EEB69C7F1965F4C3009F4BD4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C3F1965F4C3009F4BD4 /* Location.swift */; };
+		EEB69C801965F4C3009F4BD4 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C401965F4C3009F4BD4 /* Media.swift */; };
+		EEB69C811965F4C3009F4BD4 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C411965F4C3009F4BD4 /* Medication.swift */; };
+		EEB69C821965F4C3009F4BD4 /* MedicationAdministration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C421965F4C3009F4BD4 /* MedicationAdministration.swift */; };
+		EEB69C831965F4C3009F4BD4 /* MedicationDispense.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C431965F4C3009F4BD4 /* MedicationDispense.swift */; };
+		EEB69C841965F4C3009F4BD4 /* MedicationPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C441965F4C3009F4BD4 /* MedicationPrescription.swift */; };
+		EEB69C851965F4C3009F4BD4 /* MedicationStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C451965F4C3009F4BD4 /* MedicationStatement.swift */; };
+		EEB69C861965F4C3009F4BD4 /* MessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C461965F4C3009F4BD4 /* MessageHeader.swift */; };
+		EEB69C871965F4C3009F4BD4 /* Narrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C471965F4C3009F4BD4 /* Narrative.swift */; };
+		EEB69C881965F4C3009F4BD4 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C481965F4C3009F4BD4 /* Observation.swift */; };
+		EEB69C891965F4C3009F4BD4 /* OperationOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C491965F4C3009F4BD4 /* OperationOutcome.swift */; };
+		EEB69C8A1965F4C3009F4BD4 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C4A1965F4C3009F4BD4 /* Order.swift */; };
+		EEB69C8B1965F4C3009F4BD4 /* OrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C4B1965F4C3009F4BD4 /* OrderResponse.swift */; };
+		EEB69C8C1965F4C3009F4BD4 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C4C1965F4C3009F4BD4 /* Organization.swift */; };
+		EEB69C8D1965F4C3009F4BD4 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C4D1965F4C3009F4BD4 /* Other.swift */; };
+		EEB69C8E1965F4C3009F4BD4 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C4E1965F4C3009F4BD4 /* Patient.swift */; };
+		EEB69C8F1965F4C3009F4BD4 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C4F1965F4C3009F4BD4 /* Period.swift */; };
+		EEB69C901965F4C3009F4BD4 /* Practitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C501965F4C3009F4BD4 /* Practitioner.swift */; };
+		EEB69C911965F4C3009F4BD4 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C511965F4C3009F4BD4 /* Procedure.swift */; };
+		EEB69C921965F4C3009F4BD4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C521965F4C3009F4BD4 /* Profile.swift */; };
+		EEB69C931965F4C3009F4BD4 /* Provenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C531965F4C3009F4BD4 /* Provenance.swift */; };
+		EEB69C941965F4C3009F4BD4 /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C541965F4C3009F4BD4 /* Quantity.swift */; };
+		EEB69C951965F4C3009F4BD4 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C551965F4C3009F4BD4 /* Query.swift */; };
+		EEB69C961965F4C3009F4BD4 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C561965F4C3009F4BD4 /* Questionnaire.swift */; };
+		EEB69C971965F4C3009F4BD4 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C571965F4C3009F4BD4 /* Range.swift */; };
+		EEB69C981965F4C3009F4BD4 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C581965F4C3009F4BD4 /* Ratio.swift */; };
+		EEB69C991965F4C3009F4BD4 /* RelatedPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C591965F4C3009F4BD4 /* RelatedPerson.swift */; };
+		EEB69C9A1965F4C3009F4BD4 /* ResourceReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5A1965F4C3009F4BD4 /* ResourceReference.swift */; };
+		EEB69C9B1965F4C3009F4BD4 /* SampledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5B1965F4C3009F4BD4 /* SampledData.swift */; };
+		EEB69C9C1965F4C3009F4BD4 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5C1965F4C3009F4BD4 /* Schedule.swift */; };
+		EEB69C9D1965F4C3009F4BD4 /* SecurityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5D1965F4C3009F4BD4 /* SecurityEvent.swift */; };
+		EEB69C9E1965F4C3009F4BD4 /* Specimen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5E1965F4C3009F4BD4 /* Specimen.swift */; };
+		EEB69C9F1965F4C3009F4BD4 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5F1965F4C3009F4BD4 /* Substance.swift */; };
+		EEB69CA01965F4C3009F4BD4 /* Supply.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C601965F4C3009F4BD4 /* Supply.swift */; };
+		EEB69CA11965F4C3009F4BD4 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C611965F4C3009F4BD4 /* ValueSet.swift */; };
+		EEB69CA31965F4F9009F4BD4 /* FHIRResource+SMART.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69CA21965F4F9009F4BD4 /* FHIRResource+SMART.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EE27D4251965F40700752038 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE55C2611948906000849670 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE43B1A819546D880017679A;
+			remoteInfo = "SMART-on-FHIR-iOS";
+		};
 		EE43B1B519546D880017679A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE55C2611948906000849670 /* Project object */;
@@ -73,6 +147,75 @@
 		EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR-Bridging-Header.h"; sourceTree = "<group>"; };
+		EEB69C1B1965F4AD009F4BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRElement.swift; sourceTree = "<group>"; };
+		EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRResource.swift; sourceTree = "<group>"; };
+		EEB69C221965F4C3009F4BD4 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		EEB69C231965F4C3009F4BD4 /* AdverseReaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdverseReaction.swift; sourceTree = "<group>"; };
+		EEB69C241965F4C3009F4BD4 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		EEB69C251965F4C3009F4BD4 /* AllergyIntolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergyIntolerance.swift; sourceTree = "<group>"; };
+		EEB69C261965F4C3009F4BD4 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		EEB69C271965F4C3009F4BD4 /* CarePlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan.swift; sourceTree = "<group>"; };
+		EEB69C281965F4C3009F4BD4 /* CodeableConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeableConcept.swift; sourceTree = "<group>"; };
+		EEB69C291965F4C3009F4BD4 /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
+		EEB69C2A1965F4C3009F4BD4 /* Composition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
+		EEB69C2B1965F4C3009F4BD4 /* ConceptMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptMap.swift; sourceTree = "<group>"; };
+		EEB69C2C1965F4C3009F4BD4 /* Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
+		EEB69C2D1965F4C3009F4BD4 /* Conformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conformance.swift; sourceTree = "<group>"; };
+		EEB69C2E1965F4C3009F4BD4 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		EEB69C2F1965F4C3009F4BD4 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		EEB69C301965F4C3009F4BD4 /* DeviceObservationReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceObservationReport.swift; sourceTree = "<group>"; };
+		EEB69C311965F4C3009F4BD4 /* DiagnosticOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticOrder.swift; sourceTree = "<group>"; };
+		EEB69C321965F4C3009F4BD4 /* DiagnosticReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticReport.swift; sourceTree = "<group>"; };
+		EEB69C331965F4C3009F4BD4 /* DocumentManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManifest.swift; sourceTree = "<group>"; };
+		EEB69C341965F4C3009F4BD4 /* DocumentReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentReference.swift; sourceTree = "<group>"; };
+		EEB69C351965F4C3009F4BD4 /* Encounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
+		EEB69C361965F4C3009F4BD4 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		EEB69C371965F4C3009F4BD4 /* FamilyHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyHistory.swift; sourceTree = "<group>"; };
+		EEB69C381965F4C3009F4BD4 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		EEB69C391965F4C3009F4BD4 /* HumanName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumanName.swift; sourceTree = "<group>"; };
+		EEB69C3A1965F4C3009F4BD4 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
+		EEB69C3B1965F4C3009F4BD4 /* ImagingStudy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingStudy.swift; sourceTree = "<group>"; };
+		EEB69C3C1965F4C3009F4BD4 /* Immunization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Immunization.swift; sourceTree = "<group>"; };
+		EEB69C3D1965F4C3009F4BD4 /* ImmunizationRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmunizationRecommendation.swift; sourceTree = "<group>"; };
+		EEB69C3E1965F4C3009F4BD4 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		EEB69C3F1965F4C3009F4BD4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		EEB69C401965F4C3009F4BD4 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		EEB69C411965F4C3009F4BD4 /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		EEB69C421965F4C3009F4BD4 /* MedicationAdministration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationAdministration.swift; sourceTree = "<group>"; };
+		EEB69C431965F4C3009F4BD4 /* MedicationDispense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationDispense.swift; sourceTree = "<group>"; };
+		EEB69C441965F4C3009F4BD4 /* MedicationPrescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationPrescription.swift; sourceTree = "<group>"; };
+		EEB69C451965F4C3009F4BD4 /* MedicationStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationStatement.swift; sourceTree = "<group>"; };
+		EEB69C461965F4C3009F4BD4 /* MessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHeader.swift; sourceTree = "<group>"; };
+		EEB69C471965F4C3009F4BD4 /* Narrative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Narrative.swift; sourceTree = "<group>"; };
+		EEB69C481965F4C3009F4BD4 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
+		EEB69C491965F4C3009F4BD4 /* OperationOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationOutcome.swift; sourceTree = "<group>"; };
+		EEB69C4A1965F4C3009F4BD4 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		EEB69C4B1965F4C3009F4BD4 /* OrderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderResponse.swift; sourceTree = "<group>"; };
+		EEB69C4C1965F4C3009F4BD4 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		EEB69C4D1965F4C3009F4BD4 /* Other.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
+		EEB69C4E1965F4C3009F4BD4 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
+		EEB69C4F1965F4C3009F4BD4 /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		EEB69C501965F4C3009F4BD4 /* Practitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Practitioner.swift; sourceTree = "<group>"; };
+		EEB69C511965F4C3009F4BD4 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
+		EEB69C521965F4C3009F4BD4 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		EEB69C531965F4C3009F4BD4 /* Provenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provenance.swift; sourceTree = "<group>"; };
+		EEB69C541965F4C3009F4BD4 /* Quantity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quantity.swift; sourceTree = "<group>"; };
+		EEB69C551965F4C3009F4BD4 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		EEB69C561965F4C3009F4BD4 /* Questionnaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
+		EEB69C571965F4C3009F4BD4 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
+		EEB69C581965F4C3009F4BD4 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
+		EEB69C591965F4C3009F4BD4 /* RelatedPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedPerson.swift; sourceTree = "<group>"; };
+		EEB69C5A1965F4C3009F4BD4 /* ResourceReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceReference.swift; sourceTree = "<group>"; };
+		EEB69C5B1965F4C3009F4BD4 /* SampledData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampledData.swift; sourceTree = "<group>"; };
+		EEB69C5C1965F4C3009F4BD4 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		EEB69C5D1965F4C3009F4BD4 /* SecurityEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityEvent.swift; sourceTree = "<group>"; };
+		EEB69C5E1965F4C3009F4BD4 /* Specimen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Specimen.swift; sourceTree = "<group>"; };
+		EEB69C5F1965F4C3009F4BD4 /* Substance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
+		EEB69C601965F4C3009F4BD4 /* Supply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supply.swift; sourceTree = "<group>"; };
+		EEB69C611965F4C3009F4BD4 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
+		EEB69CA21965F4F9009F4BD4 /* FHIRResource+SMART.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRResource+SMART.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +242,12 @@
 			isa = PBXGroup;
 			children = (
 				EE43B1AD19546D880017679A /* SMART-on-FHIR.h */,
+				EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */,
 				EE43B1C319546DB20017679A /* Client.swift */,
 				EE29EABF195B0E87008882C8 /* Client+iOS.swift */,
 				EE43B1C419546DB20017679A /* Server.swift */,
 				EE43B1C219546DB20017679A /* Auth.swift */,
+				EEB69CA21965F4F9009F4BD4 /* FHIRResource+SMART.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
 			path = "SMART-on-FHIR";
@@ -158,6 +303,7 @@
 				EE74D04B195C112300393DCA /* README.md */,
 				EE74D04E195C262E00393DCA /* manifest.json */,
 				EE43B1AA19546D880017679A /* SMART-on-FHIR */,
+				EEB69C181965F496009F4BD4 /* Swift-FHIR */,
 				EE43B1B719546D880017679A /* SMART-on-FHIRTests */,
 				EE43B5C8195497A10017679A /* Frameworks */,
 				EE55C26A1948906000849670 /* Products */,
@@ -172,6 +318,96 @@
 				EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EEB69C181965F496009F4BD4 /* Swift-FHIR */ = {
+			isa = PBXGroup;
+			children = (
+				EEB69C1B1965F4AD009F4BD4 /* README.md */,
+				EEB69C1C1965F4B8009F4BD4 /* Classes */,
+				EEB69C211965F4C3009F4BD4 /* Models */,
+			);
+			path = "Swift-FHIR";
+			sourceTree = "<group>";
+		};
+		EEB69C1C1965F4B8009F4BD4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */,
+				EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		EEB69C211965F4C3009F4BD4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EEB69C221965F4C3009F4BD4 /* Address.swift */,
+				EEB69C231965F4C3009F4BD4 /* AdverseReaction.swift */,
+				EEB69C241965F4C3009F4BD4 /* Alert.swift */,
+				EEB69C251965F4C3009F4BD4 /* AllergyIntolerance.swift */,
+				EEB69C261965F4C3009F4BD4 /* Attachment.swift */,
+				EEB69C271965F4C3009F4BD4 /* CarePlan.swift */,
+				EEB69C281965F4C3009F4BD4 /* CodeableConcept.swift */,
+				EEB69C291965F4C3009F4BD4 /* Coding.swift */,
+				EEB69C2A1965F4C3009F4BD4 /* Composition.swift */,
+				EEB69C2B1965F4C3009F4BD4 /* ConceptMap.swift */,
+				EEB69C2C1965F4C3009F4BD4 /* Condition.swift */,
+				EEB69C2D1965F4C3009F4BD4 /* Conformance.swift */,
+				EEB69C2E1965F4C3009F4BD4 /* Contact.swift */,
+				EEB69C2F1965F4C3009F4BD4 /* Device.swift */,
+				EEB69C301965F4C3009F4BD4 /* DeviceObservationReport.swift */,
+				EEB69C311965F4C3009F4BD4 /* DiagnosticOrder.swift */,
+				EEB69C321965F4C3009F4BD4 /* DiagnosticReport.swift */,
+				EEB69C331965F4C3009F4BD4 /* DocumentManifest.swift */,
+				EEB69C341965F4C3009F4BD4 /* DocumentReference.swift */,
+				EEB69C351965F4C3009F4BD4 /* Encounter.swift */,
+				EEB69C361965F4C3009F4BD4 /* Extension.swift */,
+				EEB69C371965F4C3009F4BD4 /* FamilyHistory.swift */,
+				EEB69C381965F4C3009F4BD4 /* Group.swift */,
+				EEB69C391965F4C3009F4BD4 /* HumanName.swift */,
+				EEB69C3A1965F4C3009F4BD4 /* Identifier.swift */,
+				EEB69C3B1965F4C3009F4BD4 /* ImagingStudy.swift */,
+				EEB69C3C1965F4C3009F4BD4 /* Immunization.swift */,
+				EEB69C3D1965F4C3009F4BD4 /* ImmunizationRecommendation.swift */,
+				EEB69C3E1965F4C3009F4BD4 /* List.swift */,
+				EEB69C3F1965F4C3009F4BD4 /* Location.swift */,
+				EEB69C401965F4C3009F4BD4 /* Media.swift */,
+				EEB69C411965F4C3009F4BD4 /* Medication.swift */,
+				EEB69C421965F4C3009F4BD4 /* MedicationAdministration.swift */,
+				EEB69C431965F4C3009F4BD4 /* MedicationDispense.swift */,
+				EEB69C441965F4C3009F4BD4 /* MedicationPrescription.swift */,
+				EEB69C451965F4C3009F4BD4 /* MedicationStatement.swift */,
+				EEB69C461965F4C3009F4BD4 /* MessageHeader.swift */,
+				EEB69C471965F4C3009F4BD4 /* Narrative.swift */,
+				EEB69C481965F4C3009F4BD4 /* Observation.swift */,
+				EEB69C491965F4C3009F4BD4 /* OperationOutcome.swift */,
+				EEB69C4A1965F4C3009F4BD4 /* Order.swift */,
+				EEB69C4B1965F4C3009F4BD4 /* OrderResponse.swift */,
+				EEB69C4C1965F4C3009F4BD4 /* Organization.swift */,
+				EEB69C4D1965F4C3009F4BD4 /* Other.swift */,
+				EEB69C4E1965F4C3009F4BD4 /* Patient.swift */,
+				EEB69C4F1965F4C3009F4BD4 /* Period.swift */,
+				EEB69C501965F4C3009F4BD4 /* Practitioner.swift */,
+				EEB69C511965F4C3009F4BD4 /* Procedure.swift */,
+				EEB69C521965F4C3009F4BD4 /* Profile.swift */,
+				EEB69C531965F4C3009F4BD4 /* Provenance.swift */,
+				EEB69C541965F4C3009F4BD4 /* Quantity.swift */,
+				EEB69C551965F4C3009F4BD4 /* Query.swift */,
+				EEB69C561965F4C3009F4BD4 /* Questionnaire.swift */,
+				EEB69C571965F4C3009F4BD4 /* Range.swift */,
+				EEB69C581965F4C3009F4BD4 /* Ratio.swift */,
+				EEB69C591965F4C3009F4BD4 /* RelatedPerson.swift */,
+				EEB69C5A1965F4C3009F4BD4 /* ResourceReference.swift */,
+				EEB69C5B1965F4C3009F4BD4 /* SampledData.swift */,
+				EEB69C5C1965F4C3009F4BD4 /* Schedule.swift */,
+				EEB69C5D1965F4C3009F4BD4 /* SecurityEvent.swift */,
+				EEB69C5E1965F4C3009F4BD4 /* Specimen.swift */,
+				EEB69C5F1965F4C3009F4BD4 /* Substance.swift */,
+				EEB69C601965F4C3009F4BD4 /* Supply.swift */,
+				EEB69C611965F4C3009F4BD4 /* ValueSet.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +455,7 @@
 			);
 			dependencies = (
 				EE43B1B619546D880017679A /* PBXTargetDependency */,
+				EE27D4261965F40700752038 /* PBXTargetDependency */,
 			);
 			name = "SMART-on-FHIR-iOSTests";
 			productName = "SMART-on-FHIR-iOSTests";
@@ -314,10 +551,77 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEB69C801965F4C3009F4BD4 /* Media.swift in Sources */,
+				EEB69C641965F4C3009F4BD4 /* Alert.swift in Sources */,
+				EEB69C6E1965F4C3009F4BD4 /* Contact.swift in Sources */,
+				EEB69C7B1965F4C3009F4BD4 /* ImagingStudy.swift in Sources */,
+				EEB69C881965F4C3009F4BD4 /* Observation.swift in Sources */,
+				EEB69C821965F4C3009F4BD4 /* MedicationAdministration.swift in Sources */,
+				EEB69CA01965F4C3009F4BD4 /* Supply.swift in Sources */,
 				EE29EAC0195B0E87008882C8 /* Client+iOS.swift in Sources */,
+				EEB69C911965F4C3009F4BD4 /* Procedure.swift in Sources */,
+				EEB69C871965F4C3009F4BD4 /* Narrative.swift in Sources */,
+				EEB69C6C1965F4C3009F4BD4 /* Condition.swift in Sources */,
 				EE43B1C619546DB20017679A /* Client.swift in Sources */,
+				EEB69C8F1965F4C3009F4BD4 /* Period.swift in Sources */,
+				EEB69C931965F4C3009F4BD4 /* Provenance.swift in Sources */,
+				EEB69C981965F4C3009F4BD4 /* Ratio.swift in Sources */,
+				EEB69C751965F4C3009F4BD4 /* Encounter.swift in Sources */,
+				EEB69C771965F4C3009F4BD4 /* FamilyHistory.swift in Sources */,
+				EEB69C671965F4C3009F4BD4 /* CarePlan.swift in Sources */,
+				EEB69C831965F4C3009F4BD4 /* MedicationDispense.swift in Sources */,
+				EEB69C701965F4C3009F4BD4 /* DeviceObservationReport.swift in Sources */,
+				EEB69C8A1965F4C3009F4BD4 /* Order.swift in Sources */,
+				EEB69C7D1965F4C3009F4BD4 /* ImmunizationRecommendation.swift in Sources */,
+				EEB69C8E1965F4C3009F4BD4 /* Patient.swift in Sources */,
+				EEB69C941965F4C3009F4BD4 /* Quantity.swift in Sources */,
+				EEB69C811965F4C3009F4BD4 /* Medication.swift in Sources */,
+				EEB69C991965F4C3009F4BD4 /* RelatedPerson.swift in Sources */,
+				EEB69C8D1965F4C3009F4BD4 /* Other.swift in Sources */,
+				EEB69C731965F4C3009F4BD4 /* DocumentManifest.swift in Sources */,
+				EEB69C681965F4C3009F4BD4 /* CodeableConcept.swift in Sources */,
+				EEB69C6B1965F4C3009F4BD4 /* ConceptMap.swift in Sources */,
+				EEB69C651965F4C3009F4BD4 /* AllergyIntolerance.swift in Sources */,
+				EEB69C961965F4C3009F4BD4 /* Questionnaire.swift in Sources */,
+				EEB69C841965F4C3009F4BD4 /* MedicationPrescription.swift in Sources */,
+				EEB69C661965F4C3009F4BD4 /* Attachment.swift in Sources */,
+				EEB69C201965F4B8009F4BD4 /* FHIRResource.swift in Sources */,
+				EEB69C9A1965F4C3009F4BD4 /* ResourceReference.swift in Sources */,
+				EEB69C8B1965F4C3009F4BD4 /* OrderResponse.swift in Sources */,
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
+				EEB69C6A1965F4C3009F4BD4 /* Composition.swift in Sources */,
+				EEB69C691965F4C3009F4BD4 /* Coding.swift in Sources */,
+				EEB69C791965F4C3009F4BD4 /* HumanName.swift in Sources */,
+				EEB69C9D1965F4C3009F4BD4 /* SecurityEvent.swift in Sources */,
+				EEB69C901965F4C3009F4BD4 /* Practitioner.swift in Sources */,
+				EEB69C711965F4C3009F4BD4 /* DiagnosticOrder.swift in Sources */,
+				EEB69C971965F4C3009F4BD4 /* Range.swift in Sources */,
+				EEB69C7F1965F4C3009F4BD4 /* Location.swift in Sources */,
+				EEB69C9B1965F4C3009F4BD4 /* SampledData.swift in Sources */,
+				EEB69C761965F4C3009F4BD4 /* Extension.swift in Sources */,
+				EEB69C9E1965F4C3009F4BD4 /* Specimen.swift in Sources */,
+				EEB69C7E1965F4C3009F4BD4 /* List.swift in Sources */,
+				EEB69C721965F4C3009F4BD4 /* DiagnosticReport.swift in Sources */,
+				EEB69C7A1965F4C3009F4BD4 /* Identifier.swift in Sources */,
+				EEB69C921965F4C3009F4BD4 /* Profile.swift in Sources */,
+				EEB69C6D1965F4C3009F4BD4 /* Conformance.swift in Sources */,
+				EEB69C861965F4C3009F4BD4 /* MessageHeader.swift in Sources */,
+				EEB69C781965F4C3009F4BD4 /* Group.swift in Sources */,
+				EEB69C8C1965F4C3009F4BD4 /* Organization.swift in Sources */,
+				EEB69C951965F4C3009F4BD4 /* Query.swift in Sources */,
+				EEB69CA31965F4F9009F4BD4 /* FHIRResource+SMART.swift in Sources */,
+				EEB69C851965F4C3009F4BD4 /* MedicationStatement.swift in Sources */,
+				EEB69C1F1965F4B8009F4BD4 /* FHIRElement.swift in Sources */,
 				EE43B1C519546DB20017679A /* Auth.swift in Sources */,
+				EEB69C7C1965F4C3009F4BD4 /* Immunization.swift in Sources */,
+				EEB69C621965F4C3009F4BD4 /* Address.swift in Sources */,
+				EEB69C891965F4C3009F4BD4 /* OperationOutcome.swift in Sources */,
+				EEB69C631965F4C3009F4BD4 /* AdverseReaction.swift in Sources */,
+				EEB69C741965F4C3009F4BD4 /* DocumentReference.swift in Sources */,
+				EEB69CA11965F4C3009F4BD4 /* ValueSet.swift in Sources */,
+				EEB69C9C1965F4C3009F4BD4 /* Schedule.swift in Sources */,
+				EEB69C9F1965F4C3009F4BD4 /* Substance.swift in Sources */,
+				EEB69C6F1965F4C3009F4BD4 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +637,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EE27D4261965F40700752038 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
+			targetProxy = EE27D4251965F40700752038 /* PBXContainerItemProxy */;
+		};
 		EE43B1B619546D880017679A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
@@ -356,16 +665,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "SMART-on-FHIR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
-				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_NAME = SMART;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -387,10 +691,9 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "SMART-on-FHIR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "-DDEBUG=1";
 				PRODUCT_NAME = SMART;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -404,10 +707,6 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SMART-on-FHIRTests/Info.plist";
@@ -456,10 +755,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -467,10 +762,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -501,9 +802,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

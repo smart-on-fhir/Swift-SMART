@@ -15,7 +15,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 /*!
  *  A client instance handles authentication and connection to a SMART on FHIR resource server.
  */
-class Client {
+@objc class Client {
 	
 	/*! The authentication protocol to use. */
 	let auth: Auth
@@ -26,6 +26,7 @@ class Client {
 	/*! Designated initializer. */
 	init(auth: Auth, server: Server) {
 		self.auth = auth
+		server.auth = auth
 		self.server = server
 		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
 	}
@@ -35,7 +36,7 @@ class Client {
 		let srv = Server(base: serverURL)
 		
 		var settings = ["client_id": clientId]
-		let myAuth = Auth(type: AuthMethod.CodeGrant, redirect: redirect, settings: settings)
+		let myAuth = Auth(type: AuthMethod.CodeGrant, scope: "launch/patient user/*.* patient/*.read openid profile", redirect: redirect, settings: settings)
 		
 		self.init(auth: myAuth, server: srv)
 	}
@@ -43,7 +44,7 @@ class Client {
 	
 	// MARK: - Preparations
 	
-	var authCallback: ((error: NSError?) -> ())?
+	var authCallback: ((patient: Patient?, error: NSError?) -> ())?
 	
 	func ready(callback: (error: NSError?) -> ()) {
 		if auth.oauth {
@@ -61,7 +62,7 @@ class Client {
 				callback(error: nil)
 			}
 			else {
-				callback(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to extract `authorize` URL from server metadata"]))
+				callback(error: genSMARTError("Failed to extract `authorize` URL from server metadata", 0))
 			}
 		}
 	}
@@ -75,16 +76,16 @@ class Client {
 	/*!
 	 *  Call this to start the authorization process.
 	 *
-	 *  For now we are using Safari so you will need to call `didAuthorize` when the app delegate intercepts the redirect URL call.
+	 *  For now we are using Safari so you will need to call `didRedirect` when the app delegate intercepts the redirect URL call.
 	 */
-	func authorize(callback: (error: NSError?) -> ()) {
+	func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
 			if error {
-				callback(error: error)
+				callback(patient: nil, error: error)
 			}
 			else {
 				if self.authCallback {
-					self.authCallback!(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Timeout"]))
+					self.authCallback!(patient: nil, error: genSMARTError("Timeout", nil))
 					self.authCallback = nil;
 				}
 				
@@ -94,23 +95,21 @@ class Client {
 						self.authCallback = callback
 					}
 					else {
-						callback(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to open authorize webpage"]))
+						callback(patient: nil, error: genSMARTError("Failed to open authorize webpage", nil))
 					}
 				}
 				else {
-					callback(error: NSError(domain: SMARTErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to determine authorize URL"]))
+					callback(patient: nil, error: genSMARTError("Failed to determine authorize URL", nil))
 				}
 			}
 		}
 	}
 	
-	func abortAuthorize() {
-		if authCallback {
-			server.abortSession()
-			
-			authCallback!(error: nil)
-			authCallback = nil
-		}
+	/*!
+	 *  Stops any request currently in progress
+	 */
+	func abort() {
+		server.abortSession()
 	}
 	
 	/*!
@@ -121,20 +120,26 @@ class Client {
 			return false
 		}
 		
-		auth.handleRedirect(redirect, callback: authCallback!)
+		let callback = authCallback!
 		authCallback = nil
+		
+		auth.handleRedirect(redirect) { error in
+			if error {
+				callback(patient: nil, error: error)
+			}
+			else {
+				if let patient = self.auth.patientId {
+					Patient().read(patient, server: self.server) { resource, error in
+						callback(patient: nil, error: nil)
+					}
+				}
+				else {
+					logIfDebug("Did handle redirect but do not have a patient context, returning without patient")
+					callback(patient: nil, error: nil)
+				}
+			}
+		}
 		return true
-	}
-	
-	
-	// MARK: - Accessing Resources
-	
-	func read<FHIRBaseResource>(id: String) -> FHIRBaseResource? {
-		return nil;
-	}
-	
-	func search<FHIRBaseResource>() -> FHIRBaseResource[] {
-		return []
 	}
 }
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for SMART-on-FHIR-iOS.
 FOUNDATION_EXPORT double SMARTVersionNumber;
@@ -15,4 +15,5 @@ FOUNDATION_EXPORT double SMARTVersionNumber;
 FOUNDATION_EXPORT const unsigned char SMARTVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SMART_on_FHIR_iOS/PublicHeader.h>
-
+#import "FHIRModelInfo.h"
+#import "FHIRPatient.h"

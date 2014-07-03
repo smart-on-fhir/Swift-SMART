@@ -20,10 +20,13 @@ enum AuthMethod {
 /*!
  *  Describes the authentication to be used.
  */
-class Auth {
+class Auth: OAuth2Delegate {
 	
 	/*! The authentication type; only "oauth2" is supported. */
 	let type: AuthMethod
+	
+	/*! The scopes needed; supply a space-separated list just as if supplying directly to OAuth2. */
+	let scope: String
 	
 	/*! The redirect to be used. */
 	let redirect: String
@@ -34,8 +37,9 @@ class Auth {
 	/*! The authentication object to be used. */
 	var oauth: OAuth2?
 	
-	init(type: AuthMethod, redirect: String, settings: NSDictionary) {
+	init(type: AuthMethod, scope: String, redirect: String, settings: NSDictionary) {
 		self.type = type
+		self.scope = scope
 		self.redirect = redirect
 		self.settings = settings
 	}
@@ -46,6 +50,8 @@ class Auth {
 		return oauth?.clientId
 	}
 	}
+	
+	var patientId: String?
 	
 	
 	// MARK: OAuth
@@ -62,20 +68,21 @@ class Auth {
 		switch type {
 		case .CodeGrant:
 			oauth = OAuth2CodeGrant(settings: settings)
+			oauth!.delegate = self
 		default:
 			fatalError("Invalid auth method type")
 		}
 		
-//#if DEBUG
+#if DEBUG
 		oauth!.verbose = true
-//#endif
+#endif
 	}
 	
 	func authorizeURL() -> NSURL? {
 		switch type {
 		case .CodeGrant:
 			if let cg = oauth as? OAuth2CodeGrant {
-				return cg.authorizeURLWithRedirect(redirect, scope: "launch user/*.* patient/*.read openid profile", params: nil)
+				return cg.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
 			}
 		default:
 			break
@@ -87,6 +94,20 @@ class Auth {
 		if oauth {
 			oauth!.handleRedirectURL(redirect, callback: callback)
 		}
+	}
+	
+	func didAuthorize(oauth2: OAuth2, parameters: NSDictionary) {
+		if let patient = parameters["patient"] as? String {
+			patientId = patient
+			logIfDebug("Did receive patient id \(patient)")
+		}
+	}
+	
+	
+	// MARK: Requests
+	
+	func signedRequest(url: NSURL) -> NSMutableURLRequest {
+		return oauth!.request(forURL: url)
 	}
 }
 

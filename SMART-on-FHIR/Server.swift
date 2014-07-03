@@ -8,13 +8,17 @@
 
 import Foundation
 
+
 /*!
  *  Representing the FHIR resource server a client connects to.
  */
 class Server {
 	
-	/*! The server base. */
+	/*! The server base URL. */
 	let baseURL: NSURL
+	
+	/*! The authorization to use with the server. */
+	var auth: Auth?
 	
 	init(baseURL: NSURL) {
 		self.baseURL = baseURL
@@ -31,7 +35,7 @@ class Server {
 	var authURL: NSURL?
 	var tokenURL: NSURL?
 	
-	var sessionTask: NSURLSessionTask?
+	var session: NSURLSession?
 	
 	var metadata: NSDictionary? {
 	didSet(oldMeta) {
@@ -72,11 +76,39 @@ class Server {
 		
 		// not yet fetched, fetch it
 		let url = baseURL.URLByAppendingPathComponent("metadata")
-		let req = NSMutableURLRequest(URL: url)
+		requestJSONUnsigned(url) { json, error in
+			if error {
+				callback(error: error)
+			}
+			else if json {
+				self.metadata = json
+				callback(error: nil)
+			}
+		}
+	}
+	
+	
+	// MARK: Requests
+	
+	func requestJSON(url: NSURL, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		if !auth {
+			callback(json: nil, error: genSMARTError("The server does not yet have an auth instance, cannot perform a signed request", 700))
+			return
+		}
+		
+		performJSONRequest(url, auth: auth!, callback: callback)
+	}
+	
+	func requestJSONUnsigned(url: NSURL, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		performJSONRequest(url, auth: nil, callback: callback)
+	}
+	
+	func performJSONRequest(url: NSURL, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		let req = auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
 		
-		let session = NSURLSession.sharedSession()
-		sessionTask = session.dataTaskWithRequest(req) { data, response, error in
+		// run on default session
+		let task = defaultSession().dataTaskWithRequest(req) { data, response, error in
 			var finalError: NSError?
 			
 			if error {
@@ -87,9 +119,8 @@ class Server {
 					if let http = response as? NSHTTPURLResponse {
 						if 200 == http.statusCode {
 							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
-								self.metadata = json
-								logIfDebug("Did receive metadata")
-								callback(error: nil)
+								logIfDebug("Did receive valid JSON data")
+								callback(json: json, error: nil)
 								return
 							}
 							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
@@ -114,18 +145,28 @@ class Server {
 				finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
 			}
 			
-			logIfDebug("Failed to fetch metadata: \(finalError!.localizedDescription)")
-			callback(error: finalError)
+			logIfDebug("Failed to fetch JSON data: \(finalError!.localizedDescription)")
+			callback(json: nil, error: finalError)
 		}
 		
-		logIfDebug("Requesting server metadata from \(req.URL)")
-		sessionTask!.resume()
+		logIfDebug("Requesting data from \(req.URL)")
+		task!.resume()
+	}
+	
+	
+	// MARK: Session Management
+	
+	func defaultSession() -> NSURLSession {
+		if !session {
+			session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+		}
+		return session!
 	}
 	
 	func abortSession() {
-		if sessionTask {
-			sessionTask!.cancel()
-			sessionTask = nil
+		if session {
+			session!.invalidateAndCancel()
+			session = nil
 		}
 	}
 }
