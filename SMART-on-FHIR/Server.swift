@@ -75,8 +75,7 @@ class Server: FHIRServer {
 		}
 		
 		// not yet fetched, fetch it
-		let url = baseURL.URLByAppendingPathComponent("metadata")
-		requestJSONUnsigned(url) { json, error in
+		requestJSONUnsigned("metadata") { json, error in
 			if error {
 				callback(error: error)
 			}
@@ -90,25 +89,27 @@ class Server: FHIRServer {
 	
 	// MARK: Requests
 	
-	func requestJSON(url: NSURL, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+	func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
 		if !auth {
 			callback(json: nil, error: genSMARTError("The server does not yet have an auth instance, cannot perform a signed request", 700))
 			return
 		}
 		
-		performJSONRequest(url, auth: auth!, callback: callback)
+		performJSONRequest(path, auth: auth!, callback: callback)
 	}
 	
-	func requestJSONUnsigned(url: NSURL, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		performJSONRequest(url, auth: nil, callback: callback)
+	func requestJSONUnsigned(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		performJSONRequest(path, auth: nil, callback: callback)
 	}
 	
 	/*!
-	 *  Requests JSON data from the given `url`, using a signed request if `auth` is provided.
+	 *  Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
+	 *  provided.
 	 *
 	 *  The callback is always dispatched to the main queue.
 	 */
-	func performJSONRequest(url: NSURL, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+	func performJSONRequest(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		let url = NSURL(string: path, relativeToURL: baseURL)
 		let req = auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
 		
