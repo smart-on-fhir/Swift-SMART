@@ -10,6 +10,7 @@
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
 		EE29EAC0195B0E87008882C8 /* Client+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29EABF195B0E87008882C8 /* Client+iOS.swift */; };
+		EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */; };
 		EE43B1AE19546D880017679A /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE43B1B419546D880017679A /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43B1A919546D880017679A /* SMART.framework */; };
 		EE43B1BB19546D880017679A /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1BA19546D880017679A /* ClientTests.swift */; };
@@ -83,7 +84,6 @@
 		EEB69C9F1965F4C3009F4BD4 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5F1965F4C3009F4BD4 /* Substance.swift */; };
 		EEB69CA01965F4C3009F4BD4 /* Supply.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C601965F4C3009F4BD4 /* Supply.swift */; };
 		EEB69CA11965F4C3009F4BD4 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C611965F4C3009F4BD4 /* ValueSet.swift */; };
-		EEB69CA31965F4F9009F4BD4 /* FHIRResource+SMART.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69CA21965F4F9009F4BD4 /* FHIRResource+SMART.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +135,7 @@
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; };
 		EE29EABF195B0E87008882C8 /* Client+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+iOS.swift"; sourceTree = "<group>"; };
+		EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON-extensions.swift"; sourceTree = "<group>"; };
 		EE43B1A919546D880017679A /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE43B1AC19546D880017679A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE43B1AD19546D880017679A /* SMART-on-FHIR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR.h"; sourceTree = "<group>"; };
@@ -215,7 +216,6 @@
 		EEB69C5F1965F4C3009F4BD4 /* Substance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
 		EEB69C601965F4C3009F4BD4 /* Supply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supply.swift; sourceTree = "<group>"; };
 		EEB69C611965F4C3009F4BD4 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
-		EEB69CA21965F4F9009F4BD4 /* FHIRResource+SMART.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRResource+SMART.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +247,6 @@
 				EE29EABF195B0E87008882C8 /* Client+iOS.swift */,
 				EE43B1C419546DB20017679A /* Server.swift */,
 				EE43B1C219546DB20017679A /* Auth.swift */,
-				EEB69CA21965F4F9009F4BD4 /* FHIRResource+SMART.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
 			path = "SMART-on-FHIR";
@@ -335,6 +334,7 @@
 			children = (
 				EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */,
 				EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */,
+				EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -598,6 +598,7 @@
 				EEB69C971965F4C3009F4BD4 /* Range.swift in Sources */,
 				EEB69C7F1965F4C3009F4BD4 /* Location.swift in Sources */,
 				EEB69C9B1965F4C3009F4BD4 /* SampledData.swift in Sources */,
+				EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */,
 				EEB69C761965F4C3009F4BD4 /* Extension.swift in Sources */,
 				EEB69C9E1965F4C3009F4BD4 /* Specimen.swift in Sources */,
 				EEB69C7E1965F4C3009F4BD4 /* List.swift in Sources */,
@@ -609,7 +610,6 @@
 				EEB69C781965F4C3009F4BD4 /* Group.swift in Sources */,
 				EEB69C8C1965F4C3009F4BD4 /* Organization.swift in Sources */,
 				EEB69C951965F4C3009F4BD4 /* Query.swift in Sources */,
-				EEB69CA31965F4F9009F4BD4 /* FHIRResource+SMART.swift in Sources */,
 				EEB69C851965F4C3009F4BD4 /* MedicationStatement.swift in Sources */,
 				EEB69C1F1965F4B8009F4BD4 /* FHIRElement.swift in Sources */,
 				EE43B1C519546DB20017679A /* Auth.swift in Sources */,

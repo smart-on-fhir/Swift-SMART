@@ -12,7 +12,7 @@ import Foundation
 /*!
  *  Representing the FHIR resource server a client connects to.
  */
-class Server {
+class Server: FHIRServer {
 	
 	/*! The server base URL. */
 	let baseURL: NSURL

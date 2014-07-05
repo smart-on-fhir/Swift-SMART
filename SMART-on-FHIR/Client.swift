@@ -127,8 +127,9 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 			}
 			else {
 				if let patient = self.auth.patientId {
-					Patient().read(patient, server: self.server) { resource, error in
-						callback(patient: nil, error: nil)
+					Patient.read(patient, server: self.server) { resource, error in
+						logIfDebug("Did read patient \(resource) with error \(error)")
+						callback(patient: resource as? Patient, error: nil)
 					}
 				}
 				else {

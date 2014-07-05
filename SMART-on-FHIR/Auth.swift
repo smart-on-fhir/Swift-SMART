@@ -81,8 +81,8 @@ class Auth: OAuth2Delegate {
 	func authorizeURL() -> NSURL? {
 		switch type {
 		case .CodeGrant:
-			if let cg = oauth as? OAuth2CodeGrant {
-				return cg.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
+			if let oa = oauth as? OAuth2CodeGrant {
+				return oa.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
 			}
 		default:
 			break
