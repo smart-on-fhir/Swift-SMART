@@ -68,7 +68,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	}
 	
 	var authorizing: Bool {
-		get { return nil != authCallback }
+		get { if authCallback { return true }; return false }		// cannot write "nil != authCallback?
 	}
 	
 	/*!

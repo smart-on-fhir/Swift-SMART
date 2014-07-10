@@ -32,10 +32,10 @@ class ServerTests: XCTestCase {
     }
 	
 	func testMetadataLoading() {
-		var server = Server(base: "https://api.ioio")		// invalid TLD
+		var server = Server(base: "https://api.ioio")		// invalid TLD, so this should definitely fail
 		let exp1 = self.expectationWithDescription("Metadata fetch expectation 1")
 		server.getMetadata { error in
-			XCTAssertNotNil(error, "Must raise an error on invalid TLD")
+			XCTAssertNotNil(error, "Must raise an error when fetching metatada fails")
 			exp1.fulfill()
 		}
 		
