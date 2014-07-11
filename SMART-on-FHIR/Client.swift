@@ -140,6 +140,16 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 		}
 		return true
 	}
+	
+	
+	// MARK: Making Requests
+	
+	/*!
+	 *  Request a JSON resource at the given path from the client's server.
+	 */
+	func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		server.performJSONRequest(path, auth: auth, callback: callback)
+	}
 }
 
 
