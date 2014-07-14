@@ -107,6 +107,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	 *  Stops any request currently in progress.
 	 */
 	func abort() {
+		authCallback = nil
 		server.abortSession()
 	}
 	
