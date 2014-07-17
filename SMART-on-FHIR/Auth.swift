@@ -20,7 +20,7 @@ enum AuthMethod {
 /*!
  *  Describes the authentication to be used.
  */
-class Auth: OAuth2Delegate {
+class Auth {
 	
 	/*! The authentication type; only "oauth2" is supported. */
 	let type: AuthMethod
@@ -37,6 +37,9 @@ class Auth: OAuth2Delegate {
 	/*! The authentication object to be used. */
 	var oauth: OAuth2?
 	
+	/*! The closure to call when authorization finishes. */
+	var authCallback: ((patientId: String?, error: NSError?) -> ())?
+	
 	init(type: AuthMethod, scope: String, redirect: String, settings: NSDictionary) {
 		self.type = type
 		self.scope = scope
@@ -46,9 +49,7 @@ class Auth: OAuth2Delegate {
 	
 	
 	var clientId: String? {
-	get {
-		return oauth?.clientId
-	}
+		get { return oauth?.clientId }
 	}
 	
 	var patientId: String?
@@ -68,7 +69,21 @@ class Auth: OAuth2Delegate {
 		switch type {
 		case .CodeGrant:
 			oauth = OAuth2CodeGrant(settings: settings)
-			oauth!.delegate = self
+			oauth!.onAuthorize = { parameters in
+				if let patient = parameters["patient"] as? String {
+					logIfDebug("Did receive patient id \(patient)")
+					self.authCallback?(patientId: patient, error: nil)
+				}
+				else {
+					logIfDebug("Did handle redirect but do not have a patient context, returning without patient")
+					self.authCallback?(patientId: nil, error: nil)
+				}
+				self.authCallback = nil
+			}
+			oauth!.onFailure = { error in
+				self.authCallback?(patientId: nil, error: error)
+				self.authCallback = nil
+			}
 		default:
 			fatalError("Invalid auth method type")
 		}
@@ -79,27 +94,48 @@ class Auth: OAuth2Delegate {
 	}
 	
 	func authorizeURL() -> NSURL? {
-		switch type {
-		case .CodeGrant:
-			if let oa = oauth as? OAuth2CodeGrant {
-				return oa.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
-			}
-		default:
-			break
-		}
-		return nil
+		return oauth?.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
 	}
 	
-	func handleRedirect(redirect: NSURL, callback: (error: NSError?) -> ()) {
+	/*!
+	 *  Starts the authorization flow, either by opening an embedded web view or switching to the browser.
+	 *
+	 *  If you set `embedded` to false remember that you need to intercept the callback from the browser and call
+	 *  the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+	 */
+	func authorize(embedded: Bool, callback: (patientId: String?, error: NSError?) -> Void) {
+		if authCallback {
+			authCallback!(patientId: nil, error: genSMARTError("Timeout", nil))
+			authCallback = nil
+		}
+		
 		if oauth {
-			oauth!.handleRedirectURL(redirect, callback: callback)
+			authCallback = callback
+			if embedded {
+				authorizeEmbedded(oauth!)
+			}
+			else {
+				openURLInBrowser(authorizeURL()!)
+			}
+		}
+		else {
+			callback(patientId: nil, error: genSMARTError("I am not yet set up to authorize, missing a handle to my OAuth2 instance", nil))
 		}
 	}
 	
-	func didAuthorize(oauth2: OAuth2, parameters: NSDictionary) {
-		if let patient = parameters["patient"] as? String {
-			patientId = patient
-			logIfDebug("Did receive patient id \(patient)")
+	func handleRedirect(redirect: NSURL) -> Bool {
+		if !oauth || !authCallback {
+			return false
+		}
+		
+		oauth!.handleRedirectURL(redirect)
+		return true
+	}
+	
+	func abort() {
+		if authCallback {
+			authCallback!(patientId: nil, error: nil)
+			authCallback = nil
 		}
 	}
 	

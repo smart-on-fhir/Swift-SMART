@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
-		EE29EAC0195B0E87008882C8 /* Client+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29EABF195B0E87008882C8 /* Client+iOS.swift */; };
 		EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */; };
 		EE43B1AE19546D880017679A /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE43B1B419546D880017679A /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43B1A919546D880017679A /* SMART.framework */; };
@@ -87,6 +86,7 @@
 		EEB69C9F1965F4C3009F4BD4 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C5F1965F4C3009F4BD4 /* Substance.swift */; };
 		EEB69CA01965F4C3009F4BD4 /* Supply.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C601965F4C3009F4BD4 /* Supply.swift */; };
 		EEB69CA11965F4C3009F4BD4 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C611965F4C3009F4BD4 /* ValueSet.swift */; };
+		EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE838551978082B007347A0 /* Auth+iOS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +137,6 @@
 /* Begin PBXFileReference section */
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; };
-		EE29EABF195B0E87008882C8 /* Client+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+iOS.swift"; sourceTree = "<group>"; };
 		EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON-extensions.swift"; sourceTree = "<group>"; };
 		EE43B1A919546D880017679A /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE43B1AC19546D880017679A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,6 +221,7 @@
 		EEB69C5F1965F4C3009F4BD4 /* Substance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
 		EEB69C601965F4C3009F4BD4 /* Supply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supply.swift; sourceTree = "<group>"; };
 		EEB69C611965F4C3009F4BD4 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
+		EEE838551978082B007347A0 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,9 +250,9 @@
 				EE43B1AD19546D880017679A /* SMART-on-FHIR.h */,
 				EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */,
 				EE43B1C319546DB20017679A /* Client.swift */,
-				EE29EABF195B0E87008882C8 /* Client+iOS.swift */,
 				EE43B1C419546DB20017679A /* Server.swift */,
 				EE43B1C219546DB20017679A /* Auth.swift */,
+				EEE838551978082B007347A0 /* Auth+iOS.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
 			path = "SMART-on-FHIR";
@@ -567,13 +567,13 @@
 				EEB69C881965F4C3009F4BD4 /* Observation.swift in Sources */,
 				EEB69C821965F4C3009F4BD4 /* MedicationAdministration.swift in Sources */,
 				EEB69CA01965F4C3009F4BD4 /* Supply.swift in Sources */,
-				EE29EAC0195B0E87008882C8 /* Client+iOS.swift in Sources */,
 				EEB69C911965F4C3009F4BD4 /* Procedure.swift in Sources */,
 				EEB69C871965F4C3009F4BD4 /* Narrative.swift in Sources */,
 				EEB69C6C1965F4C3009F4BD4 /* Condition.swift in Sources */,
 				EE43B1C619546DB20017679A /* Client.swift in Sources */,
 				EEB69C8F1965F4C3009F4BD4 /* Period.swift in Sources */,
 				EEB69C931965F4C3009F4BD4 /* Provenance.swift in Sources */,
+				EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */,
 				EEB69C981965F4C3009F4BD4 /* Ratio.swift in Sources */,
 				EEB69C751965F4C3009F4BD4 /* Encounter.swift in Sources */,
 				EEB69C771965F4C3009F4BD4 /* FamilyHistory.swift in Sources */,
@@ -679,7 +679,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "SMART-on-FHIR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = SMART;
@@ -703,7 +703,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "SMART-on-FHIR/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = SMART;
@@ -778,7 +778,6 @@
 					"$(inherited)",
 					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
@@ -818,7 +817,6 @@
 					"$(inherited)",
 					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";

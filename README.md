@@ -29,13 +29,13 @@ Running Apps
 ------------
 
 Apps running against a SMART provider must be **registered** with the server.
-If you are simply testing grounds you can use our sandbox server and the shared ~my_ios_app~`175dfc73-9c06-49b4-a79a-110fa50241f0` client-id:
+If you are simply testing grounds you can use our sandbox server and the shared `my_mobile_app` client-id:
 
 ```Swift
 @lazy var smart = Client(
     serverURL: "https://fhir-api.smartplatforms.org",
-    clientId: "175dfc73-9c06-49b4-a79a-110fa50241f0",
-    redirect: "sofmedlist://callback"    // must match a registered redirect uri
+    clientId: "my_mobile_app",
+    redirect: "smartapp://callback"    // must match a registered redirect uri
 )
 ```
 
@@ -48,7 +48,7 @@ You can register your app by posting an appropriately formatted JSON app manifes
 {
     "client_name": "Smart-on-FHIR iOS Med List",
     "redirect_uris": [
-        "sofmedlist://callback"
+        "smartapp://callback"
     ],
     "token_endpoint_auth_method": "none",
     "grant_types": [
