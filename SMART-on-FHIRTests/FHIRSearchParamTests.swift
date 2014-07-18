@@ -54,7 +54,7 @@ class FHIRSearchParamTests: XCTestCase {
 		XCTAssertTrue(first === second.previous!, "Must chain correctly")
 		XCTAssertEqualObjects("Condition?date-asserted=2014-03", second.construct())
 		XCTAssertEqualObjects("Condition?date-asserted=2014-03", first.last().construct())
-
+		
 		XCTAssertEqualObjects("Patient?name=Alex&birthdate=1982-10-15", Patient.search().name("Alex").birthdate("1982-10-15").construct())
 		XCTAssertEqualObjects("Patient?name:exact=Alex&birthdate=1982-10-15", Patient.search().name(exact: "Alex").birthdate("1982-10-15").construct())
 		XCTAssertEqualObjects("Patient?name:exact=Alex&birthdate=1982-10-15&gender:text=male", Patient.search().name(exact: "Alex").birthdate("1982-10-15").gender(asText: "male").construct())
