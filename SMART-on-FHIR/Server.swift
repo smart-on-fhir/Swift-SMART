@@ -9,15 +9,15 @@
 import Foundation
 
 
-/*!
+/**
  *  Representing the FHIR resource server a client connects to.
  */
-class Server: FHIRServer {
+public class Server: FHIRServer {
 	
-	/*! The server base URL. */
-	let baseURL: NSURL
+	/** The server base URL. */
+	public let baseURL: NSURL
 	
-	/*! The authorization to use with the server. */
+	/** The authorization to use with the server. */
 	var auth: Auth?
 	
 	init(baseURL: NSURL) {
@@ -29,7 +29,7 @@ class Server: FHIRServer {
 	}
 	
 	
-	// MARK: Server Metadata
+	// MARK: - Server Metadata
 	
 	var registrationURL: NSURL?
 	var authURL: NSURL?
@@ -87,9 +87,9 @@ class Server: FHIRServer {
 	}
 	
 	
-	// MARK: Requests
+	// MARK: - Requests
 	
-	func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
 		if !auth {
 			callback(json: nil, error: genSMARTError("The server does not yet have an auth instance, cannot perform a signed request", 700))
 			return
@@ -102,7 +102,7 @@ class Server: FHIRServer {
 		performJSONRequest(path, auth: nil, callback: callback)
 	}
 	
-	/*!
+	/**
 	 *  Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
 	 *  provided.
 	 *
@@ -164,7 +164,7 @@ class Server: FHIRServer {
 	}
 	
 	
-	// MARK: Session Management
+	// MARK: - Session Management
 	
 	func defaultSession() -> NSURLSession {
 		if !session {

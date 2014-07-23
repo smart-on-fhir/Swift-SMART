@@ -17,27 +17,27 @@ enum AuthMethod {
 }
 
 
-/*!
+/**
  *  Describes the authentication to be used.
  */
 class Auth {
 	
-	/*! The authentication type; only "oauth2" is supported. */
+	/** The authentication type; only "oauth2" is supported. */
 	let type: AuthMethod
 	
-	/*! The scopes needed; supply a space-separated list just as if supplying directly to OAuth2. */
+	/** The scopes needed; supply a space-separated list just as if supplying directly to OAuth2. */
 	let scope: String
 	
-	/*! The redirect to be used. */
+	/** The redirect to be used. */
 	let redirect: String
 	
-	/*! Additional settings to be used to initialize the OAuth2 subclass. */
+	/** Additional settings to be used to initialize the OAuth2 subclass. */
 	let settings: NSDictionary
 	
-	/*! The authentication object to be used. */
+	/** The authentication object to be used. */
 	var oauth: OAuth2?
 	
-	/*! The closure to call when authorization finishes. */
+	/** The closure to call when authorization finishes. */
 	var authCallback: ((patientId: String?, error: NSError?) -> ())?
 	
 	init(type: AuthMethod, scope: String, redirect: String, settings: NSDictionary) {
@@ -55,7 +55,7 @@ class Auth {
 	var patientId: String?
 	
 	
-	// MARK: OAuth
+	// MARK: - OAuth
 	
 	func create(# authURL: NSURL, tokenURL: NSURL?) {
 		// TODO: make a nice factory method
@@ -97,7 +97,7 @@ class Auth {
 		return oauth?.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
 	}
 	
-	/*!
+	/**
 	 *  Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	 *
 	 *  If you set `embedded` to false remember that you need to intercept the callback from the browser and call
@@ -140,7 +140,7 @@ class Auth {
 	}
 	
 	
-	// MARK: Requests
+	// MARK: - Requests
 	
 	func signedRequest(url: NSURL) -> NSMutableURLRequest {
 		return oauth!.request(forURL: url)
