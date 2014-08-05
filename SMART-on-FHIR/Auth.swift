@@ -61,7 +61,7 @@ class Auth {
 		// TODO: make a nice factory method
 		var settings = self.settings.mutableCopy() as NSMutableDictionary
 		settings["authorize_uri"] = authURL.absoluteString
-		if tokenURL {
+		if nil != tokenURL {
 			settings["token_uri"] = tokenURL!.absoluteString
 		}
 		//settings["redirect_uris"] = [redirect]
@@ -104,12 +104,12 @@ class Auth {
 	 *  the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
 	 */
 	func authorize(embedded: Bool, callback: (patientId: String?, error: NSError?) -> Void) {
-		if authCallback {
+		if nil != authCallback {
 			authCallback!(patientId: nil, error: genSMARTError("Timeout", nil))
 			authCallback = nil
 		}
 		
-		if oauth {
+		if nil != oauth {
 			authCallback = callback
 			if embedded {
 				authorizeEmbedded(oauth!)
@@ -124,7 +124,7 @@ class Auth {
 	}
 	
 	func handleRedirect(redirect: NSURL) -> Bool {
-		if !oauth || !authCallback {
+		if nil == oauth || nil == authCallback {
 			return false
 		}
 		
@@ -133,7 +133,7 @@ class Auth {
 	}
 	
 	func abort() {
-		if authCallback {
+		if nil != authCallback {
 			authCallback!(patientId: nil, error: nil)
 			authCallback = nil
 		}

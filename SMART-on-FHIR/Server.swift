@@ -20,43 +20,44 @@ public class Server: FHIRServer {
 	/** The authorization to use with the server. */
 	var auth: Auth?
 	
-	init(baseURL: NSURL) {
+	public init(baseURL: NSURL) {
 		self.baseURL = baseURL
 	}
 	
-	convenience init(base: String) {
+	public convenience init(base: String) {
 		self.init(baseURL: NSURL(string: base))
 	}
 	
 	
 	// MARK: - Server Metadata
 	
-	var registrationURL: NSURL?
-	var authURL: NSURL?
-	var tokenURL: NSURL?
+	public var registrationURL: NSURL?
+	public var authURL: NSURL?
+	public var tokenURL: NSURL?
 	
 	var session: NSURLSession?
 	
-	var metadata: NSDictionary? {
-	didSet(oldMeta) {
-		if metadata {
-			
-			// extract OAuth2 endpoint URLs from rest[0].security.extension[#].valueUri
-			if let rest = metadata!["rest"] as? NSArray {
-				if let security = rest[0]?["security"] as? NSDictionary {
-					if let extensions = security["extension"] as? NSArray {
-						for obj: AnyObject in extensions {
-							if let ext = obj as? NSDictionary {
-								if let url = ext["url"] as? NSString {
-									switch url {
-									case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
-										registrationURL = NSURL(string: ext["valueUri"] as NSString)
-									case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
-										authURL = NSURL(string: ext["valueUri"] as NSString)
-									case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
-										tokenURL = NSURL(string: ext["valueUri"] as NSString)
-									default:
-										break
+	public var metadata: NSDictionary? {								// `public` to enable unit testing
+		didSet(oldMeta) {
+			if nil != metadata {
+				
+				// extract OAuth2 endpoint URLs from rest[0].security.extension[#].valueUri
+				if let rest = metadata!["rest"] as? NSArray {
+					if let security = rest[0]?["security"] as? NSDictionary {
+						if let extensions = security["extension"] as? NSArray {
+							for obj: AnyObject in extensions {
+								if let ext = obj as? NSDictionary {
+									if let url = ext["url"] as? NSString {
+										switch url {
+										case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
+											registrationURL = NSURL(string: ext["valueUri"] as NSString)
+										case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
+											authURL = NSURL(string: ext["valueUri"] as NSString)
+										case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
+											tokenURL = NSURL(string: ext["valueUri"] as NSString)
+										default:
+											break
+										}
 									}
 								}
 							}
@@ -66,20 +67,19 @@ public class Server: FHIRServer {
 			}
 		}
 	}
-	}
 	
-	func getMetadata(callback: (error: NSError?) -> ()) {
-		if metadata {
+	public func getMetadata(callback: (error: NSError?) -> ()) {		// `public` to enable unit testing
+		if nil != metadata {
 			callback(error: nil)
 			return
 		}
 		
 		// not yet fetched, fetch it
 		requestJSONUnsigned("metadata") { json, error in
-			if error {
+			if nil != error {
 				callback(error: error)
 			}
-			else if json {
+			else if nil != json {
 				self.metadata = json
 				callback(error: nil)
 			}
@@ -90,7 +90,7 @@ public class Server: FHIRServer {
 	// MARK: - Requests
 	
 	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		if !auth {
+		if nil == auth {
 			callback(json: nil, error: genSMARTError("The server does not yet have an auth instance, cannot perform a signed request", 700))
 			return
 		}
@@ -110,7 +110,7 @@ public class Server: FHIRServer {
 	 */
 	func performJSONRequest(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
 		let url = NSURL(string: path, relativeToURL: baseURL)
-		let req = auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
+		let req = nil != auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
 		req.setValue("application/json", forHTTPHeaderField: "Accept")
 		
 		// run on default session
@@ -149,7 +149,7 @@ public class Server: FHIRServer {
 			}
 			
 			// if we're still here an error must have happened
-			if !finalError {
+			if nil == finalError {
 				finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
 			}
 			
@@ -167,14 +167,14 @@ public class Server: FHIRServer {
 	// MARK: - Session Management
 	
 	func defaultSession() -> NSURLSession {
-		if !session {
+		if nil == session {
 			session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 		}
 		return session!
 	}
 	
 	func abortSession() {
-		if session {
+		if nil != session {
 			session!.invalidateAndCancel()
 			session = nil
 		}

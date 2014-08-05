@@ -41,6 +41,11 @@ class FHIRSearchParamTests: XCTestCase {
 		fourth.next = fifth
 		XCTAssertTrue(fifth === first.last(), "Must re-chain correctly")
 		XCTAssertEqual("Patient?name=Alex&birthdate:missing=false&gender:text=male", fifth.construct())
+		
+		let sixth = FHIRSearchParam(subject: "gender", token: "male")
+		fourth.next = sixth
+		XCTAssertTrue(sixth === first.last(), "Must re-chain correctly")
+		XCTAssertEqual("Patient?name=Alex&birthdate:missing=false&gender=male", sixth.construct())
     }
 	
 	func testExtensions() {

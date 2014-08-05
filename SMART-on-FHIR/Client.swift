@@ -47,17 +47,17 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	// MARK: - Preparations
 	
 	public func ready(callback: (error: NSError?) -> ()) {
-		if auth.oauth {
+		if nil != auth.oauth {
 			callback(error: nil)
 			return
 		}
 		
 		// if we haven't initialized the auth's OAuth2 instance we likely didn't fetch the server metadata yet
 		server.getMetadata { error in
-			if error {
+			if nil != error {
 				callback(error: error)
 			}
-			else if self.server.authURL {
+			else if nil != self.server.authURL {
 				self.auth.create(authURL: self.server.authURL!, tokenURL: self.server.tokenURL)
 				callback(error: nil)
 			}
@@ -68,7 +68,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	}
 	
 	public var authorizing: Bool {
-		get { if auth.authCallback { return true }; return false }		// cannot write "nil != authCallback?
+		get { return nil != auth.authCallback }
 	}
 	
 	/**
@@ -78,12 +78,12 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
-			if error {
+			if nil != error {
 				callback(patient: nil, error: error)
 			}
 			else {
 				self.auth.authorize(self.useWebView) { patientId, error in
-					if error || !patientId {
+					if nil != error || nil == patientId {
 						callback(patient: nil, error: error)
 					}
 					else {
@@ -132,6 +132,6 @@ public func logIfDebug(log: String) {
 }
 
 public func genSMARTError(text: String, code: Int?) -> NSError {
-	return NSError(domain: SMARTErrorDomain, code: code ? code! : 0, userInfo: [NSLocalizedDescriptionKey: text])
+	return NSError(domain: SMARTErrorDomain, code: code ?? 0, userInfo: [NSLocalizedDescriptionKey: text])
 }
 

@@ -16,7 +16,7 @@ class ClientTests: XCTestCase {
 		let client = Client(serverURL: "https://api.io", clientId: "client", redirect: "oauth://callback")
 		XCTAssertTrue(client.server.baseURL.absoluteString == "https://api.io")
 		
-		XCTAssertNil(client.auth.clientId, "clientId will only be queryable once we have an OAuth2 instance")
+		//XCTAssertNil(client.auth.clientId, "clientId will only be queryable once we have an OAuth2 instance")
 		client.ready { error in
 			println(error?.localizedDescription)
 		}
