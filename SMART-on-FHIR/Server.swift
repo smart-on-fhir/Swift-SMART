@@ -158,7 +158,7 @@ public class Server: FHIRServer {
 		}
 		
 		logIfDebug("Requesting data from \(req.URL)")
-		task!.resume()
+		task.resume()
 	}
 	
 	

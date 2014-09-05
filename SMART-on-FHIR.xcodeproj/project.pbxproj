@@ -17,6 +17,11 @@
 		EE43B1C619546DB20017679A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EE43B1CA195478070017679A /* OAuth2iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */; };
+		EE7A3B8C19BA48C5006D50DD /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8719BA48C5006D50DD /* Age.swift */; };
+		EE7A3B8D19BA48C5006D50DD /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8819BA48C5006D50DD /* Count.swift */; };
+		EE7A3B8E19BA48C5006D50DD /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8919BA48C5006D50DD /* Distance.swift */; };
+		EE7A3B8F19BA48C5006D50DD /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8A19BA48C5006D50DD /* Duration.swift */; };
+		EE7A3B9019BA48C5006D50DD /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8B19BA48C5006D50DD /* Money.swift */; };
 		EEA23E1F196F105300510556 /* FHIRSearchParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA23E1E196F105300510556 /* FHIRSearchParam.swift */; };
 		EEA23E251970529300510556 /* FHIRSearchParamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA23E241970529300510556 /* FHIRSearchParamTests.swift */; };
 		EEA23E2619705B1600510556 /* FHIRSearchParam+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA23E2219700F2100510556 /* FHIRSearchParam+Params.swift */; };
@@ -152,6 +157,11 @@
 		EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		EE7A3B8719BA48C5006D50DD /* Age.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
+		EE7A3B8819BA48C5006D50DD /* Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
+		EE7A3B8919BA48C5006D50DD /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		EE7A3B8A19BA48C5006D50DD /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		EE7A3B8B19BA48C5006D50DD /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR-Bridging-Header.h"; sourceTree = "<group>"; };
 		EEA23E1E196F105300510556 /* FHIRSearchParam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearchParam.swift; sourceTree = "<group>"; };
 		EEA23E2219700F2100510556 /* FHIRSearchParam+Params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRSearchParam+Params.swift"; sourceTree = "<group>"; };
@@ -355,10 +365,9 @@
 		EEB69C211965F4C3009F4BD4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EEE8385C19798B35007347A0 /* FHIRElement+Factory.swift */,
-				EEA23E2219700F2100510556 /* FHIRSearchParam+Params.swift */,
 				EEB69C221965F4C3009F4BD4 /* Address.swift */,
 				EEB69C231965F4C3009F4BD4 /* AdverseReaction.swift */,
+				EE7A3B8719BA48C5006D50DD /* Age.swift */,
 				EEB69C241965F4C3009F4BD4 /* Alert.swift */,
 				EEB69C251965F4C3009F4BD4 /* AllergyIntolerance.swift */,
 				EEB69C261965F4C3009F4BD4 /* Attachment.swift */,
@@ -370,15 +379,20 @@
 				EEB69C2C1965F4C3009F4BD4 /* Condition.swift */,
 				EEB69C2D1965F4C3009F4BD4 /* Conformance.swift */,
 				EEB69C2E1965F4C3009F4BD4 /* Contact.swift */,
+				EE7A3B8819BA48C5006D50DD /* Count.swift */,
 				EEB69C2F1965F4C3009F4BD4 /* Device.swift */,
 				EEB69C301965F4C3009F4BD4 /* DeviceObservationReport.swift */,
 				EEB69C311965F4C3009F4BD4 /* DiagnosticOrder.swift */,
 				EEB69C321965F4C3009F4BD4 /* DiagnosticReport.swift */,
+				EE7A3B8919BA48C5006D50DD /* Distance.swift */,
 				EEB69C331965F4C3009F4BD4 /* DocumentManifest.swift */,
 				EEB69C341965F4C3009F4BD4 /* DocumentReference.swift */,
+				EE7A3B8A19BA48C5006D50DD /* Duration.swift */,
 				EEB69C351965F4C3009F4BD4 /* Encounter.swift */,
 				EEB69C361965F4C3009F4BD4 /* Extension.swift */,
 				EEB69C371965F4C3009F4BD4 /* FamilyHistory.swift */,
+				EEE8385C19798B35007347A0 /* FHIRElement+Factory.swift */,
+				EEA23E2219700F2100510556 /* FHIRSearchParam+Params.swift */,
 				EEB69C381965F4C3009F4BD4 /* Group.swift */,
 				EEB69C391965F4C3009F4BD4 /* HumanName.swift */,
 				EEB69C3A1965F4C3009F4BD4 /* Identifier.swift */,
@@ -394,6 +408,7 @@
 				EEB69C441965F4C3009F4BD4 /* MedicationPrescription.swift */,
 				EEB69C451965F4C3009F4BD4 /* MedicationStatement.swift */,
 				EEB69C461965F4C3009F4BD4 /* MessageHeader.swift */,
+				EE7A3B8B19BA48C5006D50DD /* Money.swift */,
 				EEB69C471965F4C3009F4BD4 /* Narrative.swift */,
 				EEB69C481965F4C3009F4BD4 /* Observation.swift */,
 				EEB69C491965F4C3009F4BD4 /* OperationOutcome.swift */,
@@ -596,6 +611,7 @@
 				EEB69C8D1965F4C3009F4BD4 /* Other.swift in Sources */,
 				EEB69C731965F4C3009F4BD4 /* DocumentManifest.swift in Sources */,
 				EEB69C681965F4C3009F4BD4 /* CodeableConcept.swift in Sources */,
+				EE7A3B8E19BA48C5006D50DD /* Distance.swift in Sources */,
 				EEB69C6B1965F4C3009F4BD4 /* ConceptMap.swift in Sources */,
 				EEB69C651965F4C3009F4BD4 /* AllergyIntolerance.swift in Sources */,
 				EEB69C961965F4C3009F4BD4 /* Questionnaire.swift in Sources */,
@@ -607,9 +623,11 @@
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
 				EEE8385D19798B35007347A0 /* FHIRElement+Factory.swift in Sources */,
 				EEB69C6A1965F4C3009F4BD4 /* Composition.swift in Sources */,
+				EE7A3B8C19BA48C5006D50DD /* Age.swift in Sources */,
 				EEB69C691965F4C3009F4BD4 /* Coding.swift in Sources */,
 				EEB69C791965F4C3009F4BD4 /* HumanName.swift in Sources */,
 				EEB69C9D1965F4C3009F4BD4 /* SecurityEvent.swift in Sources */,
+				EE7A3B9019BA48C5006D50DD /* Money.swift in Sources */,
 				EEB69C901965F4C3009F4BD4 /* Practitioner.swift in Sources */,
 				EEB69C711965F4C3009F4BD4 /* DiagnosticOrder.swift in Sources */,
 				EEB69C971965F4C3009F4BD4 /* Range.swift in Sources */,
@@ -618,6 +636,7 @@
 				EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */,
 				EEB69C761965F4C3009F4BD4 /* Extension.swift in Sources */,
 				EEB69C9E1965F4C3009F4BD4 /* Specimen.swift in Sources */,
+				EE7A3B8D19BA48C5006D50DD /* Count.swift in Sources */,
 				EEB69C7E1965F4C3009F4BD4 /* List.swift in Sources */,
 				EEB69C721965F4C3009F4BD4 /* DiagnosticReport.swift in Sources */,
 				EEB69C7A1965F4C3009F4BD4 /* Identifier.swift in Sources */,
@@ -633,6 +652,7 @@
 				EE43B1C519546DB20017679A /* Auth.swift in Sources */,
 				EEB69C7C1965F4C3009F4BD4 /* Immunization.swift in Sources */,
 				EEB69C621965F4C3009F4BD4 /* Address.swift in Sources */,
+				EE7A3B8F19BA48C5006D50DD /* Duration.swift in Sources */,
 				EEE8385919795D83007347A0 /* FHIRContainedResource.swift in Sources */,
 				EEB69C891965F4C3009F4BD4 /* OperationOutcome.swift in Sources */,
 				EEB69C631965F4C3009F4BD4 /* AdverseReaction.swift in Sources */,
