@@ -22,7 +22,7 @@ enum AuthMethod {
  */
 class Auth {
 	
-	/** The authentication type; only "oauth2" is supported. */
+	/** The authentication method to use. */
 	let type: AuthMethod
 	
 	/** The scopes needed; supply a space-separated list just as if supplying directly to OAuth2. */

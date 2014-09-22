@@ -39,7 +39,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 		let srv = Server(base: serverURL)
 		
 		var settings = ["client_id": clientId]
-		let myAuth = Auth(type: AuthMethod.CodeGrant, scope: "launch/patient user/*.* patient/*.read openid profile", redirect: redirect, settings: settings)
+		let myAuth = Auth(type: .CodeGrant, scope: "launch/patient user/*.* patient/*.read openid profile", redirect: redirect, settings: settings)
 		self.init(auth: myAuth, server: srv)
 	}
 	
