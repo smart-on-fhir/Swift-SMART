@@ -25,7 +25,7 @@ public class Server: FHIRServer {
 	}
 	
 	public convenience init(base: String) {
-		self.init(baseURL: NSURL(string: base))
+		self.init(baseURL: NSURL(string: base)!)					// yes, this will crash on invalid URL
 	}
 	
 	
@@ -37,7 +37,7 @@ public class Server: FHIRServer {
 	
 	var session: NSURLSession?
 	
-	public var metadata: NSDictionary? {								// `public` to enable unit testing
+	public var metadata: NSDictionary? {							// `public` to enable unit testing
 		didSet(oldMeta) {
 			if nil != metadata {
 				
@@ -107,58 +107,70 @@ public class Server: FHIRServer {
 	 *  provided.
 	 *
 	 *  The callback is always dispatched to the main queue.
-	 */
+	*/
 	func performJSONRequest(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		let url = NSURL(string: path, relativeToURL: baseURL)
-		let req = nil != auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
-		req.setValue("application/json", forHTTPHeaderField: "Accept")
-		
-		// run on default session
-		let task = defaultSession().dataTaskWithRequest(req) { data, response, error in
-			var finalError: NSError?
+		if let url = NSURL(string: path, relativeToURL: baseURL) {
+			let req = nil != auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
+			req.setValue("application/json", forHTTPHeaderField: "Accept")
 			
-			if nil != error {
-				finalError = error
-			}
-			else if nil != response && nil != data {
-				if let http = response as? NSHTTPURLResponse {
-					if 200 == http.statusCode {
-						if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
-							logIfDebug("Did receive valid JSON data")
-							dispatch_sync(dispatch_get_main_queue()) {
-								callback(json: json, error: nil)
+			// run on default session
+			let task = defaultSession().dataTaskWithRequest(req) { data, response, error in
+				var finalError: NSError?
+				
+				if nil != error {
+					finalError = error
+				}
+				else if nil != response && nil != data {
+					if let http = response as? NSHTTPURLResponse {
+						if 200 == http.statusCode {
+							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
+								logIfDebug("Did receive valid JSON data")
+								dispatch_sync(dispatch_get_main_queue()) {
+									callback(json: json, error: nil)
+								}
+								return
 							}
-							return
+							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
+							finalError = genSMARTError(errstr, nil)
 						}
-						let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
-						finalError = genSMARTError(errstr, nil)
+						else {
+							let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
+							finalError = genSMARTError(errstr, http.statusCode)
+						}
 					}
 					else {
-						let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
-						finalError = genSMARTError(errstr, http.statusCode)
+						finalError = genSMARTError("Not an HTTP response", nil)
 					}
 				}
 				else {
-					finalError = genSMARTError("Not an HTTP response", nil)
+					finalError = genSMARTError("No data received", nil)
+				}
+				
+				// if we're still here an error must have happened
+				if nil == finalError {
+					finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
+				}
+				
+				logIfDebug("Failed to fetch JSON data: \(finalError!.localizedDescription)")
+				dispatch_sync(dispatch_get_main_queue()) {
+					callback(json: nil, error: finalError)
 				}
 			}
+			
+			logIfDebug("Requesting data from \(req.URL)")
+			task.resume()
+		}
+		else {
+			let error = genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)", nil)
+			if NSThread.isMainThread() {
+				callback(json: nil, error: error)
+			}
 			else {
-				finalError = genSMARTError("No data received", nil)
-			}
-			
-			// if we're still here an error must have happened
-			if nil == finalError {
-				finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
-			}
-			
-			logIfDebug("Failed to fetch JSON data: \(finalError!.localizedDescription)")
-			dispatch_sync(dispatch_get_main_queue()) {
-				callback(json: nil, error: finalError)
+				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+					callback(json: nil, error: error)
+				})
 			}
 		}
-		
-		logIfDebug("Requesting data from \(req.URL)")
-		task.resume()
 	}
 	
 	

@@ -19,7 +19,7 @@ extension Auth {
 	
 	/** Shows a modal web view to let the user log in and authorize the app, dismisses on success. */
 	func authorizeEmbedded(oauth: OAuth2) {
-		if let root = UIApplication.sharedApplication().keyWindow.rootViewController {
+		if let root = UIApplication.sharedApplication().keyWindow!.rootViewController {
 			let web = oauth.authorizeEmbedded(redirect, scope: scope, params: nil, from: root)
 			oauth.afterAuthorizeOrFailure = { wasFailure in
 				web.dismissViewControllerAnimated(true, completion: nil)

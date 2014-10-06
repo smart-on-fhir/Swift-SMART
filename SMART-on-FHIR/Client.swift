@@ -31,7 +31,8 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 		self.auth = auth
 		server.auth = auth
 		self.server = server
-		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
+		//logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM
+		logIfDebug("Initialized SMART on FHIR client")
 	}
 	
 	/** Use this initializer with the appropriate server settings. */
