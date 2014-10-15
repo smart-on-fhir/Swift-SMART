@@ -48,17 +48,16 @@ You can register your app by posting an appropriately formatted JSON app manifes
 
 ```json
 {
-    "client_name": "Smart-on-FHIR iOS Med List",
-    "redirect_uris": [
-        "smartapp://callback"
-    ],
-    "token_endpoint_auth_method": "none",
-    "grant_types": [
-        "authorization_code"
-    ],
-    "initiate_login_uri": "https://srv.me/app/launch.html",
-    "logo_uri": "https://srv.me/img/cool.jpg",
-    "scope": "launch search user/*.* patient/*.read profile smart/orchestrate_launch"
+	"client_name": "Smart-on-FHIR iOS Med List",
+	"redirect_uris": [
+		"sofmedlist://callback"
+	],
+	"token_endpoint_auth_method": "none",
+	"grant_types": [
+		"authorization_code"
+	],
+	"logo_uri": "https://srv.me/img/cool.jpg",
+	"scope": "launch/patient user/*.* patient/*.read openid profile"
 }
 ```
 

@@ -8,5 +8,5 @@
 		"authorization_code"
 	],
 	"logo_uri": "https://srv.me/img/cool.jpg",
-	"scope": "launch user/*.* patient/*.read openid profile"
+	"scope": "launch/patient user/*.* patient/*.read openid profile"
 }
