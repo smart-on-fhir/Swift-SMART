@@ -2,10 +2,9 @@ SMART on FHIR
 =============
 
 This is an iOS and OS X framework for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smartplatforms.org).
-Written in _Swift_ it is compatible with iOS 8+ and OS X 10.9+.
+Written in _Swift_ it is compatible with **iOS 7** and **OS X 10.9** and later.
 Building the framework requires Xcode 6 or later.
-The iOS 8 requirement is because this code creates a framework which are not compatible with iOS 7.
-When building static libraries from Swift code becomes possible it should be possible to lower the deployment target to iOS 7.
+
 We have a simple [medication list](https://github.com/p2/SoF-MedList) sample app so you can see how you use the framework.
 
 
