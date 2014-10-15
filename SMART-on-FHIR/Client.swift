@@ -15,7 +15,7 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 /**
  *  A client instance handles authentication and connection to a SMART on FHIR resource server.
  */
-@objc public class Client {
+public class Client {
 	
 	/** The authentication protocol to use. */
 	let auth: Auth

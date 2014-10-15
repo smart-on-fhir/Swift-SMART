@@ -18,10 +18,10 @@ class ServerTests: XCTestCase {
 		XCTAssertNil(server.authURL)
 		
 		// TODO: How to use NSBundle(forClass)?
-		let metaURL = NSBundle(path: __FILE__.stringByDeletingLastPathComponent).URLForResource("metadata", withExtension: "")
+		let metaURL = NSBundle(path: __FILE__.stringByDeletingLastPathComponent)!.URLForResource("metadata", withExtension: "")
 		XCTAssertNotNil(metaURL, "Need metadata.json for unit tests")
-		let metaData = NSData(contentsOfURL: metaURL)
-		let meta = NSJSONSerialization.JSONObjectWithData(metaData, options: nil, error: nil) as NSDictionary
+		let metaData = NSData(contentsOfURL: metaURL!)
+		let meta = NSJSONSerialization.JSONObjectWithData(metaData!, options: nil, error: nil) as NSDictionary
 		XCTAssertNotNil(meta, "Should parse metadata.json")
 		
 		server.metadata = meta
@@ -39,7 +39,7 @@ class ServerTests: XCTestCase {
 			exp1.fulfill()
 		}
 		
-		let fileURL = NSURL(fileURLWithPath: __FILE__.stringByDeletingLastPathComponent)
+		let fileURL = NSURL(fileURLWithPath: __FILE__.stringByDeletingLastPathComponent)!
 		server = Server(baseURL: fileURL)
 		let exp2 = self.expectationWithDescription("Metadata fetch expectation 2")
 		server.getMetadata { error in

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0D3F3319EDC95C002A069B /* FHIRReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0D3F3219EDC95C002A069B /* FHIRReference.swift */; };
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
 		EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */; };
@@ -93,7 +94,6 @@
 		EEB69CA11965F4C3009F4BD4 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C611965F4C3009F4BD4 /* ValueSet.swift */; };
 		EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE838551978082B007347A0 /* Auth+iOS.swift */; };
 		EEE8385919795D83007347A0 /* FHIRContainedResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8385819795D83007347A0 /* FHIRContainedResource.swift */; };
-		EEE8385D19798B35007347A0 /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8385C19798B35007347A0 /* FHIRElement+Factory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +142,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE0D3F3219EDC95C002A069B /* FHIRReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRReference.swift; sourceTree = "<group>"; };
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; };
 		EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON-extensions.swift"; sourceTree = "<group>"; };
@@ -235,7 +236,6 @@
 		EEB69C611965F4C3009F4BD4 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
 		EEE838551978082B007347A0 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
 		EEE8385819795D83007347A0 /* FHIRContainedResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRContainedResource.swift; sourceTree = "<group>"; };
-		EEE8385C19798B35007347A0 /* FHIRElement+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Factory.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,22 +344,25 @@
 			isa = PBXGroup;
 			children = (
 				EEB69C1B1965F4AD009F4BD4 /* README.md */,
-				EEB69C1C1965F4B8009F4BD4 /* Classes */,
+				EEB69C1C1965F4B8009F4BD4 /* Base */,
 				EEB69C211965F4C3009F4BD4 /* Models */,
 			);
 			path = "Swift-FHIR";
 			sourceTree = "<group>";
 		};
-		EEB69C1C1965F4B8009F4BD4 /* Classes */ = {
+		EEB69C1C1965F4B8009F4BD4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */,
 				EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */,
-				EEA23E1E196F105300510556 /* FHIRSearchParam.swift */,
+				EE0D3F3219EDC95C002A069B /* FHIRReference.swift */,
 				EEE8385819795D83007347A0 /* FHIRContainedResource.swift */,
+				EEA23E1E196F105300510556 /* FHIRSearchParam.swift */,
+				EEA23E2219700F2100510556 /* FHIRSearchParam+Params.swift */,
 				EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */,
 			);
-			path = Classes;
+			name = Base;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EEB69C211965F4C3009F4BD4 /* Models */ = {
@@ -391,8 +394,6 @@
 				EEB69C351965F4C3009F4BD4 /* Encounter.swift */,
 				EEB69C361965F4C3009F4BD4 /* Extension.swift */,
 				EEB69C371965F4C3009F4BD4 /* FamilyHistory.swift */,
-				EEE8385C19798B35007347A0 /* FHIRElement+Factory.swift */,
-				EEA23E2219700F2100510556 /* FHIRSearchParam+Params.swift */,
 				EEB69C381965F4C3009F4BD4 /* Group.swift */,
 				EEB69C391965F4C3009F4BD4 /* HumanName.swift */,
 				EEB69C3A1965F4C3009F4BD4 /* Identifier.swift */,
@@ -621,7 +622,6 @@
 				EEB69C9A1965F4C3009F4BD4 /* ResourceReference.swift in Sources */,
 				EEB69C8B1965F4C3009F4BD4 /* OrderResponse.swift in Sources */,
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
-				EEE8385D19798B35007347A0 /* FHIRElement+Factory.swift in Sources */,
 				EEB69C6A1965F4C3009F4BD4 /* Composition.swift in Sources */,
 				EE7A3B8C19BA48C5006D50DD /* Age.swift in Sources */,
 				EEB69C691965F4C3009F4BD4 /* Coding.swift in Sources */,
@@ -639,6 +639,7 @@
 				EE7A3B8D19BA48C5006D50DD /* Count.swift in Sources */,
 				EEB69C7E1965F4C3009F4BD4 /* List.swift in Sources */,
 				EEB69C721965F4C3009F4BD4 /* DiagnosticReport.swift in Sources */,
+				EE0D3F3319EDC95C002A069B /* FHIRReference.swift in Sources */,
 				EEB69C7A1965F4C3009F4BD4 /* Identifier.swift in Sources */,
 				EEB69C921965F4C3009F4BD4 /* Profile.swift in Sources */,
 				EEB69C6D1965F4C3009F4BD4 /* Conformance.swift in Sources */,
