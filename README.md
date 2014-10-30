@@ -7,6 +7,9 @@ Building the framework requires Xcode 6 or later.
 
 We have a simple [medication list](https://github.com/p2/SoF-MedList) sample app so you can see how you use the framework.
 
+The first versions of this framework did not contain auto-generated classes, hence some parts are still manually implemented as opposed to using actual FHIR resources.
+An example of this is retrieving the SMART server's conformance statement, which will be migrated to reading a `Conformance` resource instead of manually parsing JSON data.
+
 
 Installation
 ------------
