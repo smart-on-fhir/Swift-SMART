@@ -23,9 +23,10 @@ class ServerTests: XCTestCase {
 		let metaData = NSData(contentsOfURL: metaURL!)
 		let meta = NSJSONSerialization.JSONObjectWithData(metaData!, options: nil, error: nil) as NSDictionary
 		XCTAssertNotNil(meta, "Should parse metadata.json")
+		let conformance = Conformance(json: meta)
 		
-		server.metadata = meta
-		XCTAssertNotNil(server.metadata, "Should store all metadata")
+		server.conformance = conformance
+		XCTAssertNotNil(server.conformance, "Should store all metadata")
 		XCTAssertNotNil(server.registrationURL, "Should parse registration URL")
 		XCTAssertNotNil(server.authURL, "Should parse authorize URL")
 		XCTAssertNotNil(server.tokenURL, "Should parse token URL")
@@ -34,7 +35,7 @@ class ServerTests: XCTestCase {
 	func testMetadataLoading() {
 		var server = Server(base: "https://api.ioio")		// invalid TLD, so this should definitely fail
 		let exp1 = self.expectationWithDescription("Metadata fetch expectation 1")
-		server.getMetadata { error in
+		server.getConformance { error in
 			XCTAssertNotNil(error, "Must raise an error when fetching metatada fails")
 			exp1.fulfill()
 		}
@@ -42,7 +43,7 @@ class ServerTests: XCTestCase {
 		let fileURL = NSURL(fileURLWithPath: __FILE__.stringByDeletingLastPathComponent)!
 		server = Server(baseURL: fileURL)
 		let exp2 = self.expectationWithDescription("Metadata fetch expectation 2")
-		server.getMetadata { error in
+		server.getConformance { error in
 			XCTAssertNotNil(error, "Expecting non-HTTP error")
 			XCTAssertTrue("Not an HTTP response" == error!.localizedDescription, "Expecting specific error message")
 			exp2.fulfill()

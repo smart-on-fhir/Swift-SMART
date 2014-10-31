@@ -142,8 +142,8 @@ class Auth {
 	
 	// MARK: - Requests
 	
-	func signedRequest(url: NSURL) -> NSMutableURLRequest {
-		return oauth!.request(forURL: url)
+	func signedRequest(url: NSURL) -> NSMutableURLRequest? {
+		return oauth?.request(forURL: url)
 	}
 }
 

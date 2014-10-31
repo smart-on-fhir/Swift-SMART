@@ -14,10 +14,10 @@ import Foundation
  */
 public class Server: FHIRServer {
 	
-	/** The server base URL. */
+	/// The server's base URL.
 	public let baseURL: NSURL
 	
-	/** The authorization to use with the server. */
+	/// The authorization to use with the server.
 	var auth: Auth?
 	
 	public init(baseURL: NSURL) {
@@ -25,11 +25,11 @@ public class Server: FHIRServer {
 	}
 	
 	public convenience init(base: String) {
-		self.init(baseURL: NSURL(string: base)!)					// yes, this will crash on invalid URL
+		self.init(baseURL: NSURL(string: base)!)				// yes, this will crash on invalid URL
 	}
 	
 	
-	// MARK: - Server Metadata
+	// MARK: - Server Conformance
 	
 	public var registrationURL: NSURL?
 	public var authURL: NSURL?
@@ -37,30 +37,23 @@ public class Server: FHIRServer {
 	
 	var session: NSURLSession?
 	
-	public var metadata: NSDictionary? {							// `public` to enable unit testing
+	/// The server's conformance statement. Must be implicitly fetched using `getConformance()`
+	public var conformance: Conformance? {							// `public` to enable unit testing
 		didSet(oldMeta) {
-			if nil != metadata {
-				
-				// extract OAuth2 endpoint URLs from rest[0].security.extension[#].valueUri
-				if let rest = metadata!["rest"] as? NSArray {
-					if let security = rest.firstObject?["security"] as? NSDictionary {
-						if let extensions = security["extension"] as? NSArray {
-							for obj: AnyObject in extensions {
-								if let ext = obj as? NSDictionary {
-									if let url = ext["url"] as? NSString {
-										switch url {
-										case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
-											registrationURL = NSURL(string: ext["valueUri"] as NSString)
-										case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
-											authURL = NSURL(string: ext["valueUri"] as NSString)
-										case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
-											tokenURL = NSURL(string: ext["valueUri"] as NSString)
-										default:
-											break
-										}
-									}
-								}
-							}
+			
+			// extract OAuth2 endpoint URLs from rest[0].security.extension[#].valueUri
+			if let extensions = conformance?.rest?.first?.security?.fhirExtension {
+				for ext in extensions {
+					if let urlString = ext.url?.absoluteString {
+						switch urlString {
+						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
+							registrationURL = ext.valueUri
+						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
+							authURL = ext.valueUri
+						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
+							tokenURL = ext.valueUri
+						default:
+							break
 						}
 					}
 				}
@@ -68,20 +61,26 @@ public class Server: FHIRServer {
 		}
 	}
 	
-	public func getMetadata(callback: (error: NSError?) -> ()) {		// `public` to enable unit testing
-		if nil != metadata {
+	/**
+	 *  Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
+	 */
+	public func getConformance(callback: (error: NSError?) -> ()) {		// `public` to enable unit testing
+		if nil != conformance {
 			callback(error: nil)
 			return
 		}
 		
 		// not yet fetched, fetch it
-		requestJSONUnsigned("metadata") { json, error in
+		Conformance.readFrom("metadata", server: self) { resource, error in
 			if nil != error {
 				callback(error: error)
 			}
-			else if nil != json {
-				self.metadata = json
+			else if let conf = resource as? Conformance {
+				self.conformance = conf
 				callback(error: nil)
+			}
+			else {
+				callback(error: genSMARTError("Conformance.readFrom() did not return a Conformance instance but \(resource)", 0))
 			}
 		}
 	}
@@ -90,16 +89,7 @@ public class Server: FHIRServer {
 	// MARK: - Requests
 	
 	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		if nil == auth {
-			callback(json: nil, error: genSMARTError("The server does not yet have an auth instance, cannot perform a signed request", 700))
-			return
-		}
-		
-		performJSONRequest(path, auth: auth!, callback: callback)
-	}
-	
-	func requestJSONUnsigned(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		performJSONRequest(path, auth: nil, callback: callback)
+		performJSONRequest(path, auth: auth, callback: callback)
 	}
 	
 	/**
@@ -110,7 +100,7 @@ public class Server: FHIRServer {
 	*/
 	func performJSONRequest(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let req = nil != auth ? auth!.signedRequest(url) : NSMutableURLRequest(URL: url)
+			let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			req.setValue("application/json", forHTTPHeaderField: "Accept")
 			
 			// run on default session

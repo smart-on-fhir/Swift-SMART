@@ -31,7 +31,7 @@ public class Client {
 		self.auth = auth
 		server.auth = auth
 		self.server = server
-		//logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM
+//		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM
 		logIfDebug("Initialized SMART on FHIR client")
 	}
 	
@@ -54,7 +54,7 @@ public class Client {
 		}
 		
 		// if we haven't initialized the auth's OAuth2 instance we likely didn't fetch the server metadata yet
-		server.getMetadata { error in
+		server.getConformance { error in
 			if nil != error {
 				callback(error: error)
 			}
