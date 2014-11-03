@@ -8,7 +8,7 @@ Building the framework requires Xcode 6 or later.
 We have a simple [medication list](https://github.com/p2/SoF-MedList) sample app so you can see how you use the framework.
 
 The first versions of this framework did not contain auto-generated classes, hence some parts are still manually implemented as opposed to using actual FHIR resources.
-Examples are retrieving the SMART server's conformance statement (only recently migrated to reading a `Conformance` resource) and the missing `Bundle` elements.
+As such the `Bundle` resource is still missing, all data is retrieved via a REST API.
 
 
 Installation
@@ -17,7 +17,7 @@ Installation
 Use `git` to obtain the framework.
 Using Terminal.app, navigate to your project directory and execute:
 
-    $ git clone --recursive https://github.com/p2/SMART-on-FHIR-Cocoa
+    $ git clone --recursive https://github.com/smart-on-fhir/SMART-on-FHIR-Cocoa
 
 This will download the latest codebase and all dependencies.
 Once this process completes open your app project in Xcode and add `SMART-on-FHIR.xcodeproj`.
