@@ -36,11 +36,18 @@ public class Client {
 	}
 	
 	/** Use this initializer with the appropriate server settings. */
-	public convenience init(serverURL: String, clientId: String, redirect: String) {
+	public convenience init(serverURL: String,
+	                         clientId: String,
+                             redirect: String,
+		                        scope: String = "launch/patient user/*.* patient/*.read openid profile") {
 		let srv = Server(base: serverURL)
 		
-		var settings = ["client_id": clientId]
-		let myAuth = Auth(type: .CodeGrant, scope: "launch/patient user/*.* patient/*.read openid profile", redirect: redirect, settings: settings)
+		var settings = [
+			"client_id": clientId,
+			"scope": scope,
+			"redirect_uris": [redirect],
+		]
+		let myAuth = Auth(type: .CodeGrant, settings: settings)
 		self.init(auth: myAuth, server: srv)
 	}
 	

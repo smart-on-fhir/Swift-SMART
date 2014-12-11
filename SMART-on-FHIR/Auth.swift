@@ -20,18 +20,12 @@ enum AuthMethod {
 /**
  *  Describes the authentication to be used.
  */
-class Auth {
-	
+class Auth
+{
 	/** The authentication method to use. */
 	let type: AuthMethod
 	
-	/** The scopes needed; supply a space-separated list just as if supplying directly to OAuth2. */
-	let scope: String
-	
-	/** The redirect to be used. */
-	let redirect: String
-	
-	/** Additional settings to be used to initialize the OAuth2 subclass. */
+	/** Settings to be used to initialize the OAuth2 subclass. */
 	let settings: NSDictionary
 	
 	/** The authentication object to be used. */
@@ -40,10 +34,8 @@ class Auth {
 	/** The closure to call when authorization finishes. */
 	var authCallback: ((patientId: String?, error: NSError?) -> ())?
 	
-	init(type: AuthMethod, scope: String, redirect: String, settings: NSDictionary) {
+	init(type: AuthMethod, settings: NSDictionary) {
 		self.type = type
-		self.scope = scope
-		self.redirect = redirect
 		self.settings = settings
 	}
 	
@@ -64,7 +56,6 @@ class Auth {
 		if nil != tokenURL {
 			settings["token_uri"] = tokenURL!.absoluteString
 		}
-		//settings["redirect_uris"] = [redirect]
 		
 		switch type {
 		case .CodeGrant:
@@ -93,10 +84,6 @@ class Auth {
 #endif
 	}
 	
-	func authorizeURL() -> NSURL? {
-		return oauth?.authorizeURLWithRedirect(redirect, scope: scope, params: nil)
-	}
-	
 	/**
 	 *  Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	 *
@@ -115,7 +102,7 @@ class Auth {
 				authorizeEmbedded(oauth!)
 			}
 			else {
-				openURLInBrowser(authorizeURL()!)
+				openURLInBrowser(oauth!.authorizeURL())
 			}
 		}
 		else {

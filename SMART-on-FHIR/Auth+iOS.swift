@@ -10,8 +10,8 @@ import UIKit
 import OAuth2iOS
 
 
-extension Auth {
-	
+extension Auth
+{
 	/** Open a URL in the OS' browser. */
 	func openURLInBrowser(url: NSURL) -> Bool {
 		return UIApplication.sharedApplication().openURL(url)
@@ -20,7 +20,7 @@ extension Auth {
 	/** Shows a modal web view to let the user log in and authorize the app, dismisses on success. */
 	func authorizeEmbedded(oauth: OAuth2) {
 		if let root = UIApplication.sharedApplication().keyWindow!.rootViewController {
-			let web = oauth.authorizeEmbedded(redirect, scope: scope, params: nil, from: root)
+			let web = oauth.authorizeEmbeddedFrom(root, params: nil)
 			oauth.afterAuthorizeOrFailure = { wasFailure in
 				web.dismissViewControllerAnimated(true, completion: nil)
 			}
