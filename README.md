@@ -7,8 +7,8 @@ Building the framework requires Xcode 6 or later.
 
 We have a simple [medication list](https://github.com/p2/SoF-MedList) sample app so you can see how you use the framework.
 
-The first versions of this framework did not contain auto-generated classes, hence some parts are still manually implemented as opposed to using actual FHIR resources.
-As such the `Bundle` resource is still missing, all data is retrieved via a REST API.
+The `master` branch is currently on FHIR _DSTU 1_.
+The `develop` branch is work in progress for FHIR _DSTU 2_.
 
 
 Installation
@@ -43,26 +43,3 @@ If you are simply testing grounds you can use our sandbox server and the shared 
     redirect: "smartapp://callback"    // must match a registered redirect uri
 )
 ```
-
-### Dynamic Client Registration
-
-Our sandbox also supports _dynamic client registration_, which is based on the OAuth 2.0 Dynamic Client Registration [protocol](http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-17) and the Blue Button open registration [specification](http://blue-button.github.io/blue-button-plus-pull/#registration-open).
-You can register your app by posting an appropriately formatted JSON app manifest to the registration server, the app manifest looks like this:
-
-```json
-{
-	"client_name": "Smart-on-FHIR iOS Med List",
-	"redirect_uris": [
-		"sofmedlist://callback"
-	],
-	"token_endpoint_auth_method": "none",
-	"grant_types": [
-		"authorization_code"
-	],
-	"logo_uri": "https://srv.me/img/cool.jpg",
-	"scope": "launch/patient user/*.* patient/*.read openid profile"
-}
-```
-
-You can POST this manifest to [https://authorize.smartplatforms.org/register]() for registration with our sandbox server, or any SMART on FHIR server for that matter.
-

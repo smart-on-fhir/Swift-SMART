@@ -12,8 +12,8 @@ import Foundation
 /**
  *  Representing the FHIR resource server a client connects to.
  */
-public class Server: FHIRServer {
-	
+public class Server: FHIRServer
+{
 	/// The server's base URL.
 	public let baseURL: NSURL
 	
@@ -42,18 +42,34 @@ public class Server: FHIRServer {
 		didSet(oldMeta) {
 			
 			// extract OAuth2 endpoint URLs from rest[0].security.extension[#].valueUri
-			if let extensions = conformance?.rest?.first?.security?.fhirExtension {
-				for ext in extensions {
-					if let urlString = ext.url?.absoluteString {
-						switch urlString {
-						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
-							registrationURL = ext.valueUri
-						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
-							authURL = ext.valueUri
-						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
-							tokenURL = ext.valueUri
-						default:
-							break
+			// TODO: we only look at the first "rest" entry, should we support multiple endpoints in a way?
+			if let security = conformance?.rest?.first?.security {
+				
+				if let services = security.service {
+					for service in services {
+						logIfDebug("Server supports REST security via \(service.text ?? nil))")
+						if let codings = service.coding {
+							for coding in codings {
+								logIfDebug("-- \(coding.code) (\(coding.system))")
+								// TODO: server needs to support multiple auth systems, should be initialized here automatically
+							}
+						}
+					}
+				}
+				
+				if let extensions = security.fhirExtension {
+					for ext in extensions {
+						if let urlString = ext.url?.absoluteString {
+							switch urlString {
+							case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
+								registrationURL = ext.valueUri
+							case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
+								authURL = ext.valueUri
+							case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
+								tokenURL = ext.valueUri
+							default:
+								break
+							}
 						}
 					}
 				}
@@ -115,6 +131,7 @@ public class Server: FHIRServer {
 						if 200 == http.statusCode {
 							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
 								logIfDebug("Did receive valid JSON data")
+								//logIfDebug("\(json)")
 								dispatch_sync(dispatch_get_main_queue()) {
 									callback(json: json, error: nil)
 								}
