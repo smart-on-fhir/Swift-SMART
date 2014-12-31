@@ -13,26 +13,21 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 
 
 /**
- *  A client instance handles authentication and connection to a SMART on FHIR resource server.
+	A client instance handles authentication and connection to a SMART on FHIR resource server.
  */
-public class Client {
-	
-	/** The authentication protocol to use. */
-	let auth: Auth
-	
-	/** The server this client connects to. */
+public class Client
+{
+	/// The server this client connects to.
 	public let server: Server
 	
-	/** Set to false if you don't want to use a built in web view for authentication. */
+	/// Set to false if you don't want to use a built in web view for authentication.
 	var useWebView = true
 	
 	/** Designated initializer. */
-	init(auth: Auth, server: Server) {
-		self.auth = auth
-		server.auth = auth
+	init(server: Server) {
 		self.server = server
-//		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM
-		logIfDebug("Initialized SMART on FHIR client")
+		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM
+//		logIfDebug("Initialized SMART on FHIR client")
 	}
 	
 	/** Use this initializer with the appropriate server settings. */
@@ -40,94 +35,61 @@ public class Client {
 	                         clientId: String,
                              redirect: String,
 		                        scope: String = "launch/patient user/*.* patient/*.read openid profile") {
-		let srv = Server(base: serverURL)
-		
 		var settings = [
 			"client_id": clientId,
 			"scope": scope,
 			"redirect_uris": [redirect],
 		]
-		let myAuth = Auth(type: .CodeGrant, settings: settings)
-		self.init(auth: myAuth, server: srv)
+		let srv = Server(base: serverURL, auth: settings)
+		self.init(server: srv)
 	}
 	
 	
 	// MARK: - Preparations
 	
+	/**
+		Executes the callback immediately, if the server is ready to perform requests, after performing necessary
+		setup operations and requests otherwise.
+	 */
 	public func ready(callback: (error: NSError?) -> ()) {
-		if nil != auth.oauth {
-			callback(error: nil)
-			return
-		}
-		
-		// if we haven't initialized the auth's OAuth2 instance we likely didn't fetch the server metadata yet
-		server.getConformance { error in
-			if nil != error {
-				callback(error: error)
-			}
-			else if nil != self.server.authURL {
-				self.auth.create(authURL: self.server.authURL!, tokenURL: self.server.tokenURL)
-				callback(error: nil)
-			}
-			else {
-				callback(error: genSMARTError("Failed to extract `authorize` URL from server metadata", 0))
-			}
-		}
-	}
-	
-	public var authorizing: Bool {
-		get { return nil != auth.authCallback }
+		server.ready(callback)
 	}
 	
 	/**
-	 *  Call this to start the authorization process.
-	 *
-	 *  If you set `useWebView` to false you will need to intercept the OAuth redirect and call `didRedirect` yourself.
-	 */
+		Call this to start the authorization process.
+	
+		If you set `useWebView` to false you will need to intercept the OAuth redirect and call `didRedirect` yourself.
+	*/
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
-		self.ready { error in
-			if nil != error {
-				callback(patient: nil, error: error)
-			}
-			else {
-				self.auth.authorize(self.useWebView) { patientId, error in
-					if nil != error || nil == patientId {
-						callback(patient: nil, error: error)
-					}
-					else {
-						Patient.read(patientId!, server: self.server) { resource, error in
-							logIfDebug("Did read patient \(resource) with error \(error)")
-							callback(patient: resource as? Patient, error: error)
-						}
-					}
-				}
-			}
-		}
+		self.server.authorize(self.useWebView, callback)
 	}
 	
-	/**
-	 *  Stops any request currently in progress.
-	 */
-	public func abort() {
-		auth.abort()
-		server.abortSession()
+	/// Will return true while the client is waiting for the authorization callback.
+	public var awaitingAuthCallback: Bool {
+		get { return nil != server.auth?.authCallback }
 	}
 	
-	/**
-	 *  Call this with the redirect URL when intercepting the redirect callback in the app delegate.
-	 */
+	/** Call this with the redirect URL when intercepting the redirect callback in the app delegate. */
 	public func didRedirect(redirect: NSURL) -> Bool {
-		return auth.handleRedirect(redirect)
+		return server.handleRedirect(redirect)
+	}
+	
+	/** Stops any request currently in progress. */
+	public func abort() {
+		server.abortSession()
 	}
 	
 	
 	// MARK: - Making Requests
 	
 	/**
-	 *  Request a JSON resource at the given path from the client's server.
+		Request a JSON resource at the given path from the client's server.
+	
+		:param: path The path relative to the server's base URL to request
+		:param: callback The callback to execute once the request finishes
 	 */
 	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		server.performJSONRequest(path, auth: auth, callback: callback)
+		server.requestJSON(path, callback: callback)
 	}
 }
 

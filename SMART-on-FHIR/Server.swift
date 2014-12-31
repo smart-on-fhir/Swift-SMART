@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Representing the FHIR resource server a client connects to.
+	Representing the FHIR resource server a client connects to.
  */
 public class Server: FHIRServer
 {
@@ -20,65 +20,43 @@ public class Server: FHIRServer
 	/// The authorization to use with the server.
 	var auth: Auth?
 	
-	public init(baseURL: NSURL) {
+	/// Settings to be applied to the Auth instance.
+	var authSettings: NSDictionary?
+	
+	/// The active URL session.
+	var session: NSURLSession?
+	
+	
+	public init(baseURL: NSURL, auth: NSDictionary? = nil) {
 		self.baseURL = baseURL
+		self.authSettings = auth
 	}
 	
-	public convenience init(base: String) {
-		self.init(baseURL: NSURL(string: base)!)				// yes, this will crash on invalid URL
+	public convenience init(base: String, auth: NSDictionary? = nil) {
+		self.init(baseURL: NSURL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
 	}
 	
 	
 	// MARK: - Server Conformance
 	
-	public var registrationURL: NSURL?
-	public var authURL: NSURL?
-	public var tokenURL: NSURL?
-	
-	var session: NSURLSession?
-	
 	/// The server's conformance statement. Must be implicitly fetched using `getConformance()`
 	public var conformance: Conformance? {							// `public` to enable unit testing
-		didSet(oldMeta) {
+		didSet {
 			
-			// extract OAuth2 endpoint URLs from rest[0].security.extension[#].valueUri
-			// TODO: we only look at the first "rest" entry, should we support multiple endpoints in a way?
+			// TODO: we only look at the first "rest" entry, should we support multiple endpoints?
 			if let security = conformance?.rest?.first?.security {
-				
-				if let services = security.service {
-					for service in services {
-						logIfDebug("Server supports REST security via \(service.text ?? nil))")
-						if let codings = service.coding {
-							for coding in codings {
-								logIfDebug("-- \(coding.code) (\(coding.system))")
-								// TODO: server needs to support multiple auth systems, should be initialized here automatically
-							}
-						}
-					}
-				}
-				
-				if let extensions = security.fhirExtension {
-					for ext in extensions {
-						if let urlString = ext.url?.absoluteString {
-							switch urlString {
-							case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
-								registrationURL = ext.valueUri
-							case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
-								authURL = ext.valueUri
-							case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
-								tokenURL = ext.valueUri
-							default:
-								break
-							}
-						}
-					}
-				}
+				auth = Auth.fromConformanceSecurity(security, settings: authSettings)
+			}
+			
+			// if we have not yet initialized an Auth object we'll use one for "no auth"
+			if nil == auth {
+				auth = Auth(type: .None, settings: authSettings)
 			}
 		}
 	}
 	
 	/**
-	 *  Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
+		Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
 	 */
 	public func getConformance(callback: (error: NSError?) -> ()) {		// `public` to enable unit testing
 		if nil != conformance {
@@ -102,19 +80,83 @@ public class Server: FHIRServer
 	}
 	
 	
+	// MARK: - Auth Status
+	
+	/** Ensures that the server is ready to perform requests before calling the callback. */
+	public func ready(callback: (error: NSError?) -> ()) {
+		if nil != auth {
+			callback(error: nil)
+			return
+		}
+		
+		// if we haven't initialized the auth instance we likely didn't fetch the server metadata yet
+		getConformance { error in
+			if nil != error {
+				callback(error: error)
+			}
+			else if nil != self.auth {
+				callback(error: nil)
+			}
+			else {
+				callback(error: genSMARTError("Failed to detect the authorization method from server metadata", 0))
+			}
+		}
+	}
+	
+	/** Ensures that the receiver is ready, then calls the auth method's `authorize()` method. */
+	public func authorize(useWebView: Bool, callback: (patient: Patient?, error: NSError?) -> ()) {
+		self.ready { error in
+			if nil != error {
+				callback(patient: nil, error: error)
+			}
+			else if nil == self.auth {
+				callback(patient: nil, error: genSMARTError("Client error, no auth instance created", 0))
+			}
+			else {
+				self.auth!.authorize(useWebView) { patientId, error in
+					if nil != error || nil == patientId {
+						callback(patient: nil, error: error)
+					}
+					else {
+						Patient.read(patientId!, server: self) { resource, error in
+							logIfDebug("Did read patient \(resource) with error \(error)")
+							callback(patient: resource as? Patient, error: error)
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public func handleRedirect(redirect: NSURL) -> Bool {
+		if nil != auth {
+			return auth!.handleRedirect(redirect)
+		}
+		return false
+	}
+	
+	
 	// MARK: - Requests
 	
+	/**
+		Request a JSON resource at the given path from the server, forwards to ``.
+	
+		:param: path The path relative to the server's base URL to request
+		:param: callback The callback to execute once the request finishes
+	*/
 	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		performJSONRequest(path, auth: auth, callback: callback)
+		requestJSON(path, auth: auth, callback: callback)
 	}
 	
 	/**
-	 *  Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
-	 *  provided.
-	 *
-	 *  The callback is always dispatched to the main queue.
-	*/
-	func performJSONRequest(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
+		provided.
+	
+		:param: path The path relative to the server's base URL to request
+		:param: auth The Auth instance to use for authentication purposes
+		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
+	 */
+	func requestJSON(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			req.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -191,6 +233,10 @@ public class Server: FHIRServer
 	}
 	
 	func abortSession() {
+		if nil != auth {
+			auth!.abort()
+		}
+		
 		if nil != session {
 			session!.invalidateAndCancel()
 			session = nil

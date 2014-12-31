@@ -7,7 +7,7 @@ Building the framework requires Xcode 6 or later.
 
 We have a simple [medication list](https://github.com/p2/SoF-MedList) sample app so you can see how you use the framework.
 
-The `master` branch is currently on FHIR _DSTU 1_.
+The `master` branch is currently on FHIR _DSTU 1_.  
 The `develop` branch is work in progress for FHIR _DSTU 2_.
 
 
