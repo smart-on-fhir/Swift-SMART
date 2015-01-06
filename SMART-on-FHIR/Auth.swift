@@ -69,7 +69,7 @@ class Auth
 		
 		if let services = security.service {
 			for service in services {
-				logIfDebug("Server supports REST security via \(service.text ?? nil))")
+				logIfDebug("Server supports REST security via \(service.text ?? nil)")
 				if let codings = service.coding {
 					for coding in codings {
 						logIfDebug("-- \(coding.code) (\(coding.system))")
