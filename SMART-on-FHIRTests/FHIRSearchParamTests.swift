@@ -9,7 +9,7 @@
 import XCTest
 import SMART
 
-
+/*
 class FHIRSearchParamTests: XCTestCase {
 	
     func testConstruction() {
@@ -66,5 +66,5 @@ class FHIRSearchParamTests: XCTestCase {
 		
 		// TODO: add more
 	}
-}
+}	//	*/
 

@@ -90,7 +90,7 @@ public class Client
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
 	 */
-	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+	public func requestJSON(path: String, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
 		server.requestJSON(path, callback: callback)
 	}
 }

@@ -144,7 +144,7 @@ public class Server: FHIRServer
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
 	*/
-	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+	public func requestJSON(path: String, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
 		requestJSON(path, auth: auth, callback: callback)
 	}
 	
@@ -156,7 +156,7 @@ public class Server: FHIRServer
 		:param: auth The Auth instance to use for authentication purposes
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
-	func requestJSON(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+	func requestJSON(path: String, auth: Auth?, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			req.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -171,7 +171,7 @@ public class Server: FHIRServer
 				else if nil != response && nil != data {
 					if let http = response as? NSHTTPURLResponse {
 						if 200 == http.statusCode {
-							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
+							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? JSONDictionary {
 								logIfDebug("Did receive valid JSON data")
 								//logIfDebug("\(json)")
 								dispatch_sync(dispatch_get_main_queue()) {
