@@ -34,11 +34,13 @@ public class Client
 	public convenience init(serverURL: String,
 	                         clientId: String,
                              redirect: String,
-		                        scope: String = "launch/patient user/*.* patient/*.read openid profile") {
+		                        scope: String = "launch/patient user/*.* patient/*.read openid profile",
+		                        title: String = "SMART") {
 		var settings = [
 			"client_id": clientId,
 			"scope": scope,
 			"redirect_uris": [redirect],
+			"title": title,
 		]
 		let srv = Server(base: serverURL, auth: settings)
 		self.init(server: srv)
@@ -59,7 +61,7 @@ public class Client
 		Call this to start the authorization process.
 	
 		If you set `useWebView` to false you will need to intercept the OAuth redirect and call `didRedirect` yourself.
-	*/
+	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.server.authorize(self.useWebView, callback)
 	}

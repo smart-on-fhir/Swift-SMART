@@ -25,7 +25,15 @@ class Auth
 	/// The authentication method to use.
 	let type: AuthMethod
 	
-	/// Settings to be used to initialize the OAuth2 subclass.
+	/**
+		Settings to be used to initialize the OAuth2 subclass. Supported keys:
+	
+		- client_id
+		- registration_uri
+		- authorize_uri
+		- token_uri
+		- title
+	 */
 	var settings: NSDictionary?
 	
 	/// The authentication object, used internally.
@@ -120,6 +128,9 @@ class Auth
 		
 		// configure the OAuth2 instance's callbacks
 		if let oa = oauth {
+			if let ttl = settings["title"] as? String {
+				oa.viewTitle = ttl
+			}
 			oa.onAuthorize = { parameters in
 				if let patient = parameters["patient"] as? String {
 					logIfDebug("Did receive patient with id \(patient)")
