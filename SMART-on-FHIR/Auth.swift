@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import OAuth2iOS			// TODO: figure out a way to use the iOS framework as simply "OAuth2"
+import OAuth2
+import SwiftFHIR
 
 
 enum AuthMethod {
@@ -63,7 +64,7 @@ class Auth
 	// MARK: - Factory & Setup
 	
 	class func fromConformanceSecurity(security: ConformanceRestSecurity, settings: NSDictionary?) -> Auth? {
-		var authSettings = (settings?.mutableCopy() as NSMutableDictionary) ?? NSMutableDictionary()
+		var authSettings = (settings?.mutableCopy() as? NSMutableDictionary) ?? NSMutableDictionary()
 		var hasAuthURI = false
 		var hasTokenURI = false
 		
@@ -82,7 +83,6 @@ class Auth
 		}
 		
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
-		// TODO: Grahame's server puts the SMART extensions on the top level?
 		if let extensions = security.fhirExtension {
 			for ext in extensions {
 				if let urlString = ext.url?.absoluteString {

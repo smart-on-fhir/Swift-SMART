@@ -7,149 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EE0D3F3319EDC95C002A069B /* FHIRReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0D3F3219EDC95C002A069B /* FHIRReference.swift */; };
+		EE13AA9E1A5D453000B901FD /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
+		EE13AA9F1A5D453A00B901FD /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1BA19546D880017679A /* ClientTests.swift */; };
+		EE13AAA01A5D474C00B901FD /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECAA7831A5D3DE60062C64B /* SMART.framework */; };
+		EE13AAA41A5D499D00B901FD /* BaseTests+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13AAA31A5D499D00B901FD /* BaseTests+OSX.swift */; };
+		EE13AAA61A5D49D200B901FD /* BaseTests+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13AAA51A5D49D200B901FD /* BaseTests+iOS.swift */; };
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
-		EE374ABA1A486A5400ACD002 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A3D1A486A5400ACD002 /* Address.swift */; };
-		EE374ABB1A486A5400ACD002 /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A3E1A486A5400ACD002 /* Age.swift */; };
-		EE374ABC1A486A5400ACD002 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A3F1A486A5400ACD002 /* Alert.swift */; };
-		EE374ABD1A486A5400ACD002 /* AllergyIntolerance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A401A486A5400ACD002 /* AllergyIntolerance.swift */; };
-		EE374ABE1A486A5400ACD002 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A411A486A5400ACD002 /* Appointment.swift */; };
-		EE374ABF1A486A5400ACD002 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A421A486A5400ACD002 /* AppointmentResponse.swift */; };
-		EE374AC01A486A5400ACD002 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A431A486A5400ACD002 /* Attachment.swift */; };
-		EE374AC11A486A5400ACD002 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A441A486A5400ACD002 /* Basic.swift */; };
-		EE374AC21A486A5400ACD002 /* Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A451A486A5400ACD002 /* Binary.swift */; };
-		EE374AC31A486A5400ACD002 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A461A486A5400ACD002 /* Bundle.swift */; };
-		EE374AC41A486A5400ACD002 /* CarePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A471A486A5400ACD002 /* CarePlan.swift */; };
-		EE374AC51A486A5400ACD002 /* CarePlan2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A481A486A5400ACD002 /* CarePlan2.swift */; };
-		EE374AC61A486A5400ACD002 /* ClaimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A491A486A5400ACD002 /* ClaimResponse.swift */; };
-		EE374AC71A486A5400ACD002 /* ClinicalAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A4A1A486A5400ACD002 /* ClinicalAssessment.swift */; };
-		EE374AC81A486A5400ACD002 /* CodeableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A4B1A486A5400ACD002 /* CodeableConcept.swift */; };
-		EE374AC91A486A5400ACD002 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A4C1A486A5400ACD002 /* Coding.swift */; };
-		EE374ACA1A486A5400ACD002 /* Communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A4D1A486A5400ACD002 /* Communication.swift */; };
-		EE374ACB1A486A5400ACD002 /* CommunicationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A4E1A486A5400ACD002 /* CommunicationRequest.swift */; };
-		EE374ACC1A486A5400ACD002 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A4F1A486A5400ACD002 /* Composition.swift */; };
-		EE374ACD1A486A5400ACD002 /* ConceptMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A501A486A5400ACD002 /* ConceptMap.swift */; };
-		EE374ACE1A486A5400ACD002 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A511A486A5400ACD002 /* Condition.swift */; };
-		EE374ACF1A486A5400ACD002 /* Conformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A521A486A5400ACD002 /* Conformance.swift */; };
-		EE374AD11A486A5400ACD002 /* ContactPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A541A486A5400ACD002 /* ContactPoint.swift */; };
-		EE374AD21A486A5400ACD002 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A551A486A5400ACD002 /* Contract.swift */; };
-		EE374AD31A486A5400ACD002 /* Contraindication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A561A486A5400ACD002 /* Contraindication.swift */; };
-		EE374AD41A486A5400ACD002 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A571A486A5400ACD002 /* Count.swift */; };
-		EE374AD51A486A5400ACD002 /* Coverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A581A486A5400ACD002 /* Coverage.swift */; };
-		EE374AD61A486A5400ACD002 /* DataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A591A486A5400ACD002 /* DataElement.swift */; };
-		EE374AD71A486A5400ACD002 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A5A1A486A5400ACD002 /* Device.swift */; };
-		EE374AD81A486A5400ACD002 /* DeviceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A5B1A486A5400ACD002 /* DeviceComponent.swift */; };
-		EE374AD91A486A5400ACD002 /* DeviceMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A5C1A486A5400ACD002 /* DeviceMetric.swift */; };
-		EE374ADB1A486A5400ACD002 /* DeviceUseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A5E1A486A5400ACD002 /* DeviceUseRequest.swift */; };
-		EE374ADC1A486A5400ACD002 /* DeviceUseStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A5F1A486A5400ACD002 /* DeviceUseStatement.swift */; };
-		EE374ADD1A486A5400ACD002 /* DiagnosticOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A601A486A5400ACD002 /* DiagnosticOrder.swift */; };
-		EE374ADE1A486A5400ACD002 /* DiagnosticReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A611A486A5400ACD002 /* DiagnosticReport.swift */; };
-		EE374ADF1A486A5400ACD002 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A621A486A5400ACD002 /* Distance.swift */; };
-		EE374AE01A486A5400ACD002 /* DocumentManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A631A486A5400ACD002 /* DocumentManifest.swift */; };
-		EE374AE11A486A5400ACD002 /* DocumentReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A641A486A5400ACD002 /* DocumentReference.swift */; };
-		EE374AE21A486A5400ACD002 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A651A486A5400ACD002 /* Duration.swift */; };
-		EE374AE31A486A5400ACD002 /* ElementDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A661A486A5400ACD002 /* ElementDefinition.swift */; };
-		EE374AE41A486A5400ACD002 /* EligibilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A671A486A5400ACD002 /* EligibilityRequest.swift */; };
-		EE374AE51A486A5400ACD002 /* EligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A681A486A5400ACD002 /* EligibilityResponse.swift */; };
-		EE374AE61A486A5400ACD002 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A691A486A5400ACD002 /* Encounter.swift */; };
-		EE374AE71A486A5400ACD002 /* EnrollmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A6A1A486A5400ACD002 /* EnrollmentRequest.swift */; };
-		EE374AE81A486A5400ACD002 /* EnrollmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A6B1A486A5400ACD002 /* EnrollmentResponse.swift */; };
-		EE374AE91A486A5400ACD002 /* EpisodeOfCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A6C1A486A5400ACD002 /* EpisodeOfCare.swift */; };
-		EE374AEA1A486A5400ACD002 /* ExplanationOfBenefit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A6D1A486A5400ACD002 /* ExplanationOfBenefit.swift */; };
-		EE374AEB1A486A5400ACD002 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A6E1A486A5400ACD002 /* Extension.swift */; };
-		EE374AEC1A486A5400ACD002 /* ExtensionDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A6F1A486A5400ACD002 /* ExtensionDefinition.swift */; };
-		EE374AED1A486A5400ACD002 /* FamilyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A701A486A5400ACD002 /* FamilyHistory.swift */; };
-		EE374AEE1A486A5400ACD002 /* FHIRTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A711A486A5400ACD002 /* FHIRTypes.swift */; };
-		EE374AF01A486A5400ACD002 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A731A486A5400ACD002 /* Goal.swift */; };
-		EE374AF11A486A5400ACD002 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A741A486A5400ACD002 /* Group.swift */; };
-		EE374AF21A486A5400ACD002 /* HealthcareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A751A486A5400ACD002 /* HealthcareService.swift */; };
-		EE374AF31A486A5400ACD002 /* HumanName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A761A486A5400ACD002 /* HumanName.swift */; };
-		EE374AF41A486A5400ACD002 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A771A486A5400ACD002 /* Identifier.swift */; };
-		EE374AF51A486A5400ACD002 /* ImagingObjectSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A781A486A5400ACD002 /* ImagingObjectSelection.swift */; };
-		EE374AF61A486A5400ACD002 /* ImagingStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A791A486A5400ACD002 /* ImagingStudy.swift */; };
-		EE374AF71A486A5400ACD002 /* Immunization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A7A1A486A5400ACD002 /* Immunization.swift */; };
-		EE374AF81A486A5400ACD002 /* ImmunizationRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A7B1A486A5400ACD002 /* ImmunizationRecommendation.swift */; };
-		EE374AF91A486A5400ACD002 /* InstitutionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A7C1A486A5400ACD002 /* InstitutionalClaim.swift */; };
-		EE374AFA1A486A5400ACD002 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A7D1A486A5400ACD002 /* List.swift */; };
-		EE374AFB1A486A5400ACD002 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A7E1A486A5400ACD002 /* Location.swift */; };
-		EE374AFC1A486A5400ACD002 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A7F1A486A5400ACD002 /* Media.swift */; };
-		EE374AFD1A486A5400ACD002 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A801A486A5400ACD002 /* Medication.swift */; };
-		EE374AFE1A486A5400ACD002 /* MedicationAdministration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A811A486A5400ACD002 /* MedicationAdministration.swift */; };
-		EE374AFF1A486A5400ACD002 /* MedicationDispense.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A821A486A5400ACD002 /* MedicationDispense.swift */; };
-		EE374B001A486A5400ACD002 /* MedicationPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A831A486A5400ACD002 /* MedicationPrescription.swift */; };
-		EE374B011A486A5400ACD002 /* MedicationStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A841A486A5400ACD002 /* MedicationStatement.swift */; };
-		EE374B021A486A5400ACD002 /* MessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A851A486A5400ACD002 /* MessageHeader.swift */; };
-		EE374B031A486A5400ACD002 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A861A486A5400ACD002 /* Money.swift */; };
-		EE374B041A486A5400ACD002 /* NamingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A871A486A5400ACD002 /* NamingSystem.swift */; };
-		EE374B051A486A5400ACD002 /* Narrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A881A486A5400ACD002 /* Narrative.swift */; };
-		EE374B061A486A5400ACD002 /* NutritionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A891A486A5400ACD002 /* NutritionOrder.swift */; };
-		EE374B071A486A5400ACD002 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A8A1A486A5400ACD002 /* Observation.swift */; };
-		EE374B081A486A5400ACD002 /* OperationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A8B1A486A5400ACD002 /* OperationDefinition.swift */; };
-		EE374B091A486A5400ACD002 /* OperationOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A8C1A486A5400ACD002 /* OperationOutcome.swift */; };
-		EE374B0A1A486A5400ACD002 /* OralHealthClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A8D1A486A5400ACD002 /* OralHealthClaim.swift */; };
-		EE374B0B1A486A5400ACD002 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A8E1A486A5400ACD002 /* Order.swift */; };
-		EE374B0C1A486A5400ACD002 /* OrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A8F1A486A5400ACD002 /* OrderResponse.swift */; };
-		EE374B0D1A486A5400ACD002 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A901A486A5400ACD002 /* Organization.swift */; };
-		EE374B0E1A486A5400ACD002 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A911A486A5400ACD002 /* Other.swift */; };
-		EE374B0F1A486A5400ACD002 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A921A486A5400ACD002 /* Patient.swift */; };
-		EE374B101A486A5400ACD002 /* PaymentNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A931A486A5400ACD002 /* PaymentNotice.swift */; };
-		EE374B111A486A5400ACD002 /* PaymentReconciliation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A941A486A5400ACD002 /* PaymentReconciliation.swift */; };
-		EE374B121A486A5400ACD002 /* PendedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A951A486A5400ACD002 /* PendedRequest.swift */; };
-		EE374B131A486A5400ACD002 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A961A486A5400ACD002 /* Period.swift */; };
-		EE374B141A486A5400ACD002 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A971A486A5400ACD002 /* Person.swift */; };
-		EE374B151A486A5400ACD002 /* PharmacyClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A981A486A5400ACD002 /* PharmacyClaim.swift */; };
-		EE374B161A486A5400ACD002 /* Practitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A991A486A5400ACD002 /* Practitioner.swift */; };
-		EE374B171A486A5400ACD002 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A9A1A486A5400ACD002 /* Procedure.swift */; };
-		EE374B181A486A5400ACD002 /* ProcedureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A9B1A486A5400ACD002 /* ProcedureRequest.swift */; };
-		EE374B191A486A5400ACD002 /* ProfessionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A9C1A486A5400ACD002 /* ProfessionalClaim.swift */; };
-		EE374B1A1A486A5400ACD002 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A9D1A486A5400ACD002 /* Profile.swift */; };
-		EE374B1B1A486A5400ACD002 /* Provenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A9E1A486A5400ACD002 /* Provenance.swift */; };
-		EE374B1C1A486A5400ACD002 /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374A9F1A486A5400ACD002 /* Quantity.swift */; };
-		EE374B1D1A486A5400ACD002 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA01A486A5400ACD002 /* Questionnaire.swift */; };
-		EE374B1E1A486A5400ACD002 /* QuestionnaireAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA11A486A5400ACD002 /* QuestionnaireAnswers.swift */; };
-		EE374B1F1A486A5400ACD002 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA21A486A5400ACD002 /* Range.swift */; };
-		EE374B201A486A5400ACD002 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA31A486A5400ACD002 /* Ratio.swift */; };
-		EE374B211A486A5400ACD002 /* Readjudicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA41A486A5400ACD002 /* Readjudicate.swift */; };
-		EE374B221A486A5400ACD002 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA51A486A5400ACD002 /* Reference.swift */; };
-		EE374B231A486A5400ACD002 /* ReferralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA61A486A5400ACD002 /* ReferralRequest.swift */; };
-		EE374B241A486A5400ACD002 /* RelatedPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA71A486A5400ACD002 /* RelatedPerson.swift */; };
-		EE374B251A486A5400ACD002 /* Reversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA81A486A5400ACD002 /* Reversal.swift */; };
-		EE374B261A486A5400ACD002 /* RiskAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AA91A486A5400ACD002 /* RiskAssessment.swift */; };
-		EE374B271A486A5400ACD002 /* SampledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AAA1A486A5400ACD002 /* SampledData.swift */; };
-		EE374B281A486A5400ACD002 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AAB1A486A5400ACD002 /* Schedule.swift */; };
-		EE374B291A486A5400ACD002 /* SearchParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AAC1A486A5400ACD002 /* SearchParameter.swift */; };
-		EE374B2A1A486A5400ACD002 /* SecurityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AAD1A486A5400ACD002 /* SecurityEvent.swift */; };
-		EE374B2B1A486A5400ACD002 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AAE1A486A5400ACD002 /* Slot.swift */; };
-		EE374B2C1A486A5400ACD002 /* Specimen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AAF1A486A5400ACD002 /* Specimen.swift */; };
-		EE374B2D1A486A5400ACD002 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB01A486A5400ACD002 /* StatusRequest.swift */; };
-		EE374B2E1A486A5400ACD002 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB11A486A5400ACD002 /* StatusResponse.swift */; };
-		EE374B2F1A486A5400ACD002 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB21A486A5400ACD002 /* Subscription.swift */; };
-		EE374B301A486A5400ACD002 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB31A486A5400ACD002 /* Substance.swift */; };
-		EE374B311A486A5400ACD002 /* Supply.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB41A486A5400ACD002 /* Supply.swift */; };
-		EE374B321A486A5400ACD002 /* SupportingDocumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB51A486A5400ACD002 /* SupportingDocumentation.swift */; };
-		EE374B331A486A5400ACD002 /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB61A486A5400ACD002 /* Timing.swift */; };
-		EE374B341A486A5400ACD002 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB71A486A5400ACD002 /* ValueSet.swift */; };
-		EE374B351A486A5400ACD002 /* VisionClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB81A486A5400ACD002 /* VisionClaim.swift */; };
-		EE374B361A486A5400ACD002 /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374AB91A486A5400ACD002 /* VisionPrescription.swift */; };
-		EE374B381A48748500ACD002 /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE374B371A48748500ACD002 /* FHIRElement+Factory.swift */; };
-		EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */; };
 		EE43B1AE19546D880017679A /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE43B1B419546D880017679A /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43B1A919546D880017679A /* SMART.framework */; };
 		EE43B1BB19546D880017679A /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1BA19546D880017679A /* ClientTests.swift */; };
 		EE43B1C519546DB20017679A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
 		EE43B1C619546DB20017679A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
-		EE43B1CA195478070017679A /* OAuth2iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */; };
-		EEA23E1F196F105300510556 /* FHIRSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA23E1E196F105300510556 /* FHIRSearch.swift */; };
 		EEA23E251970529300510556 /* FHIRSearchParamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA23E241970529300510556 /* FHIRSearchParamTests.swift */; };
-		EEB69C1F1965F4B8009F4BD4 /* FHIRElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */; };
-		EEB69C201965F4B8009F4BD4 /* FHIRResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */; };
+		EEB1C6221A5D431700CB1822 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2.framework */; };
+		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
+		EECAA7261A5D3DE60062C64B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
+		EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
+		EECAA77E1A5D3DE60062C64B /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EECAA78B1A5D3E960062C64B /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68A194F22D50094AB8B /* OAuth2.framework */; };
+		EECAA78F1A5D410E0062C64B /* Auth+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */; };
 		EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE838551978082B007347A0 /* Auth+iOS.swift */; };
-		EEE8385919795D83007347A0 /* FHIRContainedResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE8385819795D83007347A0 /* FHIRContainedResource.swift */; };
+		EEF20E241A5D5173009A6EDA /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6DA7CA1A5D4AAF00E00708 /* SwiftFHIR.framework */; };
+		EEF20E2E1A5D5408009A6EDA /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6DA7CA1A5D4AAF00E00708 /* SwiftFHIR.framework */; };
+		EEF20E301A5D7C65009A6EDA /* Info-OSX.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEF20E2F1A5D7C65009A6EDA /* Info-OSX.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		EE13AA991A5D44D100B901FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE55C2611948906000849670 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EECAA6F21A5D3DE60062C64B;
+			remoteInfo = "SMART-on-FHIR-OSX";
+		};
 		EE27D4251965F40700752038 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE55C2611948906000849670 /* Project object */;
@@ -163,13 +55,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = EE43B1A819546D880017679A;
 			remoteInfo = "SMART-on-FHIR-iOS";
-		};
-		EE43B1C8195478000017679A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
-			remoteInfo = "OAuth2-iOS";
 		};
 		EE44F689194F22D50094AB8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -192,138 +77,73 @@
 			remoteGlobalIDString = EEE209A219427DFE00736F1A;
 			remoteInfo = "OAuth2 Tests";
 		};
+		EE6DA7C91A5D4AAF00E00708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE684C1E19A789BA00B5A2C0;
+			remoteInfo = SwiftFHIR;
+		};
+		EE6DA7CB1A5D4AAF00E00708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE684C2919A789BA00B5A2C0;
+			remoteInfo = SwiftFHIRTests;
+		};
+		EEB1C6201A5D42D400CB1822 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
+		};
+		EECAA7891A5D3E860062C64B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEE209461942772800736F1A;
+			remoteInfo = OAuth2;
+		};
+		EEF20E1D1A5D5150009A6EDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE6DA8571A5D4B1000E00708;
+			remoteInfo = SwiftFHIRiOS;
+		};
+		EEF20E1F1A5D5150009A6EDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE6DA85D1A5D4B3A00E00708;
+			remoteInfo = SwiftFHIRiOSTests;
+		};
+		EEF20E221A5D516D009A6EDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE684C1D19A789BA00B5A2C0;
+			remoteInfo = SwiftFHIR;
+		};
+		EEF20E2C1A5D53FF009A6EDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EE6DA7CD1A5D4B1000E00708;
+			remoteInfo = SwiftFHIRiOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EE0D3F3219EDC95C002A069B /* FHIRReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRReference.swift; sourceTree = "<group>"; };
+		EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SMART-on-FHIR-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE13AAA11A5D47B200B901FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EE13AAA31A5D499D00B901FD /* BaseTests+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+OSX.swift"; sourceTree = "<group>"; };
+		EE13AAA51A5D49D200B901FD /* BaseTests+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+iOS.swift"; sourceTree = "<group>"; };
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; };
-		EE374A3D1A486A5400ACD002 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		EE374A3E1A486A5400ACD002 /* Age.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
-		EE374A3F1A486A5400ACD002 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		EE374A401A486A5400ACD002 /* AllergyIntolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergyIntolerance.swift; sourceTree = "<group>"; };
-		EE374A411A486A5400ACD002 /* Appointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
-		EE374A421A486A5400ACD002 /* AppointmentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentResponse.swift; sourceTree = "<group>"; };
-		EE374A431A486A5400ACD002 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		EE374A441A486A5400ACD002 /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
-		EE374A451A486A5400ACD002 /* Binary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binary.swift; sourceTree = "<group>"; };
-		EE374A461A486A5400ACD002 /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		EE374A471A486A5400ACD002 /* CarePlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan.swift; sourceTree = "<group>"; };
-		EE374A481A486A5400ACD002 /* CarePlan2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan2.swift; sourceTree = "<group>"; };
-		EE374A491A486A5400ACD002 /* ClaimResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimResponse.swift; sourceTree = "<group>"; };
-		EE374A4A1A486A5400ACD002 /* ClinicalAssessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClinicalAssessment.swift; sourceTree = "<group>"; };
-		EE374A4B1A486A5400ACD002 /* CodeableConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeableConcept.swift; sourceTree = "<group>"; };
-		EE374A4C1A486A5400ACD002 /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
-		EE374A4D1A486A5400ACD002 /* Communication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communication.swift; sourceTree = "<group>"; };
-		EE374A4E1A486A5400ACD002 /* CommunicationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationRequest.swift; sourceTree = "<group>"; };
-		EE374A4F1A486A5400ACD002 /* Composition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
-		EE374A501A486A5400ACD002 /* ConceptMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptMap.swift; sourceTree = "<group>"; };
-		EE374A511A486A5400ACD002 /* Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
-		EE374A521A486A5400ACD002 /* Conformance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conformance.swift; sourceTree = "<group>"; };
-		EE374A541A486A5400ACD002 /* ContactPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPoint.swift; sourceTree = "<group>"; };
-		EE374A551A486A5400ACD002 /* Contract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contract.swift; sourceTree = "<group>"; };
-		EE374A561A486A5400ACD002 /* Contraindication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contraindication.swift; sourceTree = "<group>"; };
-		EE374A571A486A5400ACD002 /* Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
-		EE374A581A486A5400ACD002 /* Coverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coverage.swift; sourceTree = "<group>"; };
-		EE374A591A486A5400ACD002 /* DataElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataElement.swift; sourceTree = "<group>"; };
-		EE374A5A1A486A5400ACD002 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		EE374A5B1A486A5400ACD002 /* DeviceComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceComponent.swift; sourceTree = "<group>"; };
-		EE374A5C1A486A5400ACD002 /* DeviceMetric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMetric.swift; sourceTree = "<group>"; };
-		EE374A5E1A486A5400ACD002 /* DeviceUseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUseRequest.swift; sourceTree = "<group>"; };
-		EE374A5F1A486A5400ACD002 /* DeviceUseStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUseStatement.swift; sourceTree = "<group>"; };
-		EE374A601A486A5400ACD002 /* DiagnosticOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticOrder.swift; sourceTree = "<group>"; };
-		EE374A611A486A5400ACD002 /* DiagnosticReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticReport.swift; sourceTree = "<group>"; };
-		EE374A621A486A5400ACD002 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
-		EE374A631A486A5400ACD002 /* DocumentManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManifest.swift; sourceTree = "<group>"; };
-		EE374A641A486A5400ACD002 /* DocumentReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentReference.swift; sourceTree = "<group>"; };
-		EE374A651A486A5400ACD002 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
-		EE374A661A486A5400ACD002 /* ElementDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementDefinition.swift; sourceTree = "<group>"; };
-		EE374A671A486A5400ACD002 /* EligibilityRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EligibilityRequest.swift; sourceTree = "<group>"; };
-		EE374A681A486A5400ACD002 /* EligibilityResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EligibilityResponse.swift; sourceTree = "<group>"; };
-		EE374A691A486A5400ACD002 /* Encounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
-		EE374A6A1A486A5400ACD002 /* EnrollmentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentRequest.swift; sourceTree = "<group>"; };
-		EE374A6B1A486A5400ACD002 /* EnrollmentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentResponse.swift; sourceTree = "<group>"; };
-		EE374A6C1A486A5400ACD002 /* EpisodeOfCare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeOfCare.swift; sourceTree = "<group>"; };
-		EE374A6D1A486A5400ACD002 /* ExplanationOfBenefit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationOfBenefit.swift; sourceTree = "<group>"; };
-		EE374A6E1A486A5400ACD002 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		EE374A6F1A486A5400ACD002 /* ExtensionDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDefinition.swift; sourceTree = "<group>"; };
-		EE374A701A486A5400ACD002 /* FamilyHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyHistory.swift; sourceTree = "<group>"; };
-		EE374A711A486A5400ACD002 /* FHIRTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRTypes.swift; sourceTree = "<group>"; };
-		EE374A731A486A5400ACD002 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		EE374A741A486A5400ACD002 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		EE374A751A486A5400ACD002 /* HealthcareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthcareService.swift; sourceTree = "<group>"; };
-		EE374A761A486A5400ACD002 /* HumanName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumanName.swift; sourceTree = "<group>"; };
-		EE374A771A486A5400ACD002 /* Identifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
-		EE374A781A486A5400ACD002 /* ImagingObjectSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingObjectSelection.swift; sourceTree = "<group>"; };
-		EE374A791A486A5400ACD002 /* ImagingStudy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingStudy.swift; sourceTree = "<group>"; };
-		EE374A7A1A486A5400ACD002 /* Immunization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Immunization.swift; sourceTree = "<group>"; };
-		EE374A7B1A486A5400ACD002 /* ImmunizationRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmunizationRecommendation.swift; sourceTree = "<group>"; };
-		EE374A7C1A486A5400ACD002 /* InstitutionalClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionalClaim.swift; sourceTree = "<group>"; };
-		EE374A7D1A486A5400ACD002 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		EE374A7E1A486A5400ACD002 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		EE374A7F1A486A5400ACD002 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		EE374A801A486A5400ACD002 /* Medication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
-		EE374A811A486A5400ACD002 /* MedicationAdministration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationAdministration.swift; sourceTree = "<group>"; };
-		EE374A821A486A5400ACD002 /* MedicationDispense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationDispense.swift; sourceTree = "<group>"; };
-		EE374A831A486A5400ACD002 /* MedicationPrescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationPrescription.swift; sourceTree = "<group>"; };
-		EE374A841A486A5400ACD002 /* MedicationStatement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationStatement.swift; sourceTree = "<group>"; };
-		EE374A851A486A5400ACD002 /* MessageHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageHeader.swift; sourceTree = "<group>"; };
-		EE374A861A486A5400ACD002 /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
-		EE374A871A486A5400ACD002 /* NamingSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamingSystem.swift; sourceTree = "<group>"; };
-		EE374A881A486A5400ACD002 /* Narrative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Narrative.swift; sourceTree = "<group>"; };
-		EE374A891A486A5400ACD002 /* NutritionOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionOrder.swift; sourceTree = "<group>"; };
-		EE374A8A1A486A5400ACD002 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
-		EE374A8B1A486A5400ACD002 /* OperationDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationDefinition.swift; sourceTree = "<group>"; };
-		EE374A8C1A486A5400ACD002 /* OperationOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationOutcome.swift; sourceTree = "<group>"; };
-		EE374A8D1A486A5400ACD002 /* OralHealthClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OralHealthClaim.swift; sourceTree = "<group>"; };
-		EE374A8E1A486A5400ACD002 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
-		EE374A8F1A486A5400ACD002 /* OrderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderResponse.swift; sourceTree = "<group>"; };
-		EE374A901A486A5400ACD002 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		EE374A911A486A5400ACD002 /* Other.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
-		EE374A921A486A5400ACD002 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
-		EE374A931A486A5400ACD002 /* PaymentNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNotice.swift; sourceTree = "<group>"; };
-		EE374A941A486A5400ACD002 /* PaymentReconciliation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentReconciliation.swift; sourceTree = "<group>"; };
-		EE374A951A486A5400ACD002 /* PendedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendedRequest.swift; sourceTree = "<group>"; };
-		EE374A961A486A5400ACD002 /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
-		EE374A971A486A5400ACD002 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		EE374A981A486A5400ACD002 /* PharmacyClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyClaim.swift; sourceTree = "<group>"; };
-		EE374A991A486A5400ACD002 /* Practitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Practitioner.swift; sourceTree = "<group>"; };
-		EE374A9A1A486A5400ACD002 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
-		EE374A9B1A486A5400ACD002 /* ProcedureRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureRequest.swift; sourceTree = "<group>"; };
-		EE374A9C1A486A5400ACD002 /* ProfessionalClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalClaim.swift; sourceTree = "<group>"; };
-		EE374A9D1A486A5400ACD002 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		EE374A9E1A486A5400ACD002 /* Provenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provenance.swift; sourceTree = "<group>"; };
-		EE374A9F1A486A5400ACD002 /* Quantity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quantity.swift; sourceTree = "<group>"; };
-		EE374AA01A486A5400ACD002 /* Questionnaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
-		EE374AA11A486A5400ACD002 /* QuestionnaireAnswers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireAnswers.swift; sourceTree = "<group>"; };
-		EE374AA21A486A5400ACD002 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
-		EE374AA31A486A5400ACD002 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
-		EE374AA41A486A5400ACD002 /* Readjudicate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readjudicate.swift; sourceTree = "<group>"; };
-		EE374AA51A486A5400ACD002 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
-		EE374AA61A486A5400ACD002 /* ReferralRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRequest.swift; sourceTree = "<group>"; };
-		EE374AA71A486A5400ACD002 /* RelatedPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedPerson.swift; sourceTree = "<group>"; };
-		EE374AA81A486A5400ACD002 /* Reversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reversal.swift; sourceTree = "<group>"; };
-		EE374AA91A486A5400ACD002 /* RiskAssessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiskAssessment.swift; sourceTree = "<group>"; };
-		EE374AAA1A486A5400ACD002 /* SampledData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampledData.swift; sourceTree = "<group>"; };
-		EE374AAB1A486A5400ACD002 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		EE374AAC1A486A5400ACD002 /* SearchParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameter.swift; sourceTree = "<group>"; };
-		EE374AAD1A486A5400ACD002 /* SecurityEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityEvent.swift; sourceTree = "<group>"; };
-		EE374AAE1A486A5400ACD002 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
-		EE374AAF1A486A5400ACD002 /* Specimen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Specimen.swift; sourceTree = "<group>"; };
-		EE374AB01A486A5400ACD002 /* StatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusRequest.swift; sourceTree = "<group>"; };
-		EE374AB11A486A5400ACD002 /* StatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
-		EE374AB21A486A5400ACD002 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
-		EE374AB31A486A5400ACD002 /* Substance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
-		EE374AB41A486A5400ACD002 /* Supply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supply.swift; sourceTree = "<group>"; };
-		EE374AB51A486A5400ACD002 /* SupportingDocumentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportingDocumentation.swift; sourceTree = "<group>"; };
-		EE374AB61A486A5400ACD002 /* Timing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
-		EE374AB71A486A5400ACD002 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
-		EE374AB81A486A5400ACD002 /* VisionClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionClaim.swift; sourceTree = "<group>"; };
-		EE374AB91A486A5400ACD002 /* VisionPrescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPrescription.swift; sourceTree = "<group>"; };
-		EE374B371A48748500ACD002 /* FHIRElement+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Factory.swift"; sourceTree = "<group>"; };
-		EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON-extensions.swift"; sourceTree = "<group>"; };
 		EE43B1A919546D880017679A /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE43B1AC19546D880017679A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE43B1AC19546D880017679A /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		EE43B1AD19546D880017679A /* SMART-on-FHIR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR.h"; sourceTree = "<group>"; };
 		EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SMART-on-FHIR-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE43B1B919546D880017679A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -332,24 +152,32 @@
 		EE43B1C319546DB20017679A /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		EE43B1C419546DB20017679A /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
+		EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR-Bridging-Header.h"; sourceTree = "<group>"; };
-		EEA23E1E196F105300510556 /* FHIRSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearch.swift; sourceTree = "<group>"; };
 		EEA23E241970529300510556 /* FHIRSearchParamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearchParamTests.swift; sourceTree = "<group>"; };
-		EEB69C1B1965F4AD009F4BD4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRElement.swift; sourceTree = "<group>"; };
-		EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRResource.swift; sourceTree = "<group>"; };
+		EECAA7831A5D3DE60062C64B /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+OSX.swift"; sourceTree = "<group>"; };
 		EEE838551978082B007347A0 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
-		EEE8385819795D83007347A0 /* FHIRContainedResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRContainedResource.swift; sourceTree = "<group>"; };
+		EEF20E2F1A5D7C65009A6EDA /* Info-OSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-OSX.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		EE13AA8F1A5D44D100B901FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE13AAA01A5D474C00B901FD /* SMART.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE43B1A519546D880017679A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE43B1CA195478070017679A /* OAuth2iOS.framework in Frameworks */,
+				EEF20E2E1A5D5408009A6EDA /* SwiftFHIR.framework in Frameworks */,
+				EEB1C6221A5D431700CB1822 /* OAuth2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +186,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE43B1B419546D880017679A /* SMART.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EECAA77B1A5D3DE60062C64B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF20E241A5D5173009A6EDA /* SwiftFHIR.framework in Frameworks */,
+				EECAA78B1A5D3E960062C64B /* OAuth2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +210,7 @@
 				EE43B1C419546DB20017679A /* Server.swift */,
 				EE43B1C219546DB20017679A /* Auth.swift */,
 				EEE838551978082B007347A0 /* Auth+iOS.swift */,
+				EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
 			path = "SMART-on-FHIR";
@@ -381,7 +219,8 @@
 		EE43B1AB19546D880017679A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EE43B1AC19546D880017679A /* Info.plist */,
+				EE43B1AC19546D880017679A /* Info-iOS.plist */,
+				EEF20E2F1A5D7C65009A6EDA /* Info-OSX.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -389,6 +228,8 @@
 		EE43B1B719546D880017679A /* SMART-on-FHIRTests */ = {
 			isa = PBXGroup;
 			children = (
+				EE13AAA51A5D49D200B901FD /* BaseTests+iOS.swift */,
+				EE13AAA31A5D499D00B901FD /* BaseTests+OSX.swift */,
 				EE43B1BA19546D880017679A /* ClientTests.swift */,
 				EE29E701195838DD008882C8 /* ServerTests.swift */,
 				EEA23E241970529300510556 /* FHIRSearchParamTests.swift */,
@@ -409,6 +250,7 @@
 		EE43B5C8195497A10017679A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EE13AAA11A5D47B200B901FD /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -417,7 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				EE44F68A194F22D50094AB8B /* OAuth2.framework */,
-				EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */,
+				EE44F68C194F22D50094AB8B /* OAuth2.framework */,
 				EE44F68E194F22D50094AB8B /* OAuth2 Tests.xctest */,
 			);
 			name = Products;
@@ -429,10 +271,10 @@
 				EE74D04B195C112300393DCA /* README.md */,
 				EE74D04E195C262E00393DCA /* manifest.json */,
 				EE43B1AA19546D880017679A /* SMART-on-FHIR */,
-				EEB69C181965F496009F4BD4 /* Swift-FHIR */,
 				EE43B1B719546D880017679A /* SMART-on-FHIRTests */,
 				EE43B5C8195497A10017679A /* Frameworks */,
 				EE55C26A1948906000849670 /* Products */,
+				EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */,
 				EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -442,162 +284,21 @@
 			children = (
 				EE43B1A919546D880017679A /* SMART.framework */,
 				EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */,
+				EECAA7831A5D3DE60062C64B /* SMART.framework */,
+				EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EEB69C181965F496009F4BD4 /* Swift-FHIR */ = {
+		EE6DA7C41A5D4AAF00E00708 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EEB69C1B1965F4AD009F4BD4 /* README.md */,
-				EEB69C1C1965F4B8009F4BD4 /* Base */,
-				EEB69C211965F4C3009F4BD4 /* Models */,
+				EE6DA7CA1A5D4AAF00E00708 /* SwiftFHIR.framework */,
+				EE6DA7CC1A5D4AAF00E00708 /* SwiftFHIRTests.xctest */,
+				EEF20E1E1A5D5150009A6EDA /* SwiftFHIR.framework */,
+				EEF20E201A5D5150009A6EDA /* SwiftFHIRiOSTests.xctest */,
 			);
-			path = "Swift-FHIR";
-			sourceTree = "<group>";
-		};
-		EEB69C1C1965F4B8009F4BD4 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				EE374A711A486A5400ACD002 /* FHIRTypes.swift */,
-				EEB69C1D1965F4B8009F4BD4 /* FHIRElement.swift */,
-				EE374B371A48748500ACD002 /* FHIRElement+Factory.swift */,
-				EEB69C1E1965F4B8009F4BD4 /* FHIRResource.swift */,
-				EE0D3F3219EDC95C002A069B /* FHIRReference.swift */,
-				EEE8385819795D83007347A0 /* FHIRContainedResource.swift */,
-				EEA23E1E196F105300510556 /* FHIRSearch.swift */,
-				EE3D6B1719673DC300F0D4CF /* JSON-extensions.swift */,
-			);
-			name = Base;
-			path = Models;
-			sourceTree = "<group>";
-		};
-		EEB69C211965F4C3009F4BD4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				EE374A3D1A486A5400ACD002 /* Address.swift */,
-				EE374A3E1A486A5400ACD002 /* Age.swift */,
-				EE374A3F1A486A5400ACD002 /* Alert.swift */,
-				EE374A401A486A5400ACD002 /* AllergyIntolerance.swift */,
-				EE374A411A486A5400ACD002 /* Appointment.swift */,
-				EE374A421A486A5400ACD002 /* AppointmentResponse.swift */,
-				EE374A431A486A5400ACD002 /* Attachment.swift */,
-				EE374A441A486A5400ACD002 /* Basic.swift */,
-				EE374A451A486A5400ACD002 /* Binary.swift */,
-				EE374A461A486A5400ACD002 /* Bundle.swift */,
-				EE374A471A486A5400ACD002 /* CarePlan.swift */,
-				EE374A481A486A5400ACD002 /* CarePlan2.swift */,
-				EE374A491A486A5400ACD002 /* ClaimResponse.swift */,
-				EE374A4A1A486A5400ACD002 /* ClinicalAssessment.swift */,
-				EE374A4B1A486A5400ACD002 /* CodeableConcept.swift */,
-				EE374A4C1A486A5400ACD002 /* Coding.swift */,
-				EE374A4D1A486A5400ACD002 /* Communication.swift */,
-				EE374A4E1A486A5400ACD002 /* CommunicationRequest.swift */,
-				EE374A4F1A486A5400ACD002 /* Composition.swift */,
-				EE374A501A486A5400ACD002 /* ConceptMap.swift */,
-				EE374A511A486A5400ACD002 /* Condition.swift */,
-				EE374A521A486A5400ACD002 /* Conformance.swift */,
-				EE374A541A486A5400ACD002 /* ContactPoint.swift */,
-				EE374A551A486A5400ACD002 /* Contract.swift */,
-				EE374A561A486A5400ACD002 /* Contraindication.swift */,
-				EE374A571A486A5400ACD002 /* Count.swift */,
-				EE374A581A486A5400ACD002 /* Coverage.swift */,
-				EE374A591A486A5400ACD002 /* DataElement.swift */,
-				EE374A5A1A486A5400ACD002 /* Device.swift */,
-				EE374A5B1A486A5400ACD002 /* DeviceComponent.swift */,
-				EE374A5C1A486A5400ACD002 /* DeviceMetric.swift */,
-				EE374A5E1A486A5400ACD002 /* DeviceUseRequest.swift */,
-				EE374A5F1A486A5400ACD002 /* DeviceUseStatement.swift */,
-				EE374A601A486A5400ACD002 /* DiagnosticOrder.swift */,
-				EE374A611A486A5400ACD002 /* DiagnosticReport.swift */,
-				EE374A621A486A5400ACD002 /* Distance.swift */,
-				EE374A631A486A5400ACD002 /* DocumentManifest.swift */,
-				EE374A641A486A5400ACD002 /* DocumentReference.swift */,
-				EE374A651A486A5400ACD002 /* Duration.swift */,
-				EE374A661A486A5400ACD002 /* ElementDefinition.swift */,
-				EE374A671A486A5400ACD002 /* EligibilityRequest.swift */,
-				EE374A681A486A5400ACD002 /* EligibilityResponse.swift */,
-				EE374A691A486A5400ACD002 /* Encounter.swift */,
-				EE374A6A1A486A5400ACD002 /* EnrollmentRequest.swift */,
-				EE374A6B1A486A5400ACD002 /* EnrollmentResponse.swift */,
-				EE374A6C1A486A5400ACD002 /* EpisodeOfCare.swift */,
-				EE374A6D1A486A5400ACD002 /* ExplanationOfBenefit.swift */,
-				EE374A6E1A486A5400ACD002 /* Extension.swift */,
-				EE374A6F1A486A5400ACD002 /* ExtensionDefinition.swift */,
-				EE374A701A486A5400ACD002 /* FamilyHistory.swift */,
-				EE374A731A486A5400ACD002 /* Goal.swift */,
-				EE374A741A486A5400ACD002 /* Group.swift */,
-				EE374A751A486A5400ACD002 /* HealthcareService.swift */,
-				EE374A761A486A5400ACD002 /* HumanName.swift */,
-				EE374A771A486A5400ACD002 /* Identifier.swift */,
-				EE374A781A486A5400ACD002 /* ImagingObjectSelection.swift */,
-				EE374A791A486A5400ACD002 /* ImagingStudy.swift */,
-				EE374A7A1A486A5400ACD002 /* Immunization.swift */,
-				EE374A7B1A486A5400ACD002 /* ImmunizationRecommendation.swift */,
-				EE374A7C1A486A5400ACD002 /* InstitutionalClaim.swift */,
-				EE374A7D1A486A5400ACD002 /* List.swift */,
-				EE374A7E1A486A5400ACD002 /* Location.swift */,
-				EE374A7F1A486A5400ACD002 /* Media.swift */,
-				EE374A801A486A5400ACD002 /* Medication.swift */,
-				EE374A811A486A5400ACD002 /* MedicationAdministration.swift */,
-				EE374A821A486A5400ACD002 /* MedicationDispense.swift */,
-				EE374A831A486A5400ACD002 /* MedicationPrescription.swift */,
-				EE374A841A486A5400ACD002 /* MedicationStatement.swift */,
-				EE374A851A486A5400ACD002 /* MessageHeader.swift */,
-				EE374A861A486A5400ACD002 /* Money.swift */,
-				EE374A871A486A5400ACD002 /* NamingSystem.swift */,
-				EE374A881A486A5400ACD002 /* Narrative.swift */,
-				EE374A891A486A5400ACD002 /* NutritionOrder.swift */,
-				EE374A8A1A486A5400ACD002 /* Observation.swift */,
-				EE374A8B1A486A5400ACD002 /* OperationDefinition.swift */,
-				EE374A8C1A486A5400ACD002 /* OperationOutcome.swift */,
-				EE374A8D1A486A5400ACD002 /* OralHealthClaim.swift */,
-				EE374A8E1A486A5400ACD002 /* Order.swift */,
-				EE374A8F1A486A5400ACD002 /* OrderResponse.swift */,
-				EE374A901A486A5400ACD002 /* Organization.swift */,
-				EE374A911A486A5400ACD002 /* Other.swift */,
-				EE374A921A486A5400ACD002 /* Patient.swift */,
-				EE374A931A486A5400ACD002 /* PaymentNotice.swift */,
-				EE374A941A486A5400ACD002 /* PaymentReconciliation.swift */,
-				EE374A951A486A5400ACD002 /* PendedRequest.swift */,
-				EE374A961A486A5400ACD002 /* Period.swift */,
-				EE374A971A486A5400ACD002 /* Person.swift */,
-				EE374A981A486A5400ACD002 /* PharmacyClaim.swift */,
-				EE374A991A486A5400ACD002 /* Practitioner.swift */,
-				EE374A9A1A486A5400ACD002 /* Procedure.swift */,
-				EE374A9B1A486A5400ACD002 /* ProcedureRequest.swift */,
-				EE374A9C1A486A5400ACD002 /* ProfessionalClaim.swift */,
-				EE374A9D1A486A5400ACD002 /* Profile.swift */,
-				EE374A9E1A486A5400ACD002 /* Provenance.swift */,
-				EE374A9F1A486A5400ACD002 /* Quantity.swift */,
-				EE374AA01A486A5400ACD002 /* Questionnaire.swift */,
-				EE374AA11A486A5400ACD002 /* QuestionnaireAnswers.swift */,
-				EE374AA21A486A5400ACD002 /* Range.swift */,
-				EE374AA31A486A5400ACD002 /* Ratio.swift */,
-				EE374AA41A486A5400ACD002 /* Readjudicate.swift */,
-				EE374AA51A486A5400ACD002 /* Reference.swift */,
-				EE374AA61A486A5400ACD002 /* ReferralRequest.swift */,
-				EE374AA71A486A5400ACD002 /* RelatedPerson.swift */,
-				EE374AA81A486A5400ACD002 /* Reversal.swift */,
-				EE374AA91A486A5400ACD002 /* RiskAssessment.swift */,
-				EE374AAA1A486A5400ACD002 /* SampledData.swift */,
-				EE374AAB1A486A5400ACD002 /* Schedule.swift */,
-				EE374AAC1A486A5400ACD002 /* SearchParameter.swift */,
-				EE374AAD1A486A5400ACD002 /* SecurityEvent.swift */,
-				EE374AAE1A486A5400ACD002 /* Slot.swift */,
-				EE374AAF1A486A5400ACD002 /* Specimen.swift */,
-				EE374AB01A486A5400ACD002 /* StatusRequest.swift */,
-				EE374AB11A486A5400ACD002 /* StatusResponse.swift */,
-				EE374AB21A486A5400ACD002 /* Subscription.swift */,
-				EE374AB31A486A5400ACD002 /* Substance.swift */,
-				EE374AB41A486A5400ACD002 /* Supply.swift */,
-				EE374AB51A486A5400ACD002 /* SupportingDocumentation.swift */,
-				EE374AB61A486A5400ACD002 /* Timing.swift */,
-				EE374AB71A486A5400ACD002 /* ValueSet.swift */,
-				EE374AB81A486A5400ACD002 /* VisionClaim.swift */,
-				EE374AB91A486A5400ACD002 /* VisionPrescription.swift */,
-			);
-			path = Models;
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -611,9 +312,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EECAA77D1A5D3DE60062C64B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EECAA77E1A5D3DE60062C64B /* SMART-on-FHIR.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		EE13AA911A5D44D100B901FD /* SMART-on-FHIR-OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSXTests" */;
+			buildPhases = (
+				EE13AA8E1A5D44D100B901FD /* Sources */,
+				EE13AA8F1A5D44D100B901FD /* Frameworks */,
+				EE13AA901A5D44D100B901FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE13AA9A1A5D44D100B901FD /* PBXTargetDependency */,
+			);
+			name = "SMART-on-FHIR-OSXTests";
+			productName = "SMART-on-FHIR-OSXTests";
+			productReference = EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE43B1BC19546D880017679A /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-iOS" */;
@@ -626,7 +353,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				EE43B1C9195478000017679A /* PBXTargetDependency */,
+				EEF20E2D1A5D53FF009A6EDA /* PBXTargetDependency */,
+				EEB1C6211A5D42D400CB1822 /* PBXTargetDependency */,
 			);
 			name = "SMART-on-FHIR-iOS";
 			productName = "SMART-on-FHIR-iOS";
@@ -652,15 +380,38 @@
 			productReference = EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EECAA6F21A5D3DE60062C64B /* SMART-on-FHIR-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSX" */;
+			buildPhases = (
+				EECAA6F51A5D3DE60062C64B /* Sources */,
+				EECAA77B1A5D3DE60062C64B /* Frameworks */,
+				EECAA77D1A5D3DE60062C64B /* Headers */,
+				EECAA77F1A5D3DE60062C64B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EEF20E231A5D516D009A6EDA /* PBXTargetDependency */,
+				EECAA78A1A5D3E860062C64B /* PBXTargetDependency */,
+			);
+			name = "SMART-on-FHIR-OSX";
+			productName = "SMART-on-FHIR-iOS";
+			productReference = EECAA7831A5D3DE60062C64B /* SMART.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		EE55C2611948906000849670 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "SMART Platforms";
 				TargetAttributes = {
+					EE13AA911A5D44D100B901FD = {
+						CreatedOnToolsVersion = 6.2;
+					};
 					EE43B1A819546D880017679A = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -685,11 +436,17 @@
 					ProductGroup = EE44F684194F22D50094AB8B /* Products */;
 					ProjectRef = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
 				},
+				{
+					ProductGroup = EE6DA7C41A5D4AAF00E00708 /* Products */;
+					ProjectRef = EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
 				EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */,
 				EE43B1B219546D880017679A /* SMART-on-FHIR-iOSTests */,
+				EECAA6F21A5D3DE60062C64B /* SMART-on-FHIR-OSX */,
+				EE13AA911A5D44D100B901FD /* SMART-on-FHIR-OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -702,10 +459,10 @@
 			remoteRef = EE44F689194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */ = {
+		EE44F68C194F22D50094AB8B /* OAuth2.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = OAuth2iOS.framework;
+			path = OAuth2.framework;
 			remoteRef = EE44F68B194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -716,9 +473,44 @@
 			remoteRef = EE44F68D194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		EE6DA7CA1A5D4AAF00E00708 /* SwiftFHIR.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftFHIR.framework;
+			remoteRef = EE6DA7C91A5D4AAF00E00708 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EE6DA7CC1A5D4AAF00E00708 /* SwiftFHIRTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftFHIRTests.xctest;
+			remoteRef = EE6DA7CB1A5D4AAF00E00708 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EEF20E1E1A5D5150009A6EDA /* SwiftFHIR.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftFHIR.framework;
+			remoteRef = EEF20E1D1A5D5150009A6EDA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EEF20E201A5D5150009A6EDA /* SwiftFHIRiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SwiftFHIRiOSTests.xctest;
+			remoteRef = EEF20E1F1A5D5150009A6EDA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EE13AA901A5D44D100B901FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE43B1A719546D880017679A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -734,146 +526,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EECAA77F1A5D3DE60062C64B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF20E301A5D7C65009A6EDA /* Info-OSX.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		EE13AA8E1A5D44D100B901FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE13AAA41A5D499D00B901FD /* BaseTests+OSX.swift in Sources */,
+				EE13AA9E1A5D453000B901FD /* ServerTests.swift in Sources */,
+				EE13AA9F1A5D453A00B901FD /* ClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE43B1A419546D880017679A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE374B1B1A486A5400ACD002 /* Provenance.swift in Sources */,
-				EE374B241A486A5400ACD002 /* RelatedPerson.swift in Sources */,
-				EE374AD81A486A5400ACD002 /* DeviceComponent.swift in Sources */,
-				EE374AF71A486A5400ACD002 /* Immunization.swift in Sources */,
-				EE374ACB1A486A5400ACD002 /* CommunicationRequest.swift in Sources */,
-				EE374AD51A486A5400ACD002 /* Coverage.swift in Sources */,
-				EE374B221A486A5400ACD002 /* Reference.swift in Sources */,
-				EE374AC71A486A5400ACD002 /* ClinicalAssessment.swift in Sources */,
 				EE43B1C619546DB20017679A /* Client.swift in Sources */,
-				EE374B181A486A5400ACD002 /* ProcedureRequest.swift in Sources */,
-				EE374ACD1A486A5400ACD002 /* ConceptMap.swift in Sources */,
-				EE374B071A486A5400ACD002 /* Observation.swift in Sources */,
-				EE374AD11A486A5400ACD002 /* ContactPoint.swift in Sources */,
-				EE374B131A486A5400ACD002 /* Period.swift in Sources */,
-				EE374AF51A486A5400ACD002 /* ImagingObjectSelection.swift in Sources */,
-				EE374AF01A486A5400ACD002 /* Goal.swift in Sources */,
-				EE374B151A486A5400ACD002 /* PharmacyClaim.swift in Sources */,
-				EE374AFF1A486A5400ACD002 /* MedicationDispense.swift in Sources */,
-				EE374B331A486A5400ACD002 /* Timing.swift in Sources */,
-				EE374B2C1A486A5400ACD002 /* Specimen.swift in Sources */,
-				EE374AF81A486A5400ACD002 /* ImmunizationRecommendation.swift in Sources */,
-				EE374AC61A486A5400ACD002 /* ClaimResponse.swift in Sources */,
-				EE374B021A486A5400ACD002 /* MessageHeader.swift in Sources */,
-				EE374AFB1A486A5400ACD002 /* Location.swift in Sources */,
-				EE374B281A486A5400ACD002 /* Schedule.swift in Sources */,
 				EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */,
-				EE374AFD1A486A5400ACD002 /* Medication.swift in Sources */,
-				EE374B011A486A5400ACD002 /* MedicationStatement.swift in Sources */,
-				EE374ABF1A486A5400ACD002 /* AppointmentResponse.swift in Sources */,
-				EE374B191A486A5400ACD002 /* ProfessionalClaim.swift in Sources */,
-				EE374AE91A486A5400ACD002 /* EpisodeOfCare.swift in Sources */,
-				EE374AC41A486A5400ACD002 /* CarePlan.swift in Sources */,
-				EE374B0D1A486A5400ACD002 /* Organization.swift in Sources */,
-				EE374AF61A486A5400ACD002 /* ImagingStudy.swift in Sources */,
-				EE374AE61A486A5400ACD002 /* Encounter.swift in Sources */,
-				EEA23E1F196F105300510556 /* FHIRSearch.swift in Sources */,
-				EE374AEB1A486A5400ACD002 /* Extension.swift in Sources */,
-				EE374B0F1A486A5400ACD002 /* Patient.swift in Sources */,
-				EE374B1D1A486A5400ACD002 /* Questionnaire.swift in Sources */,
-				EE374AC81A486A5400ACD002 /* CodeableConcept.swift in Sources */,
-				EE374ACE1A486A5400ACD002 /* Condition.swift in Sources */,
-				EE374B1C1A486A5400ACD002 /* Quantity.swift in Sources */,
-				EE374AE81A486A5400ACD002 /* EnrollmentResponse.swift in Sources */,
-				EE374B2B1A486A5400ACD002 /* Slot.swift in Sources */,
-				EE374B111A486A5400ACD002 /* PaymentReconciliation.swift in Sources */,
-				EE374B031A486A5400ACD002 /* Money.swift in Sources */,
-				EE374B0E1A486A5400ACD002 /* Other.swift in Sources */,
-				EEB69C201965F4B8009F4BD4 /* FHIRResource.swift in Sources */,
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
-				EE374AD61A486A5400ACD002 /* DataElement.swift in Sources */,
-				EE374AF31A486A5400ACD002 /* HumanName.swift in Sources */,
-				EE374AEA1A486A5400ACD002 /* ExplanationOfBenefit.swift in Sources */,
-				EE374AC01A486A5400ACD002 /* Attachment.swift in Sources */,
-				EE374ABC1A486A5400ACD002 /* Alert.swift in Sources */,
-				EE374B0A1A486A5400ACD002 /* OralHealthClaim.swift in Sources */,
-				EE374B251A486A5400ACD002 /* Reversal.swift in Sources */,
-				EE3D6B1819673DC300F0D4CF /* JSON-extensions.swift in Sources */,
-				EE374AF21A486A5400ACD002 /* HealthcareService.swift in Sources */,
-				EE0D3F3319EDC95C002A069B /* FHIRReference.swift in Sources */,
-				EEB69C1F1965F4B8009F4BD4 /* FHIRElement.swift in Sources */,
-				EE374ADB1A486A5400ACD002 /* DeviceUseRequest.swift in Sources */,
-				EE374B211A486A5400ACD002 /* Readjudicate.swift in Sources */,
-				EE374AC51A486A5400ACD002 /* CarePlan2.swift in Sources */,
-				EE374B141A486A5400ACD002 /* Person.swift in Sources */,
-				EE374B2D1A486A5400ACD002 /* StatusRequest.swift in Sources */,
-				EE374AFA1A486A5400ACD002 /* List.swift in Sources */,
-				EE374B2E1A486A5400ACD002 /* StatusResponse.swift in Sources */,
-				EE374AE31A486A5400ACD002 /* ElementDefinition.swift in Sources */,
-				EE374AF11A486A5400ACD002 /* Group.swift in Sources */,
-				EE374B261A486A5400ACD002 /* RiskAssessment.swift in Sources */,
-				EE374ABE1A486A5400ACD002 /* Appointment.swift in Sources */,
-				EE374B321A486A5400ACD002 /* SupportingDocumentation.swift in Sources */,
-				EE374B1A1A486A5400ACD002 /* Profile.swift in Sources */,
-				EE374AFC1A486A5400ACD002 /* Media.swift in Sources */,
-				EE374B051A486A5400ACD002 /* Narrative.swift in Sources */,
-				EE374B1E1A486A5400ACD002 /* QuestionnaireAnswers.swift in Sources */,
-				EE374ADE1A486A5400ACD002 /* DiagnosticReport.swift in Sources */,
-				EE374AE01A486A5400ACD002 /* DocumentManifest.swift in Sources */,
-				EE374B291A486A5400ACD002 /* SearchParameter.swift in Sources */,
-				EE374AE51A486A5400ACD002 /* EligibilityResponse.swift in Sources */,
 				EE43B1C519546DB20017679A /* Auth.swift in Sources */,
-				EE374AE21A486A5400ACD002 /* Duration.swift in Sources */,
-				EE374AC31A486A5400ACD002 /* Bundle.swift in Sources */,
-				EE374B101A486A5400ACD002 /* PaymentNotice.swift in Sources */,
-				EE374ADC1A486A5400ACD002 /* DeviceUseStatement.swift in Sources */,
-				EE374B201A486A5400ACD002 /* Ratio.swift in Sources */,
-				EE374ABB1A486A5400ACD002 /* Age.swift in Sources */,
-				EE374ACF1A486A5400ACD002 /* Conformance.swift in Sources */,
-				EE374ACA1A486A5400ACD002 /* Communication.swift in Sources */,
-				EE374B271A486A5400ACD002 /* SampledData.swift in Sources */,
-				EE374B081A486A5400ACD002 /* OperationDefinition.swift in Sources */,
-				EE374B001A486A5400ACD002 /* MedicationPrescription.swift in Sources */,
-				EE374AC11A486A5400ACD002 /* Basic.swift in Sources */,
-				EE374B161A486A5400ACD002 /* Practitioner.swift in Sources */,
-				EE374B171A486A5400ACD002 /* Procedure.swift in Sources */,
-				EE374B1F1A486A5400ACD002 /* Range.swift in Sources */,
-				EE374B0B1A486A5400ACD002 /* Order.swift in Sources */,
-				EE374AED1A486A5400ACD002 /* FamilyHistory.swift in Sources */,
-				EE374ABA1A486A5400ACD002 /* Address.swift in Sources */,
-				EE374AEC1A486A5400ACD002 /* ExtensionDefinition.swift in Sources */,
-				EE374AE41A486A5400ACD002 /* EligibilityRequest.swift in Sources */,
-				EE374ADF1A486A5400ACD002 /* Distance.swift in Sources */,
-				EE374AFE1A486A5400ACD002 /* MedicationAdministration.swift in Sources */,
-				EE374B061A486A5400ACD002 /* NutritionOrder.swift in Sources */,
-				EEE8385919795D83007347A0 /* FHIRContainedResource.swift in Sources */,
-				EE374B341A486A5400ACD002 /* ValueSet.swift in Sources */,
-				EE374B231A486A5400ACD002 /* ReferralRequest.swift in Sources */,
-				EE374B2A1A486A5400ACD002 /* SecurityEvent.swift in Sources */,
-				EE374ABD1A486A5400ACD002 /* AllergyIntolerance.swift in Sources */,
-				EE374AF91A486A5400ACD002 /* InstitutionalClaim.swift in Sources */,
-				EE374AEE1A486A5400ACD002 /* FHIRTypes.swift in Sources */,
-				EE374AC21A486A5400ACD002 /* Binary.swift in Sources */,
-				EE374B311A486A5400ACD002 /* Supply.swift in Sources */,
-				EE374AD91A486A5400ACD002 /* DeviceMetric.swift in Sources */,
-				EE374ADD1A486A5400ACD002 /* DiagnosticOrder.swift in Sources */,
-				EE374B2F1A486A5400ACD002 /* Subscription.swift in Sources */,
-				EE374B041A486A5400ACD002 /* NamingSystem.swift in Sources */,
-				EE374AC91A486A5400ACD002 /* Coding.swift in Sources */,
-				EE374AD21A486A5400ACD002 /* Contract.swift in Sources */,
-				EE374B381A48748500ACD002 /* FHIRElement+Factory.swift in Sources */,
-				EE374AD31A486A5400ACD002 /* Contraindication.swift in Sources */,
-				EE374AE71A486A5400ACD002 /* EnrollmentRequest.swift in Sources */,
-				EE374ACC1A486A5400ACD002 /* Composition.swift in Sources */,
-				EE374AD41A486A5400ACD002 /* Count.swift in Sources */,
-				EE374B0C1A486A5400ACD002 /* OrderResponse.swift in Sources */,
-				EE374B091A486A5400ACD002 /* OperationOutcome.swift in Sources */,
-				EE374AE11A486A5400ACD002 /* DocumentReference.swift in Sources */,
-				EE374AF41A486A5400ACD002 /* Identifier.swift in Sources */,
-				EE374B361A486A5400ACD002 /* VisionPrescription.swift in Sources */,
-				EE374AD71A486A5400ACD002 /* Device.swift in Sources */,
-				EE374B121A486A5400ACD002 /* PendedRequest.swift in Sources */,
-				EE374B351A486A5400ACD002 /* VisionClaim.swift in Sources */,
-				EE374B301A486A5400ACD002 /* Substance.swift in Sources */,
+				EE13AAA61A5D49D200B901FD /* BaseTests+iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,9 +569,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EECAA6F51A5D3DE60062C64B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */,
+				EECAA78F1A5D410E0062C64B /* Auth+OSX.swift in Sources */,
+				EECAA7261A5D3DE60062C64B /* Server.swift in Sources */,
+				EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		EE13AA9A1A5D44D100B901FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EECAA6F21A5D3DE60062C64B /* SMART-on-FHIR-OSX */;
+			targetProxy = EE13AA991A5D44D100B901FD /* PBXContainerItemProxy */;
+		};
 		EE27D4261965F40700752038 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
@@ -900,14 +598,72 @@
 			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
 			targetProxy = EE43B1B519546D880017679A /* PBXContainerItemProxy */;
 		};
-		EE43B1C9195478000017679A /* PBXTargetDependency */ = {
+		EEB1C6211A5D42D400CB1822 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "OAuth2-iOS";
-			targetProxy = EE43B1C8195478000017679A /* PBXContainerItemProxy */;
+			name = OAuth2iOS;
+			targetProxy = EEB1C6201A5D42D400CB1822 /* PBXContainerItemProxy */;
+		};
+		EECAA78A1A5D3E860062C64B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuth2;
+			targetProxy = EECAA7891A5D3E860062C64B /* PBXContainerItemProxy */;
+		};
+		EEF20E231A5D516D009A6EDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftFHIR;
+			targetProxy = EEF20E221A5D516D009A6EDA /* PBXContainerItemProxy */;
+		};
+		EEF20E2D1A5D53FF009A6EDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftFHIRiOS;
+			targetProxy = EEF20E2C1A5D53FF009A6EDA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		EE13AA9C1A5D44D100B901FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SMART-on-FHIRTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EE13AA9D1A5D44D100B901FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SMART-on-FHIRTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		EE43B1BD19546D880017679A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -918,7 +674,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "SMART-on-FHIR/Info.plist";
+				INFOPLIST_FILE = "SMART-on-FHIR/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
@@ -941,7 +697,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "SMART-on-FHIR/Info.plist";
+				INFOPLIST_FILE = "SMART-on-FHIR/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
@@ -1019,7 +775,8 @@
 					"$(inherited)",
 					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
@@ -1059,7 +816,8 @@
 					"$(inherited)",
 					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";
@@ -1067,9 +825,63 @@
 			};
 			name = Release;
 		};
+		EECAA7811A5D3DE60062C64B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "SMART-on-FHIR/Info-OSX.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SMART;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EECAA7821A5D3DE60062C64B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "SMART-on-FHIR/Info-OSX.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SMART;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE13AA9C1A5D44D100B901FD /* Debug */,
+				EE13AA9D1A5D44D100B901FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EE43B1BC19546D880017679A /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1093,6 +905,15 @@
 			buildConfigurations = (
 				EE55C27B1948906000849670 /* Debug */,
 				EE55C27C1948906000849670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EECAA7811A5D3DE60062C64B /* Debug */,
+				EECAA7821A5D3DE60062C64B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

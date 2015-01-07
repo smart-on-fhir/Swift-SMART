@@ -3,7 +3,7 @@
 //  SMART-on-FHIR-iOSTests
 //
 //  Created by Pascal Pfiffner on 6/20/14.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  2014, SMART Platforms.
 //
 
 import XCTest
