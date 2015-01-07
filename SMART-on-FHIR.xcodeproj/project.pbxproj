@@ -20,7 +20,6 @@
 		EE43B1C519546DB20017679A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
 		EE43B1C619546DB20017679A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
-		EEA23E251970529300510556 /* FHIRSearchParamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA23E241970529300510556 /* FHIRSearchParamTests.swift */; };
 		EEB1C6221A5D431700CB1822 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2.framework */; };
 		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EECAA7261A5D3DE60062C64B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
@@ -156,7 +155,6 @@
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR-Bridging-Header.h"; sourceTree = "<group>"; };
-		EEA23E241970529300510556 /* FHIRSearchParamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearchParamTests.swift; sourceTree = "<group>"; };
 		EECAA7831A5D3DE60062C64B /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+OSX.swift"; sourceTree = "<group>"; };
 		EEE838551978082B007347A0 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 				EE13AAA31A5D499D00B901FD /* BaseTests+OSX.swift */,
 				EE43B1BA19546D880017679A /* ClientTests.swift */,
 				EE29E701195838DD008882C8 /* ServerTests.swift */,
-				EEA23E241970529300510556 /* FHIRSearchParamTests.swift */,
 				EE29E70319583A04008882C8 /* metadata */,
 				EE43B1B819546D880017679A /* Supporting Files */,
 			);
@@ -565,7 +562,6 @@
 			files = (
 				EE29E702195838DD008882C8 /* ServerTests.swift in Sources */,
 				EE43B1BB19546D880017679A /* ClientTests.swift in Sources */,
-				EEA23E251970529300510556 /* FHIRSearchParamTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
