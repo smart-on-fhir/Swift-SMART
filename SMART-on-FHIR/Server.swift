@@ -160,7 +160,8 @@ public class Server: FHIRServer
 	func requestJSON(path: String, auth: Auth?, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			req.setValue("application/json", forHTTPHeaderField: "Accept")
+			req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
+			req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
 			
 			// run on default session
 			let task = defaultSession().dataTaskWithRequest(req) { data, response, error in
