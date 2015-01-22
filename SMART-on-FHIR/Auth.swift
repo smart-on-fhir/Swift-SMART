@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import OAuth2iOS			// TODO: figure out a way to use the iOS framework as simply "OAuth2"
+import OAuth2
 
 
 enum AuthMethod {

@@ -17,7 +17,7 @@
 		EE43B1C519546DB20017679A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
 		EE43B1C619546DB20017679A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
-		EE43B1CA195478070017679A /* OAuth2iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */; };
+		EE52DBD81A70F13500191ED4 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2.framework */; };
 		EE7A3B8C19BA48C5006D50DD /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8719BA48C5006D50DD /* Age.swift */; };
 		EE7A3B8D19BA48C5006D50DD /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8819BA48C5006D50DD /* Count.swift */; };
 		EE7A3B8E19BA48C5006D50DD /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7A3B8919BA48C5006D50DD /* Distance.swift */; };
@@ -111,13 +111,6 @@
 			remoteGlobalIDString = EE43B1A819546D880017679A;
 			remoteInfo = "SMART-on-FHIR-iOS";
 		};
-		EE43B1C8195478000017679A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
-			remoteInfo = "OAuth2-iOS";
-		};
 		EE44F689194F22D50094AB8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
@@ -138,6 +131,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = EEE209A219427DFE00736F1A;
 			remoteInfo = "OAuth2 Tests";
+		};
+		EE52DBD61A70F11E00191ED4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEDB8623193FAAE500C4EEA1;
+			remoteInfo = OAuth2iOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -243,7 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE43B1CA195478070017679A /* OAuth2iOS.framework in Frameworks */,
+				EE52DBD81A70F13500191ED4 /* OAuth2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,8 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				EE44F68A194F22D50094AB8B /* OAuth2.framework */,
-				EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */,
-				EE44F68E194F22D50094AB8B /* OAuth2 Tests.xctest */,
+				EE44F68C194F22D50094AB8B /* OAuth2.framework */,
+				EE44F68E194F22D50094AB8B /* OAuth2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EE43B1C9195478000017679A /* PBXTargetDependency */,
+				EE52DBD71A70F11E00191ED4 /* PBXTargetDependency */,
 			);
 			name = "SMART-on-FHIR-iOS";
 			productName = "SMART-on-FHIR-iOS";
@@ -543,17 +543,17 @@
 			remoteRef = EE44F689194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE44F68C194F22D50094AB8B /* OAuth2iOS.framework */ = {
+		EE44F68C194F22D50094AB8B /* OAuth2.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = OAuth2iOS.framework;
+			path = OAuth2.framework;
 			remoteRef = EE44F68B194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE44F68E194F22D50094AB8B /* OAuth2 Tests.xctest */ = {
+		EE44F68E194F22D50094AB8B /* OAuth2Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "OAuth2 Tests.xctest";
+			path = OAuth2Tests.xctest;
 			remoteRef = EE44F68D194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -688,10 +688,10 @@
 			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
 			targetProxy = EE43B1B519546D880017679A /* PBXContainerItemProxy */;
 		};
-		EE43B1C9195478000017679A /* PBXTargetDependency */ = {
+		EE52DBD71A70F11E00191ED4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "OAuth2-iOS";
-			targetProxy = EE43B1C8195478000017679A /* PBXContainerItemProxy */;
+			name = OAuth2iOS;
+			targetProxy = EE52DBD61A70F11E00191ED4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -792,6 +792,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -807,7 +808,7 @@
 					"$(inherited)",
 					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
@@ -834,6 +835,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -847,7 +849,7 @@
 					"$(inherited)",
 					"/Applications/Xcode6-Beta2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";
