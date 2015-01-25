@@ -10,6 +10,29 @@ import Foundation
 import SwiftFHIR
 
 
+/** Returns an OAuth2Request or NSMutableURLRequest GET with headers set for a correct FHIR request. */
+func fhirGETRequest(auth: Auth?, url: NSURL) -> NSMutableURLRequest {
+	let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+	req.HTTPMethod = "GET"
+	req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
+	req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
+	
+	return req
+}
+
+/** Returns an OAuth2Request or NSMutableURLRequest PUT with headers and body set for a correct FHIR request. */
+func fhirPUTRequest(auth: Auth?, url: NSURL, body: NSData) -> NSMutableURLRequest {
+	let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+	req.HTTPMethod = "PUT"
+	req.HTTPBody = body
+	req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+	//let str = NSString(data: body, encoding: NSUTF8StringEncoding)
+	//println("-->  PUT  \(str!)")
+	
+	return req
+}
+
+
 /**
 	Representing the FHIR resource server a client connects to.
  */
@@ -67,15 +90,12 @@ public class Server: FHIRServer
 		
 		// not yet fetched, fetch it
 		Conformance.readFrom("metadata", server: self) { resource, error in
-			if nil != error {
-				callback(error: error)
-			}
-			else if let conf = resource as? Conformance {
+			if let conf = resource as? Conformance {
 				self.conformance = conf
 				callback(error: nil)
 			}
 			else {
-				callback(error: genSMARTError("Conformance.readFrom() did not return a Conformance instance but \(resource)", 0))
+				callback(error: error ?? genSMARTError("Conformance.readFrom() did not return a Conformance instance but \(resource)"))
 			}
 		}
 	}
@@ -92,14 +112,11 @@ public class Server: FHIRServer
 		
 		// if we haven't initialized the auth instance we likely didn't fetch the server metadata yet
 		getConformance { error in
-			if nil != error {
-				callback(error: error)
-			}
-			else if nil != self.auth {
+			if nil != self.auth {
 				callback(error: nil)
 			}
 			else {
-				callback(error: genSMARTError("Failed to detect the authorization method from server metadata", 0))
+				callback(error: error ?? genSMARTError("Failed to detect the authorization method from server metadata"))
 			}
 		}
 	}
@@ -107,11 +124,8 @@ public class Server: FHIRServer
 	/** Ensures that the receiver is ready, then calls the auth method's `authorize()` method. */
 	public func authorize(useWebView: Bool, callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
-			if nil != error {
-				callback(patient: nil, error: error)
-			}
-			else if nil == self.auth {
-				callback(patient: nil, error: genSMARTError("Client error, no auth instance created", 0))
+			if nil != error || nil == self.auth {
+				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
 			}
 			else {
 				self.auth!.authorize(useWebView) { patientId, error in
@@ -140,13 +154,13 @@ public class Server: FHIRServer
 	// MARK: - Requests
 	
 	/**
-		Request a JSON resource at the given path from the server, forwards to ``.
+		Request a JSON resource at the given path from the server using the server's `auth` instance.
 	
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
 	*/
-	public func requestJSON(path: String, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
-		requestJSON(path, auth: auth, callback: callback)
+	public func getJSON(path: String, callback: FHIRServerJSONResponseCallback) {
+		getJSON(path, auth: auth, callback: callback)
 	}
 	
 	/**
@@ -154,74 +168,92 @@ public class Server: FHIRServer
 		provided.
 	
 		:param: path The path relative to the server's base URL to request
-		:param: auth The Auth instance to use for authentication purposes
+		:param: auth The Auth instance to use for signing the request
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
-	func requestJSON(path: String, auth: Auth?, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
+	func getJSON(path: String, auth: Auth?, callback: FHIRServerJSONResponseCallback) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
-			req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
-			
-			// run on default session
-			let task = defaultSession().dataTaskWithRequest(req) { data, response, error in
-				var finalError: NSError?
-				
+			let task = defaultSession().dataTaskWithRequest(fhirGETRequest(auth, url)) { data, response, error in
+				let res = (nil != response) ? FHIRServerJSONResponse.from(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
 				if nil != error {
-					finalError = error
-				}
-				else if nil != response && nil != data {
-					if let http = response as? NSHTTPURLResponse {
-						if 200 == http.statusCode {
-							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? JSONDictionary {
-								logIfDebug("Did receive valid JSON data")
-								//logIfDebug("\(json)")
-								dispatch_sync(dispatch_get_main_queue()) {
-									callback(json: json, error: nil)
-								}
-								return
-							}
-							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
-							finalError = genSMARTError(errstr, nil)
-						}
-						else {
-							let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
-							finalError = genSMARTError(errstr, http.statusCode)
-						}
-					}
-					else {
-						finalError = genSMARTError("Not an HTTP response", nil)
-					}
-				}
-				else {
-					finalError = genSMARTError("No data received", nil)
+					res.error = error
 				}
 				
-				// if we're still here an error must have happened
-				if nil == finalError {
-					finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
-				}
-				
-				logIfDebug("Failed to fetch JSON data: \(finalError!.localizedDescription)")
-				dispatch_sync(dispatch_get_main_queue()) {
-					callback(json: nil, error: finalError)
+				logIfDebug("Server responded with a \(res.status)")
+				callOnMainThread {
+					callback(response: res)
 				}
 			}
 			
-			logIfDebug("Requesting data from \(req.URL)")
+			logIfDebug("Getting data from \(url)")
 			task.resume()
 		}
 		else {
-			let error = genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)", nil)
-			if NSThread.isMainThread() {
-				callback(json: nil, error: error)
-			}
-			else {
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					callback(json: nil, error: error)
-				})
+			let res = FHIRServerJSONResponse(notSentBecause: genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)"))
+			callOnMainThread {
+				callback(response: res)
 			}
 		}
+	}
+	
+	/**
+		Performs a PUT request against the given path by serializing the body data to JSON and using the receiver's
+		`auth` instance to authorize the request
+	
+		:param: path The path relative to the server's base URL to request
+		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
+	 */
+	public func putJSON(path: String, body: JSONDictionary, callback: FHIRServerJSONResponseCallback) {
+		putJSON(path, auth: auth, body: body, callback: callback)
+	}
+	
+	/**
+		Performs a PUT request against the given path by serializing the body data to JSON.
+		
+		:param: path The path relative to the server's base URL to request
+		:param: auth The Auth instance to use for signing the request
+		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
+	*/
+	func putJSON(path: String, auth: Auth?, body: JSONDictionary, callback: FHIRServerJSONResponseCallback) {
+		if let url = NSURL(string: path, relativeToURL: baseURL) {
+			
+			// serialize JSON
+			var error: NSError? = nil
+			if let data = NSJSONSerialization.dataWithJSONObject(body, options: nil, error: &error) {
+				
+				// run on default session
+				let task = defaultSession().dataTaskWithRequest(fhirPUTRequest(auth, url, data)) { data, response, error in
+					let res = (nil != response) ? FHIRServerJSONResponse.from(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
+					if nil != error {
+						res.error = error
+					}
+					
+					logIfDebug("Server responded with a \(res.status)")
+					callOnMainThread {
+						callback(response: res)
+					}
+				}
+				
+				logIfDebug("Putting data to \(url)")
+				task.resume()
+			}
+			else {
+				logIfDebug("JSON serialization for \(url) failed")
+				callOnMainThread {
+					callback(response: FHIRServerJSONResponse(notSentBecause: error!))
+				}
+			}
+		}
+		else {
+			let res = FHIRServerJSONResponse(notSentBecause: genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)"))
+			callOnMainThread {
+				callback(response: res)
+			}
+		}
+	}
+	
+	public func postJSON(path: String, body: JSONDictionary, callback: FHIRServerJSONResponseCallback) {
+		callback(response: FHIRServerJSONResponse(notSentBecause: genSMARTError("POST is not yet implemented")))
 	}
 	
 	
@@ -243,6 +275,18 @@ public class Server: FHIRServer
 			session!.invalidateAndCancel()
 			session = nil
 		}
+	}
+}
+
+
+func callOnMainThread(callback: (Void -> Void)) {
+	if NSThread.isMainThread() {
+		callback()
+	}
+	else {
+		dispatch_sync(dispatch_get_main_queue(), {
+			callback()
+		})
 	}
 }
 

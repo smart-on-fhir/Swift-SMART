@@ -91,8 +91,8 @@ public class Client
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
 	 */
-	public func requestJSON(path: String, callback: ((json: JSONDictionary?, error: NSError?) -> Void)) {
-		server.requestJSON(path, callback: callback)
+	public func getJSON(path: String, callback: FHIRServerJSONResponseCallback) {
+		server.getJSON(path, callback: callback)
 	}
 }
 
@@ -104,7 +104,7 @@ public func logIfDebug(log: String) {
 #endif
 }
 
-public func genSMARTError(text: String, code: Int?) -> NSError {
-	return NSError(domain: SMARTErrorDomain, code: code ?? 0, userInfo: [NSLocalizedDescriptionKey: text])
+public func genSMARTError(text: String, code: Int = 0) -> NSError {
+	return NSError(domain: SMARTErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: text])
 }
 

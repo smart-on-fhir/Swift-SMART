@@ -83,7 +83,7 @@ class Auth
 		}
 		
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
-		if let extensions = security.fhirExtension {
+		if let extensions = security.extension_fhir {
 			for ext in extensions {
 				if let urlString = ext.url?.absoluteString {
 					switch urlString {
@@ -161,7 +161,7 @@ class Auth
 	 */
 	func authorize(embedded: Bool, callback: (patientId: String?, error: NSError?) -> Void) {
 		if nil != authCallback {
-			processAuthCallback(patientId: nil, error: genSMARTError("Timeout", nil))
+			processAuthCallback(patientId: nil, error: genSMARTError("Timeout"))
 		}
 		
 		if nil != oauth {
@@ -174,7 +174,7 @@ class Auth
 			}
 		}
 		else {
-			let err: NSError? = (.None == type) ? nil : genSMARTError("I am not yet set up to authorize, missing a handle to my oauth instance", nil)
+			let err: NSError? = (.None == type) ? nil : genSMARTError("I am not yet set up to authorize, missing a handle to my oauth instance")
 			callback(patientId: nil, error: err)
 		}
 	}
