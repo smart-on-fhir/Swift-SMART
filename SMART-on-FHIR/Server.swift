@@ -26,6 +26,8 @@ func fhirPUTRequest(auth: Auth?, url: NSURL, body: NSData) -> NSMutableURLReques
 	req.HTTPMethod = "PUT"
 	req.HTTPBody = body
 	req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+	req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
+	req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
 	//let str = NSString(data: body, encoding: NSUTF8StringEncoding)
 	//println("-->  PUT  \(str!)")
 	
