@@ -47,18 +47,18 @@ public class Server: FHIRServer
 	var auth: Auth?
 	
 	/// Settings to be applied to the Auth instance.
-	var authSettings: NSDictionary?
+	var authSettings: JSONDictionary?
 	
 	/// The active URL session.
 	var session: NSURLSession?
 	
 	
-	public init(baseURL: NSURL, auth: NSDictionary? = nil) {
+	public init(baseURL: NSURL, auth: JSONDictionary? = nil) {
 		self.baseURL = baseURL
 		self.authSettings = auth
 	}
 	
-	public convenience init(base: String, auth: NSDictionary? = nil) {
+	public convenience init(base: String, auth: JSONDictionary? = nil) {
 		self.init(baseURL: NSURL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
 	}
 	

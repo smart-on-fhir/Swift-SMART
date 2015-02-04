@@ -35,7 +35,7 @@ class Auth
 		- token_uri
 		- title
 	 */
-	var settings: NSDictionary?
+	var settings: JSONDictionary?
 	
 	/// The authentication object, used internally.
 	var oauth: OAuth2?
@@ -45,11 +45,11 @@ class Auth
 	
 	
 	/** Designated initializer. */
-	init(type: AuthMethod, settings: NSDictionary?) {
+	init(type: AuthMethod, settings: JSONDictionary?) {
 		self.type = type
 		self.settings = settings
-		if nil != self.settings {
-			self.configureWith(self.settings!)
+		if let sett = self.settings {
+			self.configureWith(sett)
 		}
 	}
 	
@@ -63,8 +63,8 @@ class Auth
 	
 	// MARK: - Factory & Setup
 	
-	class func fromConformanceSecurity(security: ConformanceRestSecurity, settings: NSDictionary?) -> Auth? {
-		var authSettings = (settings?.mutableCopy() as? NSMutableDictionary) ?? NSMutableDictionary()
+	class func fromConformanceSecurity(security: ConformanceRestSecurity, settings: JSONDictionary?) -> Auth? {
+		var authSettings = settings ?? JSONDictionary(minimumCapacity: 3)
 		var hasAuthURI = false
 		var hasTokenURI = false
 		
@@ -116,7 +116,7 @@ class Auth
 	
 		:param: settings A dictionary with auth settings, passed on to OAuth2*()
 	 */
-	func configureWith(settings: NSDictionary) {
+	func configureWith(settings: JSONDictionary) {
 		switch type {
 		case .CodeGrant:
 			oauth = OAuth2CodeGrant(settings: settings)

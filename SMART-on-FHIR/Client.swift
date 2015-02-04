@@ -27,8 +27,7 @@ public class Client
 	/** Designated initializer. */
 	init(server: Server) {
 		self.server = server
-		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM
-//		logIfDebug("Initialized SMART on FHIR client")
+		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM, not anymore in Xcode 6.2
 	}
 	
 	/** Use this initializer with the appropriate server settings. */
@@ -37,7 +36,7 @@ public class Client
                              redirect: String,
 		                        scope: String = "launch/patient user/*.* patient/*.read openid profile",
 		                        title: String = "SMART") {
-		var settings = [
+		var settings: JSONDictionary = [
 			"client_id": clientId,
 			"scope": scope,
 			"redirect_uris": [redirect],
