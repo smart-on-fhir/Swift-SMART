@@ -20,6 +20,9 @@
 		EE43B1C519546DB20017679A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
 		EE43B1C619546DB20017679A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
+		EE4D58FC1A826097005F5C7A /* PatientList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D58FB1A826097005F5C7A /* PatientList.swift */; };
+		EE4D58FD1A826097005F5C7A /* PatientList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D58FB1A826097005F5C7A /* PatientList.swift */; };
+		EE4D59021A826900005F5C7A /* PatientList+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D59011A826900005F5C7A /* PatientList+iOS.swift */; };
 		EE9DDDBD1A6651BB00C458A8 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF20E1E1A5D5150009A6EDA /* SwiftFHIR.framework */; };
 		EEB1C6221A5D431700CB1822 /* OAuth2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE44F68C194F22D50094AB8B /* OAuth2.framework */; };
 		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
@@ -151,6 +154,8 @@
 		EE43B1C319546DB20017679A /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		EE43B1C419546DB20017679A /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		EE44F683194F22D50094AB8B /* OAuth2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuth2.xcodeproj; path = OAuth2/OAuth2.xcodeproj; sourceTree = "<group>"; };
+		EE4D58FB1A826097005F5C7A /* PatientList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientList.swift; sourceTree = "<group>"; };
+		EE4D59011A826900005F5C7A /* PatientList+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PatientList+iOS.swift"; sourceTree = "<group>"; };
 		EE6DA7C31A5D4AAF00E00708 /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
@@ -209,6 +214,8 @@
 				EE43B1C219546DB20017679A /* Auth.swift */,
 				EEE838551978082B007347A0 /* Auth+iOS.swift */,
 				EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */,
+				EE4D58FB1A826097005F5C7A /* PatientList.swift */,
+				EE4D59011A826900005F5C7A /* PatientList+iOS.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
 			path = "SMART-on-FHIR";
@@ -257,7 +264,7 @@
 			children = (
 				EE44F68A194F22D50094AB8B /* OAuth2.framework */,
 				EE44F68C194F22D50094AB8B /* OAuth2.framework */,
-				EE44F68E194F22D50094AB8B /* OAuth2 Tests.xctest */,
+				EE44F68E194F22D50094AB8B /* OAuth2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -463,10 +470,10 @@
 			remoteRef = EE44F68B194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE44F68E194F22D50094AB8B /* OAuth2 Tests.xctest */ = {
+		EE44F68E194F22D50094AB8B /* OAuth2Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "OAuth2 Tests.xctest";
+			path = OAuth2Tests.xctest;
 			remoteRef = EE44F68D194F22D50094AB8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -550,9 +557,11 @@
 			files = (
 				EE43B1C619546DB20017679A /* Client.swift in Sources */,
 				EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */,
+				EE4D59021A826900005F5C7A /* PatientList+iOS.swift in Sources */,
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
 				EE43B1C519546DB20017679A /* Auth.swift in Sources */,
 				EE13AAA61A5D49D200B901FD /* BaseTests+iOS.swift in Sources */,
+				EE4D58FC1A826097005F5C7A /* PatientList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */,
+				EE4D58FD1A826097005F5C7A /* PatientList.swift in Sources */,
 				EECAA78F1A5D410E0062C64B /* Auth+OSX.swift in Sources */,
 				EECAA7261A5D3DE60062C64B /* Server.swift in Sources */,
 				EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */,
