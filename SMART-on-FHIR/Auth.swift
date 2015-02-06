@@ -54,13 +54,6 @@ class Auth
 	}
 	
 	
-	var clientId: String? {
-		get { return oauth?.clientId ?? (settings?["client_id"] as? String) }
-	}
-	
-	var patientId: String?
-	
-	
 	// MARK: - Factory & Setup
 	
 	class func fromConformanceSecurity(security: ConformanceRestSecurity, settings: JSONDictionary?) -> Auth? {
@@ -106,7 +99,7 @@ class Auth
 			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, settings: authSettings)
 		}
 		
-		logIfDebug("Unsupported security services, will proceed without an authorization method")
+		logIfDebug("Unsupported security services, will proceed without authorization method")
 		return nil
 	}
 	

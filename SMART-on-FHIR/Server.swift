@@ -145,13 +145,6 @@ public class Server: FHIRServer
 		}
 	}
 	
-	public func handleRedirect(redirect: NSURL) -> Bool {
-		if nil != auth {
-			return auth!.handleRedirect(redirect)
-		}
-		return false
-	}
-	
 	
 	// MARK: - Requests
 	
@@ -182,6 +175,8 @@ public class Server: FHIRServer
 				}
 				
 				logIfDebug("Server responded with a \(res.status)")
+//				let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+//				logIfDebug("\(str)")
 				callOnMainThread {
 					callback(response: res)
 				}

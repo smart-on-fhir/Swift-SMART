@@ -34,7 +34,7 @@ public class Client
 	public convenience init(serverURL: String,
 	                         clientId: String,
                              redirect: String,
-		                        scope: String = "launch/patient user/*.* patient/*.read openid profile",
+		                        scope: String = "user/*.* openid profile",		// plus "launch" or "launch/patient", if needed
 		                        title: String = "SMART") {
 		var settings: JSONDictionary = [
 			"client_id": clientId,
@@ -73,7 +73,7 @@ public class Client
 	
 	/** Call this with the redirect URL when intercepting the redirect callback in the app delegate. */
 	public func didRedirect(redirect: NSURL) -> Bool {
-		return server.handleRedirect(redirect)
+		return server.auth?.handleRedirect(redirect) ?? false
 	}
 	
 	/** Stops any request currently in progress. */

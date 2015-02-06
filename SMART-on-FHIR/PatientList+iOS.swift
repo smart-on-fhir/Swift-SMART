@@ -12,15 +12,30 @@ import SwiftFHIR
 
 public class PatientListViewController: UITableViewController
 {
+	/// The patient list to display.
 	var patientList: PatientList?
 	
+	/// The server from which to retrieve the patient list.
 	var server: FHIRServer?
+	
+	/// Block to execute when a patient has been selected.
+	var onPatientSelect: ((patient: Patient) -> Void)?
+	
+	var runningOutOfPatients: Bool = false {
+		didSet {
+			loadMorePatientsIfNeeded()
+		}
+	}
+	
+	lazy var activity = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+	
 	
 	public init(list: PatientList, server srv: FHIRServer) {
 		patientList = list
 		server = srv
 		super.init(nibName: nil, bundle: nil)
 	}
+	
 	public required init(coder aDecoder: NSCoder) {
 	    super.init(coder: aDecoder)
 	}
@@ -32,26 +47,51 @@ public class PatientListViewController: UITableViewController
 		self.tableView.registerClass(PatientTableViewCell.self, forCellReuseIdentifier: "PatientCell")
 		
 		// show an activity indicator whenever the list's status is "loading"
-		patientList?.onStatusUpdate = {
-			if nil != self.patientList && .Loading == self.patientList!.status {
-				let activity = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-				self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: activity)
-				activity.startAnimating()
-			}
-			else {
-				self.navigationItem.leftBarButtonItem = nil
+		patientList?.onStatusUpdate = { [weak self] in
+			if let this = self {
+				if nil != this.patientList && .Loading == this.patientList!.status {
+					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity!)
+					this.activity!.startAnimating()
+				}
+				else {
+					this.activity!.stopAnimating()
+					this.navigationItem.leftBarButtonItem = nil
+				}
 			}
 		}
 		
 		// reload the table whenever the list updates
-		patientList?.onPatientUpdate = {
-			self.tableView.reloadData()
+		patientList?.onPatientUpdate = { [weak self] in
+			if let this = self {
+				this.tableView.reloadData()
+				
+				dispatch_async(dispatch_get_main_queue()) {
+					this.loadMorePatientsIfNeeded()
+				}
+			}
 		}
 	}
 	
 	public override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		patientList?.retrieve(server!)
+		if 0 == patientList?.actualNumberOfPatients {
+			patientList?.retrieve(server!)
+		}
+	}
+	
+	
+	// MARK: - Patient Loading
+	
+	func loadMorePatientsIfNeeded() {
+		if runningOutOfPatients && nil != patientList && patientList!.hasMore {
+			loadMorePatients()
+		}
+	}
+	
+	func loadMorePatients() {
+		if let list = patientList {
+			list.retrieveMore(self.server!)
+		}
 	}
 	
 	
@@ -62,17 +102,27 @@ public class PatientListViewController: UITableViewController
 	}
 	
 	public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (0 == section && nil != patientList) ? patientList!.numberOfPatients : 0
+		return (0 == section && nil != patientList) ? patientList!.expectedNumberOfPatients : 0
 	}
 	
 	public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("PatientCell", forIndexPath: indexPath) as PatientTableViewCell
 		if 0 == indexPath.section {
-			if let patient = patientList?.patients?[indexPath.row] {
-				cell.represent(patient)
-			}
+			cell.represent(patientList?[indexPath.row])
+			
+			let marker = min(patientList!.expectedNumberOfPatients, indexPath.row + 10)
+			runningOutOfPatients = (marker > patientList?.actualNumberOfPatients)
 		}
 		return cell
+	}
+	
+	public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		if 0 == indexPath.section {
+			if let patient = patientList?[indexPath.row] {
+				onPatientSelect?(patient: patient)
+			}
+		}
+		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
 }
 
@@ -115,15 +165,20 @@ class PatientTableViewCell: UITableViewCell
 		super.init(coder: aDecoder)
 	}
 	
-	func represent(patient: Patient) {
-		textLabel?.text = patient.displayNameFamilyGiven
-		detailTextLabel?.text = patient.birthDate?.description
+	func represent(patient: Patient?) {
+		textLabel?.text = patient?.displayNameFamilyGiven
+		detailTextLabel?.text = patient?.birthDate?.description
 		
-		let gender = accessoryView as? UILabel ?? UILabel(frame: CGRectMake(0, 0, 38, 38))
-		gender.font = UIFont.systemFontOfSize(22.0)
-		gender.textAlignment = .Center
-		gender.text = patient.genderSymbol
-		accessoryView = gender
+		if let pat = patient {
+			let gender = accessoryView as? UILabel ?? UILabel(frame: CGRectMake(0, 0, 38, 38))
+			gender.font = UIFont.systemFontOfSize(22.0)
+			gender.textAlignment = .Center
+			gender.text = pat.genderSymbol
+			accessoryView = gender
+		}
+		else {
+			accessoryView = nil
+		}
 	}
 }
 
