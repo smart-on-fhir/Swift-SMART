@@ -79,6 +79,10 @@ public class PatientListViewController: UITableViewController
 		}
 	}
 	
+	public func dismissFromModal(sender: AnyObject?) {
+		presentingViewController?.dismissViewControllerAnimated(nil != sender, completion: nil)
+	}
+	
 	
 	// MARK: - Patient Loading
 	

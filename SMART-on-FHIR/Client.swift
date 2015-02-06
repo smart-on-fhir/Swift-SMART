@@ -14,6 +14,22 @@ let SMARTErrorDomain = "SMARTErrorDomain"
 
 
 /**
+	Describes properties for the authorization flow.
+ */
+public struct SMARTAuthProperties
+{
+	public var embedded = true
+	public var granularity = SMARTAuthGranularity.PatientSelectNative
+}
+
+public enum SMARTAuthGranularity {
+	case TokenOnly
+	case PatientSelectWeb
+	case PatientSelectNative
+}
+
+
+/**
 	A client instance handles authentication and connection to a SMART on FHIR resource server.
  */
 public class Client
@@ -21,8 +37,8 @@ public class Client
 	/// The server this client connects to.
 	public let server: Server
 	
-	/// Set to false if you don't want to use a built in web view for authentication.
-	var useWebView = true
+	/// Set to the authorize type you want, e.g. to use a built in web view for authentication and patient selection.
+	var authProperties = SMARTAuthProperties()
 	
 	/** Designated initializer. */
 	init(server: Server) {
@@ -60,10 +76,11 @@ public class Client
 	/**
 		Call this to start the authorization process.
 	
-		If you set `useWebView` to false you will need to intercept the OAuth redirect and call `didRedirect` yourself.
+		If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect`
+		yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
-		self.server.authorize(self.useWebView, callback)
+		server.authorize(authProperties, callback)
 	}
 	
 	/// Will return true while the client is waiting for the authorization callback.

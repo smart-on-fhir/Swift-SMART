@@ -37,6 +37,9 @@ class Auth
 	 */
 	var settings: JSONDictionary?
 	
+	/// The server this instance belongs to
+	unowned let server: Server
+	
 	/// The authentication object, used internally.
 	var oauth: OAuth2?
 	
@@ -45,8 +48,9 @@ class Auth
 	
 	
 	/** Designated initializer. */
-	init(type: AuthMethod, settings: JSONDictionary?) {
+	init(type: AuthMethod, server: Server, settings: JSONDictionary?) {
 		self.type = type
+		self.server = server
 		self.settings = settings
 		if let sett = self.settings {
 			self.configureWith(sett)
@@ -56,7 +60,7 @@ class Auth
 	
 	// MARK: - Factory & Setup
 	
-	class func fromConformanceSecurity(security: ConformanceRestSecurity, settings: JSONDictionary?) -> Auth? {
+	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: JSONDictionary?) -> Auth? {
 		var authSettings = settings ?? JSONDictionary(minimumCapacity: 3)
 		var hasAuthURI = false
 		var hasTokenURI = false
@@ -96,7 +100,7 @@ class Auth
 		}
 		
 		if hasAuthURI {
-			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, settings: authSettings)
+			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
 		
 		logIfDebug("Unsupported security services, will proceed without authorization method")
@@ -149,18 +153,18 @@ class Auth
 	/**
 		Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	
-		If you set `embedded` to false remember that you need to intercept the callback from the browser and call
-		the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+		If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
+		call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
 	 */
-	func authorize(embedded: Bool, callback: (patientId: String?, error: NSError?) -> Void) {
+	func authorize(properties: SMARTAuthProperties, callback: (patientId: String?, error: NSError?) -> Void) {
 		if nil != authCallback {
 			processAuthCallback(patientId: nil, error: genSMARTError("Timeout"))
 		}
 		
 		if nil != oauth {
 			authCallback = callback
-			if embedded {
-				authorizeEmbedded(oauth!)
+			if properties.embedded {
+				authorizeEmbedded(oauth!, granularity: properties.granularity)
 			}
 			else {
 				openURLInBrowser(oauth!.authorizeURL())

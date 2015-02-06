@@ -33,7 +33,6 @@
 		EECAA78F1A5D410E0062C64B /* Auth+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */; };
 		EEE838561978082B007347A0 /* Auth+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE838551978082B007347A0 /* Auth+iOS.swift */; };
 		EEF20E241A5D5173009A6EDA /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6DA7CA1A5D4AAF00E00708 /* SwiftFHIR.framework */; };
-		EEF20E301A5D7C65009A6EDA /* Info-OSX.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEF20E2F1A5D7C65009A6EDA /* Info-OSX.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -534,7 +533,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEF20E301A5D7C65009A6EDA /* Info-OSX.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

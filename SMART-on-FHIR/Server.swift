@@ -71,12 +71,12 @@ public class Server: FHIRServer
 			
 			// TODO: we only look at the first "rest" entry, should we support multiple endpoints?
 			if let security = conformance?.rest?.first?.security {
-				auth = Auth.fromConformanceSecurity(security, settings: authSettings)
+				auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
 			}
 			
 			// if we have not yet initialized an Auth object we'll use one for "no auth"
 			if nil == auth {
-				auth = Auth(type: .None, settings: authSettings)
+				auth = Auth(type: .None, server: self, settings: authSettings)
 			}
 		}
 	}
@@ -124,13 +124,13 @@ public class Server: FHIRServer
 	}
 	
 	/** Ensures that the receiver is ready, then calls the auth method's `authorize()` method. */
-	public func authorize(useWebView: Bool, callback: (patient: Patient?, error: NSError?) -> ()) {
+	public func authorize(authProperties: SMARTAuthProperties, callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
 			if nil != error || nil == self.auth {
 				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
 			}
 			else {
-				self.auth!.authorize(useWebView) { patientId, error in
+				self.auth!.authorize(authProperties) { patientId, error in
 					if nil != error || nil == patientId {
 						callback(patient: nil, error: error)
 					}
