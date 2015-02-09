@@ -66,7 +66,6 @@ public class PatientListViewController: UITableViewController
 		patientList?.onPatientUpdate = { [weak self] in
 			if let this = self {
 				this.tableView.reloadData()
-				
 				dispatch_async(dispatch_get_main_queue()) {
 					this.loadMorePatientsIfNeeded()
 				}
@@ -102,8 +101,8 @@ public class PatientListViewController: UITableViewController
 	}
 	
 	func loadMorePatients() {
-		if let list = patientList {
-			list.retrieveMore(self.server!)
+		if let srv = server {
+			patientList?.retrieveMore(srv)
 		}
 	}
 	
@@ -111,58 +110,53 @@ public class PatientListViewController: UITableViewController
 	// MARK: - Table View
 	
 	public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
+		return patientList?.numSections ?? 0
 	}
 	
 	public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return (0 == section && nil != patientList) ? patientList!.expectedNumberOfPatients : 0
+		if let section = patientList?[section] {
+			return section.numPatients
+		}
+		return 0
 	}
 	
 	public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("PatientCell", forIndexPath: indexPath) as PatientTableViewCell
-		if 0 == indexPath.section {
-			cell.represent(patientList?[indexPath.row])
+		if let section = patientList?[indexPath.section] {
+			cell.represent(section[indexPath.row])
 			
-			let marker = min(patientList!.expectedNumberOfPatients, indexPath.row + 10)
-			runningOutOfPatients = (marker > patientList?.actualNumberOfPatients)
+			let marker = min(patientList!.expectedNumberOfPatients, section.offset + indexPath.row + 10)
+			runningOutOfPatients = (marker > patientList!.actualNumberOfPatients)
 		}
 		return cell
 	}
 	
 	public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if 0 == indexPath.section {
-			if let patient = patientList?[indexPath.row] {
-				didSelectPatient = true
-				onPatientSelect?(patient: patient)
-			}
+		if let patient = patientList?[indexPath] {
+			didSelectPatient = true
+			onPatientSelect?(patient: patient)
 		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+	}
+	
+	
+	// MARK: - Table View Sections
+	
+	public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if let section = patientList?[section] {
+			return section.title
+		}
+		return nil
+	}
+	
+	public override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+		return patientList?.sectionIndexTitles
 	}
 }
 
 
 extension Patient
 {
-	var displayNameFamilyGiven: String {
-		if let humanName = name?.first {
-			let given = humanName.given?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1 }
-			let family = humanName.family?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1 }
-			if nil == given {
-				if nil != family {
-					let prefix = ("male" == gender) ? "Mr." : "Ms."
-					return "\(prefix) \(family!)"
-				}
-			}
-			else {
-				if nil != family {
-					return "\(family!), \(given!)"
-				}
-				return given!
-			}
-		}
-		return "Unnamed Patient"
-	}
-	
 	var genderSymbol: String {
 		return ("male" == gender) ? "♂" : "♀"
 	}

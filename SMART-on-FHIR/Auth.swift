@@ -148,6 +148,8 @@ class Auth
 	/**
 		Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	
+		Automatically adds the correct "launch*" scope, according to the authorization property granularity.
+	
 		If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
 		call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
 	 */
