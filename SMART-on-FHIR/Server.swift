@@ -130,15 +130,18 @@ public class Server: FHIRServer
 				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
 			}
 			else {
-				self.auth!.authorize(authProperties) { patientId, error in
-					if nil != error || nil == patientId {
+				self.auth!.authorize(authProperties) { parameters, error in
+					if nil != error {
 						callback(patient: nil, error: error)
 					}
-					else {
-						Patient.read(patientId!, server: self) { resource, error in
+					else if let patientId = parameters?["patient"] as? String {
+						Patient.read(patientId, server: self) { resource, error in
 							logIfDebug("Did read patient \(resource) with error \(error)")
 							callback(patient: resource as? Patient, error: error)
 						}
+					}
+					else {
+						callback(patient: nil, error: nil)
 					}
 				}
 			}

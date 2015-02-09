@@ -25,24 +25,42 @@ extension Auth
 	func authorizeEmbedded(oauth: OAuth2, granularity: SMARTAuthGranularity) {
 		if let root = UIApplication.sharedApplication().keyWindow?.rootViewController {
 			let web = oauth.authorizeEmbeddedFrom(root, params: nil)
-			if granularity == .PatientSelectWeb {
-				oauth.afterAuthorizeOrFailure = { wasFailure in
-					web.dismissViewControllerAnimated(true, completion: nil)
-				}
-			}
-			else if granularity == .PatientSelectNative {
-				oauth.afterAuthorizeOrFailure = { wasFailure in
-					let search = FHIRSearch(query: [])
-					search.pageCount = 50
-					let query = PatientListQuery(search: search)
-					let list = PatientList(query: query)
-					let view = PatientListViewController(list: list, server: self.server)
+			
+			// present native patient selector: we redirect "onAuthorize" and must make sure to reconnect it when done
+			if granularity == .PatientSelectNative {
+				let onAuth = oauth.onAuthorize
+				oauth.onAuthorize = { params in
+					let view = PatientListViewController(list: PatientListAll(), server: self.server)
+					view.onPatientSelect = { patient in
+						var parameters = params
+						if let pat = patient {
+							parameters["patient"] = pat.id
+						}
+						onAuth?(parameters: parameters)
+						if !(view.parentViewController ?? view).isBeingDismissed() {
+							root.dismissViewControllerAnimated(true, completion: nil)
+						}
+					}
+					view.title = oauth.viewTitle
 					view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: "dismissFromModal:")
 					
 					root.dismissViewControllerAnimated(false) {
 						let navi = UINavigationController(rootViewController: view)
 						root.presentViewController(navi, animated: false, completion: nil)
 					}
+				}
+				oauth.afterAuthorizeOrFailure = { wasFailure, error in
+					oauth.onAuthorize = onAuth
+					if wasFailure {
+						web.dismissViewControllerAnimated(true, completion: nil)
+					}
+				}
+			}
+			
+			// other authorize granularities, dismiss when done
+			else {
+				oauth.afterAuthorizeOrFailure = { wasFailure, error in
+					root.dismissViewControllerAnimated(true, completion: nil)
 				}
 			}
 		}

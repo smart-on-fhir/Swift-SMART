@@ -206,6 +206,17 @@ public class PatientList
 	}
 }
 
+public class PatientListAll: PatientList
+{
+	public init() {
+		let search = FHIRSearch(query: [])
+		search.pageCount = 50
+		let query = PatientListQuery(search: search)
+		
+		super.init(query: query)
+	}
+}
+
 
 /**
  *  A query that returns a list of patients.

@@ -19,7 +19,9 @@ public class PatientListViewController: UITableViewController
 	var server: FHIRServer?
 	
 	/// Block to execute when a patient has been selected.
-	var onPatientSelect: ((patient: Patient) -> Void)?
+	var onPatientSelect: ((patient: Patient?) -> Void)?
+	
+	var didSelectPatient = false
 	
 	var runningOutOfPatients: Bool = false {
 		didSet {
@@ -79,6 +81,13 @@ public class PatientListViewController: UITableViewController
 		}
 	}
 	
+	public override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		if !didSelectPatient {
+			onPatientSelect?(patient: nil)
+		}
+	}
+	
 	public func dismissFromModal(sender: AnyObject?) {
 		presentingViewController?.dismissViewControllerAnimated(nil != sender, completion: nil)
 	}
@@ -123,6 +132,7 @@ public class PatientListViewController: UITableViewController
 	public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		if 0 == indexPath.section {
 			if let patient = patientList?[indexPath.row] {
+				didSelectPatient = true
 				onPatientSelect?(patient: patient)
 			}
 		}

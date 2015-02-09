@@ -44,7 +44,7 @@ class Auth
 	var oauth: OAuth2?
 	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((patientId: String?, error: NSError?) -> ())?
+	var authCallback: ((parameters: JSONDictionary?, error: NSError?) -> ())?
 	
 	
 	/** Designated initializer. */
@@ -115,12 +115,12 @@ class Auth
 	 */
 	func configureWith(settings: JSONDictionary) {
 		switch type {
-		case .CodeGrant:
-			oauth = OAuth2CodeGrant(settings: settings)
-		case .ImplicitGrant:
-			oauth = OAuth2ImplicitGrant(settings: settings)
-		case .None:
-			oauth = nil
+			case .CodeGrant:
+				oauth = OAuth2CodeGrant(settings: settings)
+			case .ImplicitGrant:
+				oauth = OAuth2ImplicitGrant(settings: settings)
+			case .None:
+				oauth = nil
 		}
 		
 		// configure the OAuth2 instance's callbacks
@@ -129,17 +129,12 @@ class Auth
 				oa.viewTitle = ttl
 			}
 			oa.onAuthorize = { parameters in
-				if let patient = parameters["patient"] as? String {
-					logIfDebug("Did receive patient with id \(patient)")
-					self.processAuthCallback(patientId: patient, error: nil)
-				}
-				else {
-					logIfDebug("Did handle redirect but do not have a patient context, returning without patient")
-					self.processAuthCallback(patientId: nil, error: nil)
-				}
+				logIfDebug("Did authorize with parameters \(parameters)")
+				self.processAuthCallback(parameters: parameters, error: nil)
 			}
 			oa.onFailure = { error in
-				self.processAuthCallback(patientId: nil, error: error)
+				logIfDebug("Failed to authorize with error: \(error)")
+				self.processAuthCallback(parameters: nil, error: error)
 			}
 			#if DEBUG
 			oa.verbose = true
@@ -156,13 +151,29 @@ class Auth
 		If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
 		call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
 	 */
-	func authorize(properties: SMARTAuthProperties, callback: (patientId: String?, error: NSError?) -> Void) {
+	func authorize(properties: SMARTAuthProperties, callback: (parameters: JSONDictionary?, error: NSError?) -> Void) {
 		if nil != authCallback {
-			processAuthCallback(patientId: nil, error: genSMARTError("Timeout"))
+			processAuthCallback(parameters: nil, error: genSMARTError("Timeout"))
 		}
 		
 		if nil != oauth {
 			authCallback = callback
+			
+			// adjust the scope for desired auth properties
+			var scope = oauth!.scope ?? "user/*.* openid profile"		// plus "launch" or "launch/patient", if needed
+			switch properties.granularity {
+				case .TokenOnly:
+					break
+				case .LaunchContext:
+					scope = "launch \(scope)"
+				case .PatientSelectWeb:
+					scope = "launch/patient \(scope)"
+				case .PatientSelectNative:
+					break
+			}
+			oauth!.scope = scope
+			
+			// start authorization
 			if properties.embedded {
 				authorizeEmbedded(oauth!, granularity: properties.granularity)
 			}
@@ -172,7 +183,7 @@ class Auth
 		}
 		else {
 			let err: NSError? = (.None == type) ? nil : genSMARTError("I am not yet set up to authorize, missing a handle to my oauth instance")
-			callback(patientId: nil, error: err)
+			callback(parameters: nil, error: err)
 		}
 	}
 	
@@ -186,12 +197,12 @@ class Auth
 	}
 	
 	func abort() {
-		processAuthCallback(patientId: nil, error: nil)
+		processAuthCallback(parameters: nil, error: nil)
 	}
 	
-	func processAuthCallback(# patientId: String?, error: NSError?) {
+	func processAuthCallback(# parameters: JSONDictionary?, error: NSError?) {
 		if nil != authCallback {
-			authCallback!(patientId: patientId, error: error)
+			authCallback!(parameters: parameters, error: error)
 			authCallback = nil
 		}
 	}
