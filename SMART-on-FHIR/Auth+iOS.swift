@@ -62,7 +62,7 @@ extension Auth
 				}
 			}
 			else {
-				root.presentViewController(navi, animated: false, completion: nil)
+				root.presentViewController(navi, animated: true, completion: nil)
 			}
 		}
 		else {

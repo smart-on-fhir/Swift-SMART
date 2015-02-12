@@ -162,12 +162,17 @@ class Auth
 		}
 		
 		if let oa = oauth {
-			authContext = nil
 			authProperties = properties
 			authCallback = callback
+			if oa.hasUnexpiredAccessToken() && properties.granularity != .PatientSelectWeb {
+				logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
+				authDidSucceed(JSONDictionary(minimumCapacity: 0))
+				return
+			}
 			
 			// adjust the scope for desired auth properties
 			var scope = oa.scope ?? "user/*.* openid profile"		// plus "launch" or "launch/patient", if needed
+			// TODO: clean existing "launch" scope if it's already contained
 			switch properties.granularity {
 				case .TokenOnly:
 					break
@@ -181,6 +186,7 @@ class Auth
 			oa.scope = scope
 			
 			// start authorization
+			authContext = nil
 			if properties.embedded {
 				authorizeEmbedded(oa, granularity: properties.granularity)
 			}
@@ -203,7 +209,7 @@ class Auth
 		return true
 	}
 	
-	func authDidSucceed(parameters: JSONDictionary) {
+	internal func authDidSucceed(parameters: JSONDictionary) {
 		if nil != authProperties && authProperties!.granularity == .PatientSelectNative {		// Swift 1.1 compiler crashes with authProperties?.granularity
 			logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
 			showPatientList(parameters)
@@ -214,7 +220,7 @@ class Auth
 		}
 	}
 	
-	func authDidFail(error: NSError?) {
+	internal func authDidFail(error: NSError?) {
 		logIfDebug("Failed to authorize with error: \(error)")
 		self.processAuthCallback(parameters: nil, error: error)
 	}

@@ -97,7 +97,6 @@ public class Client
 		yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
-		// TODO: if we don't use "launch" context, check if we have a token and omit the full authorization flow
 		server.authorize(authProperties, callback)
 	}
 	
