@@ -135,9 +135,14 @@ public class Server: FHIRServer
 						callback(patient: nil, error: error)
 					}
 					else if let patientId = parameters?["patient"] as? String {
-						Patient.read(patientId, server: self) { resource, error in
-							logIfDebug("Did read patient \(resource) with error \(error)")
-							callback(patient: resource as? Patient, error: error)
+						if let patient = parameters?["patient_resource"] as? Patient {
+							callback(patient: patient, error: nil)
+						}
+						else {
+							Patient.read(patientId, server: self) { resource, error in
+								logIfDebug("Did read patient \(resource) with error \(error)")
+								callback(patient: resource as? Patient, error: error)
+							}
 						}
 					}
 					else {

@@ -15,6 +15,7 @@ extension Auth
 {
 	/** Open a URL in the OS' browser. */
 	func openURLInBrowser(url: NSURL) -> Bool {
+		authContext = UIApplication.sharedApplication().keyWindow?.rootViewController
 		return UIApplication.sharedApplication().openURL(url)
 	}
 	
@@ -24,48 +25,54 @@ extension Auth
 	 */
 	func authorizeEmbedded(oauth: OAuth2, granularity: SMARTAuthGranularity) {
 		if let root = UIApplication.sharedApplication().keyWindow?.rootViewController {
-			let web = oauth.authorizeEmbeddedFrom(root, params: nil)
-			
-			// present native patient selector: we redirect "onAuthorize" and must make sure to reconnect it when done
-			if granularity == .PatientSelectNative {
-				let onAuth = oauth.onAuthorize
-				oauth.onAuthorize = { params in
-					let view = PatientListViewController(list: PatientListAll(), server: self.server)
-					view.onPatientSelect = { patient in
-						var parameters = params
-						if let pat = patient {
-							parameters["patient"] = pat.id
-						}
-						onAuth?(parameters: parameters)
-						if !(view.parentViewController ?? view).isBeingDismissed() {
-							root.dismissViewControllerAnimated(true, completion: nil)
-						}
-					}
-					view.title = oauth.viewTitle
-					view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: "dismissFromModal:")
-					
-					root.dismissViewControllerAnimated(false) {
-						let navi = UINavigationController(rootViewController: view)
-						root.presentViewController(navi, animated: false, completion: nil)
-					}
-				}
+			authContext = root
+			oauth.authorizeEmbeddedFrom(root, params: nil)
+			if granularity != .PatientSelectNative {
 				oauth.afterAuthorizeOrFailure = { wasFailure, error in
-					oauth.onAuthorize = onAuth
-					if wasFailure {
-						web.dismissViewControllerAnimated(true, completion: nil)
-					}
-				}
-			}
-			
-			// other authorize granularities, dismiss when done
-			else {
-				oauth.afterAuthorizeOrFailure = { wasFailure, error in
-					root.dismissViewControllerAnimated(true, completion: nil)
+					self.dismissEmbedded()
 				}
 			}
 		}
 		else {
-			oauth.onFailure?(error: genOAuth2Error("No root view controller, cannot present authorize screen"))
+			authDidFail(genOAuth2Error("No root view controller, cannot present authorize screen"))
+		}
+	}
+	
+	func showPatientList(parameters: JSONDictionary) {
+		if let root = authContext as? UIViewController {
+			
+			// instantiate patient list view
+			let view = PatientListViewController(list: PatientListAll(), server: self.server)
+			view.title = self.oauth?.viewTitle
+			view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: "dismissFromModal:")
+			view.onPatientSelect = { patient in
+				var params = parameters
+				if let pat = patient {
+					params["patient"] = pat.id
+					params["patient_resource"] = pat
+				}
+				self.processAuthCallback(parameters: params, error: nil)
+			}
+			
+			// present on root view controller
+			let navi = UINavigationController(rootViewController: view)
+			if nil != root.presentedViewController {		// assumes the login screen is the presented view
+				root.dismissViewControllerAnimated(false) {
+					root.presentViewController(navi, animated: false, completion: nil)
+				}
+			}
+			else {
+				root.presentViewController(navi, animated: false, completion: nil)
+			}
+		}
+		else {
+			authDidFail(genOAuth2Error("No root view controller in authorization context, cannot present patient list"))
+		}
+	}
+	
+	func dismissEmbedded() {
+		if let root = authContext as? UIViewController {
+			root.dismissViewControllerAnimated(true, completion: nil)
 		}
 	}
 }

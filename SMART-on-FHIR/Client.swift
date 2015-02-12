@@ -45,8 +45,8 @@ public class Client
 	/// The server this client connects to.
 	public let server: Server
 	
-	/// Set to the authorize type you want, e.g. to use a built in web view for authentication and patient selection.
-	var authorize = SMARTAuthProperties()
+	/// Set the authorize type you want, e.g. to use a built in web view for authentication and patient selection.
+	public var authProperties = SMARTAuthProperties()
 	
 	
 	/** Designated initializer. */
@@ -98,7 +98,7 @@ public class Client
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
 		// TODO: if we don't use "launch" context, check if we have a token and omit the full authorization flow
-		server.authorize(authorize, callback)
+		server.authorize(authProperties, callback)
 	}
 	
 	/// Will return true while the client is waiting for the authorization callback.

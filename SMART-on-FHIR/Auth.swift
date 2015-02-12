@@ -43,6 +43,12 @@ class Auth
 	/// The authentication object, used internally.
 	var oauth: OAuth2?
 	
+	/// The configuration for the authorization in progress.
+	var authProperties: SMARTAuthProperties?
+	
+	/// Context used during authorization to pass OS-specific information, handled in the extensions.
+	var authContext: AnyObject?
+	
 	/// The closure to call when authorization finishes.
 	var authCallback: ((parameters: JSONDictionary?, error: NSError?) -> ())?
 	
@@ -128,14 +134,8 @@ class Auth
 			if let ttl = settings["title"] as? String {
 				oa.viewTitle = ttl
 			}
-			oa.onAuthorize = { parameters in
-				logIfDebug("Did authorize with parameters \(parameters)")
-				self.processAuthCallback(parameters: parameters, error: nil)
-			}
-			oa.onFailure = { error in
-				logIfDebug("Failed to authorize with error: \(error)")
-				self.processAuthCallback(parameters: nil, error: error)
-			}
+			oa.onAuthorize = authDidSucceed
+			oa.onFailure = authDidFail
 			#if DEBUG
 			oa.verbose = true
 			#endif
@@ -152,17 +152,22 @@ class Auth
 	
 		If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
 		call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+	
+		If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the
+		returned dictionary. On native patient selection adds a "patient_resource" key with the patient resource.
 	 */
 	func authorize(properties: SMARTAuthProperties, callback: (parameters: JSONDictionary?, error: NSError?) -> Void) {
 		if nil != authCallback {
-			processAuthCallback(parameters: nil, error: genSMARTError("Timeout"))
+			abort()
 		}
 		
-		if nil != oauth {
+		if let oa = oauth {
+			authContext = nil
+			authProperties = properties
 			authCallback = callback
 			
 			// adjust the scope for desired auth properties
-			var scope = oauth!.scope ?? "user/*.* openid profile"		// plus "launch" or "launch/patient", if needed
+			var scope = oa.scope ?? "user/*.* openid profile"		// plus "launch" or "launch/patient", if needed
 			switch properties.granularity {
 				case .TokenOnly:
 					break
@@ -173,14 +178,14 @@ class Auth
 				case .PatientSelectNative:
 					break
 			}
-			oauth!.scope = scope
+			oa.scope = scope
 			
 			// start authorization
 			if properties.embedded {
-				authorizeEmbedded(oauth!, granularity: properties.granularity)
+				authorizeEmbedded(oa, granularity: properties.granularity)
 			}
 			else {
-				openURLInBrowser(oauth!.authorizeURL())
+				openURLInBrowser(oa.authorizeURL())
 			}
 		}
 		else {
@@ -198,7 +203,24 @@ class Auth
 		return true
 	}
 	
+	func authDidSucceed(parameters: JSONDictionary) {
+		if nil != authProperties && authProperties!.granularity == .PatientSelectNative {		// Swift 1.1 compiler crashes with authProperties?.granularity
+			logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
+			showPatientList(parameters)
+		}
+		else {
+			logIfDebug("Did authorize with parameters \(parameters)")
+			processAuthCallback(parameters: parameters, error: nil)
+		}
+	}
+	
+	func authDidFail(error: NSError?) {
+		logIfDebug("Failed to authorize with error: \(error)")
+		self.processAuthCallback(parameters: nil, error: error)
+	}
+	
 	func abort() {
+		logIfDebug("Aborting authorization")
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	

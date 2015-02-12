@@ -21,7 +21,7 @@ public class PatientListViewController: UITableViewController
 	/// Block to execute when a patient has been selected.
 	var onPatientSelect: ((patient: Patient?) -> Void)?
 	
-	var didSelectPatient = false
+	var didSelectPatientFlag = false
 	
 	var runningOutOfPatients: Bool = false {
 		didSet {
@@ -82,8 +82,8 @@ public class PatientListViewController: UITableViewController
 	
 	public override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
-		if !didSelectPatient {
-			onPatientSelect?(patient: nil)
+		if !didSelectPatientFlag {
+			didSelectPatient(nil)
 		}
 	}
 	
@@ -92,7 +92,7 @@ public class PatientListViewController: UITableViewController
 	}
 	
 	
-	// MARK: - Patient Loading
+	// MARK: - Patient Handling
 	
 	func loadMorePatientsIfNeeded() {
 		if runningOutOfPatients && nil != patientList && patientList!.hasMore {
@@ -103,6 +103,15 @@ public class PatientListViewController: UITableViewController
 	func loadMorePatients() {
 		if let srv = server {
 			patientList?.retrieveMore(srv)
+		}
+	}
+	
+	func didSelectPatient(patient: Patient?) {
+		didSelectPatientFlag = true
+		onPatientSelect?(patient: patient)
+		
+		if !(parentViewController ?? self).isBeingDismissed() {
+			dismissViewControllerAnimated(true, completion: nil)
 		}
 	}
 	
@@ -133,8 +142,7 @@ public class PatientListViewController: UITableViewController
 	
 	public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		if let patient = patientList?[indexPath] {
-			didSelectPatient = true
-			onPatientSelect?(patient: patient)
+			didSelectPatient(patient)
 		}
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 	}
