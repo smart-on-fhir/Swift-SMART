@@ -124,10 +124,42 @@ public class Client {
 	// MARK: - Making Requests
 	
 	/**
-	 *  Request a JSON resource at the given path from the client's server.
+		Request a JSON resource at the given path from the client's server.
+		
+		@param path The relative path on the server
+		@param callback The callback to be called; will be dispatched to the main queue
 	 */
 	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		server.performJSONRequest(path, auth: auth, callback: callback)
+		server.requestJSON(path, auth: auth, callback: callback)
+	}
+	
+	/**
+		Request data from the given URL from the client's server.
+		
+		@param url The URL to fetch data from; if the URL does not define a host, the server's baseURL is prepended.
+		@param accept The mime type (comma-separated if desired) to accept
+		@param callback The callback to be called; will be dispatched to the main queue
+	 */
+	public func requestData(url: NSURL, accept: String?, callback: ((data: NSData?, error: NSError?) -> Void)) {
+		var headers: [String: String]?
+		if let acc = accept {
+			headers = ["Accept": acc]
+		}
+		
+		if nil == url.host {
+			server.requestData(url.path ?? "", auth: auth, headers: headers) { data, error in
+				dispatch_async(dispatch_get_main_queue()) {
+					callback(data: data, error: error)
+				}
+			}
+		}
+		else {
+			server.requestData(url, auth: auth, headers: headers) { data, error in
+				dispatch_async(dispatch_get_main_queue()) {
+					callback(data: data, error: error)
+				}
+			}
+		}
 	}
 }
 

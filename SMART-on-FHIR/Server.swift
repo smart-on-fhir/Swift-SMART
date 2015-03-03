@@ -89,78 +89,117 @@ public class Server: FHIRServer {
 	// MARK: - Requests
 	
 	public func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		performJSONRequest(path, auth: auth, callback: callback)
+		requestJSON(path, auth: auth, callback: callback)
 	}
 	
 	/**
-	 *  Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
-	 *  provided.
-	 *
-	 *  The callback is always dispatched to the main queue.
-	*/
-	func performJSONRequest(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
-		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			req.setValue("application/json", forHTTPHeaderField: "Accept")
-			
-			// run on default session
-			let task = defaultSession().dataTaskWithRequest(req) { data, response, error in
-				var finalError: NSError?
-				
-				if nil != error {
-					finalError = error
-				}
-				else if nil != response && nil != data {
-					if let http = response as? NSHTTPURLResponse {
-						if 200 == http.statusCode {
-							if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &finalError) as? NSDictionary {
-								logIfDebug("Did receive valid JSON data")
-								dispatch_sync(dispatch_get_main_queue()) {
-									callback(json: json, error: nil)
-								}
-								return
-							}
-							let errstr = "Failed to deserialize JSON into a dictionary: \(NSString(data: data, encoding: NSUTF8StringEncoding))"
-							finalError = genSMARTError(errstr, nil)
-						}
-						else {
-							let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
-							finalError = genSMARTError(errstr, http.statusCode)
-						}
-					}
-					else {
-						finalError = genSMARTError("Not an HTTP response", nil)
-					}
-				}
-				else {
-					finalError = genSMARTError("No data received", nil)
-				}
-				
-				// if we're still here an error must have happened
-				if nil == finalError {
-					finalError = NSError(domain: NSCocoaErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown connection error"])
-				}
-				
-				logIfDebug("Failed to fetch JSON data: \(finalError!.localizedDescription)")
-				dispatch_sync(dispatch_get_main_queue()) {
-					callback(json: nil, error: finalError)
-				}
-			}
-			
-			logIfDebug("Requesting data from \(req.URL)")
-			task.resume()
-		}
-		else {
-			let error = genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)", nil)
-			if NSThread.isMainThread() {
+		Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
+		provided.
+	
+		The callback is always dispatched to the main queue.
+	 */
+	func requestJSON(path: String, auth: Auth?, callback: ((json: NSDictionary?, error: NSError?) -> Void)) {
+		let headers = [
+			"Accept": "application/fhir+json, application/json",
+			"Accept-Charset": "UTF-8",
+		]
+		
+		requestData(path, auth: auth, headers: headers) { (data, error) -> Void in
+			if nil != error || nil == data {
 				callback(json: nil, error: error)
 			}
 			else {
-				dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-					callback(json: nil, error: error)
-				})
+				var finalError: NSError?
+				let json = NSJSONSerialization.JSONObjectWithData(data!, options: nil, error: &finalError) as? NSDictionary
+				if nil != json {
+					logIfDebug("Did receive valid JSON data")
+				}
+				else {
+					let jsstring = NSString(data: data!, encoding: NSUTF8StringEncoding)
+					finalError = genSMARTError("Failed to deserialize JSON into a dictionary: \(finalError!.localizedDescription)\n\(jsstring)", nil)
+				}
+				dispatch_sync(dispatch_get_main_queue()) {
+					callback(json: json, error: finalError)
+				}
 			}
 		}
+	}
+	
+	/**
+		Request data from the given path, assumed to be relative to the server's base URL.
+		
+		@attention The callback is NOT necessarily being called on the main thread to allow further data processing on
+		the background queue, should the request succeed.
+	 */
+	func requestData(path: String, auth: Auth?, headers: [String: String]?, callback: ((data: NSData?, error: NSError?) -> Void)) {
+		if let url = NSURL(string: path, relativeToURL: baseURL) {
+			requestData(url, auth: auth, headers: headers, callback: callback)
+		}
+		else {
+			callback(data: nil, error: genSMARTError("Failed to create a URL with path \(path) on base \(baseURL)", nil))
+		}
+	}
+	
+	/**
+		Request data from the given URL.
+		
+		@attention The callback is NOT necessarily being called on the main thread to allow further data processing on
+		the background queue, should the request succeed.
+	*/
+	func requestData(url: NSURL, auth: Auth?, headers: [String: String]?, callback: ((data: NSData?, error: NSError?) -> Void)) {
+		let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+		if nil != headers {
+			for (key, val) in headers! {
+				request.setValue(val, forHTTPHeaderField: key)
+			}
+		}
+		requestData(request, callback: callback)
+	}
+	
+	/**
+		Request data with the given request.
+		
+		@attention The callback is NOT necessarily being called on the main thread to allow further data processing on
+		the background queue, should the request succeed.
+	*/
+	func requestData(request: NSURLRequest, callback: ((data: NSData?, error: NSError?) -> Void)) {
+		let task = defaultSession().dataTaskWithRequest(request) { data, response, error in
+			var finalError: NSError?
+			
+			if nil != error {
+				finalError = error
+			}
+			else if nil != response && nil != data {
+				if let http = response as? NSHTTPURLResponse {
+					if http.statusCode < 400 {
+						logIfDebug("Did load data with status code \(http.statusCode)")
+						callback(data: data, error: nil)
+						return
+					}
+					
+					let errstr = NSHTTPURLResponse.localizedStringForStatusCode(http.statusCode)
+					finalError = genSMARTError(errstr, http.statusCode)
+				}
+				else {
+					finalError = genSMARTError("Not an HTTP response", nil)
+				}
+			}
+			else {
+				finalError = genSMARTError("No data received", nil)
+			}
+			
+			if let err = finalError?.localizedDescription {
+				logIfDebug("Failed to load data: \(err)")
+			}
+			else {
+				logIfDebug("Failed to load data")
+			}
+			
+			callback(data: nil, error: finalError)
+		}
+		
+		logIfDebug("Requesting data from \(request.URL)")
+		task.resume()
 	}
 	
 	
