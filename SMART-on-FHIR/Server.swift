@@ -71,12 +71,12 @@ public class Server: FHIRServer
 			
 			// TODO: we only look at the first "rest" entry, should we support multiple endpoints?
 			if let security = conformance?.rest?.first?.security {
-				auth = Auth.fromConformanceSecurity(security, settings: authSettings)
+				auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
 			}
 			
 			// if we have not yet initialized an Auth object we'll use one for "no auth"
 			if nil == auth {
-				auth = Auth(type: .None, settings: authSettings)
+				auth = Auth(type: .None, server: self, settings: authSettings)
 			}
 		}
 	}
@@ -124,32 +124,33 @@ public class Server: FHIRServer
 	}
 	
 	/** Ensures that the receiver is ready, then calls the auth method's `authorize()` method. */
-	public func authorize(useWebView: Bool, callback: (patient: Patient?, error: NSError?) -> ()) {
+	public func authorize(authProperties: SMARTAuthProperties, callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
 			if nil != error || nil == self.auth {
 				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
 			}
 			else {
-				self.auth!.authorize(useWebView) { patientId, error in
-					if nil != error || nil == patientId {
+				self.auth!.authorize(authProperties) { parameters, error in
+					if nil != error {
 						callback(patient: nil, error: error)
 					}
-					else {
-						Patient.read(patientId!, server: self) { resource, error in
-							logIfDebug("Did read patient \(resource) with error \(error)")
-							callback(patient: resource as? Patient, error: error)
+					else if let patientId = parameters?["patient"] as? String {
+						if let patient = parameters?["patient_resource"] as? Patient {
+							callback(patient: patient, error: nil)
 						}
+						else {
+							Patient.read(patientId, server: self) { resource, error in
+								logIfDebug("Did read patient \(resource) with error \(error)")
+								callback(patient: resource as? Patient, error: error)
+							}
+						}
+					}
+					else {
+						callback(patient: nil, error: nil)
 					}
 				}
 			}
 		}
-	}
-	
-	public func handleRedirect(redirect: NSURL) -> Bool {
-		if nil != auth {
-			return auth!.handleRedirect(redirect)
-		}
-		return false
 	}
 	
 	
@@ -182,6 +183,8 @@ public class Server: FHIRServer
 				}
 				
 				logIfDebug("Server responded with a \(res.status)")
+//				let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+//				logIfDebug("\(str)")
 				callOnMainThread {
 					callback(response: res)
 				}

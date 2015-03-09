@@ -37,16 +37,26 @@ class Auth
 	 */
 	var settings: JSONDictionary?
 	
+	/// The server this instance belongs to
+	unowned let server: Server
+	
 	/// The authentication object, used internally.
 	var oauth: OAuth2?
 	
+	/// The configuration for the authorization in progress.
+	var authProperties: SMARTAuthProperties?
+	
+	/// Context used during authorization to pass OS-specific information, handled in the extensions.
+	var authContext: AnyObject?
+	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((patientId: String?, error: NSError?) -> ())?
+	var authCallback: ((parameters: JSONDictionary?, error: NSError?) -> ())?
 	
 	
 	/** Designated initializer. */
-	init(type: AuthMethod, settings: JSONDictionary?) {
+	init(type: AuthMethod, server: Server, settings: JSONDictionary?) {
 		self.type = type
+		self.server = server
 		self.settings = settings
 		if let sett = self.settings {
 			self.configureWith(sett)
@@ -54,16 +64,9 @@ class Auth
 	}
 	
 	
-	var clientId: String? {
-		get { return oauth?.clientId ?? (settings?["client_id"] as? String) }
-	}
-	
-	var patientId: String?
-	
-	
 	// MARK: - Factory & Setup
 	
-	class func fromConformanceSecurity(security: ConformanceRestSecurity, settings: JSONDictionary?) -> Auth? {
+	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: JSONDictionary?) -> Auth? {
 		var authSettings = settings ?? JSONDictionary(minimumCapacity: 3)
 		var hasAuthURI = false
 		var hasTokenURI = false
@@ -103,10 +106,10 @@ class Auth
 		}
 		
 		if hasAuthURI {
-			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, settings: authSettings)
+			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
 		
-		logIfDebug("Unsupported security services, will proceed without an authorization method")
+		logIfDebug("Unsupported security services, will proceed without authorization method")
 		return nil
 	}
 	
@@ -118,12 +121,12 @@ class Auth
 	 */
 	func configureWith(settings: JSONDictionary) {
 		switch type {
-		case .CodeGrant:
-			oauth = OAuth2CodeGrant(settings: settings)
-		case .ImplicitGrant:
-			oauth = OAuth2ImplicitGrant(settings: settings)
-		case .None:
-			oauth = nil
+			case .CodeGrant:
+				oauth = OAuth2CodeGrant(settings: settings)
+			case .ImplicitGrant:
+				oauth = OAuth2ImplicitGrant(settings: settings)
+			case .None:
+				oauth = nil
 		}
 		
 		// configure the OAuth2 instance's callbacks
@@ -131,19 +134,8 @@ class Auth
 			if let ttl = settings["title"] as? String {
 				oa.viewTitle = ttl
 			}
-			oa.onAuthorize = { parameters in
-				if let patient = parameters["patient"] as? String {
-					logIfDebug("Did receive patient with id \(patient)")
-					self.processAuthCallback(patientId: patient, error: nil)
-				}
-				else {
-					logIfDebug("Did handle redirect but do not have a patient context, returning without patient")
-					self.processAuthCallback(patientId: nil, error: nil)
-				}
-			}
-			oa.onFailure = { error in
-				self.processAuthCallback(patientId: nil, error: error)
-			}
+			oa.onAuthorize = authDidSucceed
+			oa.onFailure = authDidFail
 			#if DEBUG
 			oa.verbose = true
 			#endif
@@ -156,26 +148,55 @@ class Auth
 	/**
 		Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	
-		If you set `embedded` to false remember that you need to intercept the callback from the browser and call
-		the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+		Automatically adds the correct "launch*" scope, according to the authorization property granularity.
+	
+		If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
+		call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+	
+		If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the
+		returned dictionary. On native patient selection adds a "patient_resource" key with the patient resource.
 	 */
-	func authorize(embedded: Bool, callback: (patientId: String?, error: NSError?) -> Void) {
+	func authorize(properties: SMARTAuthProperties, callback: (parameters: JSONDictionary?, error: NSError?) -> Void) {
 		if nil != authCallback {
-			processAuthCallback(patientId: nil, error: genSMARTError("Timeout"))
+			abort()
 		}
 		
-		if nil != oauth {
+		if let oa = oauth {
+			authProperties = properties
 			authCallback = callback
-			if embedded {
-				authorizeEmbedded(oauth!)
+			if oa.hasUnexpiredAccessToken() && properties.granularity != .PatientSelectWeb {
+				logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
+				authDidSucceed(JSONDictionary(minimumCapacity: 0))
+				return
+			}
+			
+			// adjust the scope for desired auth properties
+			var scope = oa.scope ?? "user/*.* openid profile"		// plus "launch" or "launch/patient", if needed
+			// TODO: clean existing "launch" scope if it's already contained
+			switch properties.granularity {
+				case .TokenOnly:
+					break
+				case .LaunchContext:
+					scope = "launch \(scope)"
+				case .PatientSelectWeb:
+					scope = "launch/patient \(scope)"
+				case .PatientSelectNative:
+					break
+			}
+			oa.scope = scope
+			
+			// start authorization
+			authContext = nil
+			if properties.embedded {
+				authorizeEmbedded(oa, granularity: properties.granularity)
 			}
 			else {
-				openURLInBrowser(oauth!.authorizeURL())
+				openURLInBrowser(oa.authorizeURL())
 			}
 		}
 		else {
 			let err: NSError? = (.None == type) ? nil : genSMARTError("I am not yet set up to authorize, missing a handle to my oauth instance")
-			callback(patientId: nil, error: err)
+			callback(parameters: nil, error: err)
 		}
 	}
 	
@@ -188,13 +209,30 @@ class Auth
 		return true
 	}
 	
-	func abort() {
-		processAuthCallback(patientId: nil, error: nil)
+	internal func authDidSucceed(parameters: JSONDictionary) {
+		if nil != authProperties && authProperties!.granularity == .PatientSelectNative {		// Swift 1.1 compiler crashes with authProperties?.granularity
+			logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
+			showPatientList(parameters)
+		}
+		else {
+			logIfDebug("Did authorize with parameters \(parameters)")
+			processAuthCallback(parameters: parameters, error: nil)
+		}
 	}
 	
-	func processAuthCallback(# patientId: String?, error: NSError?) {
+	internal func authDidFail(error: NSError?) {
+		logIfDebug("Failed to authorize with error: \(error)")
+		self.processAuthCallback(parameters: nil, error: error)
+	}
+	
+	func abort() {
+		logIfDebug("Aborting authorization")
+		processAuthCallback(parameters: nil, error: nil)
+	}
+	
+	func processAuthCallback(# parameters: JSONDictionary?, error: NSError?) {
 		if nil != authCallback {
-			authCallback!(patientId: patientId, error: error)
+			authCallback!(parameters: parameters, error: error)
 			authCallback = nil
 		}
 	}
