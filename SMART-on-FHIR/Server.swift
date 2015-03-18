@@ -162,7 +162,7 @@ public class Server: FHIRServer
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
 	*/
-	public func getJSON(path: String, callback: FHIRServerJSONResponseCallback) {
+	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		getJSON(path, auth: auth, callback: callback)
 	}
 	
@@ -174,10 +174,10 @@ public class Server: FHIRServer
 		:param: auth The Auth instance to use for signing the request
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
-	func getJSON(path: String, auth: Auth?, callback: FHIRServerJSONResponseCallback) {
+	func getJSON(path: String, auth: Auth?, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let task = defaultSession().dataTaskWithRequest(fhirGETRequest(auth, url)) { data, response, error in
-				let res = (nil != response) ? FHIRServerJSONResponse.from(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
+				let res = (nil != response) ? FHIRServerJSONResponse(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
 				if nil != error {
 					res.error = error
 				}
@@ -208,7 +208,7 @@ public class Server: FHIRServer
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
-	public func putJSON(path: String, body: JSONDictionary, callback: FHIRServerJSONResponseCallback) {
+	public func putJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		putJSON(path, auth: auth, body: body, callback: callback)
 	}
 	
@@ -219,7 +219,7 @@ public class Server: FHIRServer
 		:param: auth The Auth instance to use for signing the request
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	*/
-	func putJSON(path: String, auth: Auth?, body: JSONDictionary, callback: FHIRServerJSONResponseCallback) {
+	func putJSON(path: String, auth: Auth?, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			
 			// serialize JSON
@@ -228,7 +228,7 @@ public class Server: FHIRServer
 				
 				// run on default session
 				let task = defaultSession().dataTaskWithRequest(fhirPUTRequest(auth, url, data)) { data, response, error in
-					let res = (nil != response) ? FHIRServerJSONResponse.from(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
+					let res = (nil != response) ? FHIRServerJSONResponse(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
 					if nil != error {
 						res.error = error
 					}
@@ -257,7 +257,7 @@ public class Server: FHIRServer
 		}
 	}
 	
-	public func postJSON(path: String, body: JSONDictionary, callback: FHIRServerJSONResponseCallback) {
+	public func postJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		callback(response: FHIRServerJSONResponse(notSentBecause: genSMARTError("POST is not yet implemented")))
 	}
 	

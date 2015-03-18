@@ -124,7 +124,7 @@ public class Client
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
 	 */
-	public func getJSON(path: String, callback: FHIRServerJSONResponseCallback) {
+	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		server.getJSON(path, callback: callback)
 	}
 }
