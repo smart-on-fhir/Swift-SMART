@@ -159,9 +159,11 @@ class Auth
 			abort()
 		}
 		
+		authProperties = properties
+		authCallback = callback
+		
+		// authorization via OAuth2
 		if let oa = oauth {
-			authProperties = properties
-			authCallback = callback
 			if oa.hasUnexpiredAccessToken() && properties.granularity != .PatientSelectWeb {
 				logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
 				authDidSucceed(JSONDictionary(minimumCapacity: 0))
@@ -192,9 +194,14 @@ class Auth
 				openURLInBrowser(oa.authorizeURL())
 			}
 		}
+			
+		// open server?
+		else if .None == type {
+			authDidSucceed(JSONDictionary(minimumCapacity: 0))
+		}
+		
 		else {
-			let err: NSError? = (.None == type) ? nil : genSMARTError("I am not yet set up to authorize, missing a handle to my oauth instance")
-			callback(parameters: nil, error: err)
+			authDidFail(genSMARTError("I am not yet set up to authorize"))
 		}
 	}
 	

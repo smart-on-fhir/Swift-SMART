@@ -38,6 +38,16 @@
                ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EE684C2819A789BA00B5A2C0"
+               BuildableName = "SwiftFHIRTests.xctest"
+               BlueprintName = "SwiftFHIRTests"
+               ReferencedContainer = "container:Swift-FHIR/SwiftFHIR.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

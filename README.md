@@ -29,8 +29,8 @@ Documentation
 Technical documentation for framework usage TBD.
 Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smartplatforms.org).
 
-> **Note:** The SMART framework embeds the [FHIR data models framework]().
-> You will need to `import SMART` and/or `import SwiftFHIR` in your source files, at least for now.
+> **Note:** The SMART framework contains the [FHIR data models framework](https://github.com/smart-on-fhir/Swift-FHIR).
+> These are compiled into the framework, you will need to `import SMART` in your source files.
 
 
 Running Apps

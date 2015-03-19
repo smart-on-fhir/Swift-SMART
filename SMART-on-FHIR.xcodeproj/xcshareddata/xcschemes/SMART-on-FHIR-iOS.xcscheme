@@ -38,7 +38,26 @@
                ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EE6DA85C1A5D4B3A00E00708"
+               BuildableName = "SwiftFHIRiOSTests.xctest"
+               BlueprintName = "SwiftFHIRiOSTests"
+               ReferencedContainer = "container:Swift-FHIR/SwiftFHIR.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EE43B1A819546D880017679A"
+            BuildableName = "SMART.framework"
+            BlueprintName = "SMART-on-FHIR-iOS"
+            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -67,6 +86,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EE43B1A819546D880017679A"
+            BuildableName = "SMART.framework"
+            BlueprintName = "SMART-on-FHIR-iOS"
+            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

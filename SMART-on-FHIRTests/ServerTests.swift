@@ -40,8 +40,7 @@ class ServerTests: XCTestCase
 		server = Server(baseURL: fileURL)
 		let exp2 = self.expectationWithDescription("Metadata fetch expectation 2")
 		server.getConformance { error in
-			XCTAssertNotNil(error, "Expecting non-HTTP error")
-			XCTAssertTrue("Not an HTTP response" == error!.localizedDescription, "Expecting specific error message")
+			XCTAssertNil(error, "Expecting filesystem-fetching to succeed")
 			exp2.fulfill()
 		}
 		

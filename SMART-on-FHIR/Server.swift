@@ -7,32 +7,6 @@
 //
 
 import Foundation
-import SwiftFHIR
-
-
-/** Returns an OAuth2Request or NSMutableURLRequest GET with headers set for a correct FHIR request. */
-func fhirGETRequest(auth: Auth?, url: NSURL) -> NSMutableURLRequest {
-	let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-	req.HTTPMethod = "GET"
-	req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
-	req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
-	
-	return req
-}
-
-/** Returns an OAuth2Request or NSMutableURLRequest PUT with headers and body set for a correct FHIR request. */
-func fhirPUTRequest(auth: Auth?, url: NSURL, body: NSData) -> NSMutableURLRequest {
-	let req = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-	req.HTTPMethod = "PUT"
-	req.HTTPBody = body
-	req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
-	req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
-	req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
-	//let str = NSString(data: body, encoding: NSUTF8StringEncoding)
-	//println("-->  PUT  \(str!)")
-	
-	return req
-}
 
 
 /**
@@ -175,28 +149,19 @@ public class Server: FHIRServer
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
 	func getJSON(path: String, auth: Auth?, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+		let handler = FHIRServerJSONRequestHandler(.GET)
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let task = defaultSession().dataTaskWithRequest(fhirGETRequest(auth, url)) { data, response, error in
-				let res = (nil != response) ? FHIRServerJSONResponse(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
-				if nil != error {
-					res.error = error
-				}
-				
-				logIfDebug("Server responded with a \(res.status)")
-//				let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
-//				logIfDebug("\(str)")
-				callOnMainThread {
-					callback(response: res)
+			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+			performRequest(request, handler: handler) { response in
+				callOnMainThread() {
+					callback(response: response as FHIRServerJSONResponse)
 				}
 			}
-			
-			logIfDebug("Getting data from \(url)")
-			task.resume()
 		}
 		else {
-			let res = FHIRServerJSONResponse(notSentBecause: genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)"))
+			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
 			callOnMainThread {
-				callback(response: res)
+				callback(response: res as FHIRServerJSONResponse)
 			}
 		}
 	}
@@ -220,45 +185,56 @@ public class Server: FHIRServer
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	*/
 	func putJSON(path: String, auth: Auth?, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+		let handler = FHIRServerJSONRequestHandler(.PUT, json: body)
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			
-			// serialize JSON
-			var error: NSError? = nil
-			if let data = NSJSONSerialization.dataWithJSONObject(body, options: nil, error: &error) {
-				
-				// run on default session
-				let task = defaultSession().dataTaskWithRequest(fhirPUTRequest(auth, url, data)) { data, response, error in
-					let res = (nil != response) ? FHIRServerJSONResponse(response: response!, data: data) : FHIRServerJSONResponse.noneReceived()
-					if nil != error {
-						res.error = error
-					}
-					
-					logIfDebug("Server responded with a \(res.status)")
-					callOnMainThread {
-						callback(response: res)
-					}
-				}
-				
-				logIfDebug("Putting data to \(url)")
-				task.resume()
-			}
-			else {
-				logIfDebug("JSON serialization for \(url) failed")
-				callOnMainThread {
-					callback(response: FHIRServerJSONResponse(notSentBecause: error!))
+			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+			performRequest(request, handler: handler) { response in
+				callOnMainThread() {
+					callback(response: response as FHIRServerJSONResponse)
 				}
 			}
 		}
 		else {
-			let res = FHIRServerJSONResponse(notSentBecause: genSMARTError("Failed to parse path \(path) relative to base URL \(baseURL)"))
+			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
 			callOnMainThread {
-				callback(response: res)
+				callback(response: res as FHIRServerJSONResponse)
 			}
 		}
 	}
 	
 	public func postJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		callback(response: FHIRServerJSONResponse(notSentBecause: genSMARTError("POST is not yet implemented")))
+	}
+	
+	/**
+		Method to execute a given request with a given request/response handler.
+	
+		:param: request The URL request to perform
+		:param: handler The RequestHandler that prepares the request and processes the response
+		:param: callback The callback to execute; will NOT be performed on the main thread!
+	 */
+	public func performRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+		var error: NSErrorPointer = nil
+		if handler.prepareRequest(request, error: error) {
+			let task = defaultSession().dataTaskWithRequest(request) { data, response, error in
+				let res = handler.response(response: response, data: data)
+				if nil != error {
+					res.error = error
+				}
+				
+				logIfDebug("Server responded with status \(res.status)")
+				//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+				//logIfDebug("\(str)")
+				callback(response: res)
+			}
+			
+			logIfDebug("Performing request against \(request.URL)")
+			task.resume()
+		}
+		else {
+			let err = error.memory?.localizedDescription ?? "if only I knew why"
+			callback(response: handler.notSent("Failed to prepare request against \(request.URL): \(err)"))
+		}
 	}
 	
 	
