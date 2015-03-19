@@ -283,15 +283,3 @@ public class Server: FHIRServer
 	}
 }
 
-
-func callOnMainThread(callback: (Void -> Void)) {
-	if NSThread.isMainThread() {
-		callback()
-	}
-	else {
-		dispatch_sync(dispatch_get_main_queue(), {
-			callback()
-		})
-	}
-}
-

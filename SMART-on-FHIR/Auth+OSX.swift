@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import OAuth2
 
 
 extension Auth
@@ -18,7 +17,7 @@ extension Auth
 	}
 	
 	/** Lets the user login from within the app, dismisses on success. */
-	func authorizeEmbedded(oauth: OAuth2) {
+	func authorizeEmbedded(oauth: OAuth2, granularity: SMARTAuthGranularity) {
 		fatalError("Not yet implemented")
 	}
 	

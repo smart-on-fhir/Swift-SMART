@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftFHIR
 
 
 public enum PatientListStatus: Int {
@@ -89,13 +88,6 @@ public class PatientList
 	subscript(index: Int) -> PatientListSection? {
 		if countElements(sections) > index {
 			return sections[index]
-		}
-		return nil
-	}
-	
-	subscript(indexPath: NSIndexPath) -> Patient? {
-		if let section = self[indexPath.section] {
-			return section[indexPath.row]
 		}
 		return nil
 	}

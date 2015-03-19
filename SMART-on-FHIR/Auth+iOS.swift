@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import SwiftFHIR
-import OAuth2
 
 
 extension Auth

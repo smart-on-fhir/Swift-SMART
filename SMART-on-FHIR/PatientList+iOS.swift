@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftFHIR
 
 
 public class PatientListViewController: UITableViewController
@@ -167,6 +166,16 @@ extension Patient
 {
 	var genderSymbol: String {
 		return ("male" == gender) ? "♂" : "♀"
+	}
+}
+
+extension PatientList
+{
+	subscript(indexPath: NSIndexPath) -> Patient? {
+		if let section = self[indexPath.section] {
+			return section[indexPath.row]
+		}
+		return nil
 	}
 }
 

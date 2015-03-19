@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import OAuth2
-import SwiftFHIR
 
 
 enum AuthMethod {

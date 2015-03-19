@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftFHIR
 
 
 public enum PatientListOrder: String

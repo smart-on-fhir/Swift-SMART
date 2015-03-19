@@ -8,7 +8,6 @@
 
 import XCTest
 import SMART
-import SwiftFHIR
 
 
 class ServerTests: XCTestCase
