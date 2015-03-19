@@ -164,27 +164,33 @@ public class PatientList
 					}
 				}
 				else {
-					callOnMainThread() {
-						if nil != bundle {
-							if let total = bundle!.total {
-								this.expectedNumberOfPatients = total
-							}
-							
-							let patients = bundle!.entry?
+					var patients: [Patient]? = nil
+					var expTotal: Int? = nil
+					
+					// extract patient resources from the search result bundle
+					if let bndle = bundle {
+						if let total = bndle.total {
+							expTotal = total
+						}
+						
+						if let entries = bndle.entry {
+							let newPatients = entries
 								.filter() { $0.resource is Patient }
 								.map() { $0.resource as Patient }
 							
-							if appendPatients && nil != this.patients {
-								//this.patients = self.order.ordered(self.patients! + patients!)
-								this.patients! += patients!
-							}
-							else {
-								//this.patients = self.order.ordered(patients!)		// already sorted on server
-								this.patients = patients
-							}
+							let append = appendPatients && nil != this.patients
+							patients = this.order.ordered(append ? this.patients! + newPatients : newPatients)
 						}
-						else if !appendPatients {
-							this.patients = nil
+					}
+					
+					callOnMainThread() {
+						if let total = expTotal {
+							this.expectedNumberOfPatients = total
+						}
+						// when patients is nil, only set this.patients to nil if appendPatients is false
+						// otherwise we might reset the list to no patients when hitting a 404 or a timeout
+						if nil != patients || !appendPatients {
+							this.patients = patients
 						}
 						this.status = .Ready
 					}
