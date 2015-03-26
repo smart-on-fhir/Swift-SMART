@@ -869,9 +869,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EE13AA911A5D44D100B901FD /* SMART-on-FHIR-OSXTests */ = {
+		EE13AA911A5D44D100B901FD /* Swift-SMART-OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSXTests" */;
+			buildConfigurationList = EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "Swift-SMART-OSXTests" */;
 			buildPhases = (
 				EE13AA8E1A5D44D100B901FD /* Sources */,
 				EE13AA8F1A5D44D100B901FD /* Frameworks */,
@@ -882,14 +882,14 @@
 			dependencies = (
 				EE13AA9A1A5D44D100B901FD /* PBXTargetDependency */,
 			);
-			name = "SMART-on-FHIR-OSXTests";
+			name = "Swift-SMART-OSXTests";
 			productName = "SMART-on-FHIR-OSXTests";
 			productReference = EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */ = {
+		EE43B1A819546D880017679A /* Swift-SMART-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE43B1BC19546D880017679A /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-iOS" */;
+			buildConfigurationList = EE43B1BC19546D880017679A /* Build configuration list for PBXNativeTarget "Swift-SMART-iOS" */;
 			buildPhases = (
 				EE43B1A419546D880017679A /* Sources */,
 				EE43B1A519546D880017679A /* Frameworks */,
@@ -900,14 +900,14 @@
 			);
 			dependencies = (
 			);
-			name = "SMART-on-FHIR-iOS";
+			name = "Swift-SMART-iOS";
 			productName = "SMART-on-FHIR-iOS";
 			productReference = EE43B1A919546D880017679A /* SMART.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EE43B1B219546D880017679A /* SMART-on-FHIR-iOSTests */ = {
+		EE43B1B219546D880017679A /* Swift-SMART-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE43B1BF19546D880017679A /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-iOSTests" */;
+			buildConfigurationList = EE43B1BF19546D880017679A /* Build configuration list for PBXNativeTarget "Swift-SMART-iOSTests" */;
 			buildPhases = (
 				EE43B1AF19546D880017679A /* Sources */,
 				EE43B1B019546D880017679A /* Frameworks */,
@@ -919,14 +919,14 @@
 				EE43B1B619546D880017679A /* PBXTargetDependency */,
 				EE27D4261965F40700752038 /* PBXTargetDependency */,
 			);
-			name = "SMART-on-FHIR-iOSTests";
+			name = "Swift-SMART-iOSTests";
 			productName = "SMART-on-FHIR-iOSTests";
 			productReference = EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EECAA6F21A5D3DE60062C64B /* SMART-on-FHIR-OSX */ = {
+		EECAA6F21A5D3DE60062C64B /* Swift-SMART-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSX" */;
+			buildConfigurationList = EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "Swift-SMART-OSX" */;
 			buildPhases = (
 				EECAA6F51A5D3DE60062C64B /* Sources */,
 				EECAA77B1A5D3DE60062C64B /* Frameworks */,
@@ -937,7 +937,7 @@
 			);
 			dependencies = (
 			);
-			name = "SMART-on-FHIR-OSX";
+			name = "Swift-SMART-OSX";
 			productName = "SMART-on-FHIR-iOS";
 			productReference = EECAA7831A5D3DE60062C64B /* SMART.framework */;
 			productType = "com.apple.product-type.framework";
@@ -963,7 +963,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EE55C2641948906000849670 /* Build configuration list for PBXProject "Swift-SMART" */;
+			buildConfigurationList = EE55C2641948906000849670 /* Build configuration list for PBXProject "SwiftSMART" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -981,10 +981,10 @@
 			);
 			projectRoot = "";
 			targets = (
-				EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */,
-				EE43B1B219546D880017679A /* SMART-on-FHIR-iOSTests */,
-				EECAA6F21A5D3DE60062C64B /* SMART-on-FHIR-OSX */,
-				EE13AA911A5D44D100B901FD /* SMART-on-FHIR-OSXTests */,
+				EE43B1A819546D880017679A /* Swift-SMART-iOS */,
+				EE43B1B219546D880017679A /* Swift-SMART-iOSTests */,
+				EECAA6F21A5D3DE60062C64B /* Swift-SMART-OSX */,
+				EE13AA911A5D44D100B901FD /* Swift-SMART-OSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1378,17 +1378,17 @@
 /* Begin PBXTargetDependency section */
 		EE13AA9A1A5D44D100B901FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EECAA6F21A5D3DE60062C64B /* SMART-on-FHIR-OSX */;
+			target = EECAA6F21A5D3DE60062C64B /* Swift-SMART-OSX */;
 			targetProxy = EE13AA991A5D44D100B901FD /* PBXContainerItemProxy */;
 		};
 		EE27D4261965F40700752038 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
+			target = EE43B1A819546D880017679A /* Swift-SMART-iOS */;
 			targetProxy = EE27D4251965F40700752038 /* PBXContainerItemProxy */;
 		};
 		EE43B1B619546D880017679A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE43B1A819546D880017679A /* SMART-on-FHIR-iOS */;
+			target = EE43B1A819546D880017679A /* Swift-SMART-iOS */;
 			targetProxy = EE43B1B519546D880017679A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1646,7 +1646,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSXTests" */ = {
+		EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "Swift-SMART-OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE13AA9C1A5D44D100B901FD /* Debug */,
@@ -1655,7 +1655,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE43B1BC19546D880017679A /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-iOS" */ = {
+		EE43B1BC19546D880017679A /* Build configuration list for PBXNativeTarget "Swift-SMART-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE43B1BD19546D880017679A /* Debug */,
@@ -1664,7 +1664,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE43B1BF19546D880017679A /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-iOSTests" */ = {
+		EE43B1BF19546D880017679A /* Build configuration list for PBXNativeTarget "Swift-SMART-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE43B1C019546D880017679A /* Debug */,
@@ -1673,7 +1673,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE55C2641948906000849670 /* Build configuration list for PBXProject "Swift-SMART" */ = {
+		EE55C2641948906000849670 /* Build configuration list for PBXProject "SwiftSMART" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE55C27B1948906000849670 /* Debug */,
@@ -1682,7 +1682,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SMART-on-FHIR-OSX" */ = {
+		EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "Swift-SMART-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECAA7811A5D3DE60062C64B /* Debug */,
