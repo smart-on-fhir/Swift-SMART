@@ -1,7 +1,7 @@
 SMART on FHIR
 =============
 
-This is an iOS and OS X framework for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smartplatforms.org).
+This is an iOS and OS X framework for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
 Written in _Swift_ it is compatible with **iOS 8** and **OS X 10.9** and later and requires Xcode 6 or later.
 You can target **iOS 7** by including all source files in your main project rather than using the embedded framework target.
 
@@ -26,8 +26,8 @@ Once this process completes open your app project in Xcode and add `SMART-on-FHI
 Documentation
 -------------
 
-Technical documentation for framework usage TBD.
-Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smartplatforms.org).
+The framework's technical documentation is available on [docs.smarthealthit.org/Swift-SMART/](http://docs.smarthealthit.org/Swift-SMART/).
+Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smarthealthit.org).
 
 > **Note:** The SMART framework contains the [FHIR data models framework](https://github.com/smart-on-fhir/Swift-FHIR).
 > These are compiled into the framework, you will need to `import SMART` in your source files.
@@ -41,7 +41,7 @@ If you are simply testing grounds you can use our sandbox server and the shared 
 
 ```Swift
 @lazy var smart = Client(
-    serverURL: "https://fhir-api.smartplatforms.org",
+    serverURL: "https://fhir-api.smarthealthit.org",
     clientId: "my_mobile_app",
     redirect: "smartapp://callback"    // must match a registered redirect uri
 )

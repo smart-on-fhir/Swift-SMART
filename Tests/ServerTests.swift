@@ -20,7 +20,7 @@ class ServerTests: XCTestCase
 		let metaURL = NSBundle(path: __FILE__.stringByDeletingLastPathComponent)!.URLForResource("metadata", withExtension: "")
 		XCTAssertNotNil(metaURL, "Need file `metadata` for unit tests")
 		let metaData = NSData(contentsOfURL: metaURL!)
-		let meta = NSJSONSerialization.JSONObjectWithData(metaData!, options: nil, error: nil) as JSONDictionary
+		let meta = NSJSONSerialization.JSONObjectWithData(metaData!, options: nil, error: nil) as FHIRJSON
 		XCTAssertNotNil(meta, "Should parse `metadata`")
 		let conformance = Conformance(json: meta)
 		

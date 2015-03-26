@@ -33,7 +33,7 @@ class Auth
 		- token_uri
 		- title
 	 */
-	var settings: JSONDictionary?
+	var settings: OAuth2JSON?
 	
 	/// The server this instance belongs to
 	unowned let server: Server
@@ -48,11 +48,11 @@ class Auth
 	var authContext: AnyObject?
 	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((parameters: JSONDictionary?, error: NSError?) -> ())?
+	var authCallback: ((parameters: OAuth2JSON?, error: NSError?) -> ())?
 	
 	
 	/** Designated initializer. */
-	init(type: AuthMethod, server: Server, settings: JSONDictionary?) {
+	init(type: AuthMethod, server: Server, settings: OAuth2JSON?) {
 		self.type = type
 		self.server = server
 		self.settings = settings
@@ -64,8 +64,8 @@ class Auth
 	
 	// MARK: - Factory & Setup
 	
-	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: JSONDictionary?) -> Auth? {
-		var authSettings = settings ?? JSONDictionary(minimumCapacity: 3)
+	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: OAuth2JSON?) -> Auth? {
+		var authSettings = settings ?? OAuth2JSON(minimumCapacity: 3)
 		var hasAuthURI = false
 		var hasTokenURI = false
 		
@@ -117,7 +117,7 @@ class Auth
 	
 		:param: settings A dictionary with auth settings, passed on to OAuth2*()
 	 */
-	func configureWith(settings: JSONDictionary) {
+	func configureWith(settings: OAuth2JSON) {
 		switch type {
 			case .CodeGrant:
 				oauth = OAuth2CodeGrant(settings: settings)
@@ -154,7 +154,7 @@ class Auth
 		If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the
 		returned dictionary. On native patient selection adds a "patient_resource" key with the patient resource.
 	 */
-	func authorize(properties: SMARTAuthProperties, callback: (parameters: JSONDictionary?, error: NSError?) -> Void) {
+	func authorize(properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: NSError?) -> Void) {
 		if nil != authCallback {
 			abort()
 		}
@@ -166,7 +166,7 @@ class Auth
 		if let oa = oauth {
 			if oa.hasUnexpiredAccessToken() && properties.granularity != .PatientSelectWeb {
 				logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
-				authDidSucceed(JSONDictionary(minimumCapacity: 0))
+				authDidSucceed(OAuth2JSON(minimumCapacity: 0))
 				return
 			}
 			
@@ -197,7 +197,7 @@ class Auth
 			
 		// open server?
 		else if .None == type {
-			authDidSucceed(JSONDictionary(minimumCapacity: 0))
+			authDidSucceed(OAuth2JSON(minimumCapacity: 0))
 		}
 		
 		else {
@@ -214,7 +214,7 @@ class Auth
 		return true
 	}
 	
-	internal func authDidSucceed(parameters: JSONDictionary) {
+	internal func authDidSucceed(parameters: OAuth2JSON) {
 		if nil != authProperties && authProperties!.granularity == .PatientSelectNative {		// Swift 1.1 compiler crashes with authProperties?.granularity
 			logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
 			showPatientList(parameters)
@@ -235,7 +235,7 @@ class Auth
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	
-	func processAuthCallback(# parameters: JSONDictionary?, error: NSError?) {
+	func processAuthCallback(# parameters: OAuth2JSON?, error: NSError?) {
 		if nil != authCallback {
 			authCallback!(parameters: parameters, error: error)
 			authCallback = nil

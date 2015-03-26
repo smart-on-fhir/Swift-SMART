@@ -21,18 +21,18 @@ public class Server: FHIRServer
 	var auth: Auth?
 	
 	/// Settings to be applied to the Auth instance.
-	var authSettings: JSONDictionary?
+	var authSettings: OAuth2JSON?
 	
 	/// The active URL session.
 	var session: NSURLSession?
 	
 	
-	public init(baseURL: NSURL, auth: JSONDictionary? = nil) {
+	public init(baseURL: NSURL, auth: OAuth2JSON? = nil) {
 		self.baseURL = baseURL
 		self.authSettings = auth
 	}
 	
-	public convenience init(base: String, auth: JSONDictionary? = nil) {
+	public convenience init(base: String, auth: OAuth2JSON? = nil) {
 		self.init(baseURL: NSURL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
 	}
 	
@@ -173,7 +173,7 @@ public class Server: FHIRServer
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
-	public func putJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func putJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		putJSON(path, auth: auth, body: body, callback: callback)
 	}
 	
@@ -184,7 +184,7 @@ public class Server: FHIRServer
 		:param: auth The Auth instance to use for signing the request
 		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	*/
-	func putJSON(path: String, auth: Auth?, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	func putJSON(path: String, auth: Auth?, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.PUT, json: body)
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
@@ -202,7 +202,7 @@ public class Server: FHIRServer
 		}
 	}
 	
-	public func postJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func postJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		callback(response: FHIRServerJSONResponse(notSentBecause: genSMARTError("POST is not yet implemented")))
 	}
 	

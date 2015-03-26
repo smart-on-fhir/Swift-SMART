@@ -36,7 +36,7 @@ extension Auth
 		}
 	}
 	
-	func showPatientList(parameters: JSONDictionary) {
+	func showPatientList(parameters: OAuth2JSON) {
 		if let root = authContext as? UIViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController {
 			
 			// instantiate patient list view

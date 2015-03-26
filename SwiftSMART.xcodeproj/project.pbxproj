@@ -567,7 +567,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EE43B1AA19546D880017679A /* SMART-on-FHIR */ = {
+		EE43B1AA19546D880017679A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				EE43B1AD19546D880017679A /* SMART-on-FHIR.h */,
@@ -583,7 +583,7 @@
 				EE4D59011A826900005F5C7A /* PatientList+iOS.swift */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
-			path = "SMART-on-FHIR";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		EE43B1AB19546D880017679A /* Supporting Files */ = {
@@ -595,7 +595,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EE43B1B719546D880017679A /* SMART-on-FHIRTests */ = {
+		EE43B1B719546D880017679A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				EE13AAA51A5D49D200B901FD /* BaseTests+iOS.swift */,
@@ -605,7 +605,7 @@
 				EE29E70319583A04008882C8 /* metadata */,
 				EE43B1B819546D880017679A /* Supporting Files */,
 			);
-			path = "SMART-on-FHIRTests";
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		EE43B1B819546D880017679A /* Supporting Files */ = {
@@ -629,8 +629,8 @@
 			children = (
 				EE74D04B195C112300393DCA /* README.md */,
 				EE74D04E195C262E00393DCA /* manifest.json */,
-				EE43B1AA19546D880017679A /* SMART-on-FHIR */,
-				EE43B1B719546D880017679A /* SMART-on-FHIRTests */,
+				EE43B1AA19546D880017679A /* Classes */,
+				EE43B1B719546D880017679A /* Tests */,
 				EE56A45F1ABB0B5B00FA99EB /* SwiftFHIR */,
 				EE56A4601ABB0B6200FA99EB /* OAuth2 */,
 				EE43B5C8195497A10017679A /* Frameworks */,
@@ -963,7 +963,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EE55C2641948906000849670 /* Build configuration list for PBXProject "SMART-on-FHIR" */;
+			buildConfigurationList = EE55C2641948906000849670 /* Build configuration list for PBXProject "Swift-SMART" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1673,7 +1673,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE55C2641948906000849670 /* Build configuration list for PBXProject "SMART-on-FHIR" */ = {
+		EE55C2641948906000849670 /* Build configuration list for PBXProject "Swift-SMART" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE55C27B1948906000849670 /* Debug */,

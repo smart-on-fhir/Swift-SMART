@@ -21,7 +21,7 @@ extension Auth
 		fatalError("Not yet implemented")
 	}
 	
-	func showPatientList(parameters: JSONDictionary) {
+	func showPatientList(parameters: OAuth2JSON) {
 		fatalError("Not yet implemented")
 	}
 }

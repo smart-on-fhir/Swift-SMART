@@ -66,7 +66,7 @@ public class Client
 		:param settings: Client settings, mostly concerning authorization
 		:param title: A title to display in the authorization window; can also be supplied in the settings dictionary
 	 */
-	public convenience init(baseURL: String, settings: JSONDictionary, title: String = "SMART") {
+	public convenience init(baseURL: String, settings: OAuth2JSON, title: String = "SMART") {
 		var sett = settings
 		if let redirect = settings["redirect"] as? String {
 			sett["redirect_uris"] = [redirect]
