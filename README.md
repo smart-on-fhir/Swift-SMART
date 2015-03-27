@@ -1,7 +1,7 @@
 SMART on FHIR
 =============
 
-This is an iOS and OS X framework for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smartplatforms.org).
+This is an iOS and OS X framework for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
 Written in _Swift_ it is compatible with **iOS 8** and **OS X 10.9** and later.
 Building the framework requires Xcode 6 or later.
 
@@ -30,7 +30,7 @@ Documentation
 -------------
 
 Technical documentation for framework usage TBD.
-Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smartplatforms.org).
+Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smarthealthit.org).
 
 
 Running Apps
@@ -41,7 +41,7 @@ If you are simply testing grounds you can use our sandbox server and the shared 
 
 ```Swift
 @lazy var smart = Client(
-    serverURL: "https://fhir-api.smartplatforms.org",
+    serverURL: "https://fhir-api.smarthealthit.org",
     clientId: "my_mobile_app",
     redirect: "smartapp://callback"    // must match a registered redirect uri
 )
@@ -67,5 +67,5 @@ You can register your app by posting an appropriately formatted JSON app manifes
 }
 ```
 
-You can POST this manifest to [https://authorize.smartplatforms.org/register]() for registration with our sandbox server, or any SMART on FHIR server for that matter.
+You can POST this manifest to [https://authorize.smarthealthit.org/register]() for registration with our sandbox server, or any SMART on FHIR server for that matter.
 

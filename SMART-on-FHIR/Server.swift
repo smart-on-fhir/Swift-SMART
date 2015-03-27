@@ -46,11 +46,11 @@ public class Server: FHIRServer {
 				for ext in extensions {
 					if let urlString = ext.url?.absoluteString {
 						switch urlString {
-						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register":
+						case "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#register":
 							registrationURL = ext.valueUri
-						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize":
+						case "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#authorize":
 							authURL = ext.valueUri
-						case "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token":
+						case "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#token":
 							tokenURL = ext.valueUri
 						default:
 							break
