@@ -15,7 +15,13 @@ public class PatientListViewController: UITableViewController
 	var patientList: PatientList?
 	
 	/// The server from which to retrieve the patient list.
-	var server: FHIRServer?
+	var server: Server? {
+		didSet {
+			if let name = server?.name {
+				self.title = name
+			}
+		}
+	}
 	
 	/// Block to execute when a patient has been selected.
 	var onPatientSelect: ((patient: Patient?) -> Void)?
@@ -30,8 +36,10 @@ public class PatientListViewController: UITableViewController
 	
 	lazy var activity = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 	
+	weak var headerLabel: UILabel?
 	
-	public init(list: PatientList, server srv: FHIRServer) {
+	
+	public init(list: PatientList, server srv: Server) {
 		patientList = list
 		server = srv
 		super.init(nibName: nil, bundle: nil)
@@ -46,10 +54,25 @@ public class PatientListViewController: UITableViewController
 	
 	public override func viewDidLoad() {
 		self.tableView.registerClass(PatientTableViewCell.self, forCellReuseIdentifier: "PatientCell")
+		let header = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 320.0, height: 30.0))
+		let label = UILabel()
+		label.setTranslatesAutoresizingMaskIntoConstraints(false)
+		label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
+		label.textColor = UIColor.lightGrayColor()
+		label.textAlignment = .Center
+		
+		header.addSubview(label)
+		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[lbl]-|", options: nil, metrics: nil, views: ["lbl": label]))
+		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[lbl]-|", options: nil, metrics: nil, views: ["lbl": label]))
+		self.tableView.tableHeaderView = header
+		headerLabel = label
 		
 		// show an activity indicator whenever the list's status is "loading"
-		patientList?.onStatusUpdate = { [weak self] in
+		patientList?.onStatusUpdate = { [weak self] error in
 			if let this = self {
+				if nil != error {
+					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
+				}
 				if nil != this.patientList && .Loading == this.patientList!.status {
 					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity!)
 					this.activity!.startAnimating()
@@ -65,6 +88,7 @@ public class PatientListViewController: UITableViewController
 		patientList?.onPatientUpdate = { [weak self] in
 			if let this = self {
 				this.tableView.reloadData()
+				this.headerLabel?.text = "\(this.patientList!.actualNumberOfPatients) of \(this.patientList!.expectedNumberOfPatients)"
 				dispatch_async(dispatch_get_main_queue()) {
 					this.loadMorePatientsIfNeeded()
 				}
@@ -180,6 +204,9 @@ extension PatientList
 }
 
 
+/**
+	A table view cell that can display a patient's name, birthday, age and gender.
+ */
 class PatientTableViewCell: UITableViewCell
 {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -192,8 +219,20 @@ class PatientTableViewCell: UITableViewCell
 	
 	func represent(patient: Patient?) {
 		textLabel?.text = patient?.displayNameFamilyGiven
-		detailTextLabel?.text = patient?.birthDate?.description
 		
+		// birthday and age
+		if let bdate = patient?.birthDate {
+			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.grayColor()])
+			attr.setAttributes([
+					NSForegroundColorAttributeName: UIColor.blackColor()
+				], range: NSMakeRange(0, 4))
+			detailTextLabel?.attributedText = attr
+		}
+		else {
+			detailTextLabel?.text = " "		// nil or empty string prevents bday to show up when scrolling to bottom and more patients are loaded
+		}
+		
+		// gender
 		if let pat = patient {
 			let gender = accessoryView as? UILabel ?? UILabel(frame: CGRectMake(0, 0, 38, 38))
 			gender.font = UIFont.systemFontOfSize(22.0)

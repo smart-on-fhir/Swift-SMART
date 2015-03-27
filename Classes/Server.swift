@@ -17,6 +17,9 @@ public class Server: FHIRServer
 	/// The server's base URL.
 	public let baseURL: NSURL
 	
+	/// An optional name of the server; will be read from conformance statement unless manually assigned.
+	public var name: String?
+	
 	/// The authorization to use with the server.
 	var auth: Auth?
 	
@@ -42,6 +45,9 @@ public class Server: FHIRServer
 	/// The server's conformance statement. Must be implicitly fetched using `getConformance()`
 	public var conformance: Conformance? {							// `public` to enable unit testing
 		didSet {
+			if nil == name && nil != conformance?.name {
+				name = conformance!.name
+			}
 			
 			// TODO: we only look at the first "rest" entry, should we support multiple endpoints?
 			if let security = conformance?.rest?.first?.security {

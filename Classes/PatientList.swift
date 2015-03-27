@@ -30,12 +30,14 @@ public class PatientList
 	/// Current list status
 	public var status: PatientListStatus = .Unknown {
 		didSet {
-			onStatusUpdate?()
+			onStatusUpdate?(lastStatusError)
+			lastStatusError = nil
 		}
 	}
+	private var lastStatusError: NSError? = nil
 	
 	/// A block executed whenever the receiver's status changes.
-	public var onStatusUpdate: (Void -> Void)?
+	public var onStatusUpdate: (NSError? -> Void)?
 	
 	/// The patients currently in this list.
 	var patients: [Patient]? {
@@ -159,6 +161,7 @@ public class PatientList
 			if let this = self {
 				if nil != error {
 					println("ERROR running patient query: \(error!.localizedDescription)")
+					this.lastStatusError = error
 					callOnMainThread() {
 						this.status = .Ready
 					}
