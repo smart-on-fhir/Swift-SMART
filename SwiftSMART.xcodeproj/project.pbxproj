@@ -14,7 +14,6 @@
 		EE13AAA61A5D49D200B901FD /* BaseTests+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE13AAA51A5D49D200B901FD /* BaseTests+iOS.swift */; };
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
-		EE43B1AE19546D880017679A /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE43B1B419546D880017679A /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43B1A919546D880017679A /* SMART.framework */; };
 		EE43B1BB19546D880017679A /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1BA19546D880017679A /* ClientTests.swift */; };
 		EE43B1C519546DB20017679A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
@@ -301,7 +300,6 @@
 		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EECAA7261A5D3DE60062C64B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
-		EECAA77E1A5D3DE60062C64B /* SMART-on-FHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE43B1AD19546D880017679A /* SMART-on-FHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EECAA78F1A5D410E0062C64B /* Auth+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */; };
 		EEDDAC5C1A8921F500844B48 /* PatientListOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDDAC5B1A8921F500844B48 /* PatientListOrder.swift */; };
 		EEDDAC5D1A8921F500844B48 /* PatientListOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDDAC5B1A8921F500844B48 /* PatientListOrder.swift */; };
@@ -363,16 +361,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SMART-on-FHIR-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE1391C01AC582D9002C7B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		EE13AA921A5D44D100B901FD /* Swift-SMART-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-SMART-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE13AAA11A5D47B200B901FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EE13AAA31A5D499D00B901FD /* BaseTests+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+OSX.swift"; sourceTree = "<group>"; };
 		EE13AAA51A5D49D200B901FD /* BaseTests+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+iOS.swift"; sourceTree = "<group>"; };
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; };
 		EE43B1A919546D880017679A /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE43B1AC19546D880017679A /* Info-iOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
-		EE43B1AD19546D880017679A /* SMART-on-FHIR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR.h"; sourceTree = "<group>"; };
-		EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SMART-on-FHIR-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE43B1B319546D880017679A /* Swift-SMART-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-SMART-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE43B1B919546D880017679A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE43B1BA19546D880017679A /* ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTests.swift; sourceTree = "<group>"; };
 		EE43B1C219546DB20017679A /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
@@ -524,13 +521,11 @@
 		EE56A62C1ABB6D7700FA99EB /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
-		EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMART-on-FHIR-Bridging-Header.h"; sourceTree = "<group>"; };
 		EECAA7831A5D3DE60062C64B /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+OSX.swift"; sourceTree = "<group>"; };
 		EEDDAC5B1A8921F500844B48 /* PatientListOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientListOrder.swift; sourceTree = "<group>"; };
 		EEDDAC611A89237900844B48 /* PatientListQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientListQuery.swift; sourceTree = "<group>"; };
 		EEE838551978082B007347A0 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
-		EEF20E2F1A5D7C65009A6EDA /* Info-OSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-OSX.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -570,8 +565,6 @@
 		EE43B1AA19546D880017679A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EE43B1AD19546D880017679A /* SMART-on-FHIR.h */,
-				EE92FFFE1961AE7900EBE7A3 /* SMART-on-FHIR-Bridging-Header.h */,
 				EE43B1C319546DB20017679A /* Client.swift */,
 				EE43B1C419546DB20017679A /* Server.swift */,
 				EE43B1C219546DB20017679A /* Auth.swift */,
@@ -581,7 +574,6 @@
 				EEDDAC5B1A8921F500844B48 /* PatientListOrder.swift */,
 				EEDDAC611A89237900844B48 /* PatientListQuery.swift */,
 				EE4D59011A826900005F5C7A /* PatientList+iOS.swift */,
-				EE43B1AB19546D880017679A /* Supporting Files */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -589,10 +581,10 @@
 		EE43B1AB19546D880017679A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EE43B1AC19546D880017679A /* Info-iOS.plist */,
-				EEF20E2F1A5D7C65009A6EDA /* Info-OSX.plist */,
+				EE1391C01AC582D9002C7B18 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		EE43B1B719546D880017679A /* Tests */ = {
@@ -630,6 +622,7 @@
 				EE74D04B195C112300393DCA /* README.md */,
 				EE74D04E195C262E00393DCA /* manifest.json */,
 				EE43B1AA19546D880017679A /* Classes */,
+				EE43B1AB19546D880017679A /* Supporting Files */,
 				EE43B1B719546D880017679A /* Tests */,
 				EE56A45F1ABB0B5B00FA99EB /* SwiftFHIR */,
 				EE56A4601ABB0B6200FA99EB /* OAuth2 */,
@@ -643,9 +636,9 @@
 			isa = PBXGroup;
 			children = (
 				EE43B1A919546D880017679A /* SMART.framework */,
-				EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */,
+				EE43B1B319546D880017679A /* Swift-SMART-iOSTests.xctest */,
 				EECAA7831A5D3DE60062C64B /* SMART.framework */,
-				EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */,
+				EE13AA921A5D44D100B901FD /* Swift-SMART-OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -850,7 +843,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE43B1AE19546D880017679A /* SMART-on-FHIR.h in Headers */,
 				EE56A5FE1ABB0B7A00FA99EB /* SwiftFHIR.h in Headers */,
 				EE56A60F1ABB0B9E00FA99EB /* OAuth2.h in Headers */,
 			);
@@ -860,7 +852,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EECAA77E1A5D3DE60062C64B /* SMART-on-FHIR.h in Headers */,
 				EE56A6101ABB0B9E00FA99EB /* OAuth2.h in Headers */,
 				EE56A5FF1ABB0B7A00FA99EB /* SwiftFHIR.h in Headers */,
 			);
@@ -884,7 +875,7 @@
 			);
 			name = "Swift-SMART-OSXTests";
 			productName = "SMART-on-FHIR-OSXTests";
-			productReference = EE13AA921A5D44D100B901FD /* SMART-on-FHIR-OSXTests.xctest */;
+			productReference = EE13AA921A5D44D100B901FD /* Swift-SMART-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EE43B1A819546D880017679A /* Swift-SMART-iOS */ = {
@@ -921,7 +912,7 @@
 			);
 			name = "Swift-SMART-iOSTests";
 			productName = "SMART-on-FHIR-iOSTests";
-			productReference = EE43B1B319546D880017679A /* SMART-on-FHIR-iOSTests.xctest */;
+			productReference = EE43B1B319546D880017679A /* Swift-SMART-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EECAA6F21A5D3DE60062C64B /* Swift-SMART-OSX */ = {
@@ -1447,7 +1438,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "SMART-on-FHIR/Info-iOS.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
@@ -1470,7 +1461,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "SMART-on-FHIR/Info-iOS.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
@@ -1554,7 +1545,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -1593,7 +1583,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "SMART-on-FHIR/SMART-on-FHIR-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1607,7 +1596,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "SMART-on-FHIR/Info-OSX.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
@@ -1630,7 +1619,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "SMART-on-FHIR/Info-OSX.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
