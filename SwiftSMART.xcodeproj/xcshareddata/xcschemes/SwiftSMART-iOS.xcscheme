@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
+               BlueprintIdentifier = "EE43B1A819546D880017679A"
                BuildableName = "SMART.framework"
-               BlueprintName = "SMART-on-FHIR-OSX"
-               ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+               BlueprintName = "SwiftSMART-iOS"
+               ReferencedContainer = "container:SwiftSMART.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EE43B1B219546D880017679A"
+               BuildableName = "SwiftSMART-iOSTests.xctest"
+               BlueprintName = "SwiftSMART-iOSTests"
+               ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE13AA911A5D44D100B901FD"
-               BuildableName = "SMART-on-FHIR-OSXTests.xctest"
-               BlueprintName = "SMART-on-FHIR-OSXTests"
-               ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE684C2819A789BA00B5A2C0"
-               BuildableName = "SwiftFHIRTests.xctest"
-               BlueprintName = "SwiftFHIRTests"
-               ReferencedContainer = "container:Swift-FHIR/SwiftFHIR.xcodeproj">
+               BlueprintIdentifier = "EE43B1B219546D880017679A"
+               BuildableName = "SwiftSMART-iOSTests.xctest"
+               BlueprintName = "SwiftSMART-iOSTests"
+               ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
+            BlueprintIdentifier = "EE43B1A819546D880017679A"
             BuildableName = "SMART.framework"
-            BlueprintName = "SMART-on-FHIR-OSX"
-            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+            BlueprintName = "SwiftSMART-iOS"
+            ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -71,10 +75,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
+            BlueprintIdentifier = "EE43B1A819546D880017679A"
             BuildableName = "SMART.framework"
-            BlueprintName = "SMART-on-FHIR-OSX"
-            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+            BlueprintName = "SwiftSMART-iOS"
+            ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -89,10 +93,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
+            BlueprintIdentifier = "EE43B1A819546D880017679A"
             BuildableName = "SMART.framework"
-            BlueprintName = "SMART-on-FHIR-OSX"
-            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+            BlueprintName = "SwiftSMART-iOS"
+            ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

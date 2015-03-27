@@ -28,7 +28,7 @@
       "mode": "server",
       "documentation": "All the functionality defined in FHIR",
       "security": {
-        "extension": [
+        "extensionDISABLED": [
           {
             "url": "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#register",
             "valueUri": "https://authorize.smarthealthit.org/register"
