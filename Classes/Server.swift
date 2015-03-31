@@ -3,7 +3,7 @@
 //  SMART-on-FHIR
 //
 //  Created by Pascal Pfiffner on 6/11/14.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Copyright (c) 2014 SMART Health IT. All rights reserved.
 //
 
 import Foundation
@@ -49,14 +49,30 @@ public class Server: FHIRServer
 				name = conformance!.name
 			}
 			
-			// TODO: we only look at the first "rest" entry, should we support multiple endpoints?
-			if let security = conformance?.rest?.first?.security {
-				auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
-			}
-			
-			// if we have not yet initialized an Auth object we'll use one for "no auth"
-			if nil == auth {
-				auth = Auth(type: .None, server: self, settings: authSettings)
+			// look at ConformanceRest entries for security and operation information
+			if let rests = conformance?.rest {
+				var best: ConformanceRest?
+				for rest in rests {
+					if nil == best {
+						best = rest
+					}
+					else if "client" == rest.mode {
+						best = rest
+						break
+					}
+				}
+				
+				// use the "best" matching rest entry to extract the information we want
+				if let rest = best {
+					if let security = rest.security {
+						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
+					}
+					
+					// if we have not yet initialized an Auth object we'll use one for "no auth"
+					if nil == auth {
+						auth = Auth(type: .None, server: self, settings: authSettings)
+					}
+				}
 			}
 		}
 	}
@@ -83,7 +99,7 @@ public class Server: FHIRServer
 	}
 	
 	
-	// MARK: - Auth Status
+	// MARK: - Authorization
 	
 	/** Ensures that the server is ready to perform requests before calling the callback. */
 	public func ready(callback: (error: NSError?) -> ()) {

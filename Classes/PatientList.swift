@@ -3,7 +3,7 @@
 //  SMART-on-FHIR
 //
 //  Created by Pascal Pfiffner on 2/4/15.
-//  Copyright (c) 2015 SMART Platforms. All rights reserved.
+//  Copyright (c) 2015 SMART Health IT. All rights reserved.
 //
 
 import Foundation

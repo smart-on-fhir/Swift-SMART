@@ -297,6 +297,10 @@
 		EE9B31FA1ACADAF700980AA9 /* Resource+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B31F71ACADAF700980AA9 /* Resource+REST.swift */; };
 		EE9B32031ACADE9900980AA9 /* Reference+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */; };
 		EE9B32041ACADE9900980AA9 /* Reference+Resolving.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */; };
+		EE9B32061ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */; };
+		EE9B32071ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */; };
+		EE9B320A1ACAE6D300980AA9 /* FHIRServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32081ACAE6D300980AA9 /* FHIRServerResponse.swift */; };
+		EE9B320B1ACAE78100980AA9 /* FHIRServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32081ACAE6D300980AA9 /* FHIRServerResponse.swift */; };
 		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EECAA7261A5D3DE60062C64B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
@@ -521,6 +525,8 @@
 		EE74D04E195C262E00393DCA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		EE9B31F71ACADAF700980AA9 /* Resource+REST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Resource+REST.swift"; sourceTree = "<group>"; };
 		EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reference+Resolving.swift"; sourceTree = "<group>"; };
+		EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServerRequestHandler.swift; sourceTree = "<group>"; };
+		EE9B32081ACAE6D300980AA9 /* FHIRServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServerResponse.swift; sourceTree = "<group>"; };
 		EECAA7831A5D3DE60062C64B /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECAA78E1A5D410E0062C64B /* Auth+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+OSX.swift"; sourceTree = "<group>"; };
 		EEDDAC5B1A8921F500844B48 /* PatientListOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientListOrder.swift; sourceTree = "<group>"; };
@@ -812,7 +818,6 @@
 			children = (
 				EE56A49E1ABB0B7900FA99EB /* FHIRTypes.swift */,
 				EE56A4801ABB0B7900FA99EB /* DateAndTime.swift */,
-				EE56A49D1ABB0B7900FA99EB /* FHIRServer.swift */,
 				EE56A4991ABB0B7900FA99EB /* FHIRElement.swift */,
 				EE56A4981ABB0B7900FA99EB /* FHIRElement+Factory.swift */,
 				EE56A49B1ABB0B7900FA99EB /* FHIRResource.swift */,
@@ -840,6 +845,9 @@
 			children = (
 				EE9B31F71ACADAF700980AA9 /* Resource+REST.swift */,
 				EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */,
+				EE56A49D1ABB0B7900FA99EB /* FHIRServer.swift */,
+				EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */,
+				EE9B32081ACAE6D300980AA9 /* FHIRServerResponse.swift */,
 			);
 			name = Classes;
 			path = "Swift-FHIR/Classes";
@@ -1093,6 +1101,7 @@
 				EEDDAC621A89237900844B48 /* PatientListQuery.swift in Sources */,
 				EE4D59021A826900005F5C7A /* PatientList+iOS.swift in Sources */,
 				EE56A4F81ABB0B7900FA99EB /* Attachment.swift in Sources */,
+				EE9B32061ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */,
 				EE56A4EC1ABB0B7900FA99EB /* Address.swift in Sources */,
 				EE56A54E1ABB0B7900FA99EB /* EpisodeOfCare.swift in Sources */,
 				EE56A59C1ABB0B7A00FA99EB /* OperationOutcome.swift in Sources */,
@@ -1201,6 +1210,7 @@
 				EE56A5201ABB0B7900FA99EB /* Contraindication.swift in Sources */,
 				EE56A5461ABB0B7900FA99EB /* EligibilityResponse.swift in Sources */,
 				EE56A4FE1ABB0B7900FA99EB /* Binary.swift in Sources */,
+				EE9B320B1ACAE78100980AA9 /* FHIRServerResponse.swift in Sources */,
 				EE56A5981ABB0B7A00FA99EB /* Observation.swift in Sources */,
 				EE56A56A1ABB0B7900FA99EB /* HealthcareService.swift in Sources */,
 				EE56A5481ABB0B7900FA99EB /* Encounter.swift in Sources */,
@@ -1339,8 +1349,10 @@
 				EE56A5431ABB0B7900FA99EB /* ElementDefinition.swift in Sources */,
 				EE56A55F1ABB0B7900FA99EB /* FHIRResource.swift in Sources */,
 				EE56A5D91ABB0B7A00FA99EB /* RiskAssessment.swift in Sources */,
+				EE9B32071ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */,
 				EE56A6241ABB6A6F00FA99EB /* Claim.swift in Sources */,
 				EE56A5311ABB0B7900FA99EB /* DeviceUseRequest.swift in Sources */,
+				EE9B320A1ACAE6D300980AA9 /* FHIRServerResponse.swift in Sources */,
 				EE56A5EF1ABB0B7A00FA99EB /* Substance.swift in Sources */,
 				EE56A5B91ABB0B7A00FA99EB /* Practitioner.swift in Sources */,
 				EE56A4F11ABB0B7900FA99EB /* Alert.swift in Sources */,
