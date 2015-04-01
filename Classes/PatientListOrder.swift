@@ -112,7 +112,7 @@ extension Patient
 			let family = humanName.family?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1 }
 			if nil == given {
 				if nil != family {
-					let prefix = NSLocalizedString(("male" == gender) ? "Mr." : "Ms.", comment: "")
+					let prefix = ("male" == gender) ? "Mr.".localized : "Ms.".localized
 					return "\(prefix) \(family!)"
 				}
 			}
@@ -123,7 +123,7 @@ extension Patient
 				return given!
 			}
 		}
-		return NSLocalizedString("Unnamed Patient", comment: "")
+		return "Unnamed Patient".localized
 	}
 	
 	var currentAge: String {
@@ -139,23 +139,23 @@ extension Patient
 			if comps.month < 1 {
 				comps = calendar.components(.CalendarUnitDay, fromDate: birthDate!.nsDate, toDate: NSDate(), options: nil)
 				if comps.day < 1 {
-					return NSLocalizedString("just born", comment: "")
+					return "just born".localized
 				}
-				let str = NSLocalizedString(1 == comps.day ? "day old" : "days old", comment: "")
+				let str = (1 == comps.day) ? "day old".localized : "days old".localized
 				return "\(comps.day) \(str)"
 			}
-			let str = NSLocalizedString(1 == comps.day ? "month old" : "months old", comment: "")
+			let str = (1 == comps.day) ? "month old".localized : "months old".localized
 			return "\(comps.month) \(str)"
 		}
 		
 		// kids and adults
 		if 0 != comps.month {
-			let yr = NSLocalizedString((1 == comps.year) ? "yr" : "yrs", comment: "")
-			let mth = NSLocalizedString((1 == comps.month) ? "mth" : "mths", comment: "")
+			let yr = (1 == comps.year) ? "yr".localized : "yrs".localized
+			let mth = (1 == comps.month) ? "mth".localized : "mths".localized
 			return "\(comps.year) \(yr), \(comps.month) \(mth)"
 		}
 		
-		let yr = NSLocalizedString((1 == comps.year) ? "year old" : "years old", comment: "")
+		let yr = (1 == comps.year) ? "year old".localized : "years old".localized
 		return "\(comps.year) \(yr)"
 	}
 }

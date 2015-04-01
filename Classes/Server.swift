@@ -26,6 +26,10 @@ public class Server: FHIRServer
 	/// Settings to be applied to the Auth instance.
 	var authSettings: OAuth2JSON?
 	
+	/// The operations the server supports, as specified in the conformance statement.
+	var operations: [String: OperationDefinition]?
+	var conformanceOperations: [ConformanceRestOperation]?
+	
 	/// The active URL session.
 	var session: NSURLSession?
 	
@@ -71,6 +75,10 @@ public class Server: FHIRServer
 					// if we have not yet initialized an Auth object we'll use one for "no auth"
 					if nil == auth {
 						auth = Auth(type: .None, server: self, settings: authSettings)
+					}
+					
+					if let operations = rest.operation {
+						conformanceOperations = operations
 					}
 				}
 			}
@@ -256,6 +264,73 @@ public class Server: FHIRServer
 		else {
 			let err = error.memory?.localizedDescription ?? "if only I knew why"
 			callback(response: handler.notSent("Failed to prepare request against \(request.URL): \(err)"))
+		}
+	}
+	
+	
+	// MARK: - Operations
+	
+	func conformanceOperation(name: String) -> ConformanceRestOperation? {
+		if let defs = conformanceOperations {
+			for def in defs {
+				if name == def.name {
+					return def
+				}
+			}
+		}
+		return nil
+	}
+	
+	/**
+		Retrieve the operation definition with the given name, either from cache or load the resource.
+	
+		Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must
+		be used after the conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
+	*/
+	public func operation(name: String, callback: (OperationDefinition? -> Void)) {
+		if let op = operations?[name] {
+			callback(op)
+		}
+		else if let def = conformanceOperation(name) {
+			def.definition?.resolve(OperationDefinition.self) { optop in
+				if let op = optop {
+					if nil != self.operations {
+						self.operations![name] = op
+					}
+					else {
+						self.operations = [name: op]
+					}
+				}
+				callback(optop)
+			}
+		}
+		else {
+			callback(nil)
+		}
+	}
+	
+	/**
+		Performs the given Operation.
+	
+		`Resource` has extensions to facilitate working with operations, be sure to take a look.
+	
+		:param: operation The operation instance to perform
+		:param: callback The callback to call when the request ends (success or failure)
+	 */
+	public func perform(operation: FHIROperation, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+		self.operation(operation.name) { definition in
+			if let def = definition {
+				var error: NSError?
+				if operation.validateWith(def, error: &error) {
+					operation.execute(self, callback: callback)
+				}
+				else {
+					callback(response: FHIRServerJSONResponse(notSentBecause: error ?? genServerError("Unknown validation error with operation \(operation)")))
+				}
+			}
+			else {
+				callback(response: FHIRServerJSONResponse(notSentBecause: genServerError("The server does not support operation \(operation)")))
+			}
 		}
 	}
 	
