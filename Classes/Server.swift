@@ -322,7 +322,7 @@ public class Server: FHIRServer
 			if let def = definition {
 				var error: NSError?
 				if operation.validateWith(def, error: &error) {
-					operation.execute(self, callback: callback)
+					operation.perform(self, callback: callback)
 				}
 				else {
 					callback(response: FHIRServerJSONResponse(notSentBecause: error ?? genServerError("Unknown validation error with operation \(operation)")))
