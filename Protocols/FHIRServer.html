@@ -525,6 +525,9 @@
                 <a href="../Classes/FHIRElement.html">FHIRElement</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Classes/FHIROperation.html">FHIROperation</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Classes/FHIRResource.html">FHIRResource</a>
               </li>
               <li class="nav-chapter">
@@ -754,9 +757,6 @@
               </li>
               <li class="nav-chapter">
                 <a href="../Classes/OAuth2CodeGrant.html">OAuth2CodeGrant</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="../Classes/OAuth2CodeGrantFacebook.html">OAuth2CodeGrantFacebook</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Classes/OAuth2ImplicitGrant.html">OAuth2ImplicitGrant</a>
@@ -1111,6 +1111,9 @@
               <li class="nav-chapter">
                 <a href="../Global Variables.html#/s:v5SMART21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
               </li>
+              <li class="nav-chapter">
+                <a href="../Global Variables.html#/s:v5SMART17OAuth2ErrorDomainSS">OAuth2ErrorDomain</a>
+              </li>
             </ul>
           </li>
           <li class="part-name tasks">
@@ -1118,6 +1121,9 @@
             <ul class="nav-chapters">
               <li class="nav-chapter">
                 <a href="../Enums.html#/s:O5SMART10AuthMethod">AuthMethod</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Enums.html#/s:O5SMART20FHIROperationContext">FHIROperationContext</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
@@ -1188,6 +1194,9 @@
                 <a href="../Extensions/Reference.html">Reference</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Extensions/Resource.html">Resource</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-chapter">
@@ -1208,31 +1217,31 @@
                 <a href="../Functions.html#/s:F5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMART18NSURLErrorHumanizeFCSo7NSErrorSS">NSURLErrorHumanize(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMART16callOnMainThreadFFT_T_T_">callOnMainThread(_:)</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFSSCSo7NSError">genOAuth2Error(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFTSSOS_11OAuth2Error_CSo7NSError">genOAuth2Error(_:_:)</a>
@@ -1313,6 +1322,9 @@
           <a href="../Typealiases.html">Typealiases</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
+                <a href="../Typealiases.html#/s:5SMART1$">$</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Typealiases.html#/s:5SMART17FHIRErrorCallback">FHIRErrorCallback</a>
               </li>
               <li class="nav-chapter">
@@ -1369,6 +1381,19 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <hr/>
+                <a name="/Base%20Requests"></a>
+                <a name="//apple_ref/swift/Section/Base Requests" class="dashAnchor"></a>
+                <a href="#/Base%20Requests">
+                  <h3 class="section-name">Base Requests</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
@@ -1510,7 +1535,130 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Instance method that takes a path, which is relative to <code>baseURL</code>, executes a POST request at that URL and returns a JSON response object in the callback.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">postJSON</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">body</span><span class="p">:</span> <span class="kt">FHIRJSON</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">((</span><span class="nv">response</span><span class="p">:</span> <span class="kt">FHIRServerJSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The REST path to request, relative to the server&rsquo;s base URL</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">body</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The request body data as FHIRJSON</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The callback to call when the request ends (success or failure)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <hr/>
+                <a name="/Operations"></a>
+                <a name="//apple_ref/swift/Section/Operations" class="dashAnchor"></a>
+                <a href="#/Operations">
+                  <h3 class="section-name">Operations</h3>
+                </a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:FP5SMART10FHIRServer7performUS0___FRQPS0_FTCS_13FHIROperation8callbackFT8responseCS_22FHIRServerJSONResponse_T__T_">
+                    <a name="//apple_ref/swift/Method/perform(_:callback:)" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:FP5SMART10FHIRServer7performUS0___FRQPS0_FTCS_13FHIROperation8callbackFT8responseCS_22FHIRServerJSONResponse_T__T_">perform(_:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Performs the given Operation.The server should first validate the operation and only proceed with execution if validation succeeds.<code>Resource</code> has extensions to facilitate working with operations, be sure to take a look.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">perform</span><span class="p">(</span><span class="nv">operation</span><span class="p">:</span> <span class="kt">FHIROperation</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="p">((</span><span class="nv">response</span><span class="p">:</span> <span class="kt">FHIRServerJSONResponse</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="parameters">
+                        <h4>Parameters</h4>
+                        <table class="graybox" border="0" cellspacing="0" cellpadding="5">
+                          <tbody>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">operation</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The operation instance to perform</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td scope="row">
+                                <code>
+                                <em class="term">callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div class="definition">
+                                  <p class="para">The callback to call when the request ends (success or failure)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -1520,7 +1668,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-03-26)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

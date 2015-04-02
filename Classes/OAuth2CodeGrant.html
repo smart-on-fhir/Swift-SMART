@@ -525,6 +525,9 @@
                 <a href="../Classes/FHIRElement.html">FHIRElement</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Classes/FHIROperation.html">FHIROperation</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Classes/FHIRResource.html">FHIRResource</a>
               </li>
               <li class="nav-chapter">
@@ -754,9 +757,6 @@
               </li>
               <li class="nav-chapter">
                 <a href="../Classes/OAuth2CodeGrant.html">OAuth2CodeGrant</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="../Classes/OAuth2CodeGrantFacebook.html">OAuth2CodeGrantFacebook</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Classes/OAuth2ImplicitGrant.html">OAuth2ImplicitGrant</a>
@@ -1111,6 +1111,9 @@
               <li class="nav-chapter">
                 <a href="../Global Variables.html#/s:v5SMART21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
               </li>
+              <li class="nav-chapter">
+                <a href="../Global Variables.html#/s:v5SMART17OAuth2ErrorDomainSS">OAuth2ErrorDomain</a>
+              </li>
             </ul>
           </li>
           <li class="part-name tasks">
@@ -1118,6 +1121,9 @@
             <ul class="nav-chapters">
               <li class="nav-chapter">
                 <a href="../Enums.html#/s:O5SMART10AuthMethod">AuthMethod</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Enums.html#/s:O5SMART20FHIROperationContext">FHIROperationContext</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
@@ -1188,6 +1194,9 @@
                 <a href="../Extensions/Reference.html">Reference</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Extensions/Resource.html">Resource</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-chapter">
@@ -1208,31 +1217,31 @@
                 <a href="../Functions.html#/s:F5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMART18NSURLErrorHumanizeFCSo7NSErrorSS">NSURLErrorHumanize(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMART16callOnMainThreadFFT_T_T_">callOnMainThread(_:)</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFSSCSo7NSError">genOAuth2Error(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFTSSOS_11OAuth2Error_CSo7NSError">genOAuth2Error(_:_:)</a>
@@ -1312,6 +1321,9 @@
           <li class="part-name tasks">
           <a href="../Typealiases.html">Typealiases</a>
             <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="../Typealiases.html#/s:5SMART1$">$</a>
+              </li>
               <li class="nav-chapter">
                 <a href="../Typealiases.html#/s:5SMART17FHIRErrorCallback">FHIRErrorCallback</a>
               </li>
@@ -1409,7 +1421,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Adds support for the <q>token_uri</q> setting.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">settings</span><span class="p">:</span> <span class="kt">OAuth2JSON</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1445,7 +1466,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Generate the URL to be used for the token request from know instance variables and supplied parameters.This will set <q>grant_type</q> to <q>authorization_code</q>, add the <q>code</q> provided and forward to <code>authorizeURL()</code> to fill the remaining parameters.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenURLWithRedirect</span><span class="p">(</span><span class="nv">redirect</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">code</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">params</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">NSURL</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1453,9 +1483,9 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
-                    <a name="/s:FC5SMART15OAuth2CodeGrant12tokenRequestFS0_FSSCSo12NSURLRequest">
+                    <a name="/s:FC5SMART15OAuth2CodeGrant12tokenRequestFS0_FSSCSo19NSMutableURLRequest">
                     <a name="//apple_ref/swift/Method/tokenRequest(_:)" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:FC5SMART15OAuth2CodeGrant12tokenRequestFS0_FSSCSo12NSURLRequest">tokenRequest(_:)</a>
+                    <a class="x-instance-method Swift" href="#/s:FC5SMART15OAuth2CodeGrant12tokenRequestFS0_FSSCSo19NSMutableURLRequest">tokenRequest(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1463,14 +1493,14 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Create a request for token exchange</p>
+                        <p class="para">Create a request for token exchange.This method is public to enable unit testing.</p>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenRequest</span><span class="p">(</span><span class="nv">code</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSURLRequest</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tokenRequest</span><span class="p">(</span><span class="nv">code</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSMutableURLRequest</span></code></pre>
 
                         </div>
                       </div>
@@ -1497,7 +1527,7 @@
             
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleRedirectURL</span><span class="p">(</span><span class="nv">redirect</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">handleRedirectURL</span><span class="p">(</span><span class="nv">redirect</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1607,7 +1637,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-03-26)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

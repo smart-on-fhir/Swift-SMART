@@ -524,6 +524,9 @@
                 <a href="Classes/FHIRElement.html">FHIRElement</a>
               </li>
               <li class="nav-chapter">
+                <a href="Classes/FHIROperation.html">FHIROperation</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Classes/FHIRResource.html">FHIRResource</a>
               </li>
               <li class="nav-chapter">
@@ -753,9 +756,6 @@
               </li>
               <li class="nav-chapter">
                 <a href="Classes/OAuth2CodeGrant.html">OAuth2CodeGrant</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="Classes/OAuth2CodeGrantFacebook.html">OAuth2CodeGrantFacebook</a>
               </li>
               <li class="nav-chapter">
                 <a href="Classes/OAuth2ImplicitGrant.html">OAuth2ImplicitGrant</a>
@@ -1110,6 +1110,9 @@
               <li class="nav-chapter">
                 <a href="Global Variables.html#/s:v5SMART21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
               </li>
+              <li class="nav-chapter">
+                <a href="Global Variables.html#/s:v5SMART17OAuth2ErrorDomainSS">OAuth2ErrorDomain</a>
+              </li>
             </ul>
           </li>
           <li class="part-name tasks">
@@ -1117,6 +1120,9 @@
             <ul class="nav-chapters">
               <li class="nav-chapter">
                 <a href="Enums.html#/s:O5SMART10AuthMethod">AuthMethod</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Enums.html#/s:O5SMART20FHIROperationContext">FHIROperationContext</a>
               </li>
               <li class="nav-chapter">
                 <a href="Enums/FHIRRequestType.html">FHIRRequestType</a>
@@ -1187,6 +1193,9 @@
                 <a href="Extensions/Reference.html">Reference</a>
               </li>
               <li class="nav-chapter">
+                <a href="Extensions/Resource.html">Resource</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-chapter">
@@ -1207,31 +1216,31 @@
                 <a href="Functions.html#/s:F5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
+                <a href="Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:F5SMART18NSURLErrorHumanizeFCSo7NSErrorSS">NSURLErrorHumanize(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMART16callOnMainThreadFFT_T_T_">callOnMainThread(_:)</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMART14genOAuth2ErrorFSSCSo7NSError">genOAuth2Error(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMART14genOAuth2ErrorFTSSOS_11OAuth2Error_CSo7NSError">genOAuth2Error(_:_:)</a>
@@ -1312,6 +1321,9 @@
           <a href="Typealiases.html">Typealiases</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
+                <a href="Typealiases.html#/s:5SMART1$">$</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Typealiases.html#/s:5SMART17FHIRErrorCallback">FHIRErrorCallback</a>
               </li>
               <li class="nav-chapter">
@@ -1330,74 +1342,52 @@
       <a name="/"></a>
         <section>
           <section class="section">
-            <div class='readme'><p style="text-align:center;"><img src="assets/banner.png" alt=""></p><p>Swift-SMART is an iOS and OS X framework for building apps that interact with healthcare data through <a href="http://docs.smarthealthit.org"><strong>SMART on FHIR</strong></a>.</p><p>Written in <em>Swift</em> it is compatible with <strong>iOS 8</strong> and <strong>OS X 10.9</strong> and later and requires Xcode 6 or later.
-You can target <strong>iOS 7</strong> by including all source files in your main project rather than using the embedded framework target.</p><p>We have a simple <a href="https://github.com/smart-on-fhir/SoF-MedList">medication list</a> sample app so you can see how you use the framework.</p><p>The <code>master</code> branch is currently on FHIR <em>DSTU 1</em>.<br>
-The <code>develop</code> branch is work in progress for FHIR <em>DSTU 2</em>.</p><a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<p>Currently the best way to obtain the framework is via <code>git</code>.</p><a href='#via_git' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='via_git'>Via git</h3>
-<p>Using Terminal.app, navigate to your project directory and execute:</p><pre class="highlight plaintext"><code>$ git clone --recursive https://github.com/smart-on-fhir/Swift-SMART
-</code></pre>
-<p>This will download the latest codebase and all dependencies of the _master_branch.
-To use a different branch, e.g. the develop branch, add <code>-b develop</code> to the clone command or checkout the appropriate branch after cloning.
-Once this process completes open your app project in Xcode and add <code>SwiftSMART.xcodeproj</code>:</p><p><img src="assets/step-adding.png" alt="Adding to Xcode"></p><p>Now link the framework to your app:</p><p><img src="assets/step-linking.png" alt="Linking"></p>
-<ol>
-<li>Make your App also build the framework</li>
-<li>Link it</li>
-<li>Embed the framework in your app (as of Xcode 6.2, this step happens in the <q>General</q> tab)</li>
-</ol>
-<a href='#using_the_client' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='using_the_client'>Using the Client</h2>
-<p>The framework&rsquo;s technical documentation is available from within Xcode (alt-click any class or property of the SMART framework) and on <a href="http://docs.smarthealthit.org/Swift-SMART/">docs.smarthealthit.org/Swift-SMART</a>.
-Make sure to take a look at the <a href="http://docs.smarthealthit.org">official SMART on FHIR documentation</a>.</p>
-<blockquote>
-<p><strong>Note:</strong> The SMART framework contains the <a href="https://github.com/smart-on-fhir/Swift-FHIR">Swift-FHIR data models framework</a>.
-These are compiled into the framework, you will only need to <code>import SMART</code> in your source files.</p></blockquote>
-<a href='#initializing_the_client' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='initializing_the_client'>Initializing the Client</h3>
-<p>Apps running against a SMART provider must be <strong>registered</strong> with the server.
-If you are simply testing grounds you can use our sandbox server and the shared <code>my_mobile_app</code> client-id:</p><pre class="highlight plaintext"><code>import SMART
+            <div class='readme'><p><img src="assets/banner.png" alt=""></p><p>Swift-SMART is an iOS and OS X framework for building apps that interact with healthcare data through <a href="http://docs.smarthealthit.org"><strong>SMART on FHIR</strong></a>.
+Written in <em>Swift</em> it is compatible with <strong>iOS 8</strong> and <strong>OS X 10.9</strong> and later and requires Xcode 6 or later.</p><p>The <code>master</code> branch is currently working against FHIR <em>DSTU 1</em>.<br>
+The <code>develop</code> branch is work in progress for FHIR <em>DSTU 2</em>.</p><a href='#resources' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='resources'>Resources</h2>
 
-let smart = Client(
-    baseURL: "https://fhir-api-dstu2.smarthealthit.org",
-    settings: [
-        "client_id": "my_mobile_app",
-        "redirect": "smartapp://callback",      // must match registered redirect url
-    ]
-)
-</code></pre>
-<a href='#authorization' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='authorization'>Authorization</h3>
-<p>On FHIR servers requiring authorized access (such as SMART on FHIR servers) you must first have the user authorize your app.
-The client&rsquo;s <code>authProperties</code> variable allows you to specify a few options for how you want to authorize.
-The default settings use an embedded web view to have the user log in, and then displays a native patient selector.</p><pre class="highlight swift"><code><span class="n">smart</span><span class="o">.</span><span class="n">authProperties</span><span class="o">.</span><span class="n">embedded</span> <span class="o">=</span> <span class="kc">true</span>
-<span class="n">smart</span><span class="o">.</span><span class="n">authProperties</span><span class="o">.</span><span class="n">granularity</span> <span class="o">=</span> <span class="o">.</span><span class="kt">PatientSelectNative</span>
+<ul>
+<li><a href="https://github.com/smart-on-fhir/Swift-SMART/wiki">Programming Guide</a> with code examples</li>
+<li><a href="http://docs.smarthealthit.org/Swift-SMART/">Technical Documentation</a> of classes, properties and methods</li>
+<li><a href="https://github.com/smart-on-fhir/SoF-MedList">Medication List</a> sample app</li>
+<li><a href="http://docs.smarthealthit.org">SMART on FHIR</a> API documentation</li>
+</ul>
+<a href='#quickstart' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='quickstart'>QuickStart</h2>
+<p>See <a href="https://github.com/smart-on-fhir/Swift-SMART/wiki">the programming guide</a> for more code examples and details.</p><pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SMART</span>
+
+<span class="c1">// create the client</span>
+<span class="k">let</span> <span class="nv">smart</span> <span class="o">=</span> <span class="kt">Client</span><span class="p">(</span>
+    <span class="nv">baseURL</span><span class="p">:</span> <span class="s">"https://fhir-api-dstu2.smarthealthit.org"</span><span class="p">,</span>
+    <span class="nv">settings</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"client_id"</span><span class="p">:</span> <span class="s">"my_mobile_app"</span><span class="p">,</span>
+        <span class="s">"redirect"</span><span class="p">:</span> <span class="s">"smartapp://callback"</span><span class="p">,</span>    <span class="c1">// must be registered</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1">// authorize, then search for prescriptions</span>
 <span class="n">smart</span><span class="o">.</span><span class="nf">authorize</span><span class="p">()</span> <span class="p">{</span> <span class="n">patient</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="c1">// check for error</span>
-    <span class="c1">// `patient` is a "Patient" resource on success</span>
-<span class="p">}</span>
-</code></pre>
-<p>You can also use the following to make sure the client is ready to execute requests:</p><pre class="highlight swift"><code><span class="n">smart</span><span class="o">.</span><span class="nf">ready</span><span class="p">()</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="c1">// do your work</span>
-<span class="p">}</span>
-</code></pre>
-<a href='#using_fhir_resources' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='using_fhir_resources'>Using FHIR Resources</h3>
-<p>All basic FHIR profiles/resources have their own class.
-To read a patient with a known id from your server you can use:</p><pre class="highlight swift"><code><span class="kt">Patient</span><span class="o">.</span><span class="nf">read</span><span class="p">({</span><span class="n">patient</span><span class="o">-</span><span class="n">id</span><span class="p">},</span> <span class="nv">server</span><span class="p">:</span> <span class="n">smart</span><span class="o">.</span><span class="n">server</span><span class="p">)</span> <span class="p">{</span> <span class="n">resource</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="c1">// check error</span>
-    <span class="c1">// `resource` is a "Patient" instance on success</span>
-<span class="p">}</span>
-</code></pre>
-<p>To perform a search for all prescriptions of a known patient id you can use:</p><pre class="highlight swift"><code><span class="kt">MedicationPrescription</span><span class="o">.</span><span class="nf">search</span><span class="p">([</span><span class="s">"patient"</span><span class="p">:</span> <span class="n">id</span><span class="p">])</span>
-<span class="o">.</span><span class="nf">perform</span><span class="p">(</span><span class="n">smart</span><span class="o">.</span><span class="n">server</span><span class="p">)</span> <span class="p">{</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
-    <span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="n">error</span> <span class="p">{</span>
-        <span class="c1">// there was an error</span>
+    <span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="n">error</span> <span class="o">||</span> <span class="kc">nil</span> <span class="o">==</span> <span class="n">patient</span> <span class="p">{</span>
+        <span class="c1">// report error</span>
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
-        <span class="k">var</span> <span class="nv">meds</span> <span class="o">=</span> <span class="p">[</span><span class="kt">MedicationPrescription</span><span class="p">]()</span>
-        <span class="k">if</span> <span class="k">let</span> <span class="nv">entries</span> <span class="o">=</span> <span class="n">bundle</span><span class="p">?</span><span class="o">.</span><span class="n">entry</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="n">entry</span> <span class="k">in</span> <span class="n">entries</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="k">let</span> <span class="nv">med</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">resource</span> <span class="k">as</span><span class="p">?</span> <span class="kt">MedicationPrescription</span> <span class="p">{</span>
-                    <span class="n">meds</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="n">med</span><span class="p">)</span>
+        <span class="kt">MedicationPrescription</span><span class="o">.</span><span class="nf">search</span><span class="p">([</span><span class="s">"patient"</span><span class="p">:</span> <span class="n">patient</span><span class="o">.</span><span class="n">id</span><span class="p">])</span>
+        <span class="o">.</span><span class="nf">perform</span><span class="p">(</span><span class="n">smart</span><span class="o">.</span><span class="n">server</span><span class="p">)</span> <span class="p">{</span> <span class="n">bundle</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="kc">nil</span> <span class="o">!=</span> <span class="n">error</span> <span class="p">{</span>
+                <span class="c1">// report error</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">var</span> <span class="nv">meds</span> <span class="o">=</span> <span class="p">[</span><span class="kt">MedicationPrescription</span><span class="p">]()</span>
+                <span class="k">if</span> <span class="k">let</span> <span class="nv">entries</span> <span class="o">=</span> <span class="n">bundle</span><span class="p">?</span><span class="o">.</span><span class="n">entry</span> <span class="p">{</span>
+                    <span class="k">for</span> <span class="n">entry</span> <span class="k">in</span> <span class="n">entries</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="k">let</span> <span class="nv">med</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">resource</span> <span class="k">as</span><span class="p">?</span> <span class="kt">MedicationPrescription</span> <span class="p">{</span>
+                            <span class="n">meds</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="n">med</span><span class="p">)</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
                 <span class="p">}</span>
+
+                <span class="c1">// now `meds` holds all known patient prescriptions</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="c1">// now `meds` contains all prescription resources</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -1405,7 +1395,7 @@ To read a patient with a known id from your server you can use:</p><pre class="h
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-03-26)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

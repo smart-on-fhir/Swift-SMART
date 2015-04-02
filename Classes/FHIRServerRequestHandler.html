@@ -525,6 +525,9 @@
                 <a href="../Classes/FHIRElement.html">FHIRElement</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Classes/FHIROperation.html">FHIROperation</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Classes/FHIRResource.html">FHIRResource</a>
               </li>
               <li class="nav-chapter">
@@ -754,9 +757,6 @@
               </li>
               <li class="nav-chapter">
                 <a href="../Classes/OAuth2CodeGrant.html">OAuth2CodeGrant</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="../Classes/OAuth2CodeGrantFacebook.html">OAuth2CodeGrantFacebook</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Classes/OAuth2ImplicitGrant.html">OAuth2ImplicitGrant</a>
@@ -1111,6 +1111,9 @@
               <li class="nav-chapter">
                 <a href="../Global Variables.html#/s:v5SMART21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
               </li>
+              <li class="nav-chapter">
+                <a href="../Global Variables.html#/s:v5SMART17OAuth2ErrorDomainSS">OAuth2ErrorDomain</a>
+              </li>
             </ul>
           </li>
           <li class="part-name tasks">
@@ -1118,6 +1121,9 @@
             <ul class="nav-chapters">
               <li class="nav-chapter">
                 <a href="../Enums.html#/s:O5SMART10AuthMethod">AuthMethod</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="../Enums.html#/s:O5SMART20FHIROperationContext">FHIROperationContext</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Enums/FHIRRequestType.html">FHIRRequestType</a>
@@ -1188,6 +1194,9 @@
                 <a href="../Extensions/Reference.html">Reference</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Extensions/Resource.html">Resource</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-chapter">
@@ -1208,31 +1217,31 @@
                 <a href="../Functions.html#/s:F5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
+                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:F5SMART18NSURLErrorHumanizeFCSo7NSErrorSS">NSURLErrorHumanize(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMART16callOnMainThreadFFT_T_T_">callOnMainThread(_:)</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFSSCSo7NSError">genOAuth2Error(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFTSSOS_11OAuth2Error_CSo7NSError">genOAuth2Error(_:_:)</a>
@@ -1313,6 +1322,9 @@
           <a href="../Typealiases.html">Typealiases</a>
             <ul class="nav-chapters">
               <li class="nav-chapter">
+                <a href="../Typealiases.html#/s:5SMART1$">$</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="../Typealiases.html#/s:5SMART17FHIRErrorCallback">FHIRErrorCallback</a>
               </li>
               <li class="nav-chapter">
@@ -1332,7 +1344,7 @@
         <h1 class="chapter-name">FHIRServerRequestHandler</h1>
         <section>
           <section class="section">
-            <p class="para">Base for different request/response handlers. Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.</p>
+            <p class="para">Base for different request/response handlers.</p><p class="para">Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.</p>
           </section>
           <section class="section task-group-section">
             <div class="task-group">
@@ -1355,7 +1367,43 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">The HTTP type of the request.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">FHIRRequestType</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:C5SMART24FHIRServerRequestHandler12ResponseType">
+                    <a name="//apple_ref/swift/Alias/ResponseType" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART24FHIRServerRequestHandler12ResponseType">ResponseType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">The response type instances of this class provide.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">ResponseType</span> <span class="o">=</span> <span class="kt">FHIRServerResponse</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1391,7 +1439,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Give the request type a chance to prepare/alter the URL request.Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prepareRequest</span><span class="p">(</span><span class="nv">req</span><span class="p">:</span> <span class="kt">NSMutableURLRequest</span><span class="p">,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">NSErrorPointer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1409,7 +1466,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Instantiate an object of ResponseType-type based on the response and data that we get.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">response</span><span class="p">(</span><span class="err">#</span> <span class="nv">response</span><span class="p">:</span> <span class="kt">NSURLResponse</span><span class="p">?,</span> <span class="n">data</span> <span class="nv">inData</span><span class="p">:</span> <span class="kt">NSData</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ResponseType</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1427,7 +1493,16 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">Convenience method to indicate a request that has not actually been sent.</p>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">notSent</span><span class="p">(</span><span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ResponseType</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -1455,7 +1530,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-03-26)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

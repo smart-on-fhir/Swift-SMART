@@ -524,6 +524,9 @@
                 <a href="Classes/FHIRElement.html">FHIRElement</a>
               </li>
               <li class="nav-chapter">
+                <a href="Classes/FHIROperation.html">FHIROperation</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Classes/FHIRResource.html">FHIRResource</a>
               </li>
               <li class="nav-chapter">
@@ -753,9 +756,6 @@
               </li>
               <li class="nav-chapter">
                 <a href="Classes/OAuth2CodeGrant.html">OAuth2CodeGrant</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="Classes/OAuth2CodeGrantFacebook.html">OAuth2CodeGrantFacebook</a>
               </li>
               <li class="nav-chapter">
                 <a href="Classes/OAuth2ImplicitGrant.html">OAuth2ImplicitGrant</a>
@@ -1110,6 +1110,9 @@
               <li class="nav-chapter">
                 <a href="Global Variables.html#/s:v5SMART21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
               </li>
+              <li class="nav-chapter">
+                <a href="Global Variables.html#/s:v5SMART17OAuth2ErrorDomainSS">OAuth2ErrorDomain</a>
+              </li>
             </ul>
           </li>
           <li class="part-name tasks">
@@ -1117,6 +1120,9 @@
             <ul class="nav-chapters">
               <li class="nav-chapter">
                 <a href="Enums.html#/s:O5SMART10AuthMethod">AuthMethod</a>
+              </li>
+              <li class="nav-chapter">
+                <a href="Enums.html#/s:O5SMART20FHIROperationContext">FHIROperationContext</a>
               </li>
               <li class="nav-chapter">
                 <a href="Enums/FHIRRequestType.html">FHIRRequestType</a>
@@ -1187,6 +1193,9 @@
                 <a href="Extensions/Reference.html">Reference</a>
               </li>
               <li class="nav-chapter">
+                <a href="Extensions/Resource.html">Resource</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-chapter">
@@ -1207,31 +1216,31 @@
                 <a href="Functions.html#/s:F5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:F5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
+                <a href="Functions.html#/s:F5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:F5SMART18NSURLErrorHumanizeFCSo7NSErrorSS">NSURLErrorHumanize(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMART16callOnMainThreadFFT_T_T_">callOnMainThread(_:)</a>
-              </li>
-              <li class="nav-chapter">
-                <a href="Functions.html#/s:F5SMART14genOAuth2ErrorFSSCSo7NSError">genOAuth2Error(_:)</a>
               </li>
               <li class="nav-chapter">
                 <a href="Functions.html#/s:F5SMART14genOAuth2ErrorFTSSOS_11OAuth2Error_CSo7NSError">genOAuth2Error(_:_:)</a>
@@ -1311,6 +1320,9 @@
           <li class="part-name tasks">
           <a href="Typealiases.html">Typealiases</a>
             <ul class="nav-chapters">
+              <li class="nav-chapter">
+                <a href="Typealiases.html#/s:5SMART1$">$</a>
+              </li>
               <li class="nav-chapter">
                 <a href="Typealiases.html#/s:5SMART17FHIRErrorCallback">FHIRErrorCallback</a>
               </li>
@@ -3008,8 +3020,19 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Undocumented</p>
+                        <p class="para">A table view cell that can display a patient&rsquo;s name, birthday, age and gender.</p>
                         <a href="Classes/PatientTableViewCell.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">class</span> <span class="kt">PatientTableViewCell</span><span class="p">:</span> <span class="kt">UITableViewCell</span>
+<span class="p">{</span>
+	<span class="n">o</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -3063,6 +3086,99 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
+                    <a name="/s:C5SMART24FHIRServerRequestHandler">
+                    <a name="//apple_ref/swift/Class/FHIRServerRequestHandler" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART24FHIRServerRequestHandler">FHIRServerRequestHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Base for different request/response handlers.Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.</p>
+                        <a href="Classes/FHIRServerRequestHandler.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerRequestHandler</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:C5SMART28FHIRServerDataRequestHandler">
+                    <a name="//apple_ref/swift/Class/FHIRServerDataRequestHandler" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART28FHIRServerDataRequestHandler">FHIRServerDataRequestHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Prepare and handle a request for data.</p>
+                        <a href="Classes/FHIRServerDataRequestHandler.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerDataRequestHandler</span><span class="p">:</span> <span class="kt">FHIRServerRequestHandler</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:C5SMART28FHIRServerJSONRequestHandler">
+                    <a name="//apple_ref/swift/Class/FHIRServerJSONRequestHandler" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART28FHIRServerJSONRequestHandler">FHIRServerJSONRequestHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Prepare and handle a request returning JSON data.</p>
+                        <a href="Classes/FHIRServerJSONRequestHandler.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerJSONRequestHandler</span><span class="p">:</span> <span class="kt">FHIRServerDataRequestHandler</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Unnamed27"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
                     <a name="/s:C5SMART7Address">
                     <a name="//apple_ref/swift/Class/Address" class="dashAnchor"></a>
                     <a class="x-instance-method Swift" href="#/s:C5SMART7Address">Address</a>
@@ -3093,7 +3209,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed27"></a>
+                <a name="/Unnamed28"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3186,7 +3302,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed28"></a>
+                <a name="/Unnamed29"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3251,7 +3367,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed29"></a>
+                <a name="/Unnamed30"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3288,7 +3404,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed30"></a>
+                <a name="/Unnamed31"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3353,7 +3469,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed31"></a>
+                <a name="/Unnamed32"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3754,7 +3870,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed32"></a>
+                <a name="/Unnamed33"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3791,7 +3907,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed33"></a>
+                <a name="/Unnamed34"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3828,7 +3944,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed34"></a>
+                <a name="/Unnamed35"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -3921,7 +4037,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed35"></a>
+                <a name="/Unnamed36"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4098,7 +4214,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed36"></a>
+                <a name="/Unnamed37"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4163,7 +4279,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed37"></a>
+                <a name="/Unnamed38"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4200,7 +4316,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed38"></a>
+                <a name="/Unnamed39"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4237,7 +4353,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed39"></a>
+                <a name="/Unnamed40"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4330,7 +4446,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed40"></a>
+                <a name="/Unnamed41"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4479,7 +4595,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed41"></a>
+                <a name="/Unnamed42"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4572,7 +4688,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed42"></a>
+                <a name="/Unnamed43"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4609,7 +4725,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed43"></a>
+                <a name="/Unnamed44"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4646,7 +4762,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed44"></a>
+                <a name="/Unnamed45"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4711,7 +4827,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed45"></a>
+                <a name="/Unnamed46"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4776,7 +4892,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed46"></a>
+                <a name="/Unnamed47"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -4897,7 +5013,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed47"></a>
+                <a name="/Unnamed48"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5074,7 +5190,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed48"></a>
+                <a name="/Unnamed49"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5167,7 +5283,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed49"></a>
+                <a name="/Unnamed50"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5232,7 +5348,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed50"></a>
+                <a name="/Unnamed51"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5297,7 +5413,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed51"></a>
+                <a name="/Unnamed52"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5362,7 +5478,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed52"></a>
+                <a name="/Unnamed53"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5427,7 +5543,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed53"></a>
+                <a name="/Unnamed54"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5492,7 +5608,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed54"></a>
+                <a name="/Unnamed55"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5557,7 +5673,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed55"></a>
+                <a name="/Unnamed56"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5902,7 +6018,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed56"></a>
+                <a name="/Unnamed57"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -5939,7 +6055,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed57"></a>
+                <a name="/Unnamed58"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6003,202 +6119,8 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <hr/>
-                <a name="/Request%20Preparation"></a>
-                <a name="//apple_ref/swift/Section/Request Preparation" class="dashAnchor"></a>
-                <a href="#/Request%20Preparation">
-                  <h3 class="section-name">Request Preparation</h3>
-                </a>
                 
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART24FHIRServerRequestHandler">
-                    <a name="//apple_ref/swift/Class/FHIRServerRequestHandler" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART24FHIRServerRequestHandler">FHIRServerRequestHandler</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Base for different request/response handlers. Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.</p>
-                        <a href="Classes/FHIRServerRequestHandler.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerRequestHandler</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART28FHIRServerDataRequestHandler">
-                    <a name="//apple_ref/swift/Class/FHIRServerDataRequestHandler" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART28FHIRServerDataRequestHandler">FHIRServerDataRequestHandler</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Prepare and handle a request for data.</p>
-                        <a href="Classes/FHIRServerDataRequestHandler.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerDataRequestHandler</span><span class="p">:</span> <span class="kt">FHIRServerRequestHandler</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART28FHIRServerJSONRequestHandler">
-                    <a name="//apple_ref/swift/Class/FHIRServerJSONRequestHandler" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART28FHIRServerJSONRequestHandler">FHIRServerJSONRequestHandler</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Prepare and handle a request returning JSON data.</p>
-                        <a href="Classes/FHIRServerJSONRequestHandler.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerJSONRequestHandler</span><span class="p">:</span> <span class="kt">FHIRServerDataRequestHandler</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <hr/>
-                <a name="/Response%20Handling"></a>
-                <a name="//apple_ref/swift/Section/Response Handling" class="dashAnchor"></a>
-                <a href="#/Response%20Handling">
-                  <h3 class="section-name">Response Handling</h3>
-                </a>
-                
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART18FHIRServerResponse">
-                    <a name="//apple_ref/swift/Class/FHIRServerResponse" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART18FHIRServerResponse">FHIRServerResponse</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Encapsulates a server response, which can also indicate that there was no response or request (status &gt;= 600), in which case the <code>error</code> property carries the only useful information.</p>
-                        <a href="Classes/FHIRServerResponse.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerResponse</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART22FHIRServerDataResponse">
-                    <a name="//apple_ref/swift/Class/FHIRServerDataResponse" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART22FHIRServerDataResponse">FHIRServerDataResponse</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Encapsulates a server response holding an NSData body.</p>
-                        <a href="Classes/FHIRServerDataResponse.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerDataResponse</span><span class="p">:</span> <span class="kt">FHIRServerResponse</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART22FHIRServerJSONResponse">
-                    <a name="//apple_ref/swift/Class/FHIRServerJSONResponse" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART22FHIRServerJSONResponse">FHIRServerJSONResponse</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Encapsulates a server response with JSON response body, if any.</p>
-                        <a href="Classes/FHIRServerJSONResponse.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerJSONResponse</span><span class="p">:</span> <span class="kt">FHIRServerDataResponse</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                
-                <a name="/Unnamed58"></a>
+                <a name="/Unnamed59"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6263,7 +6185,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed59"></a>
+                <a name="/Unnamed60"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6328,7 +6250,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed60"></a>
+                <a name="/Unnamed61"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6505,7 +6427,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed61"></a>
+                <a name="/Unnamed62"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6522,7 +6444,7 @@
                     <section class="section instance-method">
                       <div class="pointy-thing"></div>
                       <div class="abstract">
-                        <p class="para">Contained resources are stored to instances of this class until they are resolved. The id of contained resources will be referenced from their parents as URL fragment, meaning <q>med1</q> will be referenced as <q>#med1</q>. FHIRReference handles id normalization.<a href="http://hl7.org/implement/standards/fhir/references.html#contained">http://hl7.org/implement/standards/fhir/references.html#contained</a></p>
+                        <p class="para">Contained resources are stored to instances of this class until they are resolved.The id of contained resources will be referenced from their parents as URL fragment, meaning <q>med1</q> will be referenced as <q>#med1</q>.<a href="http://hl7.org/implement/standards/fhir/references.html#contained">http://hl7.org/implement/standards/fhir/references.html#contained</a></p>
                         <a href="Classes/FHIRContainedResource.html" class="see-more">See more</a>
                       </div>
                       <div class="declaration">
@@ -6542,7 +6464,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed62"></a>
+                <a name="/Unnamed63"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6579,7 +6501,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed63"></a>
+                <a name="/Unnamed64"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6728,7 +6650,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed64"></a>
+                <a name="/Unnamed65"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6765,7 +6687,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed65"></a>
+                <a name="/Unnamed66"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6802,7 +6724,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed66"></a>
+                <a name="/Unnamed67"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6839,7 +6761,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed67"></a>
+                <a name="/Unnamed68"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -6904,7 +6826,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed68"></a>
+                <a name="/Unnamed69"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7053,7 +6975,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed69"></a>
+                <a name="/Unnamed70"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7090,7 +7012,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed70"></a>
+                <a name="/Unnamed71"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7155,7 +7077,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed71"></a>
+                <a name="/Unnamed72"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7192,7 +7114,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed72"></a>
+                <a name="/Unnamed73"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7229,7 +7151,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed73"></a>
+                <a name="/Unnamed74"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7266,7 +7188,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed74"></a>
+                <a name="/Unnamed75"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7331,7 +7253,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed75"></a>
+                <a name="/Unnamed76"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7368,7 +7290,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed76"></a>
+                <a name="/Unnamed77"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7405,7 +7327,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed77"></a>
+                <a name="/Unnamed78"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7442,7 +7364,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed78"></a>
+                <a name="/Unnamed79"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7507,7 +7429,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed79"></a>
+                <a name="/Unnamed80"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -7936,7 +7858,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed80"></a>
+                <a name="/Unnamed81"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8001,7 +7923,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed81"></a>
+                <a name="/Unnamed82"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8262,7 +8184,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed82"></a>
+                <a name="/Unnamed83"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8299,7 +8221,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed83"></a>
+                <a name="/Unnamed84"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8364,7 +8286,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed84"></a>
+                <a name="/Unnamed85"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8429,7 +8351,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed85"></a>
+                <a name="/Unnamed86"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8522,7 +8444,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed86"></a>
+                <a name="/Unnamed87"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8699,7 +8621,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed87"></a>
+                <a name="/Unnamed88"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8764,7 +8686,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed88"></a>
+                <a name="/Unnamed89"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8801,7 +8723,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed89"></a>
+                <a name="/Unnamed90"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -8827,43 +8749,6 @@
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Identifier</span><span class="p">:</span> <span class="kt">FHIRElement</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                
-                <a name="/Unnamed90"></a>
-                
-              </div>
-              <ul class="task-group-list">
-                <li class="item symbol">
-                  <div class="task-group-term">
-                    <code>
-                    <a name="/s:C5SMART23OAuth2CodeGrantFacebook">
-                    <a name="//apple_ref/swift/Class/OAuth2CodeGrantFacebook" class="dashAnchor"></a>
-                    <a class="x-instance-method Swift" href="#/s:C5SMART23OAuth2CodeGrantFacebook">OAuth2CodeGrantFacebook</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointy-thing-container"></div>
-                    <section class="section instance-method">
-                      <div class="pointy-thing"></div>
-                      <div class="abstract">
-                        <p class="para">Facebook only returns an <q>access_token=xyz&&hellip;</q> string, no true JSON, hence we override <code>parseTokenExchangeResponse</code> and deal with the situation in a subclass.</p>
-                        <a href="Classes/OAuth2CodeGrantFacebook.html" class="see-more">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-            
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">OAuth2CodeGrantFacebook</span><span class="p">:</span> <span class="kt">OAuth2CodeGrant</span></code></pre>
 
                         </div>
                       </div>
@@ -9727,6 +9612,43 @@
                 <li class="item symbol">
                   <div class="task-group-term">
                     <code>
+                    <a name="/s:C5SMART13FHIROperation">
+                    <a name="//apple_ref/swift/Class/FHIROperation" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART13FHIROperation">FHIROperation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Named operations to be performed against a FHIR REST endpoint.</p>
+                        <a href="Classes/FHIROperation.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIROperation</span><span class="p">:</span> <span class="kt">Printable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Unnamed105"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
                     <a name="/s:C5SMART18AllergyIntolerance">
                     <a name="//apple_ref/swift/Class/AllergyIntolerance" class="dashAnchor"></a>
                     <a class="x-instance-method Swift" href="#/s:C5SMART18AllergyIntolerance">AllergyIntolerance</a>
@@ -9785,7 +9707,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed105"></a>
+                <a name="/Unnamed106"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -9934,7 +9856,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed106"></a>
+                <a name="/Unnamed107"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -9999,7 +9921,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed107"></a>
+                <a name="/Unnamed108"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10120,7 +10042,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed108"></a>
+                <a name="/Unnamed109"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10157,7 +10079,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed109"></a>
+                <a name="/Unnamed110"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10250,7 +10172,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed110"></a>
+                <a name="/Unnamed111"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10287,7 +10209,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed111"></a>
+                <a name="/Unnamed112"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10408,7 +10330,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed112"></a>
+                <a name="/Unnamed113"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10445,7 +10367,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed113"></a>
+                <a name="/Unnamed114"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10482,7 +10404,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed114"></a>
+                <a name="/Unnamed115"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10519,7 +10441,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed115"></a>
+                <a name="/Unnamed116"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10584,7 +10506,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed116"></a>
+                <a name="/Unnamed117"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10677,7 +10599,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed117"></a>
+                <a name="/Unnamed118"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10780,7 +10702,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed118"></a>
+                <a name="/Unnamed119"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10901,7 +10823,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed119"></a>
+                <a name="/Unnamed120"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -10938,7 +10860,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed120"></a>
+                <a name="/Unnamed121"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11059,7 +10981,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed121"></a>
+                <a name="/Unnamed122"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11096,7 +11018,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed122"></a>
+                <a name="/Unnamed123"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11385,7 +11307,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed123"></a>
+                <a name="/Unnamed124"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11450,7 +11372,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed124"></a>
+                <a name="/Unnamed125"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11487,7 +11409,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed125"></a>
+                <a name="/Unnamed126"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11524,7 +11446,100 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed126"></a>
+                <a name="/Unnamed127"></a>
+                
+              </div>
+              <ul class="task-group-list">
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:C5SMART18FHIRServerResponse">
+                    <a name="//apple_ref/swift/Class/FHIRServerResponse" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART18FHIRServerResponse">FHIRServerResponse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Encapsulates a server response, which can also indicate that there was no response or request (status &gt;= 600), in which case the <code>error</code> property carries the only useful information.</p>
+                        <a href="Classes/FHIRServerResponse.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:C5SMART22FHIRServerDataResponse">
+                    <a name="//apple_ref/swift/Class/FHIRServerDataResponse" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART22FHIRServerDataResponse">FHIRServerDataResponse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Encapsulates a server response holding an NSData body.</p>
+                        <a href="Classes/FHIRServerDataResponse.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerDataResponse</span><span class="p">:</span> <span class="kt">FHIRServerResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item symbol">
+                  <div class="task-group-term">
+                    <code>
+                    <a name="/s:C5SMART22FHIRServerJSONResponse">
+                    <a name="//apple_ref/swift/Class/FHIRServerJSONResponse" class="dashAnchor"></a>
+                    <a class="x-instance-method Swift" href="#/s:C5SMART22FHIRServerJSONResponse">FHIRServerJSONResponse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointy-thing-container"></div>
+                    <section class="section instance-method">
+                      <div class="pointy-thing"></div>
+                      <div class="abstract">
+                        <p class="para">Encapsulates a server response with JSON response body, if any.</p>
+                        <a href="Classes/FHIRServerJSONResponse.html" class="see-more">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+            
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIRServerJSONResponse</span><span class="p">:</span> <span class="kt">FHIRServerDataResponse</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                
+                <a name="/Unnamed128"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11617,7 +11632,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed127"></a>
+                <a name="/Unnamed129"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11738,7 +11753,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed128"></a>
+                <a name="/Unnamed130"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -11887,7 +11902,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed129"></a>
+                <a name="/Unnamed131"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12008,7 +12023,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed130"></a>
+                <a name="/Unnamed132"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12045,7 +12060,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed131"></a>
+                <a name="/Unnamed133"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12110,7 +12125,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed132"></a>
+                <a name="/Unnamed134"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12147,7 +12162,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed133"></a>
+                <a name="/Unnamed135"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12268,7 +12283,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed134"></a>
+                <a name="/Unnamed136"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12333,7 +12348,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed135"></a>
+                <a name="/Unnamed137"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12370,7 +12385,7 @@
             <div class="task-group">
               <div class="task-name-container">
                 
-                <a name="/Unnamed136"></a>
+                <a name="/Unnamed138"></a>
                 
               </div>
               <ul class="task-group-list">
@@ -12407,7 +12422,7 @@
           </section>
         </section>
         <section id="footer">
-          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-03-26)</p>
+          <p class="copyright">&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-04-02)</p>
           <p class="copyright">Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.1.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
