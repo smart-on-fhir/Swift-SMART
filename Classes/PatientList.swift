@@ -52,11 +52,11 @@ public class PatientList
 	/// A block to be called when the `patients` property changes.
 	public var onPatientUpdate: (Void -> Void)?
 	
-	private(set) public var expectedNumberOfPatients: Int = 0
+	private(set) public var expectedNumberOfPatients: UInt = 0
 	
 	/// The number of patients currently in the list
-	public var actualNumberOfPatients: Int {
-		return (nil != patients) ? countElements(patients!) : 0
+	public var actualNumberOfPatients: UInt {
+		return UInt((nil != patients) ? countElements(patients!) : 0)
 	}
 	
 	var sections: [PatientListSection] = []
@@ -168,7 +168,7 @@ public class PatientList
 				}
 				else {
 					var patients: [Patient]? = nil
-					var expTotal: Int? = nil
+					var expTotal: UInt? = nil
 					
 					// extract patient resources from the search result bundle
 					if let bndle = bundle {
