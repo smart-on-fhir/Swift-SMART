@@ -47,7 +47,7 @@ smart.authorize() { patient, error in
         // report error
     }
     else {
-        MedicationPrescription.search(["patient": patient.id])
+        MedicationPrescription.search(["patient": patient!.id])
         .perform(smart.server) { bundle, error in
             if nil != error {
                 // report error

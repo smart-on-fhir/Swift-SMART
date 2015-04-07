@@ -88,12 +88,12 @@ class Auth
 			for ext in extensions {
 				if let urlString = ext.url?.absoluteString {
 					switch urlString {
-					case "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#register":
+					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#register":
 						authSettings["registration_uri"] = ext.valueUri?.absoluteString
-					case "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#authorize":
+					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#authorize":
 						authSettings["authorize_uri"] = ext.valueUri?.absoluteString
 						hasAuthURI = true
-					case "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#token":
+					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#token":
 						authSettings["token_uri"] = ext.valueUri?.absoluteString
 						hasTokenURI = true
 					default:
