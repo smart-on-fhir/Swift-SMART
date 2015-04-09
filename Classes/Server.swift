@@ -15,10 +15,10 @@ import Foundation
 public class Server: FHIRServer
 {
 	/// The server's base URL.
-	public let baseURL: NSURL
+	public final let baseURL: NSURL
 	
 	/// An optional name of the server; will be read from conformance statement unless manually assigned.
-	public var name: String?
+	public final var name: String?
 	
 	/// The authorization to use with the server.
 	var auth: Auth?
@@ -87,8 +87,10 @@ public class Server: FHIRServer
 	
 	/**
 		Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
+	
+		Is public to enable unit testing.
 	 */
-	public func getConformance(callback: (error: NSError?) -> ()) {		// `public` to enable unit testing
+	public final func getConformance(callback: (error: NSError?) -> ()) {
 		if nil != conformance {
 			callback(error: nil)
 			return
@@ -109,7 +111,9 @@ public class Server: FHIRServer
 	
 	// MARK: - Authorization
 	
-	/** Ensures that the server is ready to perform requests before calling the callback. */
+	/**
+		Ensures that the server is ready to perform requests before calling the callback.
+	 */
 	public func ready(callback: (error: NSError?) -> ()) {
 		if nil != auth {
 			callback(error: nil)
@@ -127,7 +131,9 @@ public class Server: FHIRServer
 		}
 	}
 	
-	/** Ensures that the receiver is ready, then calls the auth method's `authorize()` method. */
+	/**
+		Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
+	 */
 	public func authorize(authProperties: SMARTAuthProperties, callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
 			if nil != error || nil == self.auth {
@@ -165,7 +171,7 @@ public class Server: FHIRServer
 	
 		:param: path The path relative to the server's base URL to request
 		:param: callback The callback to execute once the request finishes
-	*/
+	 */
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		getJSON(path, auth: auth, callback: callback)
 	}
@@ -184,14 +190,14 @@ public class Server: FHIRServer
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			performRequest(request, handler: handler) { response in
 				callOnMainThread() {
-					callback(response: response as FHIRServerJSONResponse)
+					callback(response: response as! FHIRServerJSONResponse)
 				}
 			}
 		}
 		else {
 			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
 			callOnMainThread {
-				callback(response: res as FHIRServerJSONResponse)
+				callback(response: res as! FHIRServerJSONResponse)
 			}
 		}
 	}
@@ -220,14 +226,14 @@ public class Server: FHIRServer
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			performRequest(request, handler: handler) { response in
 				callOnMainThread() {
-					callback(response: response as FHIRServerJSONResponse)
+					callback(response: response as! FHIRServerJSONResponse)
 				}
 			}
 		}
 		else {
 			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
 			callOnMainThread {
-				callback(response: res as FHIRServerJSONResponse)
+				callback(response: res as! FHIRServerJSONResponse)
 			}
 		}
 	}
@@ -243,7 +249,7 @@ public class Server: FHIRServer
 		:param: handler The RequestHandler that prepares the request and processes the response
 		:param: callback The callback to execute; will NOT be performed on the main thread!
 	 */
-	public func performRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	func performRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		var error: NSErrorPointer = nil
 		if handler.prepareRequest(request, error: error) {
 			let task = defaultSession().dataTaskWithRequest(request) { data, response, error in
@@ -286,7 +292,7 @@ public class Server: FHIRServer
 	
 		Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must
 		be used after the conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
-	*/
+	 */
 	public func operation(name: String, callback: (OperationDefinition? -> Void)) {
 		if let op = operations?[name] {
 			callback(op)

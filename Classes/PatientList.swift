@@ -56,13 +56,13 @@ public class PatientList
 	
 	/// The number of patients currently in the list
 	public var actualNumberOfPatients: UInt {
-		return UInt((nil != patients) ? countElements(patients!) : 0)
+		return UInt((nil != patients) ? count(patients!) : 0)
 	}
 	
 	var sections: [PatientListSection] = []
 	
 	public var numSections: Int {
-		return countElements(sections)
+		return count(sections)
 	}
 	
 	internal(set) public var sectionIndexTitles: [String] = []
@@ -88,7 +88,7 @@ public class PatientList
 	// MARK: - Patients & Sections
 	
 	subscript(index: Int) -> PatientListSection? {
-		if countElements(sections) > index {
+		if count(sections) > index {
 			return sections[index]
 		}
 		return nil
@@ -179,7 +179,7 @@ public class PatientList
 						if let entries = bndle.entry {
 							let newPatients = entries
 								.filter() { $0.resource is Patient }
-								.map() { $0.resource as Patient }
+								.map() { $0.resource as! Patient }
 							
 							let append = appendPatients && nil != this.patients
 							patients = this.order.ordered(append ? this.patients! + newPatients : newPatients)
@@ -222,8 +222,8 @@ public class PatientListSection
 {
 	public var title: String
 	var patients: [Patient]?
-	var numPatients: Int {
-		return (nil != patients) ? countElements(patients!) : 0
+	var numPatients: UInt {
+		return (nil != patients) ? UInt(count(patients!)) : 0
 	}
 	
 	/// How many patients are in sections coming before this one. Only valid in context of a PatientList.
@@ -241,7 +241,7 @@ public class PatientListSection
 	}
 	
 	subscript(index: Int) -> Patient? {
-		if nil != patients && countElements(patients!) > index {
+		if nil != patients && count(patients!) > index {
 			return patients![index]
 		}
 		return nil
@@ -250,9 +250,9 @@ public class PatientListSection
 
 class PatientListSectionPlaceholder: PatientListSection
 {
-	override var numPatients: Int {
+	override var numPatients: UInt {
 		return holdingForNumPatients
 	}
-	var holdingForNumPatients: Int = 0
+	var holdingForNumPatients: UInt = 0
 }
 

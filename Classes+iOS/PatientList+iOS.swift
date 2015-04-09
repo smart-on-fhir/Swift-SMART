@@ -147,17 +147,17 @@ public class PatientListViewController: UITableViewController
 	
 	public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let section = patientList?[section] {
-			return section.numPatients
+			return Int(section.numPatients)
 		}
 		return 0
 	}
 	
 	public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("PatientCell", forIndexPath: indexPath) as PatientTableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("PatientCell", forIndexPath: indexPath) as! PatientTableViewCell
 		if let section = patientList?[indexPath.section] {
 			cell.represent(section[indexPath.row])
 			
-			let marker = min(patientList!.expectedNumberOfPatients, section.offset + indexPath.row + 10)
+			let marker = min(patientList!.expectedNumberOfPatients, UInt(section.offset + indexPath.row + 10))
 			runningOutOfPatients = (marker > patientList!.actualNumberOfPatients)
 		}
 		return cell

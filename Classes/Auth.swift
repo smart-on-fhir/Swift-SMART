@@ -75,7 +75,7 @@ class Auth
 				if let codings = service.coding {
 					for coding in codings {
 						logIfDebug("-- \(coding.code) (\(coding.system))")
-						if "OAuth2" == coding.code? {
+						if "OAuth2" == coding.code {
 							// TODO: support multiple Auth methods per server?
 						}
 					}

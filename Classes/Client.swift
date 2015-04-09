@@ -42,7 +42,7 @@ public enum SMARTAuthGranularity {
 public class Client
 {
 	/// The server this client connects to.
-	public let server: Server
+	public final let server: Server
 	
 	/// Set the authorize type you want, e.g. to use a built in web view for authentication and patient selection.
 	public var authProperties = SMARTAuthProperties()
@@ -51,7 +51,7 @@ public class Client
 	/** Designated initializer. */
 	init(server: Server) {
 		self.server = server
-		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")		// crashing in Xcode 6.1 GM, not anymore in Xcode 6.2
+		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
 	}
 	
 	/**
@@ -96,7 +96,7 @@ public class Client
 		yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
-		server.authorize(authProperties, callback)
+		server.authorize(authProperties, callback: callback)
 	}
 	
 	/// Will return true while the client is waiting for the authorization callback.

@@ -59,8 +59,8 @@ public class PatientListQuery
 			search.sort = sort
 			search.perform(server, callback: cb)
 		}
-			
-			// get next page of results
+		
+		// get next page of results
 		else {
 			search.nextPage(server, callback: cb)
 		}

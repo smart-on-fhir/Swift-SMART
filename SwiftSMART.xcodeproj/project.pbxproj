@@ -1587,6 +1587,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
 				SDKROOT = iphoneos;
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 			};
 			name = Debug;
 		};
@@ -1625,6 +1626,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				METAL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
