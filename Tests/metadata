@@ -4,14 +4,14 @@
     "status": "generated",
     "div": "<div>Generated Conformance Statement -- see structured representation.</div>"
   },
-  "identifier": "https://fhir-api.smartplatforms.org/conformance",
+  "identifier": "https://fhir-api.smarthealthit.org/conformance",
   "version": "0.0.81.????",
   "name": "SMART on FHIR Conformance Statement",
   "publisher": "SMART on FHIR",
   "telecom": [
     {
       "system": "url",
-      "value": "https://fhir-api.smartplatforms.org"
+      "value": "https://fhir-api.smarthealthit.org"
     }
   ],
   "description": "Describes capabilities of this SMART on FHIR server",
@@ -28,18 +28,18 @@
       "mode": "server",
       "documentation": "All the functionality defined in FHIR",
       "security": {
-        "extension": [
+        "extensionDISABLED": [
           {
-            "url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#register",
-            "valueUri": "https://authorize.smartplatforms.org/register"
+            "url": "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#register",
+            "valueUri": "https://authorize.smarthealthit.org/register"
           },
           {
-            "url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#authorize",
-            "valueUri": "https://authorize.smartplatforms.org/authorize"
+            "url": "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#authorize",
+            "valueUri": "https://authorize.smarthealthit.org/authorize"
           },
           {
-            "url": "http://fhir-registry.smartplatforms.org/Profile/oauth-uris#token",
-            "valueUri": "https://authorize.smartplatforms.org/token"
+            "url": "http://fhir-registry.smarthealthit.org/Profile/oauth-uris#token",
+            "valueUri": "https://authorize.smarthealthit.org/token"
           }
         ],
         "service": [

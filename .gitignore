@@ -5,4 +5,8 @@
 **.mode?v?
 **.perspectivev?
 xcuserdata
+build
+
+# Docs
+docs
 

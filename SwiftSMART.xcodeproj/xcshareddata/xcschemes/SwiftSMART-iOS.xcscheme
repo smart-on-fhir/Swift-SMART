@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0620"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE43B1A819546D880017679A"
                BuildableName = "SMART.framework"
-               BlueprintName = "SMART-on-FHIR-iOS"
-               ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+               BlueprintName = "SwiftSMART-iOS"
+               ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE43B1B219546D880017679A"
-               BuildableName = "SMART-on-FHIR-iOSTests.xctest"
-               BlueprintName = "SMART-on-FHIR-iOSTests"
-               ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+               BuildableName = "SwiftSMART-iOSTests.xctest"
+               BlueprintName = "SwiftSMART-iOSTests"
+               ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE43B1B219546D880017679A"
-               BuildableName = "SMART-on-FHIR-iOSTests.xctest"
-               BlueprintName = "SMART-on-FHIR-iOSTests"
-               ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+               BuildableName = "SwiftSMART-iOSTests.xctest"
+               BlueprintName = "SwiftSMART-iOSTests"
+               ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE43B1A819546D880017679A"
             BuildableName = "SMART.framework"
-            BlueprintName = "SMART-on-FHIR-iOS"
-            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+            BlueprintName = "SwiftSMART-iOS"
+            ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,8 +77,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE43B1A819546D880017679A"
             BuildableName = "SMART.framework"
-            BlueprintName = "SMART-on-FHIR-iOS"
-            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+            BlueprintName = "SwiftSMART-iOS"
+            ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -95,8 +95,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE43B1A819546D880017679A"
             BuildableName = "SMART.framework"
-            BlueprintName = "SMART-on-FHIR-iOS"
-            ReferencedContainer = "container:SMART-on-FHIR.xcodeproj">
+            BlueprintName = "SwiftSMART-iOS"
+            ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

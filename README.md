@@ -1,71 +1,76 @@
-SMART on FHIR
-=============
+![](assets/banner.png)
 
-This is an iOS and OS X framework for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
-Written in _Swift_ it is compatible with **iOS 8** and **OS X 10.9** and later.
-Building the framework requires Xcode 6 or later.
+Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
+Written in _Swift_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 6 or newer.
 
-The `master` branch is currently on FHIR _DSTU 1_.  
-The `develop` branch is work in progress for FHIR _DSTU 2_.
+The `master` branch is currently supporting the _May 2015 DSTU 2_ ballot ([`0.5.0`](https://github.com/smart-on-fhir/Swift-SMART/releases/tag/FHIR-0.5.0)).  
+The `develop` branch is work in progress for _DSTU 2_.
 
-We have a simple [medication list](https://github.com/p2/SoF-MedList) sample app so you can see how you use the framework.
-
-The first versions of this framework did not contain auto-generated classes, hence some parts are still manually implemented as opposed to using actual FHIR resources.
-As such the `Bundle` resource is still missing, all data is retrieved via a REST API.
+For specific FHIR and Swift versions not on the bleeding edge, see [releases](https://github.com/smart-on-fhir/Swift-SMART/releases).
+Compare those to the list of [published FHIR versions](http://hl7.org/fhir/directory.html).
 
 
-Installation
-------------
+Resources
+---------
 
-Use `git` to obtain the framework.
-Using Terminal.app, navigate to your project directory and execute:
+- [Programming Guide][wiki] with code examples
+- [Technical Documentation][docs] of classes, properties and methods
+- [Medication List][sample] sample app
+- [SMART on FHIR][smart] API documentation
 
-    $ git clone --recursive https://github.com/smart-on-fhir/SMART-on-FHIR-Cocoa
-
-This will download the latest codebase and all dependencies.
-Once this process completes open your app project in Xcode and add `SMART-on-FHIR.xcodeproj`.
-
-
-Documentation
--------------
-
-Technical documentation for framework usage TBD.
-Make sure to take a look at the [official SMART on FHIR documentation](http://docs.smarthealthit.org).
+[wiki]: https://github.com/smart-on-fhir/Swift-SMART/wiki
+[docs]: http://docs.smarthealthit.org/Swift-SMART/
+[sample]: https://github.com/smart-on-fhir/SoF-MedList
+[smart]: http://docs.smarthealthit.org
 
 
-Running Apps
-------------
+QuickStart
+----------
 
-Apps running against a SMART provider must be **registered** with the server.
-If you are simply testing grounds you can use our sandbox server and the shared `my_mobile_app` client-id:
+See [the programming guide][wiki] for more code examples and details.
 
-```Swift
-@lazy var smart = Client(
-    serverURL: "https://fhir-api.smarthealthit.org",
-    clientId: "my_mobile_app",
-    redirect: "smartapp://callback"    // must match a registered redirect uri
+```swift
+import SMART
+
+// create the client
+let smart = Client(
+    baseURL: "https://fhir-api-dstu2.smarthealthit.org",
+    settings: [
+        "client_id": "my_mobile_app",
+        "redirect": "smartapp://callback",    // must be registered
+    ]
 )
-```
 
-### Dynamic Client Registration
-
-Our sandbox also supports _dynamic client registration_, which is based on the OAuth 2.0 Dynamic Client Registration [protocol](http://tools.ietf.org/html/draft-ietf-oauth-dyn-reg-17) and the Blue Button open registration [specification](http://blue-button.github.io/blue-button-plus-pull/#registration-open).
-You can register your app by posting an appropriately formatted JSON app manifest to the registration server, the app manifest looks like this:
-
-```json
-{
-	"client_name": "Smart-on-FHIR iOS Med List",
-	"redirect_uris": [
-		"sofmedlist://callback"
-	],
-	"token_endpoint_auth_method": "none",
-	"grant_types": [
-		"authorization_code"
-	],
-	"logo_uri": "https://srv.me/img/cool.jpg",
-	"scope": "launch/patient user/*.* patient/*.read openid profile"
+// authorize, then search for prescriptions
+smart.authorize() { patient, error in
+    if nil != error || nil == patient {
+        // report error
+    }
+    else {
+        MedicationPrescription.search(["patient": patient!.id])
+        .perform(smart.server) { bundle, error in
+            if nil != error {
+                // report error
+            }
+            else {
+                var meds = [MedicationPrescription]()
+                if let entries = bundle?.entry {
+                    for entry in entries {
+                        if let med = entry.resource as? MedicationPrescription {
+                            meds.append(med)
+                        }
+                    }
+                }
+                
+                // now `meds` holds all known patient prescriptions
+            }
+        }
+    }
 }
 ```
 
-You can POST this manifest to [https://authorize.smarthealthit.org/register]() for registration with our sandbox server, or any SMART on FHIR server for that matter.
 
+License
+-------
+
+This work is [Apache 2](LICENSE.txt) licensed.
