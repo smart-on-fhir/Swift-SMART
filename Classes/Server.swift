@@ -24,7 +24,11 @@ public class Server: FHIRServer
 	var auth: Auth?
 	
 	/// Settings to be applied to the Auth instance.
-	var authSettings: OAuth2JSON?
+	var authSettings: OAuth2JSON? {
+		didSet {
+			didSetAuthSettings()
+		}
+	}
 	
 	/// The operations the server supports, as specified in the conformance statement.
 	var operations: [String: OperationDefinition]?
@@ -37,10 +41,22 @@ public class Server: FHIRServer
 	public init(baseURL: NSURL, auth: OAuth2JSON? = nil) {
 		self.baseURL = baseURL
 		self.authSettings = auth
+		didSetAuthSettings()
 	}
 	
 	public convenience init(base: String, auth: OAuth2JSON? = nil) {
 		self.init(baseURL: NSURL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
+	}
+	
+	func didSetAuthSettings() {
+		if let ath = authSettings?["authorize_uri"] as? String {
+			if let tok = authSettings?["token_uri"] as? String {
+				auth = Auth(type: .CodeGrant, server: self, settings: authSettings)
+			}
+			else {
+				auth = Auth(type: .ImplicitGrant, server: self, settings: authSettings)
+			}
+		}
 	}
 	
 	
