@@ -140,6 +140,14 @@ class Auth
 		}
 	}
 	
+	/**
+	    Reset auth, which includes setting authContext to nil and purging any known access and refresh tokens.
+	 */
+	func reset() {
+		authContext = nil
+		oauth?.forgetTokens()
+	}
+	
 	
 	// MARK: - OAuth
 	
@@ -185,14 +193,8 @@ class Auth
 			}
 			oa.scope = scope
 			
-			// start authorization
-			authContext = nil
-			if properties.embedded {
-				authorizeEmbedded(oa, granularity: properties.granularity)
-			}
-			else {
-				openURLInBrowser(oa.authorizeURL())
-			}
+			// start authorization (method implemented in iOS and OS X extensions)
+			authorizeWith(oa, properties: properties)
 		}
 			
 		// open server?
@@ -215,7 +217,7 @@ class Auth
 	}
 	
 	internal func authDidSucceed(parameters: OAuth2JSON) {
-		if nil != authProperties && authProperties!.granularity == .PatientSelectNative {		// Swift 1.1 compiler crashes with authProperties?.granularity
+		if let props = authProperties where props.granularity == .PatientSelectNative {
 			logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
 			showPatientList(parameters)
 		}
@@ -227,7 +229,7 @@ class Auth
 	
 	internal func authDidFail(error: NSError?) {
 		logIfDebug("Failed to authorize with error: \(error)")
-		self.processAuthCallback(parameters: nil, error: error)
+		processAuthCallback(parameters: nil, error: error)
 	}
 	
 	func abort() {

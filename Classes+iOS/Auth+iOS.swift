@@ -11,31 +11,17 @@ import UIKit
 
 extension Auth
 {
-	/** Open a URL in the OS' browser. */
-	func openURLInBrowser(url: NSURL) -> Bool {
-		authContext = UIApplication.sharedApplication().keyWindow?.rootViewController
-		return UIApplication.sharedApplication().openURL(url)
-	}
-	
-	/**
-		Shows a modal web view on the key window's root view controller to let the user log in and authorize the app.
-		Can be automatically dismissed on success.
+	/** Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
 	 */
-	func authorizeEmbedded(oauth: OAuth2, granularity: SMARTAuthGranularity) {
-		if let root = UIApplication.sharedApplication().keyWindow?.rootViewController {
-			authContext = root
-			oauth.authorizeEmbeddedFrom(root, params: nil)
-			if granularity != .PatientSelectNative {
-				oauth.afterAuthorizeOrFailure = { wasFailure, error in
-					self.dismissEmbedded()
-				}
-			}
-		}
-		else {
-			authDidFail(genOAuth2Error("No root view controller, cannot present authorize screen"))
-		}
+	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
+		authContext = UIApplication.sharedApplication().keyWindow?.rootViewController
+		
+		oauth.authConfig.authorizeContext = authContext
+		oauth.authConfig.authorizeEmbedded = properties.embedded
+		oauth.authorize(params: nil, autoDismiss: properties.granularity != .PatientSelectNative)
 	}
 	
+	/** Show the native patient list on the current authContext or the window's root view controller. */
 	func showPatientList(parameters: OAuth2JSON) {
 		if let root = authContext as? UIViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController {
 			
@@ -65,12 +51,6 @@ extension Auth
 		}
 		else {
 			authDidFail(genOAuth2Error("No root view controller in authorization context, cannot present patient list"))
-		}
-	}
-	
-	func dismissEmbedded() {
-		if let root = authContext as? UIViewController {
-			root.dismissViewControllerAnimated(true, completion: nil)
 		}
 	}
 }

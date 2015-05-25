@@ -11,14 +11,11 @@ import Cocoa
 
 extension Auth
 {
-	/** Open a URL in the OS' browser. */
-	func openURLInBrowser(url: NSURL) -> Bool {
-		return NSWorkspace.sharedWorkspace().openURL(url)
-	}
-	
-	/** Lets the user login from within the app, dismisses on success. */
-	func authorizeEmbedded(oauth: OAuth2, granularity: SMARTAuthGranularity) {
-		fatalError("Not yet implemented")
+	/** Show the authorization view controller corresponding to the auth properties. */
+	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
+		oauth.authConfig.authorizeContext = authContext
+		oauth.authConfig.authorizeEmbedded = properties.embedded
+		oauth.authorize(params: nil, autoDismiss: properties.granularity != .PatientSelectNative)
 	}
 	
 	func showPatientList(parameters: OAuth2JSON) {

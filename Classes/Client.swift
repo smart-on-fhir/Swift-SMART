@@ -55,18 +55,18 @@ public class Client
 	}
 	
 	/**
-		Use this initializer with the appropriate server/auth settings. You can use:
+	    Use this initializer with the appropriate server/auth settings. You can use:
 	
-		- client_id
-		- redirect: after-auth redirect URL (string). Do not forget to register as your app's URL handler
-		- redirect_uris: array of redirect URL (strings); will be created if you supply "redirect"
-		- scope: authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
-		- authorize_uri and token_uri: OPTIONAL, if present will NOT use the authorization endpoints defined in the
-		  server's metadata. Know what you do when you set these.
-		
-		:param baseURL: The server's base URL
-		:param settings: Client settings, mostly concerning authorization
-		:param title: A title to display in the authorization window; can also be supplied in the settings dictionary
+	    - client_id
+	    - redirect: after-auth redirect URL (string). Do not forget to register as your app's URL handler
+	    - redirect_uris: array of redirect URL (strings); will be created if you supply "redirect"
+	    - scope: authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
+	    - authorize_uri and token_uri: OPTIONAL, if present will NOT use the authorization endpoints defined in the server's metadata. Know
+	        what you do when you set these.
+	
+	    :param baseURL: The server's base URL
+	    :param settings: Client settings, mostly concerning authorization
+	    :param title: A title to display in the authorization window; can also be supplied in the settings dictionary
 	 */
 	public convenience init(baseURL: String, settings: OAuth2JSON, title: String = "SMART") {
 		var sett = settings
@@ -114,6 +114,11 @@ public class Client
 	/** Stops any request currently in progress. */
 	public func abort() {
 		server.abortSession()
+	}
+	
+	/** Resets state and authorization data. */
+	public func reset() {
+		server.reset()
 	}
 	
 	

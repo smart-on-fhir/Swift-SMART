@@ -179,6 +179,14 @@ public class Server: FHIRServer
 		}
 	}
 	
+	/**
+	    Resets authorization state - including deletion of any known access and refresh tokens.
+	 */
+	func reset() {
+		abortSession()
+		auth?.reset()
+	}
+	
 	
 	// MARK: - Requests
 	
