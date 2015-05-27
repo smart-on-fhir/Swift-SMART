@@ -533,7 +533,7 @@
 		EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessResponse.swift; sourceTree = "<group>"; };
 		EE56A62C1ABB6D7700FA99EB /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		EE7907B01B1566A100B1B279 /* SMART.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SMART.podspec; sourceTree = "<group>"; };
+		EE7907B01B1566A100B1B279 /* SMART.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = SMART.podspec; path = ../SMART.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EE8EE6BD1B1290AA005B90C5 /* OAuth2+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+iOS.swift"; sourceTree = "<group>"; };
 		EE8EE6BE1B1290AA005B90C5 /* OAuth2WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2WebViewController.swift; sourceTree = "<group>"; };
 		EE8EE6C21B1290B7005B90C5 /* OAuth2+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+OSX.swift"; sourceTree = "<group>"; };
@@ -622,6 +622,7 @@
 		EE43B1AB19546D880017679A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EE7907B01B1566A100B1B279 /* SMART.podspec */,
 				EE1391C01AC582D9002C7B18 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -661,7 +662,6 @@
 			isa = PBXGroup;
 			children = (
 				EE74D04B195C112300393DCA /* README.md */,
-				EE7907B01B1566A100B1B279 /* SMART.podspec */,
 				EE43B1AA19546D880017679A /* Classes */,
 				EE02F8101ACF30B000179969 /* Classes+iOS */,
 				EE02F8161ACF30EA00179969 /* Classes+OSX */,

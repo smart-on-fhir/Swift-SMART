@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-	Representing the FHIR resource server a client connects to.
+    Representing the FHIR resource server a client connects to.
  */
 public class Server: FHIRServer
 {
@@ -102,9 +102,9 @@ public class Server: FHIRServer
 	}
 	
 	/**
-		Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
+	    Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
 	
-		Is public to enable unit testing.
+	    Is public to enable unit testing.
 	 */
 	public final func getConformance(callback: (error: NSError?) -> ()) {
 		if nil != conformance {
@@ -128,7 +128,11 @@ public class Server: FHIRServer
 	// MARK: - Authorization
 	
 	/**
-		Ensures that the server is ready to perform requests before calling the callback.
+	    Ensures that the server is ready to perform requests before calling the callback.
+	
+	    Being "ready" in this case entails holding on to an `Auth` instance. Such an instance is automatically created
+	    if either the client init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri")
+	    or after the conformance statement has been fetched.
 	 */
 	public func ready(callback: (error: NSError?) -> ()) {
 		if nil != auth {
@@ -148,7 +152,7 @@ public class Server: FHIRServer
 	}
 	
 	/**
-		Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
+	    Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
 	 */
 	public func authorize(authProperties: SMARTAuthProperties, callback: (patient: Patient?, error: NSError?) -> ()) {
 		self.ready { error in
@@ -160,15 +164,13 @@ public class Server: FHIRServer
 					if nil != error {
 						callback(patient: nil, error: error)
 					}
+					else if let patient = parameters?["patient_resource"] as? Patient {		// native patient list auth flow will deliver a Patient instance
+						callback(patient: patient, error: nil)
+					}
 					else if let patientId = parameters?["patient"] as? String {
-						if let patient = parameters?["patient_resource"] as? Patient {
-							callback(patient: patient, error: nil)
-						}
-						else {
-							Patient.read(patientId, server: self) { resource, error in
-								logIfDebug("Did read patient \(resource) with error \(error)")
-								callback(patient: resource as? Patient, error: error)
-							}
+						Patient.read(patientId, server: self) { resource, error in
+							logIfDebug("Did read patient \(resource) with error \(error)")
+							callback(patient: resource as? Patient, error: error)
 						}
 					}
 					else {
@@ -191,22 +193,22 @@ public class Server: FHIRServer
 	// MARK: - Requests
 	
 	/**
-		Request a JSON resource at the given path from the server using the server's `auth` instance.
+	    Request a JSON resource at the given path from the server using the server's `auth` instance.
 	
-		:param: path The path relative to the server's base URL to request
-		:param: callback The callback to execute once the request finishes
+	    :param: path The path relative to the server's base URL to request
+	    :param: callback The callback to execute once the request finishes
 	 */
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		getJSON(path, auth: auth, callback: callback)
 	}
 	
 	/**
-		Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
-		provided.
+	    Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
+	    provided.
 	
-		:param: path The path relative to the server's base URL to request
-		:param: auth The Auth instance to use for signing the request
-		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
+	    :param: path The path relative to the server's base URL to request
+	    :param: auth The Auth instance to use for signing the request
+	    :param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
 	func getJSON(path: String, auth: Auth?, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
@@ -227,22 +229,22 @@ public class Server: FHIRServer
 	}
 	
 	/**
-		Performs a PUT request against the given path by serializing the body data to JSON and using the receiver's
-		`auth` instance to authorize the request
+	    Performs a PUT request against the given path by serializing the body data to JSON and using the receiver's
+	    `auth` instance to authorize the request
 	
-		:param: path The path relative to the server's base URL to request
-		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
+	    :param: path The path relative to the server's base URL to request
+	    :param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	 */
 	public func putJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		putJSON(path, auth: auth, body: body, callback: callback)
 	}
 	
 	/**
-		Performs a PUT request against the given path by serializing the body data to JSON.
-		
-		:param: path The path relative to the server's base URL to request
-		:param: auth The Auth instance to use for signing the request
-		:param: callback The callback to execute once the request finishes, always dispatched to the main queue.
+	    Performs a PUT request against the given path by serializing the body data to JSON.
+	
+	    :param: path The path relative to the server's base URL to request
+	    :param: auth The Auth instance to use for signing the request
+	    :param: callback The callback to execute once the request finishes, always dispatched to the main queue.
 	*/
 	func putJSON(path: String, auth: Auth?, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.PUT, json: body)
@@ -267,29 +269,16 @@ public class Server: FHIRServer
 	}
 	
 	/**
-		Method to execute a given request with a given request/response handler.
+	    Method to execute a given request with a given request/response handler.
 	
-		:param: request The URL request to perform
-		:param: handler The RequestHandler that prepares the request and processes the response
-		:param: callback The callback to execute; will NOT be performed on the main thread!
+	    :param: request The URL request to perform
+	    :param: handler The RequestHandler that prepares the request and processes the response
+	    :param: callback The callback to execute; will NOT be performed on the main thread!
 	 */
 	func performRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		var error: NSErrorPointer = nil
 		if handler.prepareRequest(request, error: error) {
-			let task = defaultSession().dataTaskWithRequest(request) { data, response, error in
-				let res = handler.response(response: response, data: data)
-				if nil != error {
-					res.error = error
-				}
-				
-				logIfDebug("Server responded with status \(res.status)")
-				//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
-				//logIfDebug("\(str)")
-				callback(response: res)
-			}
-			
-			logIfDebug("Performing request against \(request.URL)")
-			task.resume()
+			self.performPreparedRequest(request, handler: handler, callback: callback)
 		}
 		else {
 			let err = error.memory?.localizedDescription ?? "if only I knew why"
@@ -312,10 +301,10 @@ public class Server: FHIRServer
 	}
 	
 	/**
-		Retrieve the operation definition with the given name, either from cache or load the resource.
+	    Retrieve the operation definition with the given name, either from cache or load the resource.
 	
-		Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must
-		be used after the conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
+	    Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must
+	    be used after the conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
 	 */
 	public func operation(name: String, callback: (OperationDefinition? -> Void)) {
 		if let op = operations?[name] {
@@ -340,12 +329,12 @@ public class Server: FHIRServer
 	}
 	
 	/**
-		Performs the given Operation.
+	    Performs the given Operation.
 	
-		`Resource` has extensions to facilitate working with operations, be sure to take a look.
+	    `Resource` has extensions to facilitate working with operations, be sure to take a look.
 	
-		:param: operation The operation instance to perform
-		:param: callback The callback to call when the request ends (success or failure)
+	    :param: operation The operation instance to perform
+	    :param: callback The callback to call when the request ends (success or failure)
 	 */
 	public func perform(operation: FHIROperation, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		self.operation(operation.name) { definition in
@@ -366,6 +355,32 @@ public class Server: FHIRServer
 	
 	
 	// MARK: - Session Management
+	
+	/**
+	    Method to execute an already prepared request and use the given request/response handler.
+	
+	    This implementation uses NSURLSession with a default configuration to execute data tasks with the requests.
+	
+	    :param: request The URL request to perform
+	    :param: handler The RequestHandler that prepares the request and processes the response
+	    :param: callback The callback to execute; will NOT be performed on the main thread!
+	 */
+	func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+		let task = defaultSession().dataTaskWithRequest(request) { data, response, error in
+			let res = handler.response(response: response, data: data)
+			if nil != error {
+				res.error = error
+			}
+			
+			logIfDebug("Server responded with status \(res.status)")
+			//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+			//logIfDebug("\(str)")
+			callback(response: res)
+		}
+		
+		logIfDebug("Performing request against \(request.URL)")
+		task.resume()
+	}
 	
 	func defaultSession() -> NSURLSession {
 		if nil == session {
