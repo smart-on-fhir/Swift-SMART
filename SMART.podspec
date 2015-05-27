@@ -22,7 +22,9 @@ Pod::Spec.new do |s|
   s.documentation_url = "http://docs.smarthealthit.org/Swift-SMART/"
   s.license      = "Apache 2"
   s.author       = { "Pascal Pfiffner" => "phase.of.matter@gmail.com" }
-  s.source       = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "FHIR-{spec.version}", :submodules => true }
+
+  s.source            = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "FHIR-#{s.version}", :submodules => true }
+  s.prepare_command   = "git submodule update --init --recursive"  # The :submodules command above is not recursive :P
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
