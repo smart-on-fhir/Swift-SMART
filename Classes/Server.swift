@@ -37,6 +37,15 @@ public class Server: FHIRServer
 	/// The active URL session.
 	var session: NSURLSession?
 	
+	/// An optional NSURLSessionDelegate.
+	public var sessionDelegate: NSURLSessionDelegate? {
+		didSet {
+			if let oauth = auth?.oauth {
+				oauth.sessionDelegate = sessionDelegate
+			}
+		}
+	}
+	
 	
 	public init(baseURL: NSURL, auth: OAuth2JSON? = nil) {
 		self.baseURL = baseURL
@@ -391,7 +400,12 @@ public class Server: FHIRServer
 	
 	func defaultSession() -> NSURLSession {
 		if nil == session {
-			session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+			if let delegate = sessionDelegate {
+				session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: delegate, delegateQueue: nil)
+			}
+			else {
+				session = NSURLSession.sharedSession()
+			}
 		}
 		return session!
 	}
