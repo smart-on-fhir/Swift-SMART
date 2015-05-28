@@ -11,6 +11,15 @@ import Foundation
 
 /**
     Representing the FHIR resource server a client connects to.
+    
+    This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
+    settings dictionary provided upon initalization of the Server instance OR from the server's Conformance statement.
+
+    This implementation automatically downloads and parses the FHIR Conformance statement, which is used during various tasks, such as
+    instantiating the `Auth` instance or validating/executing operations.
+
+    This implementation manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the shared
+    session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
  */
 public class Server: FHIRServer
 {
@@ -209,97 +218,67 @@ public class Server: FHIRServer
 	// MARK: - Requests
 	
 	/**
-	    Request a JSON resource at the given path from the server using the server's `auth` instance.
-	
-	    :param: path The path relative to the server's base URL to request
-	    :param: callback The callback to execute once the request finishes
-	 */
-	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		getJSON(path, auth: auth, callback: callback)
-	}
-	
-	/**
-	    Requests JSON data from `path`, which is relative to the server's `baseURL`, using a signed request if `auth` is
-	    provided.
-	
-	    :param: path The path relative to the server's base URL to request
-	    :param: auth The Auth instance to use for signing the request
-	    :param: callback The callback to execute once the request finishes, always dispatched to the main queue.
-	 */
-	func getJSON(path: String, auth: Auth?, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		let handler = FHIRServerJSONRequestHandler(.GET)
-		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			performRequest(request, handler: handler) { response in
-				callOnMainThread() {
-					callback(response: response as! FHIRServerJSONResponse)
-				}
-			}
-		}
-		else {
-			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
-			callOnMainThread {
-				callback(response: res as! FHIRServerJSONResponse)
-			}
-		}
-	}
-	
-	/**
-	    Performs a PUT request against the given path by serializing the body data to JSON and using the receiver's
-	    `auth` instance to authorize the request
-	
-	    :param: path The path relative to the server's base URL to request
-	    :param: callback The callback to execute once the request finishes, always dispatched to the main queue.
-	 */
-	public func putJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		putJSON(path, auth: auth, body: body, callback: callback)
-	}
-	
-	/**
-	    Performs a PUT request against the given path by serializing the body data to JSON.
-	
-	    :param: path The path relative to the server's base URL to request
-	    :param: auth The Auth instance to use for signing the request
-	    :param: callback The callback to execute once the request finishes, always dispatched to the main queue.
-	*/
-	func putJSON(path: String, auth: Auth?, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		let handler = FHIRServerJSONRequestHandler(.PUT, json: body)
-		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			performRequest(request, handler: handler) { response in
-				callOnMainThread() {
-					callback(response: response as! FHIRServerJSONResponse)
-				}
-			}
-		}
-		else {
-			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
-			callOnMainThread {
-				callback(response: res as! FHIRServerJSONResponse)
-			}
-		}
-	}
-	
-	public func postJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		callback(response: FHIRServerJSONResponse(notSentBecause: genSMARTError("POST is not yet implemented")))
-	}
-	
-	/**
 	    Method to execute a given request with a given request/response handler.
 	
 	    :param: request The URL request to perform
 	    :param: handler The RequestHandler that prepares the request and processes the response
-	    :param: callback The callback to execute; will NOT be performed on the main thread!
+	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	 */
-	func performRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		var error: NSErrorPointer = nil
-		if handler.prepareRequest(request, error: error) {
-			self.performPreparedRequest(request, handler: handler, callback: callback)
+		if let url = NSURL(string: path, relativeToURL: baseURL) {
+			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+			if handler.prepareRequest(request, error: error) {
+				self.performPreparedRequest(request, handler: handler, callback: callback)
+			}
+			else {
+				let err = error.memory?.localizedDescription ?? "if only I knew why"
+				callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
+			}
 		}
 		else {
-			let err = error.memory?.localizedDescription ?? "if only I knew why"
-			callback(response: handler.notSent("Failed to prepare request against \(request.URL): \(err)"))
+			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
+			callback(response: res)
 		}
+	}
+	
+	/**
+	    Method to execute an already prepared request and use the given request/response handler.
+	
+	    This implementation uses the instance's NSURLSession to execute data tasks with the requests. Subclasses can
+	    override to supply different NSURLSessions based on the request, if so desired.
+	
+	    :param: request The URL request to perform
+	    :param: handler The RequestHandler that prepares the request and processes the response
+	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
+	 */
+	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+		performPreparedRequest(request, withSession: URLSession(), handler: handler, callback: callback)
+	}
+	
+	/**
+	    Method to execute an already prepared request with a given session and use the given request/response handler.
+	
+	    :param: request The URL request to perform
+	    :param: withSession The NSURLSession instance to use
+	    :param: handler The RequestHandler that prepares the request and processes the response
+	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
+	 */
+	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+		let task = session.dataTaskWithRequest(request) { data, response, error in
+			let res = handler.response(response: response, data: data)
+			if nil != error {
+				res.error = error
+			}
+			
+			logIfDebug("Server responded with status \(res.status)")
+			//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
+			//logIfDebug("\(str)")
+			callback(response: res)
+		}
+		
+		logIfDebug("Performing request against \(request.URL)")
+		task.resume()
 	}
 	
 	
@@ -352,7 +331,7 @@ public class Server: FHIRServer
 	    :param: operation The operation instance to perform
 	    :param: callback The callback to call when the request ends (success or failure)
 	 */
-	public func perform(operation: FHIROperation, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func performOperation(operation: FHIROperation, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		self.operation(operation.name) { definition in
 			if let def = definition {
 				var error: NSError?
@@ -372,42 +351,19 @@ public class Server: FHIRServer
 	
 	// MARK: - Session Management
 	
-	/**
-	    Method to execute an already prepared request and use the given request/response handler.
-	
-	    This implementation uses NSURLSession with a default configuration to execute data tasks with the requests.
-	
-	    :param: request The URL request to perform
-	    :param: handler The RequestHandler that prepares the request and processes the response
-	    :param: callback The callback to execute; will NOT be performed on the main thread!
-	 */
-	func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
-		let task = defaultSession().dataTaskWithRequest(request) { data, response, error in
-			let res = handler.response(response: response, data: data)
-			if nil != error {
-				res.error = error
-			}
-			
-			logIfDebug("Server responded with status \(res.status)")
-			//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
-			//logIfDebug("\(str)")
-			callback(response: res)
-		}
-		
-		logIfDebug("Performing request against \(request.URL)")
-		task.resume()
-	}
-	
-	func defaultSession() -> NSURLSession {
+	final public func URLSession() -> NSURLSession {
 		if nil == session {
-			if let delegate = sessionDelegate {
-				session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: delegate, delegateQueue: nil)
-			}
-			else {
-				session = NSURLSession.sharedSession()
-			}
+			session = createDefaultSession()
 		}
 		return session!
+	}
+	
+	/** Create the server's default session. Override in subclasses to customize NSURLSession behavior. */
+	public func createDefaultSession() -> NSURLSession {
+		if let delegate = sessionDelegate {
+			return NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: delegate, delegateQueue: nil)
+		}
+		return NSURLSession.sharedSession()
 	}
 	
 	func abortSession() {

@@ -133,7 +133,10 @@ public class Client
 		:param: callback The callback to execute once the request finishes
 	 */
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		server.getJSON(path, callback: callback)
+		let handler = FHIRServerJSONRequestHandler(.GET)
+		server.performRequestAgainst(path, handler: handler) { (response) -> Void in
+			callback(response: response as! FHIRServerJSONResponse)
+		}
 	}
 }
 
