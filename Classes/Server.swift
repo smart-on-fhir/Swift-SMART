@@ -225,14 +225,14 @@ public class Server: FHIRServer
 	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	 */
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
-		var error: NSErrorPointer = nil
+		var error: NSError?
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			if handler.prepareRequest(request, error: error) {
+			if handler.prepareRequest(request, error: &error) {
 				self.performPreparedRequest(request, handler: handler, callback: callback)
 			}
 			else {
-				let err = error.memory?.localizedDescription ?? "if only I knew why"
+				let err = error?.localizedDescription ?? "if only I knew why"
 				callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
 			}
 		}

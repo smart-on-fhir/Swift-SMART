@@ -49,7 +49,7 @@ public class Client
 	
 	
 	/** Designated initializer. */
-	init(server: Server) {
+	public init(server: Server) {
 		self.server = server
 		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
 	}
