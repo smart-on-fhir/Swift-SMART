@@ -63,6 +63,8 @@ public class Client
 	    - scope: authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
 	    - authorize_uri and token_uri: OPTIONAL, if present will NOT use the authorization endpoints defined in the server's metadata. Know
 	        what you do when you set these.
+	    - authorize_type: OPTIONAL, inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
+	        OAuth2 flow.
 	
 	    :param baseURL: The server's base URL
 	    :param settings: Client settings, mostly concerning authorization

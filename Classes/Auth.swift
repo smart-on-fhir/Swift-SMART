@@ -9,29 +9,30 @@
 import Foundation
 
 
-enum AuthMethod {
-	case None
-	case ImplicitGrant
-	case CodeGrant
+enum AuthType: String {
+	case None = "none"
+	case ImplicitGrant = "implicit"
+	case CodeGrant = "authorization_code"
+	case ClientCredentials = "client_credentials"
 }
 
 
 /**
-	Describes the OAuth2 authentication method to be used.
+    Describes the OAuth2 authentication method to be used.
  */
 class Auth
 {
-	/// The authentication method to use.
-	let type: AuthMethod
+	/// The authentication type to use.
+	let type: AuthType
 	
 	/**
-		Settings to be used to initialize the OAuth2 subclass. Supported keys:
+	    Settings to be used to initialize the OAuth2 subclass. Supported keys:
 	
-		- client_id
-		- registration_uri
-		- authorize_uri
-		- token_uri
-		- title
+	    - client_id
+	    - registration_uri
+	    - authorize_uri
+	    - token_uri
+	    - title
 	 */
 	var settings: OAuth2JSON?
 	
@@ -52,7 +53,7 @@ class Auth
 	
 	
 	/** Designated initializer. */
-	init(type: AuthMethod, server: Server, settings: OAuth2JSON?) {
+	init(type: AuthType, server: Server, settings: OAuth2JSON?) {
 		self.type = type
 		self.server = server
 		self.settings = settings
@@ -113,9 +114,9 @@ class Auth
 	
 	
 	/**
-		Finalize instance setup based on type and the a settings dictionary.
+	    Finalize instance setup based on type and the a settings dictionary.
 	
-		:param: settings A dictionary with auth settings, passed on to OAuth2*()
+	    :param: settings A dictionary with auth settings, passed on to OAuth2*()
 	 */
 	func configureWith(settings: OAuth2JSON) {
 		switch type {
@@ -123,7 +124,9 @@ class Auth
 				oauth = OAuth2CodeGrant(settings: settings)
 			case .ImplicitGrant:
 				oauth = OAuth2ImplicitGrant(settings: settings)
-			case .None:
+			case .ClientCredentials:
+				oauth = OAuth2ClientCredentials(settings: settings)
+			default:
 				oauth = nil
 		}
 		
@@ -152,15 +155,15 @@ class Auth
 	// MARK: - OAuth
 	
 	/**
-		Starts the authorization flow, either by opening an embedded web view or switching to the browser.
+	    Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	
-		Automatically adds the correct "launch*" scope, according to the authorization property granularity.
+	    Automatically adds the correct "launch*" scope, according to the authorization property granularity.
 	
-		If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
-		call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+	    If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
+	    call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
 	
-		If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the
-		returned dictionary. On native patient selection adds a "patient_resource" key with the patient resource.
+	    If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the
+	    returned dictionary. On native patient selection adds a "patient_resource" key with the patient resource.
 	 */
 	func authorize(properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: NSError?) -> Void) {
 		if nil != authCallback {

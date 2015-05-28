@@ -290,6 +290,8 @@
 		EE56A6281ABB6A6F00FA99EB /* ProcessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */; };
 		EE56A6291ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
 		EE56A62A1ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
+		EE5F4F601B1651BD00DB38B3 /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */; };
+		EE5F4F611B1651BD00DB38B3 /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */; };
 		EE8EE6BF1B1290AA005B90C5 /* OAuth2+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BD1B1290AA005B90C5 /* OAuth2+iOS.swift */; };
 		EE8EE6C01B1290AA005B90C5 /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BE1B1290AA005B90C5 /* OAuth2WebViewController.swift */; };
 		EE8EE6C31B1290B7005B90C5 /* OAuth2+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6C21B1290B7005B90C5 /* OAuth2+OSX.swift */; };
@@ -532,6 +534,7 @@
 		EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessRequest.swift; sourceTree = "<group>"; };
 		EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessResponse.swift; sourceTree = "<group>"; };
 		EE56A62C1ABB6D7700FA99EB /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
+		EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientCredentials.swift; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE7907B01B1566A100B1B279 /* SMART.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = SMART.podspec; path = ../SMART.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EE8EE6BD1B1290AA005B90C5 /* OAuth2+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+iOS.swift"; sourceTree = "<group>"; };
@@ -844,6 +847,7 @@
 				EE8EE6C41B1290F5005B90C5 /* OAuth2CodeGrantBasicAuth.swift */,
 				EE8EE6C51B1290F5005B90C5 /* OAuth2CodeGrantFacebook.swift */,
 				EE56A6071ABB0B9E00FA99EB /* OAuth2ImplicitGrant.swift */,
+				EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */,
 				EE56A6081ABB0B9E00FA99EB /* OAuth2Request.swift */,
 				EE56A6011ABB0B9E00FA99EB /* extensions.swift */,
 			);
@@ -1254,6 +1258,7 @@
 				EE56A5A21ABB0B7A00FA99EB /* OrderResponse.swift in Sources */,
 				EE8EE6D71B1294AA005B90C5 /* KeychainService.swift in Sources */,
 				EE56A5AA1ABB0B7A00FA99EB /* Patient.swift in Sources */,
+				EE5F4F601B1651BD00DB38B3 /* OAuth2ClientCredentials.swift in Sources */,
 				EE56A5521ABB0B7900FA99EB /* Extension.swift in Sources */,
 				EE56A53E1ABB0B7900FA99EB /* DomainResource.swift in Sources */,
 				EE56A6131ABB0B9E00FA99EB /* OAuth2CodeGrant.swift in Sources */,
@@ -1434,6 +1439,7 @@
 				EE9B32071ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */,
 				EE56A6241ABB6A6F00FA99EB /* Claim.swift in Sources */,
 				EE56A5311ABB0B7900FA99EB /* DeviceUseRequest.swift in Sources */,
+				EE5F4F611B1651BD00DB38B3 /* OAuth2ClientCredentials.swift in Sources */,
 				EE9B320A1ACAE6D300980AA9 /* FHIRServerResponse.swift in Sources */,
 				EE02CB5F1ACC8955006ED5D9 /* String+Localization.swift in Sources */,
 				EE56A5EF1ABB0B7A00FA99EB /* Substance.swift in Sources */,

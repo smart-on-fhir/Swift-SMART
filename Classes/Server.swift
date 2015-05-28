@@ -49,14 +49,21 @@ public class Server: FHIRServer
 	}
 	
 	func didSetAuthSettings() {
-		if let ath = authSettings?["authorize_uri"] as? String {
-			if let tok = authSettings?["token_uri"] as? String {
-				auth = Auth(type: .CodeGrant, server: self, settings: authSettings)
-			}
-			else {
-				auth = Auth(type: .ImplicitGrant, server: self, settings: authSettings)
+		var authType = AuthType.None
+		if let typ = authSettings?["authorize_type"] as? String {
+			authType = AuthType(rawValue: typ) ?? .None
+		}
+		if .None == authType {
+			if let ath = authSettings?["authorize_uri"] as? String {
+				if let tok = authSettings?["token_uri"] as? String {
+					authType = .CodeGrant
+				}
+				else {
+					authType = .ImplicitGrant
+				}
 			}
 		}
+		auth = Auth(type: authType, server: self, settings: authSettings)
 	}
 	
 	
