@@ -71,11 +71,11 @@ class Auth
 		var hasTokenURI = false
 		
 		if let services = security.service {
+			let unknown = "unknown"
 			for service in services {
-				logIfDebug("Server supports REST security via \(service.text ?? nil)")
+				logIfDebug("Server supports REST security via “\(service.text ?? unknown)”")
 				if let codings = service.coding {
 					for coding in codings {
-						logIfDebug("-- \(coding.code) (\(coding.system))")
 						if "OAuth2" == coding.code {
 							// TODO: support multiple Auth methods per server?
 						}

@@ -67,11 +67,11 @@ public class Server: FHIRServer
 	}
 	
 	func didSetAuthSettings() {
-		var authType = AuthType.None
+		var authType: AuthType? = nil
 		if let typ = authSettings?["authorize_type"] as? String {
-			authType = AuthType(rawValue: typ) ?? .None
+			authType = AuthType(rawValue: typ)
 		}
-		if .None == authType {
+		if nil == authType || .None == authType! {
 			if let ath = authSettings?["authorize_uri"] as? String {
 				if let tok = authSettings?["token_uri"] as? String {
 					authType = .CodeGrant
@@ -81,7 +81,10 @@ public class Server: FHIRServer
 				}
 			}
 		}
-		auth = Auth(type: authType, server: self, settings: authSettings)
+		if let type = authType {
+			auth = Auth(type: type, server: self, settings: authSettings)
+			logIfDebug("Initialized server auth type “\(type.rawValue)”")
+		}
 	}
 	
 	
@@ -111,11 +114,13 @@ public class Server: FHIRServer
 				if let rest = best {
 					if let security = rest.security {
 						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
+						logIfDebug("Initialized server auth type “\(auth!.type.rawValue)”")
 					}
 					
 					// if we have not yet initialized an Auth object we'll use one for "no auth"
 					if nil == auth {
 						auth = Auth(type: .None, server: self, settings: authSettings)
+						logIfDebug("Server seems to be open, proceeding with none-type auth")
 					}
 					
 					if let operations = rest.operation {
@@ -277,7 +282,7 @@ public class Server: FHIRServer
 			callback(response: res)
 		}
 		
-		logIfDebug("Performing request against \(request.URL)")
+		logIfDebug("Performing \(handler.type.rawValue) request against \(request.URL!)")
 		task.resume()
 	}
 	
