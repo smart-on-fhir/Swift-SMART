@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "0.5.0"
+  s.version      = "0.5.0.1"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
@@ -19,14 +19,17 @@ Pod::Spec.new do |s|
                    Xcode (ALT + click on symbols) and on [smart-on-fhir.github.io/Swift-SMART/](http://smart-on-fhir.github.io/Swift-SMART/).
                    DESC
   s.homepage     = "https://github.com/smart-on-fhir/Swift-SMART"
+  s.documentation_url = "http://docs.smarthealthit.org/Swift-SMART/"
   s.license      = "Apache 2"
   s.author       = { "Pascal Pfiffner" => "phase.of.matter@gmail.com" }
-  s.source       = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "FHIR-0.5.0", :submodules => true }
+
+  s.source            = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "FHIR-#{s.version}", :submodules => true }
+  s.prepare_command   = "git submodule update --init --recursive"  # The :submodules command above is not recursive :P
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
   s.requires_arc          = true
-  s.source_files          = "Classes/*", "Swift-FHIR/Classes/*", "Swift-FHIR/Models/*", "OAuth2/OAuth2/*"
-  s.ios.source_files      = "Classes+iOS/*", "OAuth2/OAuth2-iOS/*"
-  s.osx.source_files      = "Classes+OSX/*"
+  s.source_files          = "Classes/*", "Swift-FHIR/Classes/*", "Swift-FHIR/Models/*", "OAuth2/SwiftKeychain/SwiftKeychain/Keychain/*.swift", "OAuth2/OAuth2/*.swift"
+  s.ios.source_files      = "Classes+iOS/*", "OAuth2/OAuth2+iOS/*"
+  s.osx.source_files      = "Classes+OSX/*", "OAuth2/OAuth2+OSX/*"
 end

@@ -49,24 +49,26 @@ public class Client
 	
 	
 	/** Designated initializer. */
-	init(server: Server) {
+	public init(server: Server) {
 		self.server = server
 		logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
 	}
 	
 	/**
-		Use this initializer with the appropriate server/auth settings. You can use:
+	    Use this initializer with the appropriate server/auth settings. You can use:
 	
-		- client_id
-		- redirect: after-auth redirect URL (string). Do not forget to register as your app's URL handler
-		- redirect_uris: array of redirect URL (strings); will be created if you supply "redirect"
-		- scope: authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
-		- authorize_uri and token_uri: OPTIONAL, if present will NOT use the authorization endpoints defined in the
-		  server's metadata. Know what you do when you set these.
-		
-		:param baseURL: The server's base URL
-		:param settings: Client settings, mostly concerning authorization
-		:param title: A title to display in the authorization window; can also be supplied in the settings dictionary
+	    - client_id
+	    - redirect: after-auth redirect URL (string). Do not forget to register as your app's URL handler
+	    - redirect_uris: array of redirect URL (strings); will be created if you supply "redirect"
+	    - scope: authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
+	    - authorize_uri and token_uri: OPTIONAL, if present will NOT use the authorization endpoints defined in the server's metadata. Know
+	        what you do when you set these.
+	    - authorize_type: OPTIONAL, inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
+	        OAuth2 flow.
+	
+	    :param baseURL: The server's base URL
+	    :param settings: Client settings, mostly concerning authorization
+	    :param title: A title to display in the authorization window; can also be supplied in the settings dictionary
 	 */
 	public convenience init(baseURL: String, settings: OAuth2JSON, title: String = "SMART") {
 		var sett = settings
@@ -116,6 +118,11 @@ public class Client
 		server.abortSession()
 	}
 	
+	/** Resets state and authorization data. */
+	public func reset() {
+		server.reset()
+	}
+	
 	
 	// MARK: - Making Requests
 	
@@ -126,7 +133,10 @@ public class Client
 		:param: callback The callback to execute once the request finishes
 	 */
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		server.getJSON(path, callback: callback)
+		let handler = FHIRServerJSONRequestHandler(.GET)
+		server.performRequestAgainst(path, handler: handler) { (response) -> Void in
+			callback(response: response as! FHIRServerJSONResponse)
+		}
 	}
 }
 
