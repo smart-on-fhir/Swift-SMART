@@ -86,18 +86,17 @@ public class Client
 	// MARK: - Preparations
 	
 	/**
-		Executes the callback immediately if the server is ready to perform requests, after performing necessary
-		setup operations and requests otherwise.
+	    Executes the callback immediately if the server is ready to perform requests, after performing necessary setup operations and
+	    requests otherwise.
 	 */
 	public func ready(callback: (error: NSError?) -> ()) {
 		server.ready(callback)
 	}
 	
 	/**
-		Call this to start the authorization process.
+	    Call this to start the authorization process.
 	
-		If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect`
-		yourself.
+	    If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
 		if nil == server.authClientCredentials() {
@@ -131,10 +130,10 @@ public class Client
 	// MARK: - Making Requests
 	
 	/**
-		Request a JSON resource at the given path from the client's server.
+	    Request a JSON resource at the given path from the client's server.
 	
-		:param: path The path relative to the server's base URL to request
-		:param: callback The callback to execute once the request finishes
+	    :param: path The path relative to the server's base URL to request
+	    :param: callback The callback to execute once the request finishes
 	 */
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
