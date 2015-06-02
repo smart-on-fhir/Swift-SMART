@@ -100,6 +100,10 @@ public class Client
 		yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
+		if nil == server.authClientCredentials() {
+			callback(patient: nil, error: genSMARTError("The server's authorization element does not yet have client credentials, cannot authorize"))
+			return
+		}
 		server.authorize(authProperties, callback: callback)
 	}
 	

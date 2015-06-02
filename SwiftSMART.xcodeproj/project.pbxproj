@@ -32,6 +32,8 @@
 		EE43B1C719546DB20017679A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EE4D58FC1A826097005F5C7A /* PatientList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D58FB1A826097005F5C7A /* PatientList.swift */; };
 		EE4D58FD1A826097005F5C7A /* PatientList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D58FB1A826097005F5C7A /* PatientList.swift */; };
+		EE507A351B1E0E3C00AE02E9 /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE507A341B1E0E3C00AE02E9 /* OAuth2DynReg.swift */; };
+		EE507A361B1E0E3C00AE02E9 /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE507A341B1E0E3C00AE02E9 /* OAuth2DynReg.swift */; };
 		EE56A4EC1ABB0B7900FA99EB /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A4621ABB0B7900FA99EB /* Address.swift */; };
 		EE56A4ED1ABB0B7900FA99EB /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A4621ABB0B7900FA99EB /* Address.swift */; };
 		EE56A4EE1ABB0B7900FA99EB /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A4631ABB0B7900FA99EB /* Age.swift */; };
@@ -401,6 +403,7 @@
 		EE43B1C319546DB20017679A /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		EE43B1C419546DB20017679A /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		EE4D58FB1A826097005F5C7A /* PatientList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientList.swift; sourceTree = "<group>"; };
+		EE507A341B1E0E3C00AE02E9 /* OAuth2DynReg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2DynReg.swift; sourceTree = "<group>"; };
 		EE56A4621ABB0B7900FA99EB /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		EE56A4631ABB0B7900FA99EB /* Age.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
 		EE56A4651ABB0B7900FA99EB /* AllergyIntolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergyIntolerance.swift; sourceTree = "<group>"; };
@@ -848,6 +851,7 @@
 				EE8EE6C51B1290F5005B90C5 /* OAuth2CodeGrantFacebook.swift */,
 				EE56A6071ABB0B9E00FA99EB /* OAuth2ImplicitGrant.swift */,
 				EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */,
+				EE507A341B1E0E3C00AE02E9 /* OAuth2DynReg.swift */,
 				EE56A6081ABB0B9E00FA99EB /* OAuth2Request.swift */,
 				EE56A6011ABB0B9E00FA99EB /* extensions.swift */,
 			);
@@ -1156,6 +1160,7 @@
 				EE56A5001ABB0B7900FA99EB /* BodySite.swift in Sources */,
 				EE56A5AE1ABB0B7A00FA99EB /* PaymentReconciliation.swift in Sources */,
 				EE56A5241ABB0B7900FA99EB /* Coverage.swift in Sources */,
+				EE507A351B1E0E3C00AE02E9 /* OAuth2DynReg.swift in Sources */,
 				EE56A5C21ABB0B7A00FA99EB /* Quantity.swift in Sources */,
 				EE56A5901ABB0B7900FA99EB /* Money.swift in Sources */,
 				EE56A5801ABB0B7900FA99EB /* Media.swift in Sources */,
@@ -1395,6 +1400,7 @@
 				EE56A57D1ABB0B7900FA99EB /* List.swift in Sources */,
 				EE56A5AD1ABB0B7A00FA99EB /* PaymentNotice.swift in Sources */,
 				EE56A4FD1ABB0B7900FA99EB /* Basic.swift in Sources */,
+				EE507A361B1E0E3C00AE02E9 /* OAuth2DynReg.swift in Sources */,
 				EE56A5FB1ABB0B7A00FA99EB /* VisionPrescription.swift in Sources */,
 				EE56A58B1ABB0B7900FA99EB /* MedicationStatement.swift in Sources */,
 				EE56A5A11ABB0B7A00FA99EB /* Order.swift in Sources */,

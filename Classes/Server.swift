@@ -83,7 +83,7 @@ public class Server: FHIRServer
 		}
 		if let type = authType {
 			auth = Auth(type: type, server: self, settings: authSettings)
-			logIfDebug("Initialized server auth type “\(type.rawValue)”")
+			logIfDebug("Initialized server auth of type “\(type.rawValue)”")
 		}
 	}
 	
@@ -114,7 +114,7 @@ public class Server: FHIRServer
 				if let rest = best {
 					if let security = rest.security {
 						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
-						logIfDebug("Initialized server auth type “\(auth!.type.rawValue)”")
+						logIfDebug("Initialized server auth of type “\(auth!.type.rawValue)”")
 					}
 					
 					// if we have not yet initialized an Auth object we'll use one for "no auth"
@@ -156,6 +156,20 @@ public class Server: FHIRServer
 	
 	
 	// MARK: - Authorization
+	
+	public func authClientCredentials() -> (id: String, secret: String?)? {
+		if let clientId = auth?.oauth?.clientId where !clientId.isEmpty {
+			return (id: clientId, secret: auth?.oauth?.clientSecret)
+		}
+		return nil
+	}
+	
+	public func updateAuthClientCredentials(clientId: String, clientSecret: String?) {
+		if let oauth = auth?.oauth {
+			oauth.clientId = clientId
+			oauth.clientSecret = clientSecret
+		}
+	}
 	
 	/**
 	    Ensures that the server is ready to perform requests before calling the callback.
