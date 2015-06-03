@@ -49,6 +49,7 @@ public class Server: FHIRServer
 	/// An optional NSURLSessionDelegate.
 	public var sessionDelegate: NSURLSessionDelegate? {
 		didSet {
+			session = nil
 			if let oauth = auth?.oauth {
 				oauth.sessionDelegate = sessionDelegate
 			}
