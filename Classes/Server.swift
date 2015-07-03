@@ -246,19 +246,14 @@ public class Server: FHIRServer
 	 */
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		var error: NSError?
-		if let url = NSURL(string: path, relativeToURL: baseURL) {
-			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			if handler.prepareRequest(request, error: &error) {
-				self.performPreparedRequest(request, handler: handler, callback: callback)
-			}
-			else {
-				let err = error?.localizedDescription ?? "if only I knew why"
-				callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
-			}
+		let url = baseURL.URLByAppendingPathComponent(path)
+		let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+		if handler.prepareRequest(request, error: &error) {
+			self.performPreparedRequest(request, handler: handler, callback: callback)
 		}
 		else {
-			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
-			callback(response: res)
+			let err = error?.localizedDescription ?? "if only I knew why (\(__FILE__):\(__LINE__))"
+			callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
 		}
 	}
 	
