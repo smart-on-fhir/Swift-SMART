@@ -94,16 +94,22 @@ public class Client
 	}
 	
 	/**
-	    Call this to start the authorization process.
+	    Call this to start the authorization process. Implicitly calls `ready`, so no need to call it yourself.
 	
 	    If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
-		if nil == server.authClientCredentials() {
-			callback(patient: nil, error: genSMARTError("The server's authorization element does not yet have client credentials, cannot authorize"))
-			return
+		ready() { error in
+			if let error = error {
+				callback(patient: nil, error: error)
+			}
+			else if nil == self.server.authClientCredentials() {
+				callback(patient: nil, error: genSMARTError("The server's authorization element does not yet have client credentials, cannot authorize"))
+			}
+			else {
+				self.server.authorize(self.authProperties, callback: callback)
+			}
 		}
-		server.authorize(authProperties, callback: callback)
 	}
 	
 	/// Will return true while the client is waiting for the authorization callback.

@@ -175,10 +175,14 @@ class Auth
 		
 		// authorization via OAuth2
 		if let oa = oauth {
-			if oa.hasUnexpiredAccessToken() && properties.granularity != .PatientSelectWeb {
-				logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
-				authDidSucceed(OAuth2JSON(minimumCapacity: 0))
-				return
+			if oa.hasUnexpiredAccessToken() {
+				if properties.granularity != .PatientSelectWeb {
+					logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
+					authDidSucceed(OAuth2JSON(minimumCapacity: 0))
+					return
+				}
+				logIfDebug("Have an unexpired access token but want web patient selection: starting auth flow")
+				oa.forgetTokens()
 			}
 			
 			// adjust the scope for desired auth properties
