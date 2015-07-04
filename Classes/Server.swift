@@ -57,9 +57,17 @@ public class Server: FHIRServer
 	}
 	
 	
-	public init(baseURL: NSURL, auth: OAuth2JSON? = nil) {
-		self.baseURL = baseURL
-		self.authSettings = auth
+	/**
+	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
+	*/
+	public init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
+		if let baseStr = base.absoluteString where baseStr[advance(baseStr.endIndex, -1)] != "/" {
+			baseURL = base.URLByAppendingPathComponent("/")
+		}
+		else {
+			baseURL = base
+		}
+		authSettings = auth
 		didSetAuthSettings()
 	}
 	
@@ -240,20 +248,25 @@ public class Server: FHIRServer
 	/**
 	    Method to execute a given request with a given request/response handler.
 	
-	    :param: request The URL request to perform
+	    :param: path The path, relative to the server's base; may include URL query and URL fragment (!)
 	    :param: handler The RequestHandler that prepares the request and processes the response
 	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	 */
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
-		var error: NSError?
-		let url = baseURL.URLByAppendingPathComponent(path)
-		let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-		if handler.prepareRequest(request, error: &error) {
-			self.performPreparedRequest(request, handler: handler, callback: callback)
+		if let url = NSURL(string: path, relativeToURL: baseURL) {
+			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
+			var error: NSError?
+			if handler.prepareRequest(request, error: &error) {
+				self.performPreparedRequest(request, handler: handler, callback: callback)
+			}
+			else {
+				let err = error?.localizedDescription ?? "if only I knew why (\(__FILE__):\(__LINE__))"
+				callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
+			}
 		}
 		else {
-			let err = error?.localizedDescription ?? "if only I knew why (\(__FILE__):\(__LINE__))"
-			callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
+			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
+			callback(response: res)
 		}
 	}
 	
