@@ -99,12 +99,23 @@ public class Client
 	    If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
-		ready() { error in
+		server.ready() { error in
 			if let error = error {
 				callback(patient: nil, error: error)
 			}
 			else if nil == self.server.authClientCredentials() {
 				callback(patient: nil, error: genSMARTError("The server's authorization element does not yet have client credentials, cannot authorize"))
+			}
+			else {
+				self.server.authorize(self.authProperties, callback: callback)
+			}
+		}
+	}
+	
+	public func ensureRegisteredAndAuthorize(dynreg: OAuth2DynReg, callback: (patient: Patient?, error: NSError?) -> ()) {
+		server.ensureRegistered(dynreg) { json, error in
+			if let error = error {
+				callback(patient: nil, error: error)
 			}
 			else {
 				self.server.authorize(self.authProperties, callback: callback)

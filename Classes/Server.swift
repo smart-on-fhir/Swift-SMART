@@ -173,20 +173,13 @@ public class Server: FHIRServer
 		return nil
 	}
 	
-	public func updateAuthClientCredentials(clientId: String, clientSecret: String?) {
-		if let oauth = auth?.oauth {
-			oauth.clientId = clientId
-			oauth.clientSecret = clientSecret
-		}
-	}
-	
 	/**
-	    Ensures that the server is ready to perform requests before calling the callback.
+	Ensures that the server is ready to perform requests before calling the callback.
 	
-	    Being "ready" in this case entails holding on to an `Auth` instance. Such an instance is automatically created
-	    if either the client init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri")
-	    or after the conformance statement has been fetched.
-	 */
+	Being "ready" in this case entails holding on to an `Auth` instance. Such an instance is automatically created if either the client
+	init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri") or after the conformance statement has been
+	fetched.
+	*/
 	public func ready(callback: (error: NSError?) -> ()) {
 		if nil != auth {
 			callback(error: nil)
@@ -205,9 +198,9 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	    Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
-	 */
-	public func authorize(authProperties: SMARTAuthProperties, callback: (patient: Patient?, error: NSError?) -> ()) {
+	Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
+	*/
+	public func authorize(authProperties: SMARTAuthProperties, callback: ((patient: Patient?, error: NSError?) -> Void)) {
 		self.ready { error in
 			if nil != error || nil == self.auth {
 				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
@@ -235,11 +228,30 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	    Resets authorization state - including deletion of any known access and refresh tokens.
-	 */
+	Resets authorization state - including deletion of any known access and refresh tokens.
+	*/
 	func reset() {
 		abortSession()
 		auth?.reset()
+	}
+	
+	
+	// MARK: - Registration
+	
+	/**
+	Given an `OAuth2DynReg` instance, checks if the OAuth2 handler has client-id/secret, and if not attempts to register. Experimental.
+	*/
+	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+		ready() { error in
+			if let oauth = self.auth?.oauth {
+				dynreg.registerIfNeededAndUpdateClient(oauth) { json, error in
+					callback(json: json, error: error)
+				}
+			}
+			else {
+				callback(json: nil, error: genSMARTError("No OAuth2 handle, cannot register client"))
+			}
+		}
 	}
 	
 	
