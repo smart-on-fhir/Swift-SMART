@@ -164,7 +164,7 @@ public class Client
 
 public func logIfDebug(log: String) {
 #if DEBUG
-	println("SoF: \(log)")
+	print("SoF: \(log)")
 #endif
 }
 

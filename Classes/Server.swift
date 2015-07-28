@@ -61,7 +61,7 @@ public class Server: FHIRServer
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
 	*/
 	public init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
-		if let baseStr = base.absoluteString where baseStr[advance(baseStr.endIndex, -1)] != "/" {
+		if base.absoluteString[advance(base.absoluteString.endIndex, -1)] != "/" {
 			baseURL = base.URLByAppendingPathComponent("/")
 		}
 		else {
@@ -81,8 +81,8 @@ public class Server: FHIRServer
 			authType = AuthType(rawValue: typ)
 		}
 		if nil == authType || .None == authType! {
-			if let ath = authSettings?["authorize_uri"] as? String {
-				if let tok = authSettings?["token_uri"] as? String {
+			if let _ = authSettings?["authorize_uri"] as? String {
+				if let _ = authSettings?["token_uri"] as? String {
 					authType = .CodeGrant
 				}
 				else {
@@ -100,7 +100,7 @@ public class Server: FHIRServer
 	// MARK: - Server Conformance
 	
 	/// The server's conformance statement. Must be implicitly fetched using `getConformance()`
-	public var conformance: Conformance? {							// `public` to enable unit testing
+	public internal(set) var conformance: Conformance? {
 		didSet {
 			if nil == name && nil != conformance?.name {
 				name = conformance!.name
@@ -123,7 +123,7 @@ public class Server: FHIRServer
 				if let rest = best {
 					if let security = rest.security {
 						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
-						logIfDebug("Initialized server auth of type “\(auth!.type.rawValue)”")
+						logIfDebug("Initialized server auth of type “\(auth?.type.rawValue)”")
 					}
 					
 					// if we have not yet initialized an Auth object we'll use one for "no auth"
@@ -141,11 +141,9 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	    Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
-	
-	    Is public to enable unit testing.
-	 */
-	public final func getConformance(callback: (error: NSError?) -> ()) {
+	Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
+	*/
+	final func getConformance(callback: (error: NSError?) -> ()) {
 		if nil != conformance {
 			callback(error: nil)
 			return
@@ -258,21 +256,21 @@ public class Server: FHIRServer
 	// MARK: - Requests
 	
 	/**
-	    Method to execute a given request with a given request/response handler.
+	Method to execute a given request with a given request/response handler.
 	
-	    :param: path The path, relative to the server's base; may include URL query and URL fragment (!)
-	    :param: handler The RequestHandler that prepares the request and processes the response
-	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
-	 */
+	- parameter path: The path, relative to the server's base; may include URL query and URL fragment (!)
+	- parameter handler: The RequestHandler that prepares the request and processes the response
+	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	*/
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		if let url = NSURL(string: path, relativeToURL: baseURL) {
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
-			var error: NSError?
-			if handler.prepareRequest(request, error: &error) {
+			do {
+				try handler.prepareRequest(request)
 				self.performPreparedRequest(request, handler: handler, callback: callback)
 			}
-			else {
-				let err = error?.localizedDescription ?? "if only I knew why (\(__FILE__):\(__LINE__))"
+			catch let error {
+				let err = (error as NSError).localizedDescription ?? "if only I knew why (\(__FILE__):\(__LINE__))"
 				callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
 			}
 		}
@@ -283,27 +281,27 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	    Method to execute an already prepared request and use the given request/response handler.
+	Method to execute an already prepared request and use the given request/response handler.
 	
-	    This implementation uses the instance's NSURLSession to execute data tasks with the requests. Subclasses can
-	    override to supply different NSURLSessions based on the request, if so desired.
+	This implementation uses the instance's NSURLSession to execute data tasks with the requests. Subclasses can override to supply
+	different NSURLSessions based on the request, if so desired.
 	
-	    :param: request The URL request to perform
-	    :param: handler The RequestHandler that prepares the request and processes the response
-	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
-	 */
+	- parameter request: The URL request to perform
+	- parameter handler: The RequestHandler that prepares the request and processes the response
+	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	*/
 	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		performPreparedRequest(request, withSession: URLSession(), handler: handler, callback: callback)
 	}
 	
 	/**
-	    Method to execute an already prepared request with a given session and use the given request/response handler.
+	Method to execute an already prepared request with a given session and use the given request/response handler.
 	
-	    :param: request The URL request to perform
-	    :param: withSession The NSURLSession instance to use
-	    :param: handler The RequestHandler that prepares the request and processes the response
-	    :param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
-	 */
+	- parameter request: The URL request to perform
+	- parameter withSession: The NSURLSession instance to use
+	- parameter handler: The RequestHandler that prepares the request and processes the response
+	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	*/
 	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: R.ResponseType) -> Void)) {
 		let task = session.dataTaskWithRequest(request) { data, response, error in
 			let res = handler.response(response: response, data: data)
@@ -318,7 +316,7 @@ public class Server: FHIRServer
 		}
 		
 		logIfDebug("Performing \(handler.type.rawValue) request against \(request.URL!)")
-		task.resume()
+		task!.resume()
 	}
 	
 	
@@ -336,11 +334,11 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	    Retrieve the operation definition with the given name, either from cache or load the resource.
+	Retrieve the operation definition with the given name, either from cache or load the resource.
 	
-	    Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must
-	    be used after the conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
-	 */
+	Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must be used after the
+	conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
+	*/
 	public func operation(name: String, callback: (OperationDefinition? -> Void)) {
 		if let op = operations?[name] {
 			callback(op)
@@ -364,22 +362,22 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	    Performs the given Operation.
+	Performs the given Operation.
 	
-	    `Resource` has extensions to facilitate working with operations, be sure to take a look.
+	`Resource` has extensions to facilitate working with operations, be sure to take a look.
 	
-	    :param: operation The operation instance to perform
-	    :param: callback The callback to call when the request ends (success or failure)
-	 */
+	- parameter operation: The operation instance to perform
+	- parameter callback: The callback to call when the request ends (success or failure)
+	*/
 	public func performOperation(operation: FHIROperation, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		self.operation(operation.name) { definition in
 			if let def = definition {
-				var error: NSError?
-				if operation.validateWith(def, error: &error) {
+				do {
+					try operation.validateWith(def)
 					operation.perform(self, callback: callback)
 				}
-				else {
-					callback(response: FHIRServerJSONResponse(notSentBecause: error ?? genServerError("Unknown validation error with operation \(operation)")))
+				catch let error {
+					callback(response: FHIRServerJSONResponse(notSentBecause: error as NSError))
 				}
 			}
 			else {

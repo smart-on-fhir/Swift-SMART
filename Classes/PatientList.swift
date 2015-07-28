@@ -56,13 +56,13 @@ public class PatientList
 	
 	/// The number of patients currently in the list
 	public var actualNumberOfPatients: UInt {
-		return UInt((nil != patients) ? count(patients!) : 0)
+		return UInt(patients?.count ?? 0)
 	}
 	
 	var sections: [PatientListSection] = []
 	
 	public var numSections: Int {
-		return count(sections)
+		return sections.count
 	}
 	
 	internal(set) public var sectionIndexTitles: [String] = []
@@ -88,7 +88,7 @@ public class PatientList
 	// MARK: - Patients & Sections
 	
 	subscript(index: Int) -> PatientListSection? {
-		if count(sections) > index {
+		if sections.count > index {
 			return sections[index]
 		}
 		return nil
@@ -160,7 +160,7 @@ public class PatientList
 		query.execute(server, order: order) { [weak self] bundle, error in
 			if let this = self {
 				if nil != error {
-					println("ERROR running patient query: \(error!.localizedDescription)")
+					print("ERROR running patient query: \(error!.localizedDescription)")
 					this.lastStatusError = error
 					callOnMainThread() {
 						this.status = .Ready
@@ -223,7 +223,7 @@ public class PatientListSection
 	public var title: String
 	var patients: [Patient]?
 	var numPatients: UInt {
-		return (nil != patients) ? UInt(count(patients!)) : 0
+		return UInt(patients?.count ?? 0)
 	}
 	
 	/// How many patients are in sections coming before this one. Only valid in context of a PatientList.
@@ -241,8 +241,8 @@ public class PatientListSection
 	}
 	
 	subscript(index: Int) -> Patient? {
-		if nil != patients && count(patients!) > index {
-			return patients![index]
+		if let patients = patients where patients.count > index {
+			return patients[index]
 		}
 		return nil
 	}

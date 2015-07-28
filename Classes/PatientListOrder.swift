@@ -29,7 +29,7 @@ public enum PatientListOrder: String
 	func ordered(patients: [Patient]) -> [Patient] {
 		switch self {
 		case .NameGivenASC:
-			return patients.sorted() {
+			return patients.sort() {
 				let given = $0.compareNameGiven($1)
 				if 0 != given {
 					return given < 0
@@ -42,7 +42,7 @@ public enum PatientListOrder: String
 				return birth < 0
 			}
 		case .NameFamilyASC:
-			return patients.sorted() {
+			return patients.sort() {
 				let family = $0.compareNameFamily($1)
 				if 0 != family {
 					return family < 0
@@ -55,7 +55,7 @@ public enum PatientListOrder: String
 				return birth < 0
 			}
 		case .BirthDateASC:
-			return patients.sorted() {
+			return patients.sort() {
 				let birth = $0.compareBirthDate($1)
 				if 0 != birth {
 					return birth < 0
@@ -132,12 +132,13 @@ extension Patient
 		}
 		
 		let calendar = NSCalendar.currentCalendar()
-		var comps = calendar.components(.CalendarUnitYear | .CalendarUnitMonth, fromDate: birthDate!.nsDate, toDate: NSDate(), options: nil)
+		let flags: NSCalendarUnit = [.Year, .Month]
+		var comps = calendar.components(flags, fromDate: birthDate!.nsDate, toDate: NSDate(), options: [])
 		
 		// babies
 		if comps.year < 1 {
 			if comps.month < 1 {
-				comps = calendar.components(.CalendarUnitDay, fromDate: birthDate!.nsDate, toDate: NSDate(), options: nil)
+				comps = calendar.components([NSCalendarUnit.Day], fromDate: birthDate!.nsDate, toDate: NSDate(), options: [])
 				if comps.day < 1 {
 					return "just born".localized
 				}

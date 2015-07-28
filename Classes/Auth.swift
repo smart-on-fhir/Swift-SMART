@@ -26,14 +26,14 @@ class Auth
 	let type: AuthType
 	
 	/**
-	    Settings to be used to initialize the OAuth2 subclass. Supported keys:
+	Settings to be used to initialize the OAuth2 subclass. Supported keys:
 	
-	    - client_id
-	    - registration_uri
-	    - authorize_uri
-	    - token_uri
-	    - title
-	 */
+	- client_id
+	- registration_uri
+	- authorize_uri
+	- token_uri
+	- title
+	*/
 	var settings: OAuth2JSON?
 	
 	/// The server this instance belongs to
@@ -67,8 +67,6 @@ class Auth
 	
 	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: OAuth2JSON?) -> Auth? {
 		var authSettings = settings ?? OAuth2JSON(minimumCapacity: 3)
-		var hasAuthURI = false
-		var hasTokenURI = false
 		
 		if let services = security.service {
 			let unknown = "unknown"
@@ -86,24 +84,40 @@ class Auth
 		
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
 		if let extensions = security.extension_fhir {
-			for ext in extensions {
-				if let urlString = ext.url?.absoluteString {
-					switch urlString {
-					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#register":
-						authSettings["registration_uri"] = ext.valueUri?.absoluteString
-					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#authorize":
-						authSettings["authorize_uri"] = ext.valueUri?.absoluteString
-						hasAuthURI = true
-					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#token":
-						authSettings["token_uri"] = ext.valueUri?.absoluteString
-						hasTokenURI = true
-					default:
-						break
+			for ext in extensions where nil != ext.url {
+				switch ext.url!.absoluteString {
+				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris":
+					if let subexts = ext.extension_fhir {
+						for subext in subexts where nil != subext.url {
+							switch subext.url!.absoluteString {
+							case "authorize":
+								authSettings["authorize_uri"] = subext.valueUri?.absoluteString
+							case "token":
+								authSettings["token_uri"] = subext.valueUri?.absoluteString
+							case "register":
+								authSettings["registration_uri"] = subext.valueUri?.absoluteString
+							default:
+								break
+							}
+						}
 					}
+					else {
+						logIfDebug("Found “oauth-uris” SMART extension but not the required extension extensions")
+					}
+				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#register":
+					authSettings["registration_uri"] = ext.valueUri?.absoluteString
+				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#authorize":
+					authSettings["authorize_uri"] = ext.valueUri?.absoluteString
+				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#token":
+					authSettings["token_uri"] = ext.valueUri?.absoluteString
+				default:
+					break
 				}
 			}
 		}
 		
+		let hasAuthURI = (nil != authSettings["authorize_uri"])
+		let hasTokenURI = (nil != authSettings["token_uri"])
 		if hasAuthURI {
 			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
@@ -114,10 +128,10 @@ class Auth
 	
 	
 	/**
-	    Finalize instance setup based on type and the a settings dictionary.
+	Finalize instance setup based on type and the a settings dictionary.
 	
-	    :param: settings A dictionary with auth settings, passed on to OAuth2*()
-	 */
+	- parameter settings: A dictionary with auth settings, passed on to OAuth2*()
+	*/
 	func configureWith(settings: OAuth2JSON) {
 		switch type {
 			case .CodeGrant:
@@ -144,8 +158,8 @@ class Auth
 	}
 	
 	/**
-	    Reset auth, which includes setting authContext to nil and purging any known access and refresh tokens.
-	 */
+	Reset auth, which includes setting authContext to nil and purging any known access and refresh tokens.
+	*/
 	func reset() {
 		authContext = nil
 		oauth?.forgetTokens()
@@ -155,16 +169,16 @@ class Auth
 	// MARK: - OAuth
 	
 	/**
-	    Starts the authorization flow, either by opening an embedded web view or switching to the browser.
+	Starts the authorization flow, either by opening an embedded web view or switching to the browser.
 	
-	    Automatically adds the correct "launch*" scope, according to the authorization property granularity.
+	Automatically adds the correct "launch*" scope, according to the authorization property granularity.
 	
-	    If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and
-	    call the client's `didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
+	If you use the OS browser to authorize, remember that you need to intercept the callback from the browser and call the client's
+	`didRedirect()` method, which redirects to this instance's `handleRedirect()` method.
 	
-	    If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the
-	    returned dictionary. On native patient selection adds a "patient_resource" key with the patient resource.
-	 */
+	If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the returned dictionary. On
+	native patient selection adds a "patient_resource" key with the patient resource.
+	*/
 	func authorize(properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: NSError?) -> Void) {
 		if nil != authCallback {
 			abort()
@@ -215,12 +229,15 @@ class Auth
 	}
 	
 	func handleRedirect(redirect: NSURL) -> Bool {
-		if nil == oauth || nil == authCallback {
+		guard let oauth = oauth where nil != authCallback else {
 			return false
 		}
-		
-		oauth!.handleRedirectURL(redirect)
-		return true
+		do {
+			try oauth.handleRedirectURL(redirect)
+			return true
+		}
+		catch {}
+		return false
 	}
 	
 	internal func authDidSucceed(parameters: OAuth2JSON) {
@@ -244,7 +261,7 @@ class Auth
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	
-	func processAuthCallback(# parameters: OAuth2JSON?, error: NSError?) {
+	func processAuthCallback(parameters  parameters: OAuth2JSON?, error: NSError?) {
 		if nil != authCallback {
 			authCallback!(parameters: parameters, error: error)
 			authCallback = nil
