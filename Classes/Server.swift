@@ -23,6 +23,9 @@ import Foundation
  */
 public class Server: FHIRServer
 {
+	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
+	final let aud: String
+	
 	/// The server's base URL.
 	public final let baseURL: NSURL
 	
@@ -61,7 +64,8 @@ public class Server: FHIRServer
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
 	*/
 	public init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
-		if base.absoluteString[advance(base.absoluteString.endIndex, -1)] != "/" {
+		aud = base.absoluteString
+		if let last = base.absoluteString.characters.last where last != "/" {
 			baseURL = base.URLByAppendingPathComponent("/")
 		}
 		else {

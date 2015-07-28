@@ -15,7 +15,7 @@ extension Auth
 	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
-		oauth.authorize(params: nil, autoDismiss: properties.granularity != .PatientSelectNative)
+		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
 	}
 	
 	func showPatientList(parameters: OAuth2JSON) {

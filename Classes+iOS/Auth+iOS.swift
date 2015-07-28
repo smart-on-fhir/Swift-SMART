@@ -18,7 +18,7 @@ extension Auth
 		
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
-		oauth.authorize(params: nil, autoDismiss: properties.granularity != .PatientSelectNative)
+		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
 	}
 	
 	/** Show the native patient list on the current authContext or the window's root view controller. */

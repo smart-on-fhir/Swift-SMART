@@ -104,6 +104,8 @@ class Auth
 					else {
 						logIfDebug("Found “oauth-uris” SMART extension but not the required extension extensions")
 					}
+				
+				// legacy extensions
 				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#register":
 					authSettings["registration_uri"] = ext.valueUri?.absoluteString
 				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#authorize":
@@ -117,8 +119,8 @@ class Auth
 		}
 		
 		let hasAuthURI = (nil != authSettings["authorize_uri"])
-		let hasTokenURI = (nil != authSettings["token_uri"])
 		if hasAuthURI {
+			let hasTokenURI = (nil != authSettings["token_uri"])
 			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
 		
