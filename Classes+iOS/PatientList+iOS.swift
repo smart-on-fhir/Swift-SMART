@@ -45,7 +45,7 @@ public class PatientListViewController: UITableViewController
 		super.init(nibName: nil, bundle: nil)
 	}
 	
-	public required init(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 	    super.init(coder: aDecoder)
 	}
 	
@@ -56,14 +56,14 @@ public class PatientListViewController: UITableViewController
 		self.tableView.registerClass(PatientTableViewCell.self, forCellReuseIdentifier: "PatientCell")
 		let header = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 320.0, height: 30.0))
 		let label = UILabel()
-		label.setTranslatesAutoresizingMaskIntoConstraints(false)
+		label.translatesAutoresizingMaskIntoConstraints = false
 		label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
 		label.textColor = UIColor.lightGrayColor()
 		label.textAlignment = .Center
 		
 		header.addSubview(label)
-		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[lbl]-|", options: nil, metrics: nil, views: ["lbl": label]))
-		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[lbl]-|", options: nil, metrics: nil, views: ["lbl": label]))
+		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[lbl]-|", options: [], metrics: nil, views: ["lbl": label]))
+		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[lbl]-|", options: [], metrics: nil, views: ["lbl": label]))
 		self.tableView.tableHeaderView = header
 		headerLabel = label
 		
@@ -74,11 +74,11 @@ public class PatientListViewController: UITableViewController
 					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
 				}
 				if nil != this.patientList && .Loading == this.patientList!.status {
-					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity!)
-					this.activity!.startAnimating()
+					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity)
+					this.activity.startAnimating()
 				}
 				else {
-					this.activity!.stopAnimating()
+					this.activity.stopAnimating()
 					this.navigationItem.leftBarButtonItem = nil
 				}
 			}
@@ -180,7 +180,7 @@ public class PatientListViewController: UITableViewController
 		return nil
 	}
 	
-	public override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+	override public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
 		return patientList?.sectionIndexTitles
 	}
 }
@@ -213,7 +213,7 @@ class PatientTableViewCell: UITableViewCell
 		super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 	
