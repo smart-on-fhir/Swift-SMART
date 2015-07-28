@@ -67,8 +67,6 @@ class Auth
 	
 	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: OAuth2JSON?) -> Auth? {
 		var authSettings = settings ?? OAuth2JSON(minimumCapacity: 3)
-		var hasAuthURI = false
-		var hasTokenURI = false
 		
 		if let services = security.service {
 			let unknown = "unknown"
@@ -89,14 +87,34 @@ class Auth
 			for ext in extensions {
 				if let urlString = ext.url?.absoluteString {
 					switch urlString {
+					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris":
+						if let subexts = ext.extension_fhir {
+							for subext in subexts {
+								if let subURL = subext.url?.absoluteString {
+									switch subURL {
+									case "authorize":
+										authSettings["authorize_uri"] = subext.valueUri?.absoluteString
+									case "token":
+										authSettings["token_uri"] = subext.valueUri?.absoluteString
+									case "register":
+										authSettings["registration_uri"] = subext.valueUri?.absoluteString
+									default:
+										break
+									}
+								}
+							}
+						}
+						else {
+							logIfDebug("Found “oauth-uris” SMART extension but not the required extension extensions")
+						}
+					
+					// legacy extensions
 					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#register":
 						authSettings["registration_uri"] = ext.valueUri?.absoluteString
 					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#authorize":
 						authSettings["authorize_uri"] = ext.valueUri?.absoluteString
-						hasAuthURI = true
 					case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#token":
 						authSettings["token_uri"] = ext.valueUri?.absoluteString
-						hasTokenURI = true
 					default:
 						break
 					}
@@ -104,7 +122,9 @@ class Auth
 			}
 		}
 		
+		let hasAuthURI = (nil != authSettings["authorize_uri"])
 		if hasAuthURI {
+			let hasTokenURI = (nil != authSettings["token_uri"])
 			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
 		

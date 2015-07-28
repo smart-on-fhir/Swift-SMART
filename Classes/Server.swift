@@ -23,6 +23,9 @@ import Foundation
  */
 public class Server: FHIRServer
 {
+	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
+	final let aud: String
+	
 	/// The server's base URL.
 	public final let baseURL: NSURL
 	
@@ -61,6 +64,7 @@ public class Server: FHIRServer
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
 	*/
 	public init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
+		aud = base.absoluteString ?? "http://localhost"
 		if let baseStr = base.absoluteString where baseStr[advance(baseStr.endIndex, -1)] != "/" {
 			baseURL = base.URLByAppendingPathComponent("/")
 		}
@@ -123,7 +127,7 @@ public class Server: FHIRServer
 				if let rest = best {
 					if let security = rest.security {
 						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
-						logIfDebug("Initialized server auth of type “\(auth!.type.rawValue)”")
+						logIfDebug("Initialized server auth of type “\(auth?.type.rawValue)”")
 					}
 					
 					// if we have not yet initialized an Auth object we'll use one for "no auth"

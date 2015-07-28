@@ -103,9 +103,6 @@ public class Client
 			if let error = error {
 				callback(patient: nil, error: error)
 			}
-			else if nil == self.server.authClientCredentials() {
-				callback(patient: nil, error: genSMARTError("The server's authorization element does not yet have client credentials, cannot authorize"))
-			}
 			else {
 				self.server.authorize(self.authProperties, callback: callback)
 			}
