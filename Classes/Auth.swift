@@ -148,9 +148,6 @@ class Auth
 		
 		// configure the OAuth2 instance's callbacks
 		if let oa = oauth {
-			if let ttl = settings["title"] as? String {
-				oa.viewTitle = ttl
-			}
 			oa.onAuthorize = authDidSucceed
 			oa.onFailure = authDidFail
 			#if DEBUG

@@ -320,7 +320,7 @@ public class Server: FHIRServer
 		}
 		
 		logIfDebug("Performing \(handler.type.rawValue) request against \(request.URL!)")
-		task!.resume()
+		task.resume()
 	}
 	
 	
