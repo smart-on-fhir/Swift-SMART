@@ -274,6 +274,15 @@ public class Server: FHIRServer
 		return FHIRServerJSONRequestHandler(type, resource: resource)
 	}
 	
+	/**
+	This method simply creates an absolute URL from the receiver's `baseURL` and the given path.
+	
+	A chance for subclasses to mess with URL generation if needed.
+	*/
+	public func absoluteURLForPath(path: String, handler: FHIRServerRequestHandler) -> NSURL? {
+		return NSURL(string: path, relativeToURL: baseURL)
+	}
+	
 	/*
 	This method should first execute `handlerForRequestOfType()` to obtain an appropriate request handler, then execute the prepared
 	request against the server.
@@ -301,7 +310,7 @@ public class Server: FHIRServer
 	:param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
-		if let url = NSURL(string: path, relativeToURL: baseURL) {
+		if let url = absoluteURLForPath(path, handler: handler) {
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			var error: NSError?
 			if handler.prepareRequest(request, error: &error) {
@@ -313,7 +322,7 @@ public class Server: FHIRServer
 			}
 		}
 		else {
-			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
+			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(response: res)
 		}
 	}
