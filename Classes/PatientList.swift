@@ -104,14 +104,13 @@ public class PatientList
 			sectionIndexTitles = [String]()
 			
 			var n = 0
-			var lastTitle = "XX"
+			var lastTitle: Character = "$"
 			var lastSection = PatientListSection(title: "")
 			for patient in patients {
-				var pre = patient.displayNameFamilyGiven			// TODO: use another method depending on current ordering
-				pre = pre[pre.startIndex..<advance(pre.startIndex, 1)]
+				let pre: Character = patient.displayNameFamilyGiven.characters.first ?? "$"    // TODO: use another method depending on current ordering
 				if pre != lastTitle {
 					lastTitle = pre
-					lastSection = PatientListSection(title: lastTitle)
+					lastSection = PatientListSection(title: String(lastTitle))
 					lastSection.offset = n
 					sections.append(lastSection)
 					sectionIndexTitles.append(lastSection.title)
@@ -138,11 +137,11 @@ public class PatientList
 	// MARK: - Patient Loading
 	
 	/**
-		Executes the patient query against the given FHIR server and updates the receiver's `patients` property when
-		done.
+	Executes the patient query against the given FHIR server and updates the receiver's `patients` property when
+	done.
 	
-		:param server: A FHIRServer instance to query the patients from
-	 */
+	-param server: A FHIRServer instance to query the patients from
+	*/
 	public func retrieve(server: FHIRServer) {
 		patients = nil
 		expectedNumberOfPatients = 0

@@ -66,9 +66,9 @@ public class Client
 	    - authorize_type: OPTIONAL, inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
 	        OAuth2 flow.
 	
-	    :param baseURL: The server's base URL
-	    :param settings: Client settings, mostly concerning authorization
-	    :param title: A title to display in the authorization window; can also be supplied in the settings dictionary
+	    - param baseURL: The server's base URL
+	    - param settings: Client settings, mostly concerning authorization
+	    - param title: A title to display in the authorization window; can also be supplied in the settings dictionary
 	 */
 	public convenience init(baseURL: String, settings: OAuth2JSON, title: String = "SMART") {
 		var sett = settings
@@ -144,11 +144,11 @@ public class Client
 	// MARK: - Making Requests
 	
 	/**
-	    Request a JSON resource at the given path from the client's server.
+	Request a JSON resource at the given path from the client's server.
 	
-	    :param: path The path relative to the server's base URL to request
-	    :param: callback The callback to execute once the request finishes
-	 */
+	- param path: The path relative to the server's base URL to request
+	- param callback: The callback to execute once the request finishes
+	*/
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
 		server.performRequestAgainst(path, handler: handler) { (response) -> Void in

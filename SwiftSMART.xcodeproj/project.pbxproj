@@ -290,6 +290,8 @@
 		EE56A62A1ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
 		EE5F4F601B1651BD00DB38B3 /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */; };
 		EE5F4F611B1651BD00DB38B3 /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */; };
+		EE8901261B7E085B00F1EDBF /* FHIRElement+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901251B7E085B00F1EDBF /* FHIRElement+Utilities.swift */; };
+		EE8901271B7E085B00F1EDBF /* FHIRElement+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901251B7E085B00F1EDBF /* FHIRElement+Utilities.swift */; };
 		EE8EE6BF1B1290AA005B90C5 /* OAuth2+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BD1B1290AA005B90C5 /* OAuth2+iOS.swift */; };
 		EE8EE6C01B1290AA005B90C5 /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BE1B1290AA005B90C5 /* OAuth2WebViewController.swift */; };
 		EE8EE6C31B1290B7005B90C5 /* OAuth2+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6C21B1290B7005B90C5 /* OAuth2+OSX.swift */; };
@@ -538,6 +540,7 @@
 		EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2ClientCredentials.swift; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE7907B01B1566A100B1B279 /* SMART.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = SMART.podspec; path = ../SMART.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EE8901251B7E085B00F1EDBF /* FHIRElement+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Utilities.swift"; sourceTree = "<group>"; };
 		EE8EE6BD1B1290AA005B90C5 /* OAuth2+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+iOS.swift"; sourceTree = "<group>"; };
 		EE8EE6BE1B1290AA005B90C5 /* OAuth2WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2WebViewController.swift; sourceTree = "<group>"; };
 		EE8EE6C21B1290B7005B90C5 /* OAuth2+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2+OSX.swift"; sourceTree = "<group>"; };
@@ -923,6 +926,7 @@
 			children = (
 				EE9B31F71ACADAF700980AA9 /* Resource+REST.swift */,
 				EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */,
+				EE8901251B7E085B00F1EDBF /* FHIRElement+Utilities.swift */,
 				EE56A49D1ABB0B7900FA99EB /* FHIRServer.swift */,
 				EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */,
 				EE9B32081ACAE6D300980AA9 /* FHIRServerResponse.swift */,
@@ -1171,6 +1175,7 @@
 				EE56A5761ABB0B7900FA99EB /* ImmunizationRecommendation.swift in Sources */,
 				EE56A58A1ABB0B7900FA99EB /* MedicationStatement.swift in Sources */,
 				EE02F8151ACF30E100179969 /* Auth+iOS.swift in Sources */,
+				EE8901261B7E085B00F1EDBF /* FHIRElement+Utilities.swift in Sources */,
 				EE56A6171ABB0B9E00FA99EB /* OAuth2ImplicitGrant.swift in Sources */,
 				EE02F80A1ACF2FDB00179969 /* FHIRSearch.swift in Sources */,
 				EE56A5741ABB0B7900FA99EB /* Immunization.swift in Sources */,
@@ -1372,6 +1377,7 @@
 				EE8EE6D61B1294AA005B90C5 /* KeychainQuery.swift in Sources */,
 				EEDDAC631A89237900844B48 /* PatientListQuery.swift in Sources */,
 				EE56A5511ABB0B7900FA99EB /* ExplanationOfBenefit.swift in Sources */,
+				EE8901271B7E085B00F1EDBF /* FHIRElement+Utilities.swift in Sources */,
 				EE56A59B1ABB0B7A00FA99EB /* OperationDefinition.swift in Sources */,
 				EE56A5211ABB0B7900FA99EB /* Contraindication.swift in Sources */,
 				EE56A5231ABB0B7900FA99EB /* Count.swift in Sources */,

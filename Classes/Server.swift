@@ -260,14 +260,55 @@ public class Server: FHIRServer
 	// MARK: - Requests
 	
 	/**
+	The server can return the appropriate request handler for the type and resource combination.
+	
+	Request handlers are responsible for constructing an NSURLRequest that correctly performs the desired REST interaction.
+	
+	- param type: The type of the request (GET, PUT, POST or DELETE)
+	- param resource: The resource to be involved in the request, if any
+	- returns: An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
+	*/
+	public func handlerForRequestOfType(type: FHIRRequestType, resource: FHIRResource?) -> FHIRServerRequestHandler? {
+		return FHIRServerJSONRequestHandler(type, resource: resource)
+	}
+	
+	/**
+	This method simply creates an absolute URL from the receiver's `baseURL` and the given path.
+	
+	A chance for subclasses to mess with URL generation if needed.
+	*/
+	public func absoluteURLForPath(path: String, handler: FHIRServerRequestHandler) -> NSURL? {
+		return NSURL(string: path, relativeToURL: baseURL)
+	}
+	
+	/**
+	This method should first execute `handlerForRequestOfType()` to obtain an appropriate request handler, then execute the prepared
+	request against the server.
+	
+	- param type: The type of the request (GET, PUT, POST or DELETE)
+	- param path: The relative path on the server to be interacting against
+	- param resource: The resource to be involved in the request, if any
+	- param callback: A callback, likely called asynchronously, returning a response instance
+	*/
+	public func performRequestOfType(type: FHIRRequestType, path: String, resource: FHIRResource?, callback: ((response: FHIRServerResponse) -> Void)) {
+		if let handler = handlerForRequestOfType(type, resource: resource) {
+			performRequestAgainst(path, handler: handler, callback: callback)
+		}
+		else {
+			let res = FHIRServerRequestHandler.noneAvailableForType(type)
+			callback(response: res)
+		}
+	}
+	
+	/**
 	Method to execute a given request with a given request/response handler.
 	
-	- parameter path: The path, relative to the server's base; may include URL query and URL fragment (!)
-	- parameter handler: The RequestHandler that prepares the request and processes the response
-	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	- param path: The path, relative to the server's base; may include URL query and URL fragment (!)
+	- param handler: The RequestHandler that prepares the request and processes the response
+	- param callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
-		if let url = NSURL(string: path, relativeToURL: baseURL) {
+	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
+		if let url = absoluteURLForPath(path, handler: handler) {
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			do {
 				try handler.prepareRequest(request)
@@ -279,7 +320,7 @@ public class Server: FHIRServer
 			}
 		}
 		else {
-			let res = handler.notSent("Failed to parse path \(path) relative to base URL \(baseURL)")
+			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(response: res)
 		}
 	}
@@ -294,7 +335,7 @@ public class Server: FHIRServer
 	- parameter handler: The RequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		performPreparedRequest(request, withSession: URLSession(), handler: handler, callback: callback)
 	}
 	
@@ -306,7 +347,7 @@ public class Server: FHIRServer
 	- parameter handler: The RequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		let task = session.dataTaskWithRequest(request) { data, response, error in
 			let res = handler.response(response: response, data: data)
 			if nil != error {
@@ -373,7 +414,7 @@ public class Server: FHIRServer
 	- parameter operation: The operation instance to perform
 	- parameter callback: The callback to call when the request ends (success or failure)
 	*/
-	public func performOperation(operation: FHIROperation, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func performOperation(operation: FHIROperation, callback: ((response: FHIRServerResponse) -> Void)) {
 		self.operation(operation.name) { definition in
 			if let def = definition {
 				do {

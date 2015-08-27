@@ -21,11 +21,11 @@ public enum PatientListOrder: String
 	case BirthDateASC = "birthdate:asc,family:asc,given:asc"
 	
 	/**
-		Applies the receiver's ordering to a given list of patients.
-		
-		:param patients: A list of Patient instances
-		:returns: An ordered list of Patient instances
-	 */
+	Applies the receiver's ordering to a given list of patients.
+	
+	- param patients: A list of Patient instances
+	- returns: An ordered list of Patient instances
+	*/
 	func ordered(patients: [Patient]) -> [Patient] {
 		switch self {
 		case .NameGivenASC:

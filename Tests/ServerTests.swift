@@ -19,7 +19,7 @@ class ServerTests: XCTestCase
 		XCTAssertTrue("https://api.io" == server.baseURL.absoluteString)
 		
 		// TODO: How to use NSBundle(forClass)?
-		let metaURL = NSBundle(path: __FILE__.stringByDeletingLastPathComponent)!.URLForResource("metadata", withExtension: "")
+		let metaURL = NSBundle(path: __FILE__.smart_stringByDeletingLastPathComponent)!.URLForResource("metadata", withExtension: "")
 		XCTAssertNotNil(metaURL, "Need file `metadata` for unit tests")
 		let metaData = NSData(contentsOfURL: metaURL!)
 		let meta = try NSJSONSerialization.JSONObjectWithData(metaData!, options: []) as! FHIRJSON
@@ -38,21 +38,34 @@ class ServerTests: XCTestCase
 			exp1.fulfill()
 		}
 		
-		let fileURL = NSURL(fileURLWithPath: "\(__FILE__)".stringByDeletingLastPathComponent)
+		let fileURL = NSURL(fileURLWithPath: "\(__FILE__)".smart_stringByDeletingLastPathComponent)
 		server = Server(baseURL: fileURL)
 		let exp2 = self.expectationWithDescription("Metadata fetch expectation 2")
 		server.getConformance { error in
 			XCTAssertNil(error, "Expecting filesystem-fetching to succeed")
 			XCTAssertNotNil(server.auth, "Server is OAuth2 protected, must have `Auth` instance")
-			XCTAssertTrue(server.auth!.type == AuthType.CodeGrant, "Should use code grant auth type, not \(server.auth!.type.rawValue)")
-			XCTAssertNotNil(server.auth!.settings, "Server `Auth` instance must have settings dictionary")
-			XCTAssertNotNil(server.auth!.settings!["token_uri"], "Must read token_uri")
-			XCTAssertEqual(server.auth!.settings!["token_uri"] as! String, "https://authorize-dstu2.smarthealthit.org/token", "token_uri must be “https://authorize-dstu2.smarthealthit.org/token”")
-			
+			if let auth = server.auth {
+				XCTAssertTrue(auth.type == AuthType.CodeGrant, "Should use code grant auth type, not \(server.auth!.type.rawValue)")
+				XCTAssertNotNil(auth.settings, "Server `Auth` instance must have settings dictionary")
+				XCTAssertNotNil(auth.settings!["token_uri"], "Must read token_uri")
+				XCTAssertEqual(auth.settings!["token_uri"] as? String, "https://authorize-dstu2.smarthealthit.org/token", "token_uri must be “https://authorize-dstu2.smarthealthit.org/token”")
+			}
 			exp2.fulfill()
 		}
 		
 		waitForExpectationsWithTimeout(20, handler: nil)
+	}
+}
+
+
+extension String
+{
+	func smart_stringByAppendingPathComponent(part: String) -> String {
+		return (self as NSString).stringByAppendingPathComponent(part)
+	}
+	
+	var smart_stringByDeletingLastPathComponent: String {
+		return (self as NSString).stringByDeletingLastPathComponent
 	}
 }
 
