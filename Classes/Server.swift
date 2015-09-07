@@ -309,7 +309,7 @@ public class Server: FHIRServer
 	:param: handler The RequestHandler that prepares the request and processes the response
 	:param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		if let url = absoluteURLForPath(path, handler: handler) {
 			let request = auth?.signedRequest(url) ?? NSMutableURLRequest(URL: url)
 			var error: NSError?
@@ -337,7 +337,7 @@ public class Server: FHIRServer
 	:param: handler The RequestHandler that prepares the request and processes the response
 	:param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		performPreparedRequest(request, withSession: URLSession(), handler: handler, callback: callback)
 	}
 	
@@ -349,7 +349,7 @@ public class Server: FHIRServer
 	:param: handler The RequestHandler that prepares the request and processes the response
 	:param: callback The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: R.ResponseType) -> Void)) {
+	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		let task = session.dataTaskWithRequest(request) { data, response, error in
 			let res = handler.response(response: response, data: data)
 			if nil != error {
