@@ -23,7 +23,7 @@ public enum PatientListOrder: String
 	/**
 	Applies the receiver's ordering to a given list of patients.
 	
-	- param patients: A list of Patient instances
+	- parameter patients: A list of Patient instances
 	- returns: An ordered list of Patient instances
 	*/
 	func ordered(patients: [Patient]) -> [Patient] {
