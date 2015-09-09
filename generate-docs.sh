@@ -10,4 +10,4 @@ jazzy \
 	-g "https://github.com/smart-on-fhir/Swift-SMART" \
 	-r "http://smart-on-fhir.github.io/Swift-SMART" \
 	-o "docs" \
-	--module-version "0.4.0.4879"
+	--module-version "1.0"

@@ -60,16 +60,11 @@ smart.authorize() { patient, error in
                 // report error
             }
             else {
-                var meds = [MedicationPrescription]()
-                if let entries = bundle?.entry {
-                    for entry in entries {
-                        if let med = entry.resource as? MedicationPrescription {
-                            meds.append(med)
-                        }
-                    }
-                }
+                var meds = bundle?.entry?
+                    .filter() { return $0.resource is MedicationPrescription }
+                    .map() { return $0.resource as! MedicationPrescription }
                 
-                // now `meds` holds all known patient prescriptions
+                // now `meds` holds all known patient prescriptions (or is nil)
             }
         }
     }
