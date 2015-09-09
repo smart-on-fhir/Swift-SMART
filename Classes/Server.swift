@@ -241,19 +241,44 @@ public class Server: FHIRServer
 	// MARK: - Registration
 	
 	/**
-	Given an `OAuth2DynReg` instance, checks if the OAuth2 handler has client-id/secret, and if not attempts to register. Experimental.
+	Internal method forwarding the public method calls.
+	
+	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
+	- parameter onlyIfNeeded: If set to _true_, registration will only be performed if no client-id has been assigned
+	- parameter callback: Callback to call when registration succeeds or fails
 	*/
-	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+	func registerIfNeeded(dynreg: OAuth2DynReg, onlyIfNeeded: Bool, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
 		ready() { error in
 			if let oauth = self.auth?.oauth {
-				dynreg.registerIfNeededAndUpdateClient(oauth) { json, error in
-					callback(json: json, error: error)
-				}
+				dynreg.registerAndUpdateClient(oauth, onlyIfNeeded: onlyIfNeeded, callback: callback)
+			}
+			else if let error = error {
+				callback(json: nil, error: error)
 			}
 			else {
 				callback(json: nil, error: genSMARTError("No OAuth2 handle, cannot register client"))
 			}
 		}
+	}
+	
+	/**
+	Given an `OAuth2DynReg` instance, checks if the OAuth2 handler has client-id/secret, and if not attempts to register. Experimental.
+	
+	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
+	- parameter callback: Callback to call when registration succeeds or fails
+	*/
+	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+		registerIfNeeded(dynreg, onlyIfNeeded: true, callback: callback)
+	}
+	
+	/**
+	Registers the client with the help of the `OAuth2DynReg` instance. Experimental.
+	
+	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
+	- parameter callback: Callback to call when registration succeeds or fails
+	*/
+	public func register(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+		registerIfNeeded(dynreg, onlyIfNeeded: false, callback: callback)
 	}
 	
 	
@@ -264,8 +289,8 @@ public class Server: FHIRServer
 	
 	Request handlers are responsible for constructing an NSURLRequest that correctly performs the desired REST interaction.
 	
-	- param type: The type of the request (GET, PUT, POST or DELETE)
-	- param resource: The resource to be involved in the request, if any
+	- parameter type: The type of the request (GET, PUT, POST or DELETE)
+	- parameter resource: The resource to be involved in the request, if any
 	- returns: An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
 	*/
 	public func handlerForRequestOfType(type: FHIRRequestType, resource: FHIRResource?) -> FHIRServerRequestHandler? {
@@ -285,10 +310,10 @@ public class Server: FHIRServer
 	This method should first execute `handlerForRequestOfType()` to obtain an appropriate request handler, then execute the prepared
 	request against the server.
 	
-	- param type: The type of the request (GET, PUT, POST or DELETE)
-	- param path: The relative path on the server to be interacting against
-	- param resource: The resource to be involved in the request, if any
-	- param callback: A callback, likely called asynchronously, returning a response instance
+	- parameter type: The type of the request (GET, PUT, POST or DELETE)
+	- parameter path: The relative path on the server to be interacting against
+	- parameter resource: The resource to be involved in the request, if any
+	- parameter callback: A callback, likely called asynchronously, returning a response instance
 	*/
 	public func performRequestOfType(type: FHIRRequestType, path: String, resource: FHIRResource?, callback: ((response: FHIRServerResponse) -> Void)) {
 		if let handler = handlerForRequestOfType(type, resource: resource) {
@@ -303,9 +328,9 @@ public class Server: FHIRServer
 	/**
 	Method to execute a given request with a given request/response handler.
 	
-	- param path: The path, relative to the server's base; may include URL query and URL fragment (!)
-	- param handler: The RequestHandler that prepares the request and processes the response
-	- param callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	- parameter path: The path, relative to the server's base; may include URL query and URL fragment (!)
+	- parameter handler: The RequestHandler that prepares the request and processes the response
+	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		if let url = absoluteURLForPath(path, handler: handler) {

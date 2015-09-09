@@ -3,11 +3,18 @@
 Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
 Written in _Swift_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 6 or newer.
 
-The `master` branch is currently supporting the _May 2015 DSTU 2_ ballot ([`0.5.0`](https://github.com/smart-on-fhir/Swift-SMART/releases/tag/FHIR-0.5.0)).  
-The `develop` branch is work in progress for _DSTU 2_.
 
-For specific FHIR and Swift versions not on the bleeding edge, see [releases](https://github.com/smart-on-fhir/Swift-SMART/releases).
-Compare those to the list of [published FHIR versions](http://hl7.org/fhir/directory.html).
+### Versioning
+
+Due to the complications of combining two volatile technologies, here's an overview of which version numbers use which **Swift** and **FHIR versions**.
+The `master` branch should always compile and is on (point releases of) these main versions.
+See the `develop` branch or specific `feature/x` branches for new Swift or FHIR versions, and check the [tags](https://github.com/smart-on-fhir/Swift-FHIR/releases).
+
+Version  | Swift Version | FHIR Version
+---------|---------------|-------------
+ **1.0** |           1.2 | DSTU 2 (May 2015, `0.5.0.5149`)
+ **0.2** |           1.1 | DSTU 2 (May 2015, `0.5.0.5149`)
+ **0.1** |           1.0 | DSTU 1 (`0.0.81.2382`)
 
 
 Resources
@@ -53,16 +60,11 @@ smart.authorize() { patient, error in
                 // report error
             }
             else {
-                var meds = [MedicationPrescription]()
-                if let entries = bundle?.entry {
-                    for entry in entries {
-                        if let med = entry.resource as? MedicationPrescription {
-                            meds.append(med)
-                        }
-                    }
-                }
+                var meds = bundle?.entry?
+                    .filter() { return $0.resource is MedicationPrescription }
+                    .map() { return $0.resource as! MedicationPrescription }
                 
-                // now `meds` holds all known patient prescriptions
+                // now `meds` holds all known patient prescriptions (or is nil)
             }
         }
     }
