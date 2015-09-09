@@ -1,7 +1,7 @@
 ![](assets/banner.png)
 
 Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
-Written in _Swift_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 6 or newer.
+Written in _Swift 2_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 7 or newer.
 
 
 ### Versioning
@@ -12,6 +12,7 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
 Version  | Swift Version | FHIR Version
 ---------|---------------|-------------
+ **2.0** |           2.0 | DSTU 2 (May 2015, `0.5.0.5149`)
  **1.0** |           1.2 | DSTU 2 (May 2015, `0.5.0.5149`)
  **0.2** |           1.1 | DSTU 2 (May 2015, `0.5.0.5149`)
  **0.1** |           1.0 | DSTU 1 (`0.0.81.2382`)
