@@ -243,19 +243,34 @@ public class Server: FHIRServer
 	// MARK: - Registration
 	
 	/**
-	Given an `OAuth2DynReg` instance, checks if the OAuth2 handler has client-id/secret, and if not attempts to register. Experimental.
+	Internal method forwarding the public method calls.
 	*/
-	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+	func registerIfNeeded(dynreg: OAuth2DynReg, onlyIfNeeded: Bool, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
 		ready() { error in
 			if let oauth = self.auth?.oauth {
-				dynreg.registerIfNeededAndUpdateClient(oauth) { json, error in
-					callback(json: json, error: error)
-				}
+				dynreg.registerAndUpdateClient(oauth, onlyIfNeeded: onlyIfNeeded, callback: callback)
+			}
+			else if let error = error {
+				callback(json: nil, error: error)
 			}
 			else {
 				callback(json: nil, error: genSMARTError("No OAuth2 handle, cannot register client"))
 			}
 		}
+	}
+	
+	/**
+	Given an `OAuth2DynReg` instance, checks if the OAuth2 handler has client-id/secret, and if not attempts to register. Experimental.
+	*/
+	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+		registerIfNeeded(dynreg, onlyIfNeeded: true, callback: callback)
+	}
+	
+	/**
+	Registers the client with the help of the `OAuth2DynReg` instance. Experimental.
+	*/
+	public func register(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+		registerIfNeeded(dynreg, onlyIfNeeded: false, callback: callback)
 	}
 	
 	
