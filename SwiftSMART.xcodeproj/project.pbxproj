@@ -571,6 +571,7 @@
 		EEEE312A1BB2961C008866E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EEEE312C1BB29621008866E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		EEEE312E1BB29CAF008866E2 /* OAuth2PasswordGrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2PasswordGrant.swift; sourceTree = "<group>"; };
+		EEEE31331BB2AB67008866E2 /* generate-docs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "generate-docs.sh"; sourceTree = SOURCE_ROOT; };
 		EEF47D341B1E483A0057D838 /* OAuth2Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Base.swift; sourceTree = "<group>"; };
 		EEF47D351B1E483A0057D838 /* OAuth2DynReg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2DynReg.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -645,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7907B01B1566A100B1B279 /* SMART.podspec */,
+				EEEE31331BB2AB67008866E2 /* generate-docs.sh */,
 				EE1391C01AC582D9002C7B18 /* Info.plist */,
 			);
 			name = "Supporting Files";

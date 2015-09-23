@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "2.0"
+  s.version      = "2.1"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.author       = { "Pascal Pfiffner" => "phase.of.matter@gmail.com" }
 
   s.source            = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "#{s.version}", :submodules => true }
-  s.prepare_command   = "git submodule update --init --recursive"  # The :submodules command above is not recursive :P
+  s.prepare_command   = "git submodule update --init --recursive"  # The :submodules flag above is not recursive :P
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
