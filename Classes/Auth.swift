@@ -74,7 +74,7 @@ class Auth
 				logIfDebug("Server supports REST security via “\(service.text ?? unknown)”")
 				if let codings = service.coding {
 					for coding in codings {
-						if "OAuth2" == coding.code {
+						if "OAuth2" == coding.code || "SMART-on-FHIR" == coding.code {
 							// TODO: support multiple Auth methods per server?
 						}
 					}
@@ -83,35 +83,15 @@ class Auth
 		}
 		
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
-		if let extensions = security.extension_fhir {
-			for ext in extensions where nil != ext.url {
-				switch ext.url!.absoluteString {
-				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris":
-					if let subexts = ext.extension_fhir {
-						for subext in subexts where nil != subext.url {
-							switch subext.url!.absoluteString {
-							case "authorize":
-								authSettings["authorize_uri"] = subext.valueUri?.absoluteString
-							case "token":
-								authSettings["token_uri"] = subext.valueUri?.absoluteString
-							case "register":
-								authSettings["registration_uri"] = subext.valueUri?.absoluteString
-							default:
-								break
-							}
-						}
-					}
-					else {
-						logIfDebug("Found “oauth-uris” SMART extension but not the required extension extensions")
-					}
-				
-				// legacy extensions
-				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#register":
-					authSettings["registration_uri"] = ext.valueUri?.absoluteString
-				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#authorize":
-					authSettings["authorize_uri"] = ext.valueUri?.absoluteString
-				case "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris#token":
-					authSettings["token_uri"] = ext.valueUri?.absoluteString
+		if let smartauth = security.extensionsFor("http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris")?.first?.extension_fhir {
+			for subext in smartauth where nil != subext.url {
+				switch subext.url!.absoluteString {
+				case "authorize":
+					authSettings["authorize_uri"] = subext.valueUri?.absoluteString
+				case "token":
+					authSettings["token_uri"] = subext.valueUri?.absoluteString
+				case "register":
+					authSettings["registration_uri"] = subext.valueUri?.absoluteString
 				default:
 					break
 				}

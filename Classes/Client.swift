@@ -99,6 +99,7 @@ public class Client
 	    If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
 	 */
 	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
+		server.mustAbortAuthorization = false
 		server.ready() { error in
 			if let error = error {
 				callback(patient: nil, error: error)
@@ -132,6 +133,7 @@ public class Client
 	
 	/** Stops any request currently in progress. */
 	public func abort() {
+		server.abortAuthorization()
 		server.abortSession()
 	}
 	

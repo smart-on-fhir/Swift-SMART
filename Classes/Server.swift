@@ -49,6 +49,8 @@ public class Server: FHIRServer
 	/// The active URL session.
 	var session: NSURLSession?
 	
+	var mustAbortAuthorization = false
+	
 	/// An optional NSURLSessionDelegate.
 	public var sessionDelegate: NSURLSessionDelegate? {
 		didSet {
@@ -127,7 +129,9 @@ public class Server: FHIRServer
 				if let rest = best {
 					if let security = rest.security {
 						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
-						logIfDebug("Initialized server auth of type “\(auth?.type.rawValue)”")
+						if nil != auth {
+							logIfDebug("Initialized server auth of type “\(auth?.type.rawValue)”")
+						}
 					}
 					
 					// if we have not yet initialized an Auth object we'll use one for "no auth"
@@ -204,12 +208,20 @@ public class Server: FHIRServer
 	*/
 	public func authorize(authProperties: SMARTAuthProperties, callback: ((patient: Patient?, error: NSError?) -> Void)) {
 		self.ready { error in
-			if nil != error || nil == self.auth {
+			if self.mustAbortAuthorization {
+				self.mustAbortAuthorization = false
+				callback(patient: nil, error: nil)
+			}
+			else if nil != error || nil == self.auth {
 				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
 			}
 			else {
 				self.auth!.authorize(authProperties) { parameters, error in
-					if nil != error {
+					if self.mustAbortAuthorization {
+						self.mustAbortAuthorization = false
+						callback(patient: nil, error: nil)
+					}
+					else if nil != error {
 						callback(patient: nil, error: error)
 					}
 					else if let patient = parameters?["patient_resource"] as? Patient {		// native patient list auth flow will deliver a Patient instance
@@ -474,11 +486,15 @@ public class Server: FHIRServer
 		return NSURLSession.sharedSession()
 	}
 	
-	func abortSession() {
+	func abortAuthorization() {
+		logIfDebug("Aborting authorization")
+		mustAbortAuthorization = true
 		if nil != auth {
 			auth!.abort()
 		}
-		
+	}
+	
+	func abortSession() {
 		if nil != session {
 			session!.invalidateAndCancel()
 			session = nil
