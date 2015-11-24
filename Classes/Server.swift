@@ -33,7 +33,13 @@ public class Server: FHIRServer
 	public final var name: String?
 	
 	/// The authorization to use with the server.
-	var auth: Auth?
+	var auth: Auth? {
+		didSet {
+			if let auth = auth {
+				logIfDebug("Initialized server auth of type “\(auth.type.rawValue)”")
+			}
+		}
+	}
 	
 	/// Settings to be applied to the Auth instance.
 	var authSettings: OAuth2JSON? {
@@ -98,7 +104,6 @@ public class Server: FHIRServer
 		}
 		if let type = authType {
 			auth = Auth(type: type, server: self, settings: authSettings)
-			logIfDebug("Initialized server auth of type “\(type.rawValue)”")
 		}
 	}
 	
@@ -129,9 +134,6 @@ public class Server: FHIRServer
 				if let rest = best {
 					if let security = rest.security {
 						auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
-						if nil != auth {
-							logIfDebug("Initialized server auth of type “\(auth?.type.rawValue)”")
-						}
 					}
 					
 					// if we have not yet initialized an Auth object we'll use one for "no auth"
@@ -149,7 +151,8 @@ public class Server: FHIRServer
 	}
 	
 	/**
-	Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
+	Executes a `read` action against the server's "metadata" path, as returned from `conformancePath()`, which should return the Conformance
+	statement.
 	*/
 	final func getConformance(callback: (error: FHIRError?) -> ()) {
 		if nil != conformance {
@@ -158,7 +161,7 @@ public class Server: FHIRServer
 		}
 		
 		// not yet fetched, fetch it
-		Conformance.readFrom("metadata", server: self) { resource, error in
+		Conformance.readFrom(conformancePath(), server: self) { resource, error in
 			if let conf = resource as? Conformance {
 				self.conformance = conf
 				callback(error: nil)
@@ -167,6 +170,13 @@ public class Server: FHIRServer
 				callback(error: error ?? FHIRError.Error("Conformance.readFrom() did not return a Conformance instance but \(resource)"))
 			}
 		}
+	}
+	
+	/** Return the relative path to the Conformance statement. This should be "metadata", we're also adding "_summary=true" to only request
+	the summary, not the entire statement.
+	*/
+	public func conformancePath() -> String {
+		return "metadata?_summary=true"
 	}
 	
 	
