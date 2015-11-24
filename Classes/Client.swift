@@ -9,9 +9,6 @@
 import Foundation
 
 
-let SMARTErrorDomain = "SMARTErrorDomain"
-
-
 /**
 	Describes properties for the authorization flow.
  */
@@ -89,7 +86,7 @@ public class Client
 	    Executes the callback immediately if the server is ready to perform requests, after performing necessary setup operations and
 	    requests otherwise.
 	 */
-	public func ready(callback: (error: NSError?) -> ()) {
+	public func ready(callback: (error: ErrorType?) -> ()) {
 		server.ready(callback)
 	}
 	
@@ -98,7 +95,7 @@ public class Client
 	
 	    If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
 	 */
-	public func authorize(callback: (patient: Patient?, error: NSError?) -> ()) {
+	public func authorize(callback: (patient: Patient?, error: ErrorType?) -> ()) {
 		server.mustAbortAuthorization = false
 		server.ready() { error in
 			if let error = error {
@@ -110,7 +107,7 @@ public class Client
 		}
 	}
 	
-	public func ensureRegisteredAndAuthorize(dynreg: OAuth2DynReg, callback: (patient: Patient?, error: NSError?) -> ()) {
+	public func ensureRegisteredAndAuthorize(dynreg: OAuth2DynReg, callback: (patient: Patient?, error: ErrorType?) -> ()) {
 		server.ensureRegistered(dynreg) { json, error in
 			if let error = error {
 				callback(patient: nil, error: error)
@@ -165,9 +162,5 @@ public func logIfDebug(log: String) {
 #if DEBUG
 	print("SoF: \(log)")
 #endif
-}
-
-public func genSMARTError(text: String, code: Int = 0) -> NSError {
-	return NSError(domain: SMARTErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: text])
 }
 

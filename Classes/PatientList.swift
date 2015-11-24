@@ -34,10 +34,10 @@ public class PatientList
 			lastStatusError = nil
 		}
 	}
-	private var lastStatusError: NSError? = nil
+	private var lastStatusError: FHIRError? = nil
 	
 	/// A block executed whenever the receiver's status changes.
-	public var onStatusUpdate: (NSError? -> Void)?
+	public var onStatusUpdate: (FHIRError? -> Void)?
 	
 	/// The patients currently in this list.
 	var patients: [Patient]? {
@@ -158,8 +158,8 @@ public class PatientList
 		status = .Loading
 		query.execute(server, order: order) { [weak self] bundle, error in
 			if let this = self {
-				if nil != error {
-					print("ERROR running patient query: \(error!.localizedDescription)")
+				if let error = error {
+					print("ERROR running patient query: \(error)")
 					this.lastStatusError = error
 					callOnMainThread() {
 						this.status = .Ready

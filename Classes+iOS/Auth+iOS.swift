@@ -50,7 +50,7 @@ extension Auth
 			}
 		}
 		else {
-			authDidFail(genOAuth2Error("No root view controller in authorization context, cannot present patient list"))
+			authDidFail(OAuth2Error.InvalidAuthorizationContext)
 		}
 	}
 }

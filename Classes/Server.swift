@@ -151,7 +151,7 @@ public class Server: FHIRServer
 	/**
 	Executes a `read` action against the server's "metadata" path, which should return a Conformance statement.
 	*/
-	final func getConformance(callback: (error: NSError?) -> ()) {
+	final func getConformance(callback: (error: FHIRError?) -> ()) {
 		if nil != conformance {
 			callback(error: nil)
 			return
@@ -164,7 +164,7 @@ public class Server: FHIRServer
 				callback(error: nil)
 			}
 			else {
-				callback(error: error ?? genSMARTError("Conformance.readFrom() did not return a Conformance instance but \(resource)"))
+				callback(error: error ?? FHIRError.Error("Conformance.readFrom() did not return a Conformance instance but \(resource)"))
 			}
 		}
 	}
@@ -186,7 +186,7 @@ public class Server: FHIRServer
 	init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri") or after the conformance statement has been
 	fetched.
 	*/
-	public func ready(callback: (error: NSError?) -> ()) {
+	public func ready(callback: (error: FHIRError?) -> ()) {
 		if nil != auth {
 			callback(error: nil)
 			return
@@ -198,7 +198,7 @@ public class Server: FHIRServer
 				callback(error: nil)
 			}
 			else {
-				callback(error: error ?? genSMARTError("Failed to detect the authorization method from server metadata"))
+				callback(error: error ?? FHIRError.Error("Failed to detect the authorization method from server metadata"))
 			}
 		}
 	}
@@ -206,14 +206,14 @@ public class Server: FHIRServer
 	/**
 	Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
 	*/
-	public func authorize(authProperties: SMARTAuthProperties, callback: ((patient: Patient?, error: NSError?) -> Void)) {
+	public func authorize(authProperties: SMARTAuthProperties, callback: ((patient: Patient?, error: ErrorType?) -> Void)) {
 		self.ready { error in
 			if self.mustAbortAuthorization {
 				self.mustAbortAuthorization = false
 				callback(patient: nil, error: nil)
 			}
 			else if nil != error || nil == self.auth {
-				callback(patient: nil, error: error ?? genSMARTError("Client error, no auth instance created"))
+				callback(patient: nil, error: error ?? FHIRError.Error("Client error, no auth instance created"))
 			}
 			else {
 				self.auth!.authorize(authProperties) { parameters, error in
@@ -221,7 +221,7 @@ public class Server: FHIRServer
 						self.mustAbortAuthorization = false
 						callback(patient: nil, error: nil)
 					}
-					else if nil != error {
+					else if let error = error {
 						callback(patient: nil, error: error)
 					}
 					else if let patient = parameters?["patient_resource"] as? Patient {		// native patient list auth flow will deliver a Patient instance
@@ -259,7 +259,7 @@ public class Server: FHIRServer
 	- parameter onlyIfNeeded: If set to _true_, registration will only be performed if no client-id has been assigned
 	- parameter callback: Callback to call when registration succeeds or fails
 	*/
-	func registerIfNeeded(dynreg: OAuth2DynReg, onlyIfNeeded: Bool, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+	func registerIfNeeded(dynreg: OAuth2DynReg, onlyIfNeeded: Bool, callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
 		ready() { error in
 			if let oauth = self.auth?.oauth {
 				dynreg.registerAndUpdateClient(oauth, onlyIfNeeded: onlyIfNeeded, callback: callback)
@@ -268,7 +268,7 @@ public class Server: FHIRServer
 				callback(json: nil, error: error)
 			}
 			else {
-				callback(json: nil, error: genSMARTError("No OAuth2 handle, cannot register client"))
+				callback(json: nil, error: FHIRError.Error("No OAuth2 handle, cannot register client"))
 			}
 		}
 	}
@@ -279,7 +279,7 @@ public class Server: FHIRServer
 	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
 	- parameter callback: Callback to call when registration succeeds or fails
 	*/
-	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
 		registerIfNeeded(dynreg, onlyIfNeeded: true, callback: callback)
 	}
 	
@@ -289,7 +289,7 @@ public class Server: FHIRServer
 	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
 	- parameter callback: Callback to call when registration succeeds or fails
 	*/
-	public func register(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+	public func register(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
 		registerIfNeeded(dynreg, onlyIfNeeded: false, callback: callback)
 	}
 	
@@ -386,11 +386,7 @@ public class Server: FHIRServer
 	*/
 	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		let task = session.dataTaskWithRequest(request) { data, response, error in
-			let res = handler.response(response: response, data: data)
-			if nil != error {
-				res.error = error
-			}
-			
+			let res = handler.response(response: response, data: data, error: error)
 			logIfDebug("Server responded with status \(res.status)")
 			//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
 			//logIfDebug("\(str)")
@@ -459,11 +455,11 @@ public class Server: FHIRServer
 					operation.perform(self, callback: callback)
 				}
 				catch let error {
-					callback(response: FHIRServerJSONResponse(notSentBecause: error as NSError))
+					callback(response: FHIRServerJSONResponse(error: error))
 				}
 			}
 			else {
-				callback(response: FHIRServerJSONResponse(notSentBecause: genServerError("The server does not support operation \(operation)")))
+				callback(response: FHIRServerJSONResponse(error: FHIRError.OperationNotSupported(operation.name)))
 			}
 		}
 	}

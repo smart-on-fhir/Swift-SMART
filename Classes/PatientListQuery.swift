@@ -32,13 +32,13 @@ public class PatientListQuery
 		isDone = false
 	}
 	
-	func execute(server: FHIRServer, order: PatientListOrder, callback: (bundle: Bundle?, error: NSError?) -> Void) {
+	func execute(server: FHIRServer, order: PatientListOrder, callback: (bundle: Bundle?, error: FHIRError?) -> Void) {
 		if isDone {
 			callback(bundle: nil, error: nil)
 			return
 		}
 		
-		let cb: (bundle: Bundle?, error: NSError?) -> Void = { bundle, error in
+		let cb: (bundle: Bundle?, error: FHIRError?) -> Void = { bundle, error in
 			if nil != error || nil == bundle {
 				callback(bundle: nil, error: error)
 			}

@@ -70,8 +70,8 @@ public class PatientListViewController: UITableViewController
 		// show an activity indicator whenever the list's status is "loading"
 		patientList?.onStatusUpdate = { [weak self] error in
 			if let this = self {
-				if nil != error {
-					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
+				if let error = error {
+					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, delegate: nil, cancelButtonTitle: "OK").show()
 				}
 				if nil != this.patientList && .Loading == this.patientList!.status {
 					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity)

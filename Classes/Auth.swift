@@ -49,7 +49,7 @@ class Auth
 	var authContext: AnyObject?
 	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((parameters: OAuth2JSON?, error: NSError?) -> ())?
+	var authCallback: ((parameters: OAuth2JSON?, error: ErrorType?) -> ())?
 	
 	
 	/** Designated initializer. */
@@ -158,7 +158,7 @@ class Auth
 	If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the returned dictionary. On
 	native patient selection adds a "patient_resource" key with the patient resource.
 	*/
-	func authorize(properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: NSError?) -> Void) {
+	func authorize(properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: ErrorType?) -> Void) {
 		if nil != authCallback {
 			abort()
 		}
@@ -203,7 +203,7 @@ class Auth
 		}
 		
 		else {
-			authDidFail(genSMARTError("I am not yet set up to authorize"))
+			authDidFail(FHIRError.Error("I am not yet set up to authorize"))
 		}
 	}
 	
@@ -230,7 +230,7 @@ class Auth
 		}
 	}
 	
-	internal func authDidFail(error: NSError?) {
+	internal func authDidFail(error: ErrorType?) {
 		logIfDebug("Failed to authorize with error: \(error)")
 		processAuthCallback(parameters: nil, error: error)
 	}
@@ -240,7 +240,7 @@ class Auth
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	
-	func processAuthCallback(parameters  parameters: OAuth2JSON?, error: NSError?) {
+	func processAuthCallback(parameters  parameters: OAuth2JSON?, error: ErrorType?) {
 		if nil != authCallback {
 			authCallback!(parameters: parameters, error: error)
 			authCallback = nil
