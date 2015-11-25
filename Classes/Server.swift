@@ -462,7 +462,7 @@ public class Server: FHIRServer
 			if let def = definition {
 				do {
 					try operation.validateWith(def)
-					operation.perform(self, callback: callback)
+					try operation.perform(self, callback: callback)
 				}
 				catch let error {
 					callback(response: FHIRServerJSONResponse(error: error))
