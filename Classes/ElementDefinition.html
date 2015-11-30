@@ -13,14 +13,14 @@
     <a title="ElementDefinition Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftSMART Docs</a> (81% documented)</p>
+        <p><a href="../index.html">SMART Docs</a> (80% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-SMART"><img src="../img/gh.png"/>View on GitHub</a></p>
-        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftSMART%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
+        <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSMART%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
     </header>
     <div class="content-wrapper">
       <p id="breadcrumbs">
-        <a href="../index.html">SwiftSMART Reference</a>
+        <a href="../index.html">SMART Reference</a>
         <img id="carat" src="../img/carat.png" />
         ElementDefinition Class Reference
       </p>
@@ -29,7 +29,7 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-          <a href="../Classes.html">Classes</a>
+            <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/Account.html">Account</a>
@@ -773,6 +773,9 @@
                 <a href="../Classes/OAuth2Base.html">OAuth2Base</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/OAuth2ClientConfig.html">OAuth2ClientConfig</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/OAuth2ClientCredentials.html">OAuth2ClientCredentials</a>
               </li>
               <li class="nav-group-task">
@@ -1159,19 +1162,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Global Variables.html">Global Variables</a>
+            <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v5SMART23FHIRResourceErrorDomainSS">FHIRResourceErrorDomain</a>
+                <a href="../Enums/FHIRError.html">FHIRError</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v5SMART21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Enums.html">Enums</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/FHIRJSONErrorType.html">FHIRJSONErrorType</a>
               </li>
@@ -1185,9 +1180,6 @@
                 <a href="../Enums/OAuth2Error.html">OAuth2Error</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/OAuth2IncompleteSetup.html">OAuth2IncompleteSetup</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Enums/PatientListOrder.html">PatientListOrder</a>
               </li>
               <li class="nav-group-task">
@@ -1199,34 +1191,13 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Extensions.html">Extensions</a>
+            <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Extensions/Base64Binary.html">Base64Binary</a>
-              </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Date.html">Date</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/DateTime.html">DateTime</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/FHIRElement.html">FHIRElement</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/FHIRResource.html">FHIRResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Instant.html">Instant</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Keychain.html">Keychain</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/NSBundle.html">NSBundle</a>
@@ -1244,19 +1215,7 @@
                 <a href="../Extensions/NSURL.html">NSURL</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/OAuth2.html">OAuth2</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Reference.html">Reference</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Resource.html">Resource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Time.html">Time</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/UInt.html">UInt</a>
@@ -1264,25 +1223,31 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Functions.html">Functions</a>
+            <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF5SMARToi2eeFTOS_11OAuth2ErrorS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
@@ -1294,16 +1259,7 @@
                 <a href="../Functions.html#/s:ZF5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions.html#/s:F5SMART15fhir_logIfDebugFSST_">fhir_logIfDebug(_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:F5SMART14genOAuth2ErrorFTSSOS_11OAuth2Error_CSo7NSError">genOAuth2Error(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:F5SMART13genSMARTErrorFTSS4codeSi_CSo7NSError">genSMARTError(_:code:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:F5SMART10logIfDebugFSST_">logIfDebug(_:)</a>
@@ -1311,7 +1267,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Protocols.html">Protocols</a>
+            <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/FHIRServer.html">FHIRServer</a>
@@ -1325,7 +1281,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Structs.html">Structs</a>
+            <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
@@ -1354,7 +1310,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Typealiases.html">Typealiases</a>
+            <a href="../Typealiases.html">Typealiases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:5SMART1$">$</a>
@@ -1371,6 +1327,9 @@
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:5SMART10OAuth2JSON">OAuth2JSON</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:5SMART16OAuth2StringDict">OAuth2StringDict</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -1380,16 +1339,14 @@
           <section class="section">
             <h1>ElementDefinition</h1>
               <div class="declaration">
-                <div class="Swift">
+                <div class="language">
                   <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ElementDefinition</span><span class="p">:</span> <span class="kt">FHIRElement</span></code></pre>
 
                 </div>
               </div>
-            <ul>
-<li>Definition of an element in a resource or extension.
-*</li>
-<li>Captures constraints on each element within the resource, profile, or extension.</li>
-</ul>
+            <p>Definition of an element in a resource or extension.</p>
+
+<p>Captures constraints on each element within the resource, profile, or extension.</p>
 
           </section>
           <section class="section task-group-section">
@@ -1413,7 +1370,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ElementDefinition</span><span class="p">:</span> <span class="kt">FHIRElement</span></code></pre>
 
@@ -1440,7 +1397,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">alias</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
@@ -1467,7 +1424,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">ElementDefinitionBase</span><span class="p">?</span></code></pre>
 
@@ -1494,7 +1451,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">binding</span><span class="p">:</span> <span class="kt">ElementDefinitionBinding</span><span class="p">?</span></code></pre>
 
@@ -1521,7 +1478,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">code</span><span class="p">:</span> <span class="p">[</span><span class="kt">Coding</span><span class="p">]?</span></code></pre>
 
@@ -1548,7 +1505,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">comments</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -1575,7 +1532,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">condition</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
@@ -1602,7 +1559,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">constraint</span><span class="p">:</span> <span class="p">[</span><span class="kt">ElementDefinitionConstraint</span><span class="p">]?</span></code></pre>
 
@@ -1629,7 +1586,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueAddress</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
 
@@ -1656,7 +1613,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueAnnotation</span><span class="p">:</span> <span class="kt">Annotation</span><span class="p">?</span></code></pre>
 
@@ -1683,7 +1640,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueAttachment</span><span class="p">:</span> <span class="kt">Attachment</span><span class="p">?</span></code></pre>
 
@@ -1710,7 +1667,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueBase64Binary</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">?</span></code></pre>
 
@@ -1737,7 +1694,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueBoolean</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -1764,7 +1721,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -1791,7 +1748,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueCodeableConcept</span><span class="p">:</span> <span class="kt">CodeableConcept</span><span class="p">?</span></code></pre>
 
@@ -1818,7 +1775,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueCoding</span><span class="p">:</span> <span class="kt">Coding</span><span class="p">?</span></code></pre>
 
@@ -1845,7 +1802,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueContactPoint</span><span class="p">:</span> <span class="kt">ContactPoint</span><span class="p">?</span></code></pre>
 
@@ -1872,7 +1829,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
@@ -1899,7 +1856,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueDateTime</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -1926,7 +1883,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueDecimal</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">?</span></code></pre>
 
@@ -1953,7 +1910,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueHumanName</span><span class="p">:</span> <span class="kt">HumanName</span><span class="p">?</span></code></pre>
 
@@ -1980,7 +1937,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2007,7 +1964,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueIdentifier</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -2034,7 +1991,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueInstant</span><span class="p">:</span> <span class="kt">Instant</span><span class="p">?</span></code></pre>
 
@@ -2061,7 +2018,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueInteger</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -2088,7 +2045,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueMarkdown</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2115,7 +2072,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueMeta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -2142,7 +2099,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueOid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2169,7 +2126,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValuePeriod</span><span class="p">:</span> <span class="kt">Period</span><span class="p">?</span></code></pre>
 
@@ -2196,7 +2153,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValuePositiveInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -2223,7 +2180,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueQuantity</span><span class="p">:</span> <span class="kt">Quantity</span><span class="p">?</span></code></pre>
 
@@ -2250,7 +2207,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueRange</span><span class="p">:</span> <span class="kt">Range</span><span class="p">?</span></code></pre>
 
@@ -2277,7 +2234,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueRatio</span><span class="p">:</span> <span class="kt">Ratio</span><span class="p">?</span></code></pre>
 
@@ -2304,7 +2261,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -2331,7 +2288,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueSampledData</span><span class="p">:</span> <span class="kt">SampledData</span><span class="p">?</span></code></pre>
 
@@ -2358,7 +2315,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueSignature</span><span class="p">:</span> <span class="kt">Signature</span><span class="p">?</span></code></pre>
 
@@ -2385,7 +2342,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2412,7 +2369,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueTime</span><span class="p">:</span> <span class="kt">Time</span><span class="p">?</span></code></pre>
 
@@ -2439,7 +2396,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueTiming</span><span class="p">:</span> <span class="kt">Timing</span><span class="p">?</span></code></pre>
 
@@ -2466,7 +2423,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueUnsignedInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -2493,7 +2450,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultValueUri</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -2520,7 +2477,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">definition</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2547,7 +2504,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleAddress</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
 
@@ -2574,7 +2531,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleAnnotation</span><span class="p">:</span> <span class="kt">Annotation</span><span class="p">?</span></code></pre>
 
@@ -2601,7 +2558,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleAttachment</span><span class="p">:</span> <span class="kt">Attachment</span><span class="p">?</span></code></pre>
 
@@ -2628,7 +2585,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleBase64Binary</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">?</span></code></pre>
 
@@ -2655,7 +2612,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleBoolean</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -2682,7 +2639,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2709,7 +2666,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleCodeableConcept</span><span class="p">:</span> <span class="kt">CodeableConcept</span><span class="p">?</span></code></pre>
 
@@ -2736,7 +2693,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleCoding</span><span class="p">:</span> <span class="kt">Coding</span><span class="p">?</span></code></pre>
 
@@ -2763,7 +2720,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleContactPoint</span><span class="p">:</span> <span class="kt">ContactPoint</span><span class="p">?</span></code></pre>
 
@@ -2790,7 +2747,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
@@ -2817,7 +2774,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleDateTime</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -2844,7 +2801,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleDecimal</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">?</span></code></pre>
 
@@ -2871,7 +2828,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleHumanName</span><span class="p">:</span> <span class="kt">HumanName</span><span class="p">?</span></code></pre>
 
@@ -2898,7 +2855,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -2925,7 +2882,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleIdentifier</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -2952,7 +2909,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleInstant</span><span class="p">:</span> <span class="kt">Instant</span><span class="p">?</span></code></pre>
 
@@ -2979,7 +2936,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleInteger</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -3006,7 +2963,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleMarkdown</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3033,7 +2990,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleMeta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -3060,7 +3017,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleOid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3087,7 +3044,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">examplePeriod</span><span class="p">:</span> <span class="kt">Period</span><span class="p">?</span></code></pre>
 
@@ -3114,7 +3071,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">examplePositiveInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -3141,7 +3098,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleQuantity</span><span class="p">:</span> <span class="kt">Quantity</span><span class="p">?</span></code></pre>
 
@@ -3168,7 +3125,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleRange</span><span class="p">:</span> <span class="kt">Range</span><span class="p">?</span></code></pre>
 
@@ -3195,7 +3152,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleRatio</span><span class="p">:</span> <span class="kt">Ratio</span><span class="p">?</span></code></pre>
 
@@ -3222,7 +3179,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -3249,7 +3206,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleSampledData</span><span class="p">:</span> <span class="kt">SampledData</span><span class="p">?</span></code></pre>
 
@@ -3276,7 +3233,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleSignature</span><span class="p">:</span> <span class="kt">Signature</span><span class="p">?</span></code></pre>
 
@@ -3303,7 +3260,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3330,7 +3287,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleTime</span><span class="p">:</span> <span class="kt">Time</span><span class="p">?</span></code></pre>
 
@@ -3357,7 +3314,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleTiming</span><span class="p">:</span> <span class="kt">Timing</span><span class="p">?</span></code></pre>
 
@@ -3384,7 +3341,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleUnsignedInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -3411,7 +3368,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">exampleUri</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -3438,7 +3395,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedAddress</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
 
@@ -3465,7 +3422,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedAnnotation</span><span class="p">:</span> <span class="kt">Annotation</span><span class="p">?</span></code></pre>
 
@@ -3492,7 +3449,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedAttachment</span><span class="p">:</span> <span class="kt">Attachment</span><span class="p">?</span></code></pre>
 
@@ -3519,7 +3476,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedBase64Binary</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">?</span></code></pre>
 
@@ -3546,7 +3503,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedBoolean</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -3573,7 +3530,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3600,7 +3557,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedCodeableConcept</span><span class="p">:</span> <span class="kt">CodeableConcept</span><span class="p">?</span></code></pre>
 
@@ -3627,7 +3584,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedCoding</span><span class="p">:</span> <span class="kt">Coding</span><span class="p">?</span></code></pre>
 
@@ -3654,7 +3611,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedContactPoint</span><span class="p">:</span> <span class="kt">ContactPoint</span><span class="p">?</span></code></pre>
 
@@ -3681,7 +3638,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
@@ -3708,7 +3665,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedDateTime</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -3735,7 +3692,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedDecimal</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">?</span></code></pre>
 
@@ -3762,7 +3719,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedHumanName</span><span class="p">:</span> <span class="kt">HumanName</span><span class="p">?</span></code></pre>
 
@@ -3789,7 +3746,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3816,7 +3773,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedIdentifier</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -3843,7 +3800,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedInstant</span><span class="p">:</span> <span class="kt">Instant</span><span class="p">?</span></code></pre>
 
@@ -3870,7 +3827,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedInteger</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -3897,7 +3854,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedMarkdown</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3924,7 +3881,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedMeta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -3951,7 +3908,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedOid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -3978,7 +3935,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedPeriod</span><span class="p">:</span> <span class="kt">Period</span><span class="p">?</span></code></pre>
 
@@ -4005,7 +3962,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedPositiveInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -4032,7 +3989,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedQuantity</span><span class="p">:</span> <span class="kt">Quantity</span><span class="p">?</span></code></pre>
 
@@ -4059,7 +4016,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedRange</span><span class="p">:</span> <span class="kt">Range</span><span class="p">?</span></code></pre>
 
@@ -4086,7 +4043,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedRatio</span><span class="p">:</span> <span class="kt">Ratio</span><span class="p">?</span></code></pre>
 
@@ -4113,7 +4070,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -4140,7 +4097,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedSampledData</span><span class="p">:</span> <span class="kt">SampledData</span><span class="p">?</span></code></pre>
 
@@ -4167,7 +4124,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedSignature</span><span class="p">:</span> <span class="kt">Signature</span><span class="p">?</span></code></pre>
 
@@ -4194,7 +4151,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -4221,7 +4178,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedTime</span><span class="p">:</span> <span class="kt">Time</span><span class="p">?</span></code></pre>
 
@@ -4248,7 +4205,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedTiming</span><span class="p">:</span> <span class="kt">Timing</span><span class="p">?</span></code></pre>
 
@@ -4275,7 +4232,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedUnsignedInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -4302,7 +4259,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fixedUri</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -4329,7 +4286,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isModifier</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -4356,7 +4313,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isSummary</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -4383,7 +4340,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">label</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -4410,7 +4367,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">mapping</span><span class="p">:</span> <span class="p">[</span><span class="kt">ElementDefinitionMapping</span><span class="p">]?</span></code></pre>
 
@@ -4437,7 +4394,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">max</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -4464,7 +4421,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -4491,7 +4448,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueAddress</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
 
@@ -4518,7 +4475,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueAnnotation</span><span class="p">:</span> <span class="kt">Annotation</span><span class="p">?</span></code></pre>
 
@@ -4545,7 +4502,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueAttachment</span><span class="p">:</span> <span class="kt">Attachment</span><span class="p">?</span></code></pre>
 
@@ -4572,7 +4529,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueBase64Binary</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">?</span></code></pre>
 
@@ -4599,7 +4556,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueBoolean</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -4626,7 +4583,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -4653,7 +4610,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueCodeableConcept</span><span class="p">:</span> <span class="kt">CodeableConcept</span><span class="p">?</span></code></pre>
 
@@ -4680,7 +4637,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueCoding</span><span class="p">:</span> <span class="kt">Coding</span><span class="p">?</span></code></pre>
 
@@ -4707,7 +4664,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueContactPoint</span><span class="p">:</span> <span class="kt">ContactPoint</span><span class="p">?</span></code></pre>
 
@@ -4734,7 +4691,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
@@ -4761,7 +4718,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueDateTime</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -4788,7 +4745,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueDecimal</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">?</span></code></pre>
 
@@ -4815,7 +4772,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueHumanName</span><span class="p">:</span> <span class="kt">HumanName</span><span class="p">?</span></code></pre>
 
@@ -4842,7 +4799,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -4869,7 +4826,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueIdentifier</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -4896,7 +4853,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueInstant</span><span class="p">:</span> <span class="kt">Instant</span><span class="p">?</span></code></pre>
 
@@ -4923,7 +4880,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueInteger</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -4950,7 +4907,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueMarkdown</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -4977,7 +4934,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueMeta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -5004,7 +4961,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueOid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5031,7 +4988,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValuePeriod</span><span class="p">:</span> <span class="kt">Period</span><span class="p">?</span></code></pre>
 
@@ -5058,7 +5015,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValuePositiveInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -5085,7 +5042,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueQuantity</span><span class="p">:</span> <span class="kt">Quantity</span><span class="p">?</span></code></pre>
 
@@ -5112,7 +5069,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueRange</span><span class="p">:</span> <span class="kt">Range</span><span class="p">?</span></code></pre>
 
@@ -5139,7 +5096,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueRatio</span><span class="p">:</span> <span class="kt">Ratio</span><span class="p">?</span></code></pre>
 
@@ -5166,7 +5123,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -5193,7 +5150,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueSampledData</span><span class="p">:</span> <span class="kt">SampledData</span><span class="p">?</span></code></pre>
 
@@ -5220,7 +5177,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueSignature</span><span class="p">:</span> <span class="kt">Signature</span><span class="p">?</span></code></pre>
 
@@ -5247,7 +5204,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5274,7 +5231,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueTime</span><span class="p">:</span> <span class="kt">Time</span><span class="p">?</span></code></pre>
 
@@ -5301,7 +5258,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueTiming</span><span class="p">:</span> <span class="kt">Timing</span><span class="p">?</span></code></pre>
 
@@ -5328,7 +5285,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueUnsignedInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -5355,7 +5312,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maxValueUri</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -5382,7 +5339,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">meaningWhenMissing</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5409,7 +5366,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">min</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -5436,7 +5393,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueAddress</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
 
@@ -5463,7 +5420,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueAnnotation</span><span class="p">:</span> <span class="kt">Annotation</span><span class="p">?</span></code></pre>
 
@@ -5490,7 +5447,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueAttachment</span><span class="p">:</span> <span class="kt">Attachment</span><span class="p">?</span></code></pre>
 
@@ -5517,7 +5474,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueBase64Binary</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">?</span></code></pre>
 
@@ -5544,7 +5501,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueBoolean</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -5571,7 +5528,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5598,7 +5555,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueCodeableConcept</span><span class="p">:</span> <span class="kt">CodeableConcept</span><span class="p">?</span></code></pre>
 
@@ -5625,7 +5582,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueCoding</span><span class="p">:</span> <span class="kt">Coding</span><span class="p">?</span></code></pre>
 
@@ -5652,7 +5609,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueContactPoint</span><span class="p">:</span> <span class="kt">ContactPoint</span><span class="p">?</span></code></pre>
 
@@ -5679,7 +5636,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
@@ -5706,7 +5663,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueDateTime</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -5733,7 +5690,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueDecimal</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">?</span></code></pre>
 
@@ -5760,7 +5717,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueHumanName</span><span class="p">:</span> <span class="kt">HumanName</span><span class="p">?</span></code></pre>
 
@@ -5787,7 +5744,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5814,7 +5771,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueIdentifier</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -5841,7 +5798,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueInstant</span><span class="p">:</span> <span class="kt">Instant</span><span class="p">?</span></code></pre>
 
@@ -5868,7 +5825,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueInteger</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -5895,7 +5852,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueMarkdown</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5922,7 +5879,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueMeta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -5949,7 +5906,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueOid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -5976,7 +5933,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValuePeriod</span><span class="p">:</span> <span class="kt">Period</span><span class="p">?</span></code></pre>
 
@@ -6003,7 +5960,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValuePositiveInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -6030,7 +5987,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueQuantity</span><span class="p">:</span> <span class="kt">Quantity</span><span class="p">?</span></code></pre>
 
@@ -6057,7 +6014,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueRange</span><span class="p">:</span> <span class="kt">Range</span><span class="p">?</span></code></pre>
 
@@ -6084,7 +6041,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueRatio</span><span class="p">:</span> <span class="kt">Ratio</span><span class="p">?</span></code></pre>
 
@@ -6111,7 +6068,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -6138,7 +6095,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueSampledData</span><span class="p">:</span> <span class="kt">SampledData</span><span class="p">?</span></code></pre>
 
@@ -6165,7 +6122,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueSignature</span><span class="p">:</span> <span class="kt">Signature</span><span class="p">?</span></code></pre>
 
@@ -6192,7 +6149,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6219,7 +6176,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueTime</span><span class="p">:</span> <span class="kt">Time</span><span class="p">?</span></code></pre>
 
@@ -6246,7 +6203,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueTiming</span><span class="p">:</span> <span class="kt">Timing</span><span class="p">?</span></code></pre>
 
@@ -6273,7 +6230,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueUnsignedInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -6300,7 +6257,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minValueUri</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -6327,7 +6284,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">mustSupport</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -6354,7 +6311,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6381,7 +6338,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">nameReference</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6408,7 +6365,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6435,7 +6392,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternAddress</span><span class="p">:</span> <span class="kt">Address</span><span class="p">?</span></code></pre>
 
@@ -6462,7 +6419,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternAnnotation</span><span class="p">:</span> <span class="kt">Annotation</span><span class="p">?</span></code></pre>
 
@@ -6489,7 +6446,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternAttachment</span><span class="p">:</span> <span class="kt">Attachment</span><span class="p">?</span></code></pre>
 
@@ -6516,7 +6473,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternBase64Binary</span><span class="p">:</span> <span class="kt">Base64Binary</span><span class="p">?</span></code></pre>
 
@@ -6543,7 +6500,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternBoolean</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span></code></pre>
 
@@ -6570,7 +6527,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternCode</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6597,7 +6554,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternCodeableConcept</span><span class="p">:</span> <span class="kt">CodeableConcept</span><span class="p">?</span></code></pre>
 
@@ -6624,7 +6581,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternCoding</span><span class="p">:</span> <span class="kt">Coding</span><span class="p">?</span></code></pre>
 
@@ -6651,7 +6608,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternContactPoint</span><span class="p">:</span> <span class="kt">ContactPoint</span><span class="p">?</span></code></pre>
 
@@ -6678,7 +6635,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
@@ -6705,7 +6662,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternDateTime</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -6732,7 +6689,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternDecimal</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">?</span></code></pre>
 
@@ -6759,7 +6716,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternHumanName</span><span class="p">:</span> <span class="kt">HumanName</span><span class="p">?</span></code></pre>
 
@@ -6786,7 +6743,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6813,7 +6770,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternIdentifier</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -6840,7 +6797,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternInstant</span><span class="p">:</span> <span class="kt">Instant</span><span class="p">?</span></code></pre>
 
@@ -6867,7 +6824,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternInteger</span><span class="p">:</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
 
@@ -6894,7 +6851,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternMarkdown</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6921,7 +6878,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternMeta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -6948,7 +6905,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternOid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -6975,7 +6932,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternPeriod</span><span class="p">:</span> <span class="kt">Period</span><span class="p">?</span></code></pre>
 
@@ -7002,7 +6959,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternPositiveInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -7029,7 +6986,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternQuantity</span><span class="p">:</span> <span class="kt">Quantity</span><span class="p">?</span></code></pre>
 
@@ -7056,7 +7013,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternRange</span><span class="p">:</span> <span class="kt">Range</span><span class="p">?</span></code></pre>
 
@@ -7083,7 +7040,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternRatio</span><span class="p">:</span> <span class="kt">Ratio</span><span class="p">?</span></code></pre>
 
@@ -7110,7 +7067,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternReference</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -7137,7 +7094,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternSampledData</span><span class="p">:</span> <span class="kt">SampledData</span><span class="p">?</span></code></pre>
 
@@ -7164,7 +7121,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternSignature</span><span class="p">:</span> <span class="kt">Signature</span><span class="p">?</span></code></pre>
 
@@ -7191,7 +7148,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternString</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -7218,7 +7175,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternTime</span><span class="p">:</span> <span class="kt">Time</span><span class="p">?</span></code></pre>
 
@@ -7245,7 +7202,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternTiming</span><span class="p">:</span> <span class="kt">Timing</span><span class="p">?</span></code></pre>
 
@@ -7272,7 +7229,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternUnsignedInt</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -7299,7 +7256,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patternUri</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -7326,7 +7283,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">representation</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
@@ -7353,7 +7310,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">requirements</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -7380,7 +7337,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">short</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -7407,7 +7364,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">slicing</span><span class="p">:</span> <span class="kt">ElementDefinitionSlicing</span><span class="p">?</span></code></pre>
 
@@ -7434,7 +7391,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">type</span><span class="p">:</span> <span class="p">[</span><span class="kt">ElementDefinitionType</span><span class="p">]?</span></code></pre>
 
@@ -7461,7 +7418,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kt">FHIRJSON</span><span class="p">?)</span></code></pre>
 
@@ -7488,7 +7445,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
@@ -7515,7 +7472,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ElementDefinition</span><span class="p">:</span> <span class="kt">FHIRElement</span></code></pre>
 
@@ -7529,8 +7486,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-09-23)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-11-30)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.4.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
