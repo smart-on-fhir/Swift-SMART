@@ -69,13 +69,12 @@ class Auth
 		var authSettings = settings ?? OAuth2JSON(minimumCapacity: 3)
 		
 		if let services = security.service {
-			let unknown = "unknown"
 			for service in services {
-				logIfDebug("Server supports REST security via “\(service.text ?? unknown)”")
+				logIfDebug("Server supports REST security via “\(service.text ?? "unknown")”")
 				if let codings = service.coding {
 					for coding in codings {
 						if "OAuth2" == coding.code || "SMART-on-FHIR" == coding.code {
-							// TODO: support multiple Auth methods per server?
+							// TODO: what is this good for anyway?
 						}
 					}
 				}
