@@ -508,6 +508,9 @@
                 <a href="Classes/FHIRElement.html">FHIRElement</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/FHIROpenServer.html">FHIROpenServer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/FHIROperation.html">FHIROperation</a>
               </li>
               <li class="nav-group-task">
@@ -1225,31 +1228,28 @@
             <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF5SMARToi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF5SMARToi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF5SMARToi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:ZF5SMARToi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF5SMARToi2eeFTOS_11OAuth2ErrorS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:ZF5SMARToi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:ZF5SMARToi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:ZF5SMARToi2eeFTOS_11OAuth2ErrorS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
@@ -1258,7 +1258,13 @@
                 <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F5SMART15fhir_logIfDebugFSST_">fhir_logIfDebug(_:)</a>
+                <a href="Functions.html#/s:ZF5SMARToi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F5SMART15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F5SMART9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:F5SMART10logIfDebugFSST_">logIfDebug(_:)</a>
@@ -4437,7 +4443,7 @@ session. Subclasses can change this behavior by overriding <code>createDefaultSe
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Server</span><span class="p">:</span> <span class="kt">FHIRServer</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Server</span><span class="p">:</span> <span class="kt">FHIROpenServer</span></code></pre>
 
                         </div>
                       </div>
@@ -6369,6 +6375,47 @@ session. Subclasses can change this behavior by overriding <code>createDefaultSe
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:C5SMART14FHIROpenServer"></a>
+                    <a name="//apple_ref/swift/Class/FHIROpenServer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C5SMART14FHIROpenServer">FHIROpenServer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A very basic FHIRServer implementation that deals with Open FHIR servers in JSON.</p>
+
+<p>It knows its base URL, can fetch and hold on to the conformance statement and perform requests and operations.</p>
+
+<p>These methods are of interest to you when you create a subclass:</p>
+
+<ul>
+<li><code>handlerForRequestOfType(type:resource:)</code>: what kind of handler your server wants to use. Returns <code><a href="Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a></code>.</li>
+<li><code>configurableRequestForURL(url:)</code>: the SMART framework returns a request that already has an Authorization headers set, if needed.</li>
+</ul>
+
+                        <a href="Classes/FHIROpenServer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">FHIROpenServer</span><span class="p">:</span> <span class="kt">FHIRServer</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:C5SMART15SearchParameter"></a>
                     <a name="//apple_ref/swift/Class/SearchParameter" class="dashAnchor"></a>
                     <a class="token" href="#/s:C5SMART15SearchParameter">SearchParameter</a>
@@ -7235,7 +7282,7 @@ session. Subclasses can change this behavior by overriding <code>createDefaultSe
 
 <p>The id of contained resources will be referenced from their parents as URL fragment, meaning <q>med1</q> will be referenced as <q>#med1</q>.</p>
 
-<p><a href="http://hl7.org/implement/standards/fhir/references.html#contained">http://hl7.org/implement/standards/fhir/references.html#contained</a></p>
+<p><a href="http://hl7.org/fhir/references.html#contained">http://hl7.org/fhir/references.html#contained</a></p>
 
                         <a href="Classes/FHIRContainedResource.html" class="slightly-smaller">See more</a>
                       </div>
