@@ -93,6 +93,13 @@ public class Server: FHIROpenServer
 	}
 	
 	
+	// MARK: - Requests
+	
+	public override func configurableRequestForURL(url: NSURL) -> NSMutableURLRequest {
+		return auth?.signedRequest(url) ?? super.configurableRequestForURL(url)
+	}
+	
+	
 	// MARK: - Server Conformance
 	
 	public override func didSetConformance(conformance: Conformance) {
