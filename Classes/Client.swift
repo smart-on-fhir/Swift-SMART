@@ -130,8 +130,7 @@ public class Client
 	
 	/** Stops any request currently in progress. */
 	public func abort() {
-		server.abortAuthorization()
-		server.abortSession()
+		server.abort()
 	}
 	
 	/** Resets state and authorization data. */

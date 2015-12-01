@@ -28,6 +28,7 @@
 		EE1F49B81C0CC5780095BF0F /* OAuth2AuthConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F498B1C04D57A0095BF0F /* OAuth2AuthConfig.swift */; };
 		EE1F49B91C0CC57B0095BF0F /* OAuth2ClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F498C1C04D57A0095BF0F /* OAuth2ClientConfig.swift */; };
 		EE1F49BA1C0CC57E0095BF0F /* OAuth2Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F498D1C04D57A0095BF0F /* OAuth2Error.swift */; };
+		EE1F49E21C0D366A0095BF0F /* FHIROpenServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49E11C0D366A0095BF0F /* FHIROpenServer.swift */; };
 		EE29E702195838DD008882C8 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE29E70419583A04008882C8 /* metadata in Resources */ = {isa = PBXBuildFile; fileRef = EE29E70319583A04008882C8 /* metadata */; };
 		EE43B1B419546D880017679A /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE43B1A919546D880017679A /* SMART.framework */; };
@@ -415,6 +416,7 @@
 		EE1F498D1C04D57A0095BF0F /* OAuth2Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Error.swift; sourceTree = "<group>"; };
 		EE1F49981C051DDA0095BF0F /* FHIRError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRError.swift; sourceTree = "<group>"; };
 		EE1F49B61C0672810095BF0F /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = SOURCE_ROOT; };
+		EE1F49E11C0D366A0095BF0F /* FHIROpenServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIROpenServer.swift; sourceTree = "<group>"; };
 		EE29E701195838DD008882C8 /* ServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 		EE29E70319583A04008882C8 /* metadata */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = metadata; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		EE43B1A919546D880017679A /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -964,6 +966,7 @@
 				EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */,
 				EE8901251B7E085B00F1EDBF /* FHIRElement+Utilities.swift */,
 				EE56A49D1ABB0B7900FA99EB /* FHIRServer.swift */,
+				EE1F49E11C0D366A0095BF0F /* FHIROpenServer.swift */,
 				EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */,
 				EE9B32081ACAE6D300980AA9 /* FHIRServerResponse.swift */,
 				EE02F8091ACF2FDB00179969 /* FHIRSearch.swift */,
@@ -1255,6 +1258,7 @@
 				EEEE30D91BB1FD53008866E2 /* ImplementationGuide.swift in Sources */,
 				EEEE30DA1BB1FD53008866E2 /* MedicationOrder.swift in Sources */,
 				EE56A57C1ABB0B7900FA99EB /* List.swift in Sources */,
+				EE1F49E21C0D366A0095BF0F /* FHIROpenServer.swift in Sources */,
 				EE56A5DE1ABB0B7A00FA99EB /* SearchParameter.swift in Sources */,
 				EE56A5A41ABB0B7A00FA99EB /* Organization.swift in Sources */,
 				EE9B31F91ACADAF700980AA9 /* Resource+REST.swift in Sources */,

@@ -15,18 +15,11 @@ class ClientTests: XCTestCase {
 	func testInit() {
 		let client = Client(baseURL: "https://api.io", settings: ["cliend_id": "client", "redirect": "oauth://callback"])
 		XCTAssertTrue(client.server.baseURL.absoluteString == "https://api.io/")
-		
-		//XCTAssertNil(client.auth.clientId, "clientId will only be queryable once we have an OAuth2 instance")
+
+//		//XCTAssertNil(client.auth.clientId, "clientId will only be queryable once we have an OAuth2 instance")
 		client.ready { error in
-			print(error?.localizedDescription)
+			XCTAssertNil(error)
 		}
     }
-    
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measureBlock() {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
 }
 

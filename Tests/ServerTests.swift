@@ -16,10 +16,10 @@ class ServerTests: XCTestCase
 {
 	func testMetadataParsing() throws {
 		let server = Server(base: "https://api.io")
-		XCTAssertTrue("https://api.io" == server.baseURL.absoluteString)
+		XCTAssertEqual("https://api.io", server.baseURL.absoluteString)
+		XCTAssertEqual("https://api.io", server.aud)
 		
-		// TODO: How to use NSBundle(forClass)?
-		let metaURL = NSBundle(path: __FILE__.smart_stringByDeletingLastPathComponent)!.URLForResource("metadata", withExtension: "")
+		let metaURL = NSBundle(forClass: self.dynamicType).URLForResource("metadata", withExtension: "")
 		XCTAssertNotNil(metaURL, "Need file `metadata` for unit tests")
 		let metaData = NSData(contentsOfURL: metaURL!)
 		let meta = try NSJSONSerialization.JSONObjectWithData(metaData!, options: []) as! FHIRJSON
