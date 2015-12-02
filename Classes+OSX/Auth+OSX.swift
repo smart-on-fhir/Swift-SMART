@@ -18,6 +18,9 @@ extension Auth
 		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
 	}
 	
+	func authDidFailInternal(error: ErrorType?) {
+	}
+	
 	func showPatientList(parameters: OAuth2JSON) {
 		fatalError("Not yet implemented")
 	}

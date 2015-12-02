@@ -231,6 +231,7 @@ class Auth
 	
 	internal func authDidFail(error: ErrorType?) {
 		logIfDebug("Failed to authorize with error: \(error)")
+		authDidFailInternal(error)
 		processAuthCallback(parameters: nil, error: error)
 	}
 	

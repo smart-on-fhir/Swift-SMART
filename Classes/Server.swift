@@ -200,7 +200,6 @@ public class Server: FHIROpenServer
 	}
 	
 	func abortAuthorization() {
-		logIfDebug("Aborting authorization")
 		mustAbortAuthorization = true
 		if nil != auth {
 			auth!.abort()

@@ -21,6 +21,14 @@ extension Auth
 		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
 	}
 	
+	func authDidFailInternal(error: ErrorType?) {
+		if let props = authProperties where props.granularity == .PatientSelectNative {		// not auto-dismissing, must do it ourselves
+			if let vc = oauth?.authConfig.authorizeContext as? UIViewController {
+				vc.dismissViewControllerAnimated(true, completion: nil)
+			}
+		}
+	}
+	
 	/** Show the native patient list on the current authContext or the window's root view controller. */
 	func showPatientList(parameters: OAuth2JSON) {
 		if let root = authContext as? UIViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController {
