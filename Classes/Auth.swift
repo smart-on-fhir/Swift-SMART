@@ -240,6 +240,10 @@ class Auth
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	
+	func forgetClientRegistration() {
+		oauth?.forgetClient()
+	}
+	
 	func processAuthCallback(parameters  parameters: OAuth2JSON?, error: ErrorType?) {
 		if nil != authCallback {
 			authCallback!(parameters: parameters, error: error)

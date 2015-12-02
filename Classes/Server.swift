@@ -214,48 +214,8 @@ public class Server: FHIROpenServer
 		auth?.reset()
 	}
 	
-	
-	// MARK: - Registration
-	
-	/**
-	Internal method forwarding the public method calls.
-	
-	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
-	- parameter onlyIfNeeded: If set to _true_, registration will only be performed if no client-id has been assigned
-	- parameter callback: Callback to call when registration succeeds or fails
-	*/
-	func registerIfNeeded(dynreg: OAuth2DynReg, onlyIfNeeded: Bool, callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
-		ready() { error in
-			if let oauth = self.auth?.oauth {
-				dynreg.registerAndUpdateClient(oauth, onlyIfNeeded: onlyIfNeeded, callback: callback)
-			}
-			else if let error = error {
-				callback(json: nil, error: error)
-			}
-			else {
-				callback(json: nil, error: FHIRError.Error("No OAuth2 handle, cannot register client"))
-			}
-		}
-	}
-	
-	/**
-	Given an `OAuth2DynReg` instance, checks if the OAuth2 handler has client-id/secret, and if not attempts to register. Experimental.
-	
-	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
-	- parameter callback: Callback to call when registration succeeds or fails
-	*/
-	public func ensureRegistered(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
-		registerIfNeeded(dynreg, onlyIfNeeded: true, callback: callback)
-	}
-	
-	/**
-	Registers the client with the help of the `OAuth2DynReg` instance. Experimental.
-	
-	- parameter dynreg: The `OAuth2DynReg` instance to use for client registration
-	- parameter callback: Callback to call when registration succeeds or fails
-	*/
-	public func register(dynreg: OAuth2DynReg, callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
-		registerIfNeeded(dynreg, onlyIfNeeded: false, callback: callback)
+	func forgetClientRegistration() {
+		auth?.forgetClientRegistration()
 	}
 }
 

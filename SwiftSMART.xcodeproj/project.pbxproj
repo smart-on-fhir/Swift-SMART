@@ -884,8 +884,8 @@
 			isa = PBXGroup;
 			children = (
 				EE56A6021ABB0B9E00FA99EB /* Info.plist */,
-				EEF47D341B1E483A0057D838 /* OAuth2Base.swift */,
 				EE56A6041ABB0B9E00FA99EB /* OAuth2.swift */,
+				EEF47D341B1E483A0057D838 /* OAuth2Base.swift */,
 				EE56A6051ABB0B9E00FA99EB /* OAuth2CodeGrant.swift */,
 				EE56A6071ABB0B9E00FA99EB /* OAuth2ImplicitGrant.swift */,
 				EE5F4F5F1B1651BD00DB38B3 /* OAuth2ClientCredentials.swift */,

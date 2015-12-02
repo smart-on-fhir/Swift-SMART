@@ -83,32 +83,21 @@ public class Client
 	// MARK: - Preparations
 	
 	/**
-	    Executes the callback immediately if the server is ready to perform requests, after performing necessary setup operations and
-	    requests otherwise.
-	 */
+	Executes the callback immediately if the server is ready to perform requests, after performing necessary setup operations and
+	requests otherwise.
+	*/
 	public func ready(callback: (error: ErrorType?) -> ()) {
 		server.ready(callback)
 	}
 	
 	/**
-	    Call this to start the authorization process. Implicitly calls `ready`, so no need to call it yourself.
+	Call this to start the authorization process. Implicitly calls `ready`, so no need to call it yourself.
 	
-	    If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
-	 */
+	If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
+	*/
 	public func authorize(callback: (patient: Patient?, error: ErrorType?) -> ()) {
 		server.mustAbortAuthorization = false
 		server.ready() { error in
-			if let error = error {
-				callback(patient: nil, error: error)
-			}
-			else {
-				self.server.authorize(self.authProperties, callback: callback)
-			}
-		}
-	}
-	
-	public func ensureRegisteredAndAuthorize(dynreg: OAuth2DynReg, callback: (patient: Patient?, error: ErrorType?) -> ()) {
-		server.ensureRegistered(dynreg) { json, error in
 			if let error = error {
 				callback(patient: nil, error: error)
 			}
@@ -136,6 +125,11 @@ public class Client
 	/** Resets state and authorization data. */
 	public func reset() {
 		server.reset()
+	}
+	
+	/** Throws away local client registration data. */
+	public func forgetClientRegistration() {
+		server.forgetClientRegistration()
 	}
 	
 	
