@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 2.3
+
+- Implement automatic dynamic client registration
+
 ## 2.2
 
 - Update to FHIR `1.0.2.7202` (DSTU 2 with technical errata, compatible with `1.0.1`)
