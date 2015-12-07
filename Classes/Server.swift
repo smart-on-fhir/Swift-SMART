@@ -34,6 +34,10 @@ public class Server: FHIROpenServer
 		didSet {
 			if let auth = auth {
 				fhir_logIfDebug("Initialized server auth of type “\(auth.type.rawValue)”")
+				if let oauth = auth.oauth {
+					oauth.sessionDelegate = sessionDelegate
+					oauth.onBeforeDynamicClientRegistration = onBeforeDynamicClientRegistration
+				}
 			}
 		}
 	}
@@ -57,6 +61,15 @@ public class Server: FHIROpenServer
 		}
 	}
 	
+	/// Allow to inject a custom OAuth2DynReg class and/or setup.
+	public var onBeforeDynamicClientRegistration: (NSURL -> OAuth2DynReg)? {
+		didSet {
+			if let oauth = auth?.oauth {
+				oauth.onBeforeDynamicClientRegistration = onBeforeDynamicClientRegistration
+			}
+		}
+	}
+	
 	
 	/**
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
@@ -73,27 +86,18 @@ public class Server: FHIROpenServer
 	}
 	
 	func didSetAuthSettings() {
-		var authType: AuthType? = nil
-		if let typ = authSettings?["authorize_type"] as? String {
-			authType = AuthType(rawValue: typ)
-		}
-		if nil == authType || .None == authType! {
-			if let _ = authSettings?["authorize_uri"] as? String {
-				if let _ = authSettings?["token_uri"] as? String {
-					authType = .CodeGrant
-				}
-				else {
-					authType = .ImplicitGrant
-				}
-			}
-		}
-		if let type = authType {
-			auth = Auth(type: type, server: self, settings: authSettings)
-		}
+		instantiateAuthFromAuthSettings()
 	}
 	
 	
 	// MARK: - Requests
+	
+	public override func createDefaultSession() -> NSURLSession {
+		if let delegate = sessionDelegate {
+			return NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: delegate, delegateQueue: nil)
+		}
+		return super.createDefaultSession()
+	}
 	
 	public override func configurableRequestForURL(url: NSURL) -> NSMutableURLRequest {
 		return auth?.signedRequest(url) ?? super.configurableRequestForURL(url)
@@ -125,22 +129,47 @@ public class Server: FHIROpenServer
 	
 	// MARK: - Authorization
 	
-	public func authClientCredentials() -> (id: String, secret: String?)? {
+	public var authClientCredentials: (id: String, secret: String?, name: String?)? {
 		if let clientId = auth?.oauth?.clientId where !clientId.isEmpty {
-			return (id: clientId, secret: auth?.oauth?.clientSecret)
+			return (id: clientId, secret: auth?.oauth?.clientSecret, name: auth?.oauth?.clientName)
 		}
 		return nil
+	}
+	
+	/**
+	Attempt to instantiate our `Auth` instance from `authSettings`.
+	*/
+	func instantiateAuthFromAuthSettings() -> Bool {
+		var authType: AuthType? = nil
+		if let typ = authSettings?["authorize_type"] as? String {
+			authType = AuthType(rawValue: typ)
+		}
+		if nil == authType || .None == authType! {
+			if let _ = authSettings?["authorize_uri"] as? String {
+				if let _ = authSettings?["token_uri"] as? String {
+					authType = .CodeGrant
+				}
+				else {
+					authType = .ImplicitGrant
+				}
+			}
+		}
+		if let type = authType {
+			auth = Auth(type: type, server: self, settings: authSettings)
+			return true
+		}
+		return false
 	}
 	
 	/**
 	Ensures that the server is ready to perform requests before calling the callback.
 	
 	Being "ready" in this case entails holding on to an `Auth` instance. Such an instance is automatically created if either the client
-	init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri") or after the conformance statement has been
-	fetched.
+	init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri" and a "client_id" or "registration_uri") or
+	after the conformance statement has been fetched.
 	*/
 	public func ready(callback: (error: FHIRError?) -> ()) {
-		if nil != auth {
+		if nil != auth || instantiateAuthFromAuthSettings() {
 			callback(error: nil)
 			return
 		}
@@ -160,7 +189,7 @@ public class Server: FHIROpenServer
 	Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
 	*/
 	public func authorize(authProperties: SMARTAuthProperties, callback: ((patient: Patient?, error: ErrorType?) -> Void)) {
-		self.ready { error in
+		ready() { error in
 			if self.mustAbortAuthorization {
 				self.mustAbortAuthorization = false
 				callback(patient: nil, error: nil)
@@ -214,8 +243,32 @@ public class Server: FHIROpenServer
 		auth?.reset()
 	}
 	
+	
+	// MARK: - Client Registration
+	
+	/**
+	Runs dynamic client registration unless the client has a client id (or no registration URL is known). Since this happens automatically
+	during `authorize()` you probably won't need to call this method explicitly.
+	
+	- parameter callback: The callback to call when completed or failed; if both json and error is nil no registration was attempted
+	*/
+	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
+		ready() { error in
+			if nil != error || nil == self.auth {
+				callback(json: nil, error: error ?? FHIRError.Error("Client error, no auth instance created"))
+			}
+			else if let oauth = self.auth?.oauth {
+				oauth.registerClientIfNeeded(callback)
+			}
+			else {
+				callback(json: nil, error: nil)
+			}
+		}
+	}
+	
 	func forgetClientRegistration() {
 		auth?.forgetClientRegistration()
+		auth = nil
 	}
 }
 
