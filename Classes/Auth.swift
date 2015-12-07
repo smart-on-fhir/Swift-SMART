@@ -70,7 +70,7 @@ class Auth
 		
 		if let services = security.service {
 			for service in services {
-				logIfDebug("Server supports REST security via “\(service.text ?? "unknown")”")
+				fhir_logIfDebug("Server supports REST security via “\(service.text ?? "unknown")”")
 				if let codings = service.coding {
 					for coding in codings {
 						if "OAuth2" == coding.code || "SMART-on-FHIR" == coding.code {
@@ -103,7 +103,7 @@ class Auth
 			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
 		
-		logIfDebug("Unsupported security services, will proceed without authorization method")
+		fhir_logIfDebug("Unsupported security services, will proceed without authorization method")
 		return nil
 	}
 	
@@ -169,11 +169,11 @@ class Auth
 		if let oa = oauth {
 			if oa.hasUnexpiredAccessToken() {
 				if properties.granularity != .PatientSelectWeb {
-					logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
+					fhir_logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
 					authDidSucceed(OAuth2JSON(minimumCapacity: 0))
 					return
 				}
-				logIfDebug("Have an unexpired access token but want web patient selection: starting auth flow")
+				fhir_logIfDebug("Have an unexpired access token but want web patient selection: starting auth flow")
 				oa.forgetTokens()
 			}
 			
@@ -220,23 +220,23 @@ class Auth
 	
 	internal func authDidSucceed(parameters: OAuth2JSON) {
 		if let props = authProperties where props.granularity == .PatientSelectNative {
-			logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
+			fhir_logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
 			showPatientList(parameters)
 		}
 		else {
-			logIfDebug("Did authorize with parameters \(parameters)")
+			fhir_logIfDebug("Did authorize with parameters \(parameters)")
 			processAuthCallback(parameters: parameters, error: nil)
 		}
 	}
 	
 	internal func authDidFail(error: ErrorType?) {
-		logIfDebug("Failed to authorize with error: \(error)")
+		fhir_logIfDebug("Failed to authorize with error: \(error)")
 		authDidFailInternal(error)
 		processAuthCallback(parameters: nil, error: error)
 	}
 	
 	func abort() {
-		logIfDebug("Aborting authorization")
+		fhir_logIfDebug("Aborting authorization")
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	

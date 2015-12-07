@@ -33,7 +33,7 @@ public class Server: FHIROpenServer
 	var auth: Auth? {
 		didSet {
 			if let auth = auth {
-				logIfDebug("Initialized server auth of type “\(auth.type.rawValue)”")
+				fhir_logIfDebug("Initialized server auth of type “\(auth.type.rawValue)”")
 			}
 		}
 	}
@@ -118,7 +118,7 @@ public class Server: FHIROpenServer
 		}
 		if nil == auth {
 			auth = Auth(type: .None, server: self, settings: authSettings)
-			logIfDebug("Server seems to be open, proceeding with none-type auth")
+			fhir_logIfDebug("Server seems to be open, proceeding with none-type auth")
 		}
 	}
 	
@@ -182,7 +182,7 @@ public class Server: FHIROpenServer
 					}
 					else if let patientId = parameters?["patient"] as? String {
 						Patient.read(patientId, server: self) { resource, error in
-							logIfDebug("Did read patient \(resource) with error \(error)")
+							fhir_logIfDebug("Did read patient \(resource) with error \(error)")
 							callback(patient: resource as? Patient, error: error)
 						}
 					}
