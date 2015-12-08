@@ -136,8 +136,27 @@ public class Client {
 	*/
 	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequestAgainst(path, handler: handler) { (response) -> Void in
+		server.performRequestAgainst(path, handler: handler) { response in
 			callback(response: response as! FHIRServerJSONResponse)
+		}
+	}
+	
+	/**
+	Plain NSData request against the given full URL.
+	
+	If the server needs authentication and the URL is not in the receiver's baseURL, this is probably going to fail. You usually use this
+	method if a resource has attachments that live on the same server, e.g. Patient.photo.url.
+	*/
+	public func getData(url: NSURL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
+		let handler = FHIRServerDataRequestHandler(.GET, contentType: accept)
+		if nil != url.host {
+			server.performRequestWithURL(url, handler: handler, callback: callback)
+		}
+		else if let path = url.path {
+			server.performRequestAgainst(path, handler: handler, callback: callback)
+		}
+		else {
+			callback(response: FHIRServerResponse(error: FHIRError.ResourceLocationUnknown))
 		}
 	}
 }
