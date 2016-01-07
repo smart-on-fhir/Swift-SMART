@@ -9,13 +9,14 @@
 import Cocoa
 
 
-extension Auth
-{
+extension Auth {
+	
 	/** Show the authorization view controller corresponding to the auth properties. */
 	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
-		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
+		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .PatientSelectNative
+		oauth.authorize(params: ["aud": server.aud])
 	}
 	
 	func authDidFailInternal(error: ErrorType?) {

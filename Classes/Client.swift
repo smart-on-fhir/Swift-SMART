@@ -156,7 +156,7 @@ public class Client {
 			server.performRequestAgainst(path, handler: handler, callback: callback)
 		}
 		else {
-			callback(response: FHIRServerResponse(error: FHIRError.ResourceLocationUnknown))
+			callback(response: FHIRServerDataResponse(error: FHIRError.ResourceLocationUnknown))
 		}
 	}
 }

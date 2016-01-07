@@ -9,8 +9,8 @@
 import UIKit
 
 
-extension Auth
-{
+extension Auth {
+	
 	/** Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
 	 */
 	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
@@ -18,7 +18,8 @@ extension Auth
 		
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
-		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
+		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .PatientSelectNative
+		oauth.authorize(params: ["aud": server.aud])
 	}
 	
 	func authDidFailInternal(error: ErrorType?) {
@@ -39,9 +40,9 @@ extension Auth
 			view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: "dismissFromModal:")
 			view.onPatientSelect = { patient in
 				var params = parameters
-				if let pat = patient {
-					params["patient"] = pat.id
-					params["patient_resource"] = pat
+				if let patient = patient {
+					params["patient"] = patient.id
+					params["patient_resource"] = patient
 				}
 				self.processAuthCallback(parameters: params, error: nil)
 			}
