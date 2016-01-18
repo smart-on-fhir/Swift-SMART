@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "2.2"
+  s.version      = "2.2.1"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
@@ -28,8 +28,22 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
-  s.requires_arc          = true
-  s.source_files          = "Classes/*", "Swift-FHIR/Classes/*", "Swift-FHIR/Models/*", "OAuth2/SwiftKeychain/SwiftKeychain/Keychain/*.swift", "OAuth2/OAuth2/*.swift"
-  s.ios.source_files      = "Classes+iOS/*", "OAuth2/OAuth2+iOS/*"
-  s.osx.source_files      = "Classes+OSX/*", "OAuth2/OAuth2+OSX/*"
+
+  s.source_files          = "Classes/*.swift",
+                            "Swift-FHIR/Models/*.swift",
+                            "Swift-FHIR/Classes/FHIRElement+Utilities.swift",
+                            "Swift-FHIR/Classes/FHIRError.swift",
+                            "Swift-FHIR/Classes/FHIROpenServer.swift",
+                            "Swift-FHIR/Classes/FHIROperation.swift",
+                            "Swift-FHIR/Classes/FHIRSearch.swift",
+                            "Swift-FHIR/Classes/FHIRServer*.swift",
+                            "Swift-FHIR/Classes/Reference+Resolving.swift",
+                            "Swift-FHIR/Classes/Resource+REST.swift",
+                            "Swift-FHIR/Classes/String+Localization.swift",
+                            "OAuth2/SwiftKeychain/SwiftKeychain/Keychain/*.swift",
+                            "OAuth2/OAuth2/*.swift"
+  s.ios.source_files      = "Classes+iOS/*.swift",
+                            "OAuth2/OAuth2+iOS/*.swift"
+  s.osx.source_files      = "Classes+OSX/*.swift",
+                            "OAuth2/OAuth2+OSX/*.swift"
 end

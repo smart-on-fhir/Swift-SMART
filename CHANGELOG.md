@@ -1,10 +1,14 @@
 Changelog
 =========
 
+## 2.2.1
+
+- Update Podspec for CocoaPods compatibility
+
 ## 2.2
 
 - Update to FHIR `1.0.2.7202` (DSTU 2 with technical errata, compatible with `1.0.1`)
-- Add a very simple base implementation of `FHIRServer` called `FHIROpenServer`and a typealias `FHIRBaseServer`
+- Add a very simple base implementation of `FHIRServer` called `FHIROpenServer`, which also serves as superclass for our SMART `Server` class
 - New error handling using `FHIRError`
 - Implement absolute reference resolver (will not work if the other server is protected)
 - Fixes to `ElementDefinition`
@@ -18,6 +22,7 @@ Changelog
 ## 2.0
 
 - Update to Swift 2.0
+
 
 ## 1.0
 
