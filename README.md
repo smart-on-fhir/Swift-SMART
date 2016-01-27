@@ -89,7 +89,7 @@ Find detailed instructions on how this is done on the [Installation page][instal
 The framework is also available via _CocoaPods_ under the name [“SMART”][pod].
 
 [installation]: https://github.com/smart-on-fhir/Swift-SMART/wiki/Installation
-[pod]: https://cocoapods.org/?q=smart
+[pod]: https://cocoapods.org/pods/SMART
 
 
 License
