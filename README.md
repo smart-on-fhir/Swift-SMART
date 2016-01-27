@@ -12,7 +12,6 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
-  _2.3_  |   2.0-2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.2** |   2.0-2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.1** |   2.0-2.2 |  `1.0.1.7108` | DSTU 2
  **2.0** |   2.0-2.2 |  `0.5.0.5149` | DSTU 2 Ballot, May 2015
@@ -93,4 +92,4 @@ The framework is also available via _CocoaPods_ under the name [SMART](https://c
 License
 -------
 
-This work is [Apache 2](LICENSE.txt) licensed.
+This work is [Apache 2](./LICENSE.txt) licensed: [NOTICE.txt](./NOTICE.txt).

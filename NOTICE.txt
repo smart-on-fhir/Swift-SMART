@@ -1,0 +1,6 @@
+Swift-SMART
+Copyright 2014-2016 Boston Children's Hospital
+
+This product includes software developed at the
+Computational Health Informatics Program (http://chip.org/) at
+Boston Children's Hospital (http://childrenshospital.org)
