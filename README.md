@@ -62,17 +62,17 @@ smart.authorize() { patient, error in
         // report error
     }
     else {
-        MedicationPrescription.search(["patient": patient!.id])
+        MedicationOrder.search(["patient": patient!.id])
         .perform(smart.server) { bundle, error in
             if nil != error {
                 // report error
             }
             else {
                 var meds = bundle?.entry?
-                    .filter() { return $0.resource is MedicationPrescription }
-                    .map() { return $0.resource as! MedicationPrescription }
+                    .filter() { return $0.resource is MedicationOrder }
+                    .map() { return $0.resource as! MedicationOrder }
                 
-                // now `meds` holds all known patient prescriptions (or is nil)
+                // now `meds` holds all the patient's orders (or is nil)
             }
         }
     }
@@ -84,9 +84,12 @@ Installation
 ------------
 
 The suggested approach is to add _Swift-SMART_ as a git submodule to your project.
-Detailed instructions on how this is done can be glanced from the [OAuth2 installation instructions](https://github.com/p2/OAuth2#installation).
+Find detailed instructions on how this is done on the [Installation page][installation].
 
-The framework is also available via _CocoaPods_ under the name [SMART](https://cocoapods.org/?q=smart).
+The framework is also available via _CocoaPods_ under the name [“SMART”][pod].
+
+[installation]: https://github.com/smart-on-fhir/Swift-SMART/wiki/Installation
+[pod]: https://cocoapods.org/?q=smart
 
 
 License
