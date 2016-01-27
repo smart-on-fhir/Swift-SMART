@@ -1,4 +1,4 @@
-![](assets/banner.png)
+<p align="center"><img src="./assets/banner.png" alt=""></p>
 
 Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
 Written in _Swift 2_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 7 or newer.
@@ -77,6 +77,15 @@ smart.authorize() { patient, error in
     }
 }
 ```
+
+
+Installation
+------------
+
+The suggested approach is to add _Swift-SMART_ as a git submodule to your project.
+Detailed instructions on how this is done can be glanced from the [OAuth2 installation instructions](https://github.com/p2/OAuth2#installation).
+
+The framework is also available via _CocoaPods_ under the name [SMART](https://cocoapods.org/?q=smart).
 
 
 License

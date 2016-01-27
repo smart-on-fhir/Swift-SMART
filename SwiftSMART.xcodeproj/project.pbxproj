@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE01F97A1C591640003AEA7E /* DomainResource+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F9791C591640003AEA7E /* DomainResource+Containment.swift */; };
+		EE01F97B1C59166C003AEA7E /* DomainResource+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F9791C591640003AEA7E /* DomainResource+Containment.swift */; };
+		EE01F97E1C59171C003AEA7E /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F97C1C591717003AEA7E /* OAuth2WebViewController.swift */; };
 		EE02F8051ACF2FC500179969 /* FamilyMemberHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8031ACF2FC500179969 /* FamilyMemberHistory.swift */; };
 		EE02F8061ACF2FC500179969 /* FamilyMemberHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8031ACF2FC500179969 /* FamilyMemberHistory.swift */; };
 		EE02F8071ACF2FC500179969 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8041ACF2FC500179969 /* Flag.swift */; };
@@ -405,6 +408,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE01F9791C591640003AEA7E /* DomainResource+Containment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DomainResource+Containment.swift"; sourceTree = "<group>"; };
+		EE01F97C1C591717003AEA7E /* OAuth2WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2WebViewController.swift; sourceTree = "<group>"; };
 		EE02F8031ACF2FC500179969 /* FamilyMemberHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberHistory.swift; sourceTree = "<group>"; };
 		EE02F8041ACF2FC500179969 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		EE02F8091ACF2FDB00179969 /* FHIRSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearch.swift; sourceTree = "<group>"; };
@@ -937,6 +942,7 @@
 			isa = PBXGroup;
 			children = (
 				EE8EE6C21B1290B7005B90C5 /* OAuth2+OSX.swift */,
+				EE01F97C1C591717003AEA7E /* OAuth2WebViewController.swift */,
 			);
 			name = OSX;
 			path = OAuth2/Sources/OSX;
@@ -963,6 +969,7 @@
 				EE3907D81C3E855D005BFF3D /* Resource+Instantiation.swift */,
 				EE9B31F71ACADAF700980AA9 /* Resource+REST.swift */,
 				EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */,
+				EE01F9791C591640003AEA7E /* DomainResource+Containment.swift */,
 				EE1F49E11C0D366A0095BF0F /* FHIROpenServer.swift */,
 				EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */,
 				EE3907D71C3E855D005BFF3D /* FHIRServerDataResponse.swift */,
@@ -1242,6 +1249,7 @@
 				EE3907DF1C3E855D005BFF3D /* Resource+Instantiation.swift in Sources */,
 				EE56A5861ABB0B7900FA99EB /* MedicationDispense.swift in Sources */,
 				EE56A5AC1ABB0B7A00FA99EB /* PaymentNotice.swift in Sources */,
+				EE01F97A1C591640003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EE56A5BC1ABB0B7A00FA99EB /* ProcedureRequest.swift in Sources */,
 				EE56A6271ABB6A6F00FA99EB /* ProcessRequest.swift in Sources */,
 				EE56A5E41ABB0B7A00FA99EB /* Specimen.swift in Sources */,
@@ -1480,6 +1488,7 @@
 				EEEE31421BB2F520008866E2 /* Account.swift in Sources */,
 				EE56A4ED1ABB0B7900FA99EB /* Address.swift in Sources */,
 				EE56A5831ABB0B7900FA99EB /* Medication.swift in Sources */,
+				EE01F97E1C59171C003AEA7E /* OAuth2WebViewController.swift in Sources */,
 				EE3907D31C3E846D005BFF3D /* JSON-extensions.swift in Sources */,
 				EE56A5DF1ABB0B7A00FA99EB /* SearchParameter.swift in Sources */,
 				EE56A5451ABB0B7900FA99EB /* EligibilityRequest.swift in Sources */,
@@ -1528,6 +1537,7 @@
 				EE56A5AB1ABB0B7A00FA99EB /* Patient.swift in Sources */,
 				EE3907CB1C3E846D005BFF3D /* Element.swift in Sources */,
 				EE02F8061ACF2FC500179969 /* FamilyMemberHistory.swift in Sources */,
+				EE01F97B1C59166C003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EE56A52F1ABB0B7900FA99EB /* DeviceMetric.swift in Sources */,
 				EE56A5F71ABB0B7A00FA99EB /* ValueSet.swift in Sources */,
 				EEEE31431BB2F520008866E2 /* Annotation.swift in Sources */,

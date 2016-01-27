@@ -10,7 +10,7 @@ jazzy \
 	-g "https://github.com/smart-on-fhir/Swift-SMART" \
 	-r "http://smart-on-fhir.github.io/Swift-SMART" \
 	-o "docs" \
-	--module-version "2.2"
+	--module-version "2.2.2"
 
 mkdir docs/assets 2>/dev/null
 cp assets/banner.png docs/assets/
