@@ -10,16 +10,17 @@ import Foundation
 
 
 /**
-	A query that returns a list of patients.
- */
-public class PatientListQuery
-{
+A query that returns a list of patients.
+*/
+public class PatientListQuery {
+	
 	/// The FHIR search element that produces the desired patient list
 	public let search: FHIRSearch
 	
 	var isDone = false
 	
 	
+	/** Dedicated initializer. */
 	public init(search: FHIRSearch) {
 		search.profileType = Patient.self
 		self.search = search

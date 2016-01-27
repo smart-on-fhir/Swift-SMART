@@ -9,19 +9,36 @@
 import UIKit
 
 
-extension Auth
-{
-	/** Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
-	 */
+extension Auth {
+	
+	/**
+	Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
+	
+	- parameter oauth: The OAuth2 instance to use for authorization
+	- parameter properties: SMART authorization properties to use
+	*/
 	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
 		authContext = UIApplication.sharedApplication().keyWindow?.rootViewController
 		
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
-		oauth.authorize(params: ["aud": server.aud], autoDismiss: properties.granularity != .PatientSelectNative)
+		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .PatientSelectNative
+		oauth.authorize(params: ["aud": server.aud])
 	}
 	
-	/** Show the native patient list on the current authContext or the window's root view controller. */
+	func authDidFailInternal(error: ErrorType?) {
+		if let props = authProperties where props.granularity == .PatientSelectNative {		// not auto-dismissing, must do it ourselves
+			if let vc = oauth?.authConfig.authorizeContext as? UIViewController {
+				vc.dismissViewControllerAnimated(true, completion: nil)
+			}
+		}
+	}
+	
+	/**
+	Show the native patient list on the current authContext or the window's root view controller.
+	
+	- parameter parameters: Additional authorization parameters to pass through
+	*/
 	func showPatientList(parameters: OAuth2JSON) {
 		if let root = authContext as? UIViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController {
 			
@@ -31,9 +48,9 @@ extension Auth
 			view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: "dismissFromModal:")
 			view.onPatientSelect = { patient in
 				var params = parameters
-				if let pat = patient {
-					params["patient"] = pat.id
-					params["patient_resource"] = pat
+				if let patient = patient {
+					params["patient"] = patient.id
+					params["patient_resource"] = patient
 				}
 				self.processAuthCallback(parameters: params, error: nil)
 			}

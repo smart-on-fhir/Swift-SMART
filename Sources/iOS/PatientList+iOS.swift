@@ -9,8 +9,11 @@
 import UIKit
 
 
-public class PatientListViewController: UITableViewController
-{
+/**
+A table view controller than can display a list of patients, dynamically fetching more patient batches as the user scrolls.
+*/
+public class PatientListViewController: UITableViewController {
+	
 	/// The patient list to display.
 	var patientList: PatientList?
 	
@@ -186,15 +189,15 @@ public class PatientListViewController: UITableViewController
 }
 
 
-extension Patient
-{
+extension Patient {
+	
 	var genderSymbol: String {
 		return ("male" == gender) ? "♂" : "♀"
 	}
 }
 
-extension PatientList
-{
+extension PatientList {
+	
 	subscript(indexPath: NSIndexPath) -> Patient? {
 		if let section = self[indexPath.section] {
 			return section[indexPath.row]
@@ -207,8 +210,8 @@ extension PatientList
 /**
 	A table view cell that can display a patient's name, birthday, age and gender.
  */
-class PatientTableViewCell: UITableViewCell
-{
+class PatientTableViewCell: UITableViewCell {
+	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
 	}

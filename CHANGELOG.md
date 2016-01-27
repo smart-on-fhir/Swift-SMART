@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 2.2.2
+
+- Implement automatic dynamic client registration if the client has no `client_id`
+- Reorganize source files for future compatibility with the Swift Package Manager
+
 ## 2.2.1
 
 - Update Podspec for CocoaPods compatibility

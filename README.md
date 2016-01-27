@@ -12,9 +12,10 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
- **2.2** |   2.0/2.1 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
- **2.1** |   2.0/2.1 |  `1.0.1.7108` | DSTU 2
- **2.0** |   2.0/2.1 |  `0.5.0.5149` | DSTU 2 Ballot, May 2015
+  _2.3_  |   2.0-2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
+ **2.2** |   2.0-2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
+ **2.1** |   2.0-2.2 |  `1.0.1.7108` | DSTU 2
+ **2.0** |   2.0-2.2 |  `0.5.0.5149` | DSTU 2 Ballot, May 2015
  **1.0** |       1.2 |  `0.5.0.5149` | DSTU 2 Ballot, May 2015
  **0.2** |       1.1 |  `0.5.0.5149` | DSTU 2 Ballot, May 2015
  **0.1** |       1.0 | `0.0.81.2382` | DSTU 1
@@ -39,6 +40,11 @@ QuickStart
 
 See [the programming guide][wiki] for more code examples and details.
 
+The following is the minimal setup working against our reference implementation.
+It is assuming that you don't have a `client_id` and on first authentication will **register the client with our server**, then proceed to retrieve a token.
+If you know your client-id you can specify it in the settings dict.
+The app must also register the `redirect` URL scheme so it can be notified when authentication completes.
+
 ```swift
 import SMART
 
@@ -46,7 +52,7 @@ import SMART
 let smart = Client(
     baseURL: "https://fhir-api-dstu2.smarthealthit.org",
     settings: [
-        "client_id": "my_mobile_app",
+        //"client_id": "my_mobile_app",       // if you have one
         "redirect": "smartapp://callback",    // must be registered
     ]
 )
