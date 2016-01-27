@@ -9,15 +9,18 @@
 import Foundation
 
 
-public enum PatientListOrder: String
-{
-	/// Order by given name, family name, birthday
+/**
+An enum to define how a list of patients should be ordered.
+*/
+public enum PatientListOrder: String {
+	
+	/// Order by given name, family name, birthday.
 	case NameGivenASC = "given:asc,family:asc,birthdate:asc"
 	
-	// Order by family name, given name, birthday
+	// Order by family name, given name, birthday.
 	case NameFamilyASC = "family:asc,given:asc,birthdate:asc"
 	
-	/// Order by birthdate, family name, given name
+	/// Order by birthdate, family name, given name.
 	case BirthDateASC = "birthdate:asc,family:asc,given:asc"
 	
 	/**
@@ -72,8 +75,8 @@ public enum PatientListOrder: String
 }
 
 
-extension Patient
-{
+extension Patient {
+	
 	func compareNameGiven(other: Patient) -> Int {
 		let a = name?.first?.given?.first ?? "ZZZ"
 		let b = other.name?.first?.given?.first ?? "ZZZ"

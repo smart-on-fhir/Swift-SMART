@@ -21,8 +21,8 @@ import Foundation
     This implementation manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the shared
     session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
  */
-public class Server: FHIROpenServer
-{
+public class Server: FHIROpenServer {
+	
 	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
 	final let aud: String
 	
@@ -73,6 +73,9 @@ public class Server: FHIROpenServer
 	
 	/**
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
+	
+	- parameter baseURL: The base URL of the server
+	- parameter auth: A dictionary with authentication settings
 	*/
 	public required init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
 		aud = base.absoluteString
@@ -81,6 +84,12 @@ public class Server: FHIROpenServer
 		didSetAuthSettings()
 	}
 	
+	/**
+	Convenience initializer that allows to specify the base URL as a string.
+	
+	- parameter baseURL: The base URL of the server
+	- parameter auth: A dictionary with authentication settings
+	*/
 	public convenience init(base: String, auth: OAuth2JSON? = nil) {
 		self.init(baseURL: NSURL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
 	}
@@ -223,6 +232,9 @@ public class Server: FHIROpenServer
 		}
 	}
 	
+	/**
+	Aborts ongoing authorization and requests session.
+	*/
 	public func abort() {
 		abortAuthorization()
 		abortSession()

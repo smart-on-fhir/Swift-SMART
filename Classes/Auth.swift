@@ -18,10 +18,10 @@ enum AuthType: String {
 
 
 /**
-    Describes the OAuth2 authentication method to be used.
- */
-class Auth
-{
+Describes the OAuth2 authentication method to be used.
+*/
+class Auth {
+	
 	/// The authentication type to use.
 	let type: AuthType
 	
@@ -36,7 +36,7 @@ class Auth
 	*/
 	var settings: OAuth2JSON?
 	
-	/// The server this instance belongs to
+	/// The server this instance belongs to.
 	unowned let server: Server
 	
 	/// The authentication object, used internally.
@@ -52,7 +52,13 @@ class Auth
 	var authCallback: ((parameters: OAuth2JSON?, error: ErrorType?) -> ())?
 	
 	
-	/** Designated initializer. */
+	/**
+	Designated initializer.
+	
+	- parameter type: The authorization type to use
+	- parameter server: The server these auth settings apply to
+	- parameter settings: Authentication settings
+	*/
 	init(type: AuthType, server: Server, settings: OAuth2JSON?) {
 		self.type = type
 		self.server = server
@@ -254,7 +260,12 @@ class Auth
 	
 	// MARK: - Requests
 	
-	/** Returns a signed request, nil if the receiver cannot produce a signed request. */
+	/**
+	Returns a signed request, nil if the receiver cannot produce a signed request.
+	
+	- parameter url: The URL to request a resource from
+	- returns: A mutable URL request preconfigured and signed
+	*/
 	func signedRequest(url: NSURL) -> NSMutableURLRequest? {
 		return oauth?.request(forURL: url)
 	}

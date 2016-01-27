@@ -11,8 +11,12 @@ import UIKit
 
 extension Auth {
 	
-	/** Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
-	 */
+	/**
+	Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
+	
+	- parameter oauth: The OAuth2 instance to use for authorization
+	- parameter properties: SMART authorization properties to use
+	*/
 	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
 		authContext = UIApplication.sharedApplication().keyWindow?.rootViewController
 		
@@ -30,7 +34,11 @@ extension Auth {
 		}
 	}
 	
-	/** Show the native patient list on the current authContext or the window's root view controller. */
+	/**
+	Show the native patient list on the current authContext or the window's root view controller.
+	
+	- parameter parameters: Additional authorization parameters to pass through
+	*/
 	func showPatientList(parameters: OAuth2JSON) {
 		if let root = authContext as? UIViewController ?? UIApplication.sharedApplication().keyWindow?.rootViewController {
 			

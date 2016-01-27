@@ -45,7 +45,11 @@ public class Client {
 	public var authProperties = SMARTAuthProperties()
 	
 	
-	/** Designated initializer. */
+	/**
+	Designated initializer.
+	
+	- parameter server: The server instance this client manages
+	*/
 	public init(server: Server) {
 		self.server = server
 		fhir_logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
@@ -63,9 +67,10 @@ public class Client {
 	- authorize_type: OPTIONAL, inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
 	  OAuth2 flow.
 	
-	- parameter baseURL: The server's base URL
+	- parameter baseURL:  The server's base URL
 	- parameter settings: Client settings, mostly concerning authorization
-	- parameter title: A title to display in the authorization window; can also be supplied in the settings dictionary
+	- parameter title:    A title to display in the custom authorization window; can also be supplied in the settings dictionary (which will
+	                      take precedence)
 	*/
 	public convenience init(baseURL: String, settings: OAuth2JSON, title: String = "SMART") {
 		var sett = settings

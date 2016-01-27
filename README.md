@@ -41,8 +41,9 @@ QuickStart
 See [the programming guide][wiki] for more code examples and details.
 
 The following is the minimal setup working against our reference implementation.
-On first authentication it will register the client with our server, then proceed to retrieve a token.
-The app must register the `redirect` URL scheme so it can be notified.
+It is assuming that you don't have a `client_id` and on first authentication will **register the client with our server**, then proceed to retrieve a token.
+If you know your client-id you can specify it in the settings dict.
+The app must also register the `redirect` URL scheme so it can be notified when authentication completes.
 
 ```swift
 import SMART
@@ -51,6 +52,7 @@ import SMART
 let smart = Client(
     baseURL: "https://fhir-api-dstu2.smarthealthit.org",
     settings: [
+        //"client_id": "my_mobile_app",       // if you have one
         "redirect": "smartapp://callback",    // must be registered
     ]
 )
