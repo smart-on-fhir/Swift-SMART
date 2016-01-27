@@ -29,21 +29,22 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
 
-  s.source_files          = "Classes/*.swift",
-                            "Swift-FHIR/Models/*.swift",
-                            "Swift-FHIR/Classes/FHIRElement+Utilities.swift",
-                            "Swift-FHIR/Classes/FHIRError.swift",
-                            "Swift-FHIR/Classes/FHIROpenServer.swift",
-                            "Swift-FHIR/Classes/FHIROperation.swift",
-                            "Swift-FHIR/Classes/FHIRSearch.swift",
-                            "Swift-FHIR/Classes/FHIRServer*.swift",
-                            "Swift-FHIR/Classes/Reference+Resolving.swift",
-                            "Swift-FHIR/Classes/Resource+REST.swift",
-                            "Swift-FHIR/Classes/String+Localization.swift",
+  s.pod_target_xcconfig   = { 'OTHER_SWIFT_FLAGS' => '-DNO_MODEL_IMPORT -DNO_KEYCHAIN_IMPORT' }
+  s.source_files          = "Sources/Client/*.swift",
+                            "Swift-FHIR/Sources/Models/*.swift",
+                            "Swift-FHIR/Sources/Client/DomainResource+Containment.swift",
+                            "Swift-FHIR/Sources/Client/Element+Extensions.swift",
+                            "Swift-FHIR/Sources/Client/FHIROpenServer.swift",
+                            "Swift-FHIR/Sources/Client/FHIROperation.swift",
+                            "Swift-FHIR/Sources/Client/FHIRSearch.swift",
+                            "Swift-FHIR/Sources/Client/FHIRServer*.swift",
+                            "Swift-FHIR/Sources/Client/Reference+Resolving.swift",
+                            "Swift-FHIR/Sources/Client/Resource+Instantiation.swift",
+                            "Swift-FHIR/Sources/Client/Resource+REST.swift",
                             "OAuth2/SwiftKeychain/SwiftKeychain/Keychain/*.swift",
-                            "OAuth2/OAuth2/*.swift"
-  s.ios.source_files      = "Classes+iOS/*.swift",
-                            "OAuth2/OAuth2+iOS/*.swift"
-  s.osx.source_files      = "Classes+OSX/*.swift",
-                            "OAuth2/OAuth2+OSX/*.swift"
+                            "OAuth2/Sources/Base/*.swift"
+  s.ios.source_files      = "Sources/iOS/*.swift",
+                            "OAuth2/Sources/iOS/*.swift"
+  s.osx.source_files      = "Sources/OSX/*.swift",
+                            "OAuth2/Sources/OSX/*.swift"
 end
