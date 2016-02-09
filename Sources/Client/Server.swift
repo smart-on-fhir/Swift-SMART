@@ -13,12 +13,12 @@ import Foundation
     Representing the FHIR resource server a client connects to.
     
     This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
-    settings dictionary provided upon initalization of the Server instance OR from the server's Conformance statement.
+    settings dictionary provided upon `Client` initalization or from the server's Conformance statement.
 
-    This implementation automatically downloads and parses the FHIR Conformance statement, which is used during various tasks, such as
-    instantiating the `Auth` instance or validating/executing operations.
+    The server's `Conformance` statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the
+	`Auth` instance or validating/executing operations.
 
-    This implementation manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the shared
+    A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
     session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
  */
 public class Server: FHIROpenServer {
@@ -75,7 +75,7 @@ public class Server: FHIROpenServer {
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
 	
 	- parameter baseURL: The base URL of the server
-	- parameter auth: A dictionary with authentication settings
+	- parameter auth:    A dictionary with authentication settings, passed on to the `Auth` initializer
 	*/
 	public required init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
 		aud = base.absoluteString

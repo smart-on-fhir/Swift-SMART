@@ -35,6 +35,23 @@ public enum SMARTAuthGranularity {
 
 /**
 	A client instance handles authentication and connection to a SMART on FHIR resource server.
+	
+	Create an instance of this class, then hold on to it for all your interactions with the SMART server:
+
+	```swift
+	import SMART
+
+	let smart = Client(
+	    baseURL: "https://fhir-api-dstu2.smarthealthit.org",
+	    settings: [
+	        //"client_id": "my_mobile_app",       // if you have one; otherwise uses dyn reg
+	        "redirect": "smartapp://callback",    // must be registered in Info.plist
+	    ]
+	)
+	```
+
+	There are many other options that you can pass to `settings`, take a look at `init(baseURL:settings:)`. Also see our [programming
+	guide](https://github.com/smart-on-fhir/Swift-SMART/wiki/Client) for more information.
  */
 public class Client {
 	
@@ -58,27 +75,29 @@ public class Client {
 	/**
 	Use this initializer with the appropriate server/auth settings. You can use:
 	
-	- client_id
-	- redirect: after-auth redirect URL (string). Do not forget to register as your app's URL handler
-	- redirect_uris: array of redirect URL (strings); will be created if you supply "redirect"
-	- scope: authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
-	- authorize_uri and token_uri: OPTIONAL, if present will NOT use the authorization endpoints defined in the server's metadata. Know
-	  what you do when you set these.
-	- authorize_type: OPTIONAL, inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
-	  OAuth2 flow.
+	- `client_id`:      If you have a client-id; otherwise, if the server supports OAuth2 dynamic client registration, will register itself
+	- `redirect`:       After-auth redirect URL (string). Must be registered on the server and in your app's Info.plist (URL handler)
+	- `redirect_uris`:  Array of redirect URL (strings); will be created if you supply "redirect"
+	- `scope`:          Authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
+	- `authorize_uri`:  Optional; if present will NOT use the authorization endpoints defined in the server's metadata. Know what you do!
+	- `token_uri`:      Optional; if present will NOT use the authorization endpoints defined in the server's metadata. Know what you do!
+	- `authorize_type`: Optional; inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
+	                    OAuth2 flow.
+	- `title`:          Optional; title to show when using the built-in web view (default in iOS 8, iOS 9+ uses Safari View Controller)
+	
+	Further initialization keys are available and are passed to the `OAuth2` handle; you should only need those if you need to heavily
+	customize the authorization flow.
 	
 	- parameter baseURL:  The server's base URL
 	- parameter settings: Client settings, mostly concerning authorization
-	- parameter title:    A title to display in the custom authorization window; can also be supplied in the settings dictionary (which will
-	                      take precedence)
 	*/
-	public convenience init(baseURL: String, settings: OAuth2JSON, title: String = "SMART") {
+	public convenience init(baseURL: String, settings: OAuth2JSON) {
 		var sett = settings
 		if let redirect = settings["redirect"] as? String {
 			sett["redirect_uris"] = [redirect]
 		}
 		if nil == settings["title"] {
-			sett["title"] = title
+			sett["title"] = "SMART"
 		}
 		let srv = Server(base: baseURL, auth: sett)
 		self.init(server: srv)

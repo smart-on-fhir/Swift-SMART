@@ -1,0 +1,68 @@
+# Jazzy config
+module_name: SMART
+author_name: SMART Health IT
+author_url:  http://www.smarthealthit.org
+
+root_url:    http://smart-on-fhir.github.io/Swift-SMART
+github_url:  https://github.com/smart-on-fhir/Swift-SMART
+
+theme_directory: fullwidth
+custom_categories:
+  - name: Client
+    children:
+    - Client
+    - SMARTAuthProperties
+    - SMARTAuthGranularity
+    - FHIRError
+    - FHIRJSONError
+    - FHIRJSONErrorType
+
+  - name: Server Interaction
+    children:
+    - Server
+    - FHIRServer
+    - FHIROpenServer
+    - FHIRSearch
+    - FHIROperation
+    - FHIROperationContext
+    - FHIRRequestType
+    - FHIRServerRequestHandler
+    - FHIRServerDataRequestHandler
+    - FHIRServerJSONRequestHandler
+    - FHIRServerResponse
+    - FHIRServerDataResponse
+    - FHIRServerJSONResponse
+
+  - name: Patient List
+    children:
+    - PatientList
+    - PatientListAll
+    - PatientListQuery
+    - PatientListOrder
+    - PatientListStatus
+    - PatientListSection
+    - PatientListViewController
+
+  - name: OAuth2
+    children:
+    - OAuth2
+    - OAuth2AuthConfig
+    - OAuth2ClientConfig
+    - OAuth2ClientCredentials
+    - OAuth2ImplicitGrant
+    - OAuth2CodeGrant
+    - OAuth2Request
+    - OAuth2EndpointAuthMethod
+    - OAuth2WebViewController
+    - OAuth2Base
+    - OAuth2Error
+
+  - name: Keychain
+    children:
+    - Keychain
+    - KeychainItem
+    - KeychainService
+    - KeychainQuery
+    - BaseKey
+    - GenericKey
+    - ArchiveKey
