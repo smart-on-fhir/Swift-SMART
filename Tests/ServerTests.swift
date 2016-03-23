@@ -3,7 +3,7 @@
 //  SMART-on-FHIR
 //
 //  Created by Pascal Pfiffner on 6/23/14.
-//  2014, SMART Platforms.
+//  2014, SMART Health IT.
 //
 
 import XCTest
@@ -12,11 +12,11 @@ import XCTest
 import SMART
 
 
-class ServerTests: XCTestCase
-{
+class ServerTests: XCTestCase {
+	
 	func testMetadataParsing() throws {
 		let server = Server(base: "https://api.io")
-		XCTAssertEqual("https://api.io", server.baseURL.absoluteString)
+		XCTAssertEqual("https://api.io/", server.baseURL.absoluteString)
 		XCTAssertEqual("https://api.io", server.aud)
 		
 		let metaURL = NSBundle(forClass: self.dynamicType).URLForResource("metadata", withExtension: "")
@@ -38,7 +38,7 @@ class ServerTests: XCTestCase
 			exp1.fulfill()
 		}
 		
-		let fileURL = NSURL(fileURLWithPath: "\(__FILE__)".smart_stringByDeletingLastPathComponent)
+		let fileURL = NSURL(fileURLWithPath: "\(#file)".smart_stringByDeletingLastPathComponent)
 		server = Server(baseURL: fileURL)
 		let exp2 = self.expectationWithDescription("Metadata fetch expectation 2")
 		server.getConformance { error in
@@ -58,8 +58,8 @@ class ServerTests: XCTestCase
 }
 
 
-extension String
-{
+extension String {
+	
 	func smart_stringByAppendingPathComponent(part: String) -> String {
 		return (self as NSString).stringByAppendingPathComponent(part)
 	}

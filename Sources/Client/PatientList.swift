@@ -116,7 +116,7 @@ public class PatientList {
 					sectionIndexTitles.append(lastSection.title)
 				}
 				lastSection.addPatient(patient)
-				n++
+				n += 1
 			}
 			
 			// not all patients fetched yet?

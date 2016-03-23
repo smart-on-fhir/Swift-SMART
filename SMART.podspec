@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "2.2.2"
+  s.version      = "2.2.3"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
                             "Swift-FHIR/Sources/Client/Reference+Resolving.swift",
                             "Swift-FHIR/Sources/Client/Resource+Instantiation.swift",
                             "Swift-FHIR/Sources/Client/Resource+REST.swift",
-                            "OAuth2/SwiftKeychain/SwiftKeychain/Keychain/*.swift",
+                            "OAuth2/SwiftKeychain/Keychain/Keychain.swift",
                             "OAuth2/Sources/Base/*.swift"
   s.ios.source_files      = "Sources/iOS/*.swift",
                             "OAuth2/Sources/iOS/*.swift"

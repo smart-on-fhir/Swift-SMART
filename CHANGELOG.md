@@ -1,6 +1,12 @@
 Changelog
 =========
 
+
+## 2.2.3
+
+- Address deprecation warnings appearing with Swift 2.2 (now requires Swift 2.2)
+
+
 ## 2.2.2
 
 - Implement automatic dynamic client registration if the client has no `client_id`

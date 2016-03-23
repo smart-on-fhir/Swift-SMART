@@ -45,7 +45,7 @@ extension Auth {
 			// instantiate patient list view
 			let view = PatientListViewController(list: PatientListAll(), server: self.server)
 			view.title = self.oauth?.authConfig.ui.title
-			view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: "dismissFromModal:")
+			view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: view, action: Selector("dismissFromModal:"))
 			view.onPatientSelect = { patient in
 				var params = parameters
 				if let patient = patient {
