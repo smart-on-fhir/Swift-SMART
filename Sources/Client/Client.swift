@@ -83,10 +83,11 @@ public class Client {
 	- `token_uri`:      Optional; if present will NOT use the authorization endpoints defined in the server's metadata. Know what you do!
 	- `authorize_type`: Optional; inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged
 	                    OAuth2 flow.
-	- `title`:          Optional; title to show when using the built-in web view (default in iOS 8, iOS 9+ uses Safari View Controller)
+	- `client_name`:    OPTIONAL, if you use dynamic client registration, this is the name of your app
+	- `logo_uri`:       OPTIONAL, if you use dynamic client registration, a URL to the icon of your app
 	
-	Further initialization keys are available and are passed to the `OAuth2` handle; you should only need those if you need to heavily
-	customize the authorization flow.
+	The settings are forwarded to the `OAuth2` framework, so you can use any of the settings supported during authorization if you know
+	what you're doing: `init(settings:)` from http://p2.github.io/OAuth2/Classes/OAuth2.html .
 	
 	- parameter baseURL:  The server's base URL
 	- parameter settings: Client settings, mostly concerning authorization
