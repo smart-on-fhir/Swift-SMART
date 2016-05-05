@@ -33,11 +33,14 @@ public class Server: FHIROpenServer {
 	var auth: Auth? {
 		didSet {
 			if let auth = auth {
-				fhir_logIfDebug("Initialized server auth of type “\(auth.type.rawValue)”")
 				if let oauth = auth.oauth {
 					oauth.sessionDelegate = sessionDelegate
 					oauth.onBeforeDynamicClientRegistration = onBeforeDynamicClientRegistration
+					if let logger = logger {
+						oauth.logger = logger
+					}
 				}
+				logger?.debug("SMART", msg: "Initialized server auth of type “\(auth.type.rawValue)”")
 			}
 		}
 	}
@@ -70,6 +73,13 @@ public class Server: FHIROpenServer {
 		}
 	}
 	
+	/// The logger to use.
+	public var logger: OAuth2Logger? {
+		didSet {
+			auth?.oauth?.logger = logger
+		}
+	}
+	
 	
 	/**
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
@@ -95,7 +105,9 @@ public class Server: FHIROpenServer {
 	}
 	
 	func didSetAuthSettings() {
-		instantiateAuthFromAuthSettings()
+		if !instantiateAuthFromAuthSettings(), let verbose = authSettings?["verbose"] as? Bool where verbose {
+			logger = OAuth2DebugLogger()
+		}
 	}
 	
 	
@@ -110,6 +122,16 @@ public class Server: FHIROpenServer {
 	
 	public override func configurableRequestForURL(url: NSURL) -> NSMutableURLRequest {
 		return auth?.signedRequest(url) ?? super.configurableRequestForURL(url)
+	}
+	
+	public override func performPreparedRequest<R : FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
+		logger?.debug("SMART", msg: "--->  \(request.HTTPMethod) \(request.URL?.description ?? "No URL")")
+		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
+		super.performPreparedRequest(request, withSession: session, handler: handler) { response in
+			self.logger?.trace("SMART", msg: "RESPONSE\n\(response.debugDescription)\n---")
+			self.logger?.debug("SMART", msg: "<---  \(response.status) (\(response.body?.length ?? 0) Byte)")
+			callback(response: response)
+		}
 	}
 	
 	
@@ -131,7 +153,7 @@ public class Server: FHIROpenServer {
 		}
 		if nil == auth {
 			auth = Auth(type: .None, server: self, settings: authSettings)
-			fhir_logIfDebug("Server seems to be open, proceeding with none-type auth")
+			logger?.debug("SMART", msg: "Server seems to be open, proceeding with none-type auth")
 		}
 	}
 	
@@ -220,7 +242,7 @@ public class Server: FHIROpenServer {
 					}
 					else if let patientId = parameters?["patient"] as? String {
 						Patient.read(patientId, server: self) { resource, error in
-							fhir_logIfDebug("Did read patient \(resource) with error \(error)")
+							self.logger?.debug("SMART", msg: "Did read patient \(resource) with error \(error)")
 							callback(patient: resource as? Patient, error: error)
 						}
 					}

@@ -40,7 +40,13 @@ class Auth {
 	unowned let server: Server
 	
 	/// The authentication object, used internally.
-	var oauth: OAuth2?
+	var oauth: OAuth2? {
+		didSet {
+			if nil == server.logger, let logger = oauth?.logger {
+				server.logger = logger
+			}
+		}
+	}
 	
 	/// The configuration for the authorization in progress.
 	var authProperties: SMARTAuthProperties?
@@ -76,7 +82,7 @@ class Auth {
 		
 		if let services = security.service {
 			for service in services {
-				fhir_logIfDebug("Server supports REST security via “\(service.text ?? "unknown")”")
+				server.logger?.debug("SMART", msg: "Server supports REST security via “\(service.text ?? "unknown")”")
 				if let codings = service.coding {
 					for coding in codings {
 						if "OAuth2" == coding.code || "SMART-on-FHIR" == coding.code {
@@ -109,7 +115,7 @@ class Auth {
 			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
 		}
 		
-		fhir_logIfDebug("Unsupported security services, will proceed without authorization method")
+		server.logger?.warn("SMART", msg: "Unsupported security services, will proceed without authorization method")
 		return nil
 	}
 	
@@ -175,11 +181,11 @@ class Auth {
 		if let oa = oauth {
 			if oa.hasUnexpiredAccessToken() {
 				if properties.granularity != .PatientSelectWeb {
-					fhir_logIfDebug("Have an unexpired access token and don't need web patient selection: not requesting a new token")
+					server.logger?.debug("SMART", msg: "Have an unexpired access token and don't need web patient selection: not requesting a new token")
 					authDidSucceed(OAuth2JSON(minimumCapacity: 0))
 					return
 				}
-				fhir_logIfDebug("Have an unexpired access token but want web patient selection: starting auth flow")
+				server.logger?.debug("SMART", msg: "Have an unexpired access token but want web patient selection: starting auth flow")
 				oa.forgetTokens()
 			}
 			
@@ -226,23 +232,23 @@ class Auth {
 	
 	internal func authDidSucceed(parameters: OAuth2JSON) {
 		if let props = authProperties where props.granularity == .PatientSelectNative {
-			fhir_logIfDebug("Showing native patient selector after authorizing with parameters \(parameters)")
+			server.logger?.debug("SMART", msg: "Showing native patient selector after authorizing with parameters \(parameters)")
 			showPatientList(parameters)
 		}
 		else {
-			fhir_logIfDebug("Did authorize with parameters \(parameters)")
+			server.logger?.debug("SMART", msg: "Did authorize with parameters \(parameters)")
 			processAuthCallback(parameters: parameters, error: nil)
 		}
 	}
 	
 	internal func authDidFail(error: ErrorType?) {
-		fhir_logIfDebug("Failed to authorize with error: \(error)")
+		server.logger?.debug("SMART", msg: "Failed to authorize with error: \(error)")
 		authDidFailInternal(error)
 		processAuthCallback(parameters: nil, error: error)
 	}
 	
 	func abort() {
-		fhir_logIfDebug("Aborting authorization")
+		server.logger?.debug("SMART", msg: "Aborting authorization")
 		processAuthCallback(parameters: nil, error: nil)
 	}
 	

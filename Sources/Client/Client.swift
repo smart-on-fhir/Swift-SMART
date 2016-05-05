@@ -69,7 +69,7 @@ public class Client {
 	*/
 	public init(server: Server) {
 		self.server = server
-		fhir_logIfDebug("Initialized SMART on FHIR client against server \(server.baseURL.description)")
+		server.logger?.debug("SMART", msg: "Initialized SMART on FHIR client against server \(server.baseURL.description)")
 	}
 	
 	/**
