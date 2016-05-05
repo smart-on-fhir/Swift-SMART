@@ -317,6 +317,7 @@
 		EE9B32071ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */; };
 		EE9EE25E1ACB3E18004DBCBB /* FHIROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EE25D1ACB3E18004DBCBB /* FHIROperation.swift */; };
 		EE9EE25F1ACB3E18004DBCBB /* FHIROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EE25D1ACB3E18004DBCBB /* FHIROperation.swift */; };
+		EEB4810C1CDBEB4F0088D7F3 /* OAuth2Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB4810B1CDBEB4F0088D7F3 /* OAuth2Logger.swift */; };
 		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EECAA7261A5D3DE60062C64B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
@@ -574,6 +575,7 @@
 		EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reference+Resolving.swift"; sourceTree = "<group>"; };
 		EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServerRequestHandler.swift; sourceTree = "<group>"; };
 		EE9EE25D1ACB3E18004DBCBB /* FHIROperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIROperation.swift; sourceTree = "<group>"; };
+		EEB4810B1CDBEB4F0088D7F3 /* OAuth2Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Logger.swift; sourceTree = "<group>"; };
 		EECAA7831A5D3DE60062C64B /* SMART.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMART.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEDDAC5B1A8921F500844B48 /* PatientListOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientListOrder.swift; sourceTree = "<group>"; };
 		EEDDAC611A89237900844B48 /* PatientListQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientListQuery.swift; sourceTree = "<group>"; };
@@ -908,6 +910,7 @@
 				EE1F498C1C04D57A0095BF0F /* OAuth2ClientConfig.swift */,
 				EE343F6E1CA3426500E1F777 /* OAuth2KeychainAccount.swift */,
 				EE1F498D1C04D57A0095BF0F /* OAuth2Error.swift */,
+				EEB4810B1CDBEB4F0088D7F3 /* OAuth2Logger.swift */,
 				EE56A6011ABB0B9E00FA99EB /* extensions.swift */,
 			);
 			name = Base;
@@ -1232,6 +1235,7 @@
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
 				EE8EE6BF1B1290AA005B90C5 /* OAuth2+iOS.swift in Sources */,
 				EE56A5C01ABB0B7A00FA99EB /* Provenance.swift in Sources */,
+				EEB4810C1CDBEB4F0088D7F3 /* OAuth2Logger.swift in Sources */,
 				EE56A5961ABB0B7A00FA99EB /* NutritionOrder.swift in Sources */,
 				EE56A52E1ABB0B7900FA99EB /* DeviceMetric.swift in Sources */,
 				EE56A5E01ABB0B7A00FA99EB /* Signature.swift in Sources */,
