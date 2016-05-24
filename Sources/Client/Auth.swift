@@ -141,9 +141,6 @@ class Auth {
 		if let oa = oauth {
 			oa.onAuthorize = authDidSucceed
 			oa.onFailure = authDidFail
-			#if DEBUG
-			oa.verbose = true
-			#endif
 		}
 	}
 	
