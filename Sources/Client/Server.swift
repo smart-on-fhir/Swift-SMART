@@ -55,7 +55,7 @@ public class Server: FHIROpenServer {
 	var mustAbortAuthorization = false
 	
 	/// An optional NSURLSessionDelegate.
-	public var sessionDelegate: NSURLSessionDelegate? {
+	public var sessionDelegate: URLSessionDelegate? {
 		didSet {
 			session = nil
 			if let oauth = auth?.oauth {
@@ -65,7 +65,7 @@ public class Server: FHIROpenServer {
 	}
 	
 	/// Allow to inject a custom OAuth2DynReg class and/or setup.
-	public var onBeforeDynamicClientRegistration: (NSURL -> OAuth2DynReg)? {
+	public var onBeforeDynamicClientRegistration: ((URL) -> OAuth2DynReg)? {
 		didSet {
 			if let oauth = auth?.oauth {
 				oauth.onBeforeDynamicClientRegistration = onBeforeDynamicClientRegistration
@@ -87,8 +87,8 @@ public class Server: FHIROpenServer {
 	- parameter baseURL: The base URL of the server
 	- parameter auth:    A dictionary with authentication settings, passed on to the `Auth` initializer
 	*/
-	public required init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
-		aud = base.absoluteString
+	public required init(baseURL base: URL, auth: OAuth2JSON? = nil) {
+		aud = base.absoluteString!
 		authSettings = auth
 		super.init(baseURL: base, auth: auth)
 		didSetAuthSettings()
@@ -101,7 +101,7 @@ public class Server: FHIROpenServer {
 	- parameter auth: A dictionary with authentication settings
 	*/
 	public convenience init(base: String, auth: OAuth2JSON? = nil) {
-		self.init(baseURL: NSURL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
+		self.init(baseURL: URL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
 	}
 	
 	func didSetAuthSettings() {
@@ -113,23 +113,23 @@ public class Server: FHIROpenServer {
 	
 	// MARK: - Requests
 	
-	public override func createDefaultSession() -> NSURLSession {
+	public override func createDefaultSession() -> URLSession {
 		if let delegate = sessionDelegate {
-			return NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: delegate, delegateQueue: nil)
+			return Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: delegate, delegateQueue: nil)
 		}
 		return super.createDefaultSession()
 	}
 	
-	public override func configurableRequestForURL(url: NSURL) -> NSMutableURLRequest {
-		return auth?.signedRequest(url) ?? super.configurableRequestForURL(url)
+	public override func configurableRequest(forURL url: URL) -> URLRequest {
+		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(forURL: url)
 	}
 	
-	public override func performPreparedRequest<R : FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
-		logger?.debug("SMART", msg: "--->  \(request.HTTPMethod) \(request.URL?.description ?? "No URL")")
+	public override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
+		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")
 		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
-		super.performPreparedRequest(request, withSession: session, handler: handler) { response in
+		super.performPreparedRequest(request as URLRequest, withSession: session, handler: handler) { response in
 			self.logger?.trace("SMART", msg: "RESPONSE\n\(response.debugDescription)\n---")
-			self.logger?.debug("SMART", msg: "<---  \(response.status) (\(response.body?.length ?? 0) Byte)")
+			self.logger?.debug("SMART", msg: "<---  \(response.status) (\(response.body?.count ?? 0) Byte)")
 			callback(response: response)
 		}
 	}
@@ -137,22 +137,22 @@ public class Server: FHIROpenServer {
 	
 	// MARK: - Server Conformance
 	
-	public override func didSetConformance(conformance: Conformance) {
+	public override func didSetConformance(_ conformance: Conformance) {
 		if nil == name && nil != conformance.name {
 			name = conformance.name
 		}
 		super.didSetConformance(conformance)
 	}
 	
-	public override func didFindConformanceRestStatement(rest: ConformanceRest) {
+	public override func didFindConformanceRestStatement(_ rest: ConformanceRest) {
 		super.didFindConformanceRestStatement(rest)
 		
 		// initialize Auth; if we can't find a suitable Auth we'll use one for "no auth"
 		if let security = rest.security {
-			auth = Auth.fromConformanceSecurity(security, server: self, settings: authSettings)
+			auth = Auth(fromConformanceSecurity: security, server: self, settings: authSettings)
 		}
 		if nil == auth {
-			auth = Auth(type: .None, server: self, settings: authSettings)
+			auth = Auth(type: .none, server: self, settings: authSettings)
 			logger?.debug("SMART", msg: "Server seems to be open, proceeding with none-type auth")
 		}
 	}
@@ -175,13 +175,13 @@ public class Server: FHIROpenServer {
 		if let typ = authSettings?["authorize_type"] as? String {
 			authType = AuthType(rawValue: typ)
 		}
-		if nil == authType || .None == authType! {
+		if nil == authType || .none == authType! {
 			if let _ = authSettings?["authorize_uri"] as? String {
 				if let _ = authSettings?["token_uri"] as? String {
-					authType = .CodeGrant
+					authType = .codeGrant
 				}
 				else {
-					authType = .ImplicitGrant
+					authType = .implicitGrant
 				}
 			}
 		}
@@ -211,25 +211,29 @@ public class Server: FHIROpenServer {
 				callback(error: nil)
 			}
 			else {
-				callback(error: error ?? FHIRError.Error("Failed to detect the authorization method from server metadata"))
+				callback(error: error ?? FHIRError.error("Failed to detect the authorization method from server metadata"))
 			}
 		}
 	}
 	
 	/**
 	Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
+	
+	- parameter withProperties: The auth properties to use
+	- parameter callback:       Callback to call when authorization is complete, providing the chosen patient (if the patient scope was
+	                            provided) or an error, if any
 	*/
-	public func authorize(authProperties: SMARTAuthProperties, callback: ((patient: Patient?, error: ErrorType?) -> Void)) {
+	public func authorize(withProperties properties: SMARTAuthProperties, callback: ((patient: Patient?, error: ErrorProtocol?) -> Void)) {
 		ready() { error in
 			if self.mustAbortAuthorization {
 				self.mustAbortAuthorization = false
 				callback(patient: nil, error: nil)
 			}
 			else if nil != error || nil == self.auth {
-				callback(patient: nil, error: error ?? FHIRError.Error("Client error, no auth instance created"))
+				callback(patient: nil, error: error ?? FHIRError.error("Client error, no auth instance created"))
 			}
 			else {
-				self.auth!.authorize(authProperties) { parameters, error in
+				self.auth!.authorize(withProperties: properties) { parameters, error in
 					if self.mustAbortAuthorization {
 						self.mustAbortAuthorization = false
 						callback(patient: nil, error: nil)
@@ -286,10 +290,10 @@ public class Server: FHIROpenServer {
 	
 	- parameter callback: The callback to call when completed or failed; if both json and error is nil no registration was attempted
 	*/
-	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: ErrorType?) -> Void)) {
+	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: ErrorProtocol?) -> Void)) {
 		ready() { error in
 			if nil != error || nil == self.auth {
-				callback(json: nil, error: error ?? FHIRError.Error("Client error, no auth instance created"))
+				callback(json: nil, error: error ?? FHIRError.error("Client error, no auth instance created"))
 			}
 			else if let oauth = self.auth?.oauth {
 				oauth.registerClientIfNeeded(callback)

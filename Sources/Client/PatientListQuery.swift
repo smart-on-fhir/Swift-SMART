@@ -33,7 +33,7 @@ public class PatientListQuery {
 		isDone = false
 	}
 	
-	func execute(server: FHIRServer, order: PatientListOrder, callback: (bundle: Bundle?, error: FHIRError?) -> Void) {
+	func execute(onServer server: FHIRServer, order: PatientListOrder, callback: (bundle: Bundle?, error: FHIRError?) -> Void) {
 		if isDone {
 			callback(bundle: nil, error: nil)
 			return

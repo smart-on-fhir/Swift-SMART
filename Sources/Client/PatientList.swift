@@ -10,10 +10,10 @@ import Foundation
 
 
 public enum PatientListStatus: Int {
-	case Unknown
-	case Initialized
-	case Loading
-	case Ready
+	case unknown
+	case initialized
+	case loading
+	case ready
 }
 
 
@@ -28,7 +28,7 @@ public enum PatientListStatus: Int {
 public class PatientList {
 	
 	/// Current list status.
-	public var status: PatientListStatus = .Unknown {
+	public var status: PatientListStatus = .unknown {
 		didSet {
 			onStatusUpdate?(lastStatusError)
 			lastStatusError = nil
@@ -37,7 +37,7 @@ public class PatientList {
 	private var lastStatusError: FHIRError? = nil
 	
 	/// A block executed whenever the receiver's status changes.
-	public var onStatusUpdate: (FHIRError? -> Void)?
+	public var onStatusUpdate: ((FHIRError?) -> Void)?
 	
 	/// The patients currently in this list.
 	var patients: [Patient]? {
@@ -50,7 +50,7 @@ public class PatientList {
 	}
 	
 	/// A block to be called when the `patients` property changes.
-	public var onPatientUpdate: (Void -> Void)?
+	public var onPatientUpdate: ((Void) -> Void)?
 	
 	private(set) public var expectedNumberOfPatients: UInt = 0
 	
@@ -68,7 +68,7 @@ public class PatientList {
 	internal(set) public var sectionIndexTitles: [String] = []
 	
 	/// How to order the list.
-	public var order = PatientListOrder.NameFamilyASC
+	public var order = PatientListOrder.nameFamilyASC
 	
 	/// The query used to create the list.
 	public let query: PatientListQuery
@@ -81,7 +81,7 @@ public class PatientList {
 	
 	public init(query: PatientListQuery) {
 		self.query = query
-		self.status = .Initialized
+		self.status = .initialized
 	}
 	
 	
@@ -115,7 +115,7 @@ public class PatientList {
 					sections.append(lastSection)
 					sectionIndexTitles.append(lastSection.title)
 				}
-				lastSection.addPatient(patient)
+				lastSection.add(patient: patient)
 				n += 1
 			}
 			
@@ -139,33 +139,33 @@ public class PatientList {
 	/**
 	Executes the patient query against the given FHIR server and updates the receiver's `patients` property when done.
 	
-	- parameter server: A FHIRServer instance to query the patients from
+	- parameter fromServer: A FHIRServer instance to query the patients from
 	*/
-	public func retrieve(server: FHIRServer) {
+	public func retrieve(fromServer server: FHIRServer) {
 		patients = nil
 		expectedNumberOfPatients = 0
 		query.reset()
-		retrieveBatch(server)
+		retrieveBatch(fromServer: server)
 	}
 	
 	/**
 	Attempts to retrieve the next batch of patients. You should check `hasMore` before calling this method.
 	
-	- parameter server: A FHIRServer instance to retrieve the batch from
+	- parameter fromServer: A FHIRServer instance to retrieve the batch from
 	*/
-	public func retrieveMore(server: FHIRServer) {
-		retrieveBatch(server, appendPatients: true)
+	public func retrieveMore(fromServer server: FHIRServer) {
+		retrieveBatch(fromServer: server, appendPatients: true)
 	}
 	
-	func retrieveBatch(server: FHIRServer, appendPatients: Bool = false) {
-		status = .Loading
-		query.execute(server, order: order) { [weak self] bundle, error in
+	func retrieveBatch(fromServer server: FHIRServer, appendPatients: Bool = false) {
+		status = .loading
+		query.execute(onServer: server, order: order) { [weak self] bundle, error in
 			if let this = self {
 				if let error = error {
 					print("ERROR running patient query: \(error)")
 					this.lastStatusError = error
 					callOnMainThread() {
-						this.status = .Ready
+						this.status = .ready
 					}
 				}
 				else {
@@ -197,7 +197,7 @@ public class PatientList {
 						if nil != patients || !appendPatients {
 							this.patients = patients
 						}
-						this.status = .Ready
+						this.status = .ready
 					}
 				}
 			}
@@ -239,7 +239,7 @@ public class PatientListSection {
 		self.title = title
 	}
 	
-	func addPatient(patient: Patient) {
+	func add(patient: Patient) {
 		if nil == patients {
 			patients = [Patient]()
 		}

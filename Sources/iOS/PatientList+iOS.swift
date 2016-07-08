@@ -37,7 +37,7 @@ public class PatientListViewController: UITableViewController {
 		}
 	}
 	
-	lazy var activity = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+	lazy var activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 	
 	weak var headerLabel: UILabel?
 	
@@ -56,17 +56,17 @@ public class PatientListViewController: UITableViewController {
 	// MARK: - View Tasks
 	
 	public override func viewDidLoad() {
-		self.tableView.registerClass(PatientTableViewCell.self, forCellReuseIdentifier: "PatientCell")
+		self.tableView.register(PatientTableViewCell.self, forCellReuseIdentifier: "PatientCell")
 		let header = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 320.0, height: 30.0))
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
-		label.textColor = UIColor.lightGrayColor()
-		label.textAlignment = .Center
+		label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleFootnote)
+		label.textColor = UIColor.lightGray()
+		label.textAlignment = .center
 		
 		header.addSubview(label)
-		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[lbl]-|", options: [], metrics: nil, views: ["lbl": label]))
-		header.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[lbl]-|", options: [], metrics: nil, views: ["lbl": label]))
+		header.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[lbl]-|", options: [], metrics: nil, views: ["lbl": label]))
+		header.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[lbl]-|", options: [], metrics: nil, views: ["lbl": label]))
 		self.tableView.tableHeaderView = header
 		headerLabel = label
 		
@@ -76,7 +76,7 @@ public class PatientListViewController: UITableViewController {
 				if let error = error {
 					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, delegate: nil, cancelButtonTitle: "OK").show()
 				}
-				if nil != this.patientList && .Loading == this.patientList!.status {
+				if nil != this.patientList && .loading == this.patientList!.status {
 					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity)
 					this.activity.startAnimating()
 				}
@@ -92,29 +92,29 @@ public class PatientListViewController: UITableViewController {
 			if let this = self {
 				this.tableView.reloadData()
 				this.headerLabel?.text = "\(this.patientList!.actualNumberOfPatients) of \(this.patientList!.expectedNumberOfPatients)"
-				dispatch_async(dispatch_get_main_queue()) {
+				DispatchQueue.main.async() {
 					this.loadMorePatientsIfNeeded()
 				}
 			}
 		}
 	}
 	
-	public override func viewWillAppear(animated: Bool) {
+	public override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		if 0 == patientList?.actualNumberOfPatients {
-			patientList?.retrieve(server!)
+			patientList?.retrieve(fromServer: server!)
 		}
 	}
 	
-	public override func viewWillDisappear(animated: Bool) {
+	public override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		if !didSelectPatientFlag {
-			didSelectPatient(nil)
+			didSelectPatient(patient: nil)
 		}
 	}
 	
 	public func dismissFromModal(sender: AnyObject?) {
-		presentingViewController?.dismissViewControllerAnimated(nil != sender, completion: nil)
+		presentingViewController?.dismiss(animated: nil != sender)
 	}
 	
 	
@@ -128,7 +128,7 @@ public class PatientListViewController: UITableViewController {
 	
 	func loadMorePatients() {
 		if let srv = server {
-			patientList?.retrieveMore(srv)
+			patientList?.retrieveMore(fromServer: srv)
 		}
 	}
 	
@@ -136,29 +136,29 @@ public class PatientListViewController: UITableViewController {
 		didSelectPatientFlag = true
 		onPatientSelect?(patient: patient)
 		
-		if !(parentViewController ?? self).isBeingDismissed() {
-			dismissViewControllerAnimated(true, completion: nil)
+		if !(parent ?? self).isBeingDismissed() {
+			dismiss(animated: true)
 		}
 	}
 	
 	
 	// MARK: - Table View
 	
-	public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	public override func numberOfSections(in: UITableView) -> Int {
 		return patientList?.numSections ?? 0
 	}
 	
-	public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let section = patientList?[section] {
 			return Int(section.numPatients)
 		}
 		return 0
 	}
 	
-	public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("PatientCell", forIndexPath: indexPath) as! PatientTableViewCell
+	public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "PatientCell", for: indexPath) as! PatientTableViewCell
 		if let section = patientList?[indexPath.section] {
-			cell.represent(section[indexPath.row])
+			cell.represent(patient: section[indexPath.row])
 			
 			let marker = min(patientList!.expectedNumberOfPatients, UInt(section.offset + indexPath.row + 10))
 			runningOutOfPatients = (marker > patientList!.actualNumberOfPatients)
@@ -166,24 +166,24 @@ public class PatientListViewController: UITableViewController {
 		return cell
 	}
 	
-	public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let patient = patientList?[indexPath] {
-			didSelectPatient(patient)
+			didSelectPatient(patient: patient)
 		}
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
 	
 	// MARK: - Table View Sections
 	
-	public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if let section = patientList?[section] {
 			return section.title
 		}
 		return nil
 	}
 	
-	override public func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+	override public func sectionIndexTitles(for: UITableView) -> [String]? {
 		return patientList?.sectionIndexTitles
 	}
 }
@@ -213,7 +213,7 @@ extension PatientList {
 class PatientTableViewCell: UITableViewCell {
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
+		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -225,9 +225,9 @@ class PatientTableViewCell: UITableViewCell {
 		
 		// birthday and age
 		if let bdate = patient?.birthDate {
-			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.grayColor()])
+			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.gray()])
 			attr.setAttributes([
-					NSForegroundColorAttributeName: UIColor.blackColor()
+					NSForegroundColorAttributeName: UIColor.black()
 				], range: NSMakeRange(0, 4))
 			detailTextLabel?.attributedText = attr
 		}
@@ -237,9 +237,9 @@ class PatientTableViewCell: UITableViewCell {
 		
 		// gender
 		if let pat = patient {
-			let gender = accessoryView as? UILabel ?? UILabel(frame: CGRectMake(0, 0, 38, 38))
-			gender.font = UIFont.systemFontOfSize(22.0)
-			gender.textAlignment = .Center
+			let gender = accessoryView as? UILabel ?? UILabel(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+			gender.font = UIFont.systemFont(ofSize: 22.0)
+			gender.textAlignment = .center
 			gender.text = pat.genderSymbol
 			accessoryView = gender
 		}

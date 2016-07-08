@@ -12,17 +12,17 @@ import Cocoa
 extension Auth {
 	
 	/** Show the authorization view controller corresponding to the auth properties. */
-	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
+	func authorizeWith(_ oauth: OAuth2, properties: SMARTAuthProperties) {
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
-		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .PatientSelectNative
+		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .patientSelectNative
 		oauth.authorize(params: ["aud": server.aud])
 	}
 	
-	func authDidFailInternal(error: ErrorType?) {
+	func authDidFailInternal(withError: ErrorProtocol?) {
 	}
 	
-	func showPatientList(parameters: OAuth2JSON) {
+	func showPatientList(withParameters parameters: OAuth2JSON) {
 		fatalError("Not yet implemented")
 	}
 }

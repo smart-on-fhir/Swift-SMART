@@ -10,49 +10,49 @@ import Foundation
 
 
 /**
-	Describes properties for the authorization flow.
- */
+Describes properties for the authorization flow.
+*/
 public struct SMARTAuthProperties {
 	
 	/// Whether the client should use embedded view controllers for the auth flow or just redirect to the OS's browser.
 	public var embedded = true
 	
 	/// How granular the authorize flow should be.
-	public var granularity = SMARTAuthGranularity.PatientSelectNative
+	public var granularity = SMARTAuthGranularity.patientSelectNative
 }
 
 
 /**
-	Enum describing the desired granularity of the authorize flow.
- */
+Enum describing the desired granularity of the authorize flow.
+*/
 public enum SMARTAuthGranularity {
-	case TokenOnly
-	case LaunchContext
-	case PatientSelectWeb
-	case PatientSelectNative
+	case tokenOnly
+	case launchContext
+	case patientSelectWeb
+	case patientSelectNative
 }
 
 
 /**
-	A client instance handles authentication and connection to a SMART on FHIR resource server.
-	
-	Create an instance of this class, then hold on to it for all your interactions with the SMART server:
+A client instance handles authentication and connection to a SMART on FHIR resource server.
 
-	```swift
-	import SMART
+Create an instance of this class, then hold on to it for all your interactions with the SMART server:
 
-	let smart = Client(
-	    baseURL: "https://fhir-api-dstu2.smarthealthit.org",
-	    settings: [
-	        //"client_id": "my_mobile_app",       // if you have one; otherwise uses dyn reg
-	        "redirect": "smartapp://callback",    // must be registered in Info.plist
-	    ]
-	)
-	```
+```swift
+import SMART
 
-	There are many other options that you can pass to `settings`, take a look at `init(baseURL:settings:)`. Also see our [programming
-	guide](https://github.com/smart-on-fhir/Swift-SMART/wiki/Client) for more information.
- */
+let smart = Client(
+    baseURL: "https://fhir-api-dstu2.smarthealthit.org",
+    settings: [
+        //"client_id": "my_mobile_app",       // if you have one; otherwise uses dyn reg
+        "redirect": "smartapp://callback",    // must be registered in Info.plist
+    ]
+)
+```
+
+There are many other options that you can pass to `settings`, take a look at `init(baseURL:settings:)`. Also see our [programming
+guide](https://github.com/smart-on-fhir/Swift-SMART/wiki/Client) for more information.
+*/
 public class Client {
 	
 	/// The server this client connects to.
@@ -110,19 +110,25 @@ public class Client {
 	/**
 	Executes the callback immediately if the server is ready to perform requests. Otherwise performs necessary setup operations and
 	requests, like retrieving the conformance statement.
+	
+	- parameter callback: The callback to call if the server is ready or an error has occurred
 	*/
-	public func ready(callback: (error: ErrorType?) -> ()) {
-		server.ready(callback)
+	public func ready(callback: (error: ErrorProtocol?) -> ()) {
+		server.ready(callback: callback)
 	}
 	
 	/**
 	Call this to start the authorization process. Implicitly calls `ready`, so no need to call it yourself.
 	
-	If you use the OS browser as authorize type you will need to intercept the OAuth redirect and call `didRedirect` yourself.
+	If you use the OS browser you will need to intercept the OAuth redirect in your app delegate and call `didRedirect` yourself. See
+	the instructions for more detail.
+	
+	- parameter callback: The callback that is called when authorization finishes, with a patient resource (if launch/patient was specified
+	                      or an error
 	*/
-	public func authorize(callback: (patient: Patient?, error: ErrorType?) -> ()) {
+	public func authorize(callback: (patient: Patient?, error: ErrorProtocol?) -> ()) {
 		server.mustAbortAuthorization = false
-		server.authorize(self.authProperties, callback: callback)
+		server.authorize(withProperties: self.authProperties, callback: callback)
 	}
 	
 	/// Will return true while the client is waiting for the authorization callback.
@@ -130,9 +136,13 @@ public class Client {
 		get { return nil != server.auth?.authCallback }
 	}
 	
-	/** Call this with the redirect URL when intercepting the redirect callback in the app delegate. */
-	public func didRedirect(redirect: NSURL) -> Bool {
-		return server.auth?.handleRedirect(redirect) ?? false
+	/**
+	Call this with the redirect URL when intercepting the redirect callback in the app delegate.
+	
+	- parameter toURL: The URL that was being redirected to
+	*/
+	public func didRedirect(toURL: URL) -> Bool {
+		return server.auth?.handleRedirect(toURL) ?? false
 	}
 	
 	/** Stops any request currently in progress. */
@@ -159,9 +169,9 @@ public class Client {
 	- parameter path: The path relative to the server's base URL to request
 	- parameter callback: The callback to execute once the request finishes
 	*/
-	public func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func getJSON(_ path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequestAgainst(path, handler: handler) { response in
+		server.performRequest(againstPath: path, handler: handler) { response in
 			callback(response: response as! FHIRServerJSONResponse)
 		}
 	}
@@ -172,16 +182,16 @@ public class Client {
 	If the server needs authentication and the URL is not in the receiver's baseURL, this is probably going to fail. You usually use this
 	method if a resource has attachments that live on the same server, e.g. Patient.photo.url.
 	*/
-	public func getData(url: NSURL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
+	public func getData(_ url: URL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
 		let handler = FHIRServerDataRequestHandler(.GET, contentType: accept)
 		if nil != url.host {
-			server.performRequestWithURL(url, handler: handler, callback: callback)
+			server.performRequest(withURL: url, handler: handler, callback: callback)
 		}
 		else if let path = url.path {
-			server.performRequestAgainst(path, handler: handler, callback: callback)
+			server.performRequest(againstPath: path, handler: handler, callback: callback)
 		}
 		else {
-			callback(response: FHIRServerDataResponse(error: FHIRError.ResourceLocationUnknown))
+			callback(response: FHIRServerDataResponse(error: FHIRError.resourceLocationUnknown))
 		}
 	}
 }

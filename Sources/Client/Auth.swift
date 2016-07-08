@@ -10,10 +10,10 @@ import Foundation
 
 
 enum AuthType: String {
-	case None = "none"
-	case ImplicitGrant = "implicit"
-	case CodeGrant = "authorization_code"
-	case ClientCredentials = "client_credentials"
+	case none = "none"
+	case implicitGrant = "implicit"
+	case codeGrant = "authorization_code"
+	case clientCredentials = "client_credentials"
 }
 
 
@@ -55,7 +55,7 @@ class Auth {
 	var authContext: AnyObject?
 	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((parameters: OAuth2JSON?, error: ErrorType?) -> ())?
+	var authCallback: ((parameters: OAuth2JSON?, error: ErrorProtocol?) -> ())?
 	
 	
 	/**
@@ -70,14 +70,18 @@ class Auth {
 		self.server = server
 		self.settings = settings
 		if let sett = self.settings {
-			self.configureWith(sett)
+			self.configure(withSettings: sett)
 		}
 	}
 	
+	/**
+	Convenience initializer from the server conformance's rest.security statement.
 	
-	// MARK: - Factory & Setup
-	
-	class func fromConformanceSecurity(security: ConformanceRestSecurity, server: Server, settings: OAuth2JSON?) -> Auth? {
+	- parameter fromConformanceSecurity: The server conformance's rest.security statement to inspect
+	- parameter server:                  The server to use
+	- parameter settings:                Settings, mostly passed on to the OAuth2 instance
+	*/
+	convenience init?(fromConformanceSecurity security: ConformanceRestSecurity, server: Server, settings: OAuth2JSON?) {
 		var authSettings = settings ?? OAuth2JSON(minimumCapacity: 3)
 		
 		if let services = security.service {
@@ -94,9 +98,9 @@ class Auth {
 		}
 		
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
-		if let smartauth = security.extensionsFor("http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris")?.first?.extension_fhir {
+		if let smartauth = security.extensions(forURI: "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris")?.first?.extension_fhir {
 			for subext in smartauth where nil != subext.url {
-				switch subext.url!.absoluteString {
+				switch subext.url?.absoluteString ?? "" {
 				case "authorize":
 					authSettings["authorize_uri"] = subext.valueUri?.absoluteString
 				case "token":
@@ -110,28 +114,29 @@ class Auth {
 		}
 		
 		let hasAuthURI = (nil != authSettings["authorize_uri"])
-		if hasAuthURI {
-			let hasTokenURI = (nil != authSettings["token_uri"])
-			return Auth(type: hasTokenURI ? .CodeGrant : .ImplicitGrant, server: server, settings: authSettings)
+		if !hasAuthURI {
+			server.logger?.warn("SMART", msg: "Unsupported security services, will proceed without authorization method")
+			return nil
 		}
-		
-		server.logger?.warn("SMART", msg: "Unsupported security services, will proceed without authorization method")
-		return nil
+		let hasTokenURI = (nil != authSettings["token_uri"])
+		self.init(type: (hasTokenURI ? .codeGrant : .implicitGrant), server: server, settings: authSettings)
 	}
 	
+	
+	// MARK: - Configuration
 	
 	/**
 	Finalize instance setup based on type and the a settings dictionary.
 	
-	- parameter settings: A dictionary with auth settings, passed on to OAuth2*()
+	- parameter withSettings: A dictionary with auth settings, passed on to OAuth2*()
 	*/
-	func configureWith(settings: OAuth2JSON) {
+	func configure(withSettings settings: OAuth2JSON) {
 		switch type {
-			case .CodeGrant:
+			case .codeGrant:
 				oauth = OAuth2CodeGrant(settings: settings)
-			case .ImplicitGrant:
+			case .implicitGrant:
 				oauth = OAuth2ImplicitGrant(settings: settings)
-			case .ClientCredentials:
+			case .clientCredentials:
 				oauth = OAuth2ClientCredentials(settings: settings)
 			default:
 				oauth = nil
@@ -141,9 +146,7 @@ class Auth {
 		if let oa = oauth {
 			oa.onAuthorize = authDidSucceed
 			oa.onFailure = authDidFail
-			#if DEBUG
-			oa.verbose = true
-			#endif
+			oa.logger = server.logger
 		}
 	}
 	
@@ -168,8 +171,11 @@ class Auth {
 	
 	If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the returned dictionary. On
 	native patient selection adds a "patient_resource" key with the patient resource.
+	
+	- parameter withProperties: The authorization properties to use
+	- parameter callback:       The callback to call when authorization finishes (or is aborted)
 	*/
-	func authorize(properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: ErrorType?) -> Void) {
+	func authorize(withProperties properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: ErrorProtocol?) -> Void) {
 		if nil != authCallback {
 			abort()
 		}
@@ -180,9 +186,9 @@ class Auth {
 		// authorization via OAuth2
 		if let oa = oauth {
 			if oa.hasUnexpiredAccessToken() {
-				if properties.granularity != .PatientSelectWeb {
+				if properties.granularity != .patientSelectWeb {
 					server.logger?.debug("SMART", msg: "Have an unexpired access token and don't need web patient selection: not requesting a new token")
-					authDidSucceed(OAuth2JSON(minimumCapacity: 0))
+					authDidSucceed(withParameters: OAuth2JSON(minimumCapacity: 0))
 					return
 				}
 				server.logger?.debug("SMART", msg: "Have an unexpired access token but want web patient selection: starting auth flow")
@@ -193,32 +199,32 @@ class Auth {
 			var scope = oa.scope ?? "user/*.* openid profile"		// plus "launch" or "launch/patient", if needed
 			// TODO: clean existing "launch" scope if it's already contained
 			switch properties.granularity {
-				case .TokenOnly:
+				case .tokenOnly:
 					break
-				case .LaunchContext:
+				case .launchContext:
 					scope = "launch \(scope)"
-				case .PatientSelectWeb:
+				case .patientSelectWeb:
 					scope = "launch/patient \(scope)"
-				case .PatientSelectNative:
+				case .patientSelectNative:
 					break
 			}
 			oa.scope = scope
 			
 			// start authorization (method implemented in iOS and OS X extensions)
-			authorizeWith(oa, properties: properties)
+			authorizeWith(oauth: oa, properties: properties)
 		}
 			
 		// open server?
-		else if .None == type {
-			authDidSucceed(OAuth2JSON(minimumCapacity: 0))
+		else if .none == type {
+			authDidSucceed(withParameters: OAuth2JSON(minimumCapacity: 0))
 		}
 		
 		else {
-			authDidFail(FHIRError.Error("I am not yet set up to authorize"))
+			authDidFail(withError: FHIRError.error("I am not yet set up to authorize"))
 		}
 	}
 	
-	func handleRedirect(redirect: NSURL) -> Bool {
+	func handleRedirect(_ redirect: URL) -> Bool {
 		guard let oauth = oauth where nil != authCallback else {
 			return false
 		}
@@ -230,10 +236,10 @@ class Auth {
 		return false
 	}
 	
-	internal func authDidSucceed(parameters: OAuth2JSON) {
-		if let props = authProperties where props.granularity == .PatientSelectNative {
+	internal func authDidSucceed(withParameters parameters: OAuth2JSON) {
+		if let props = authProperties where props.granularity == .patientSelectNative {
 			server.logger?.debug("SMART", msg: "Showing native patient selector after authorizing with parameters \(parameters)")
-			showPatientList(parameters)
+			showPatientList(withParameters: parameters)
 		}
 		else {
 			server.logger?.debug("SMART", msg: "Did authorize with parameters \(parameters)")
@@ -241,9 +247,9 @@ class Auth {
 		}
 	}
 	
-	internal func authDidFail(error: ErrorType?) {
+	internal func authDidFail(withError error: ErrorProtocol?) {
 		server.logger?.debug("SMART", msg: "Failed to authorize with error: \(error)")
-		authDidFailInternal(error)
+		authDidFailInternal(withError: error)
 		processAuthCallback(parameters: nil, error: error)
 	}
 	
@@ -256,7 +262,7 @@ class Auth {
 		oauth?.forgetClient()
 	}
 	
-	func processAuthCallback(parameters  parameters: OAuth2JSON?, error: ErrorType?) {
+	func processAuthCallback(parameters: OAuth2JSON?, error: ErrorProtocol?) {
 		if nil != authCallback {
 			authCallback!(parameters: parameters, error: error)
 			authCallback = nil
@@ -269,10 +275,10 @@ class Auth {
 	/**
 	Returns a signed request, nil if the receiver cannot produce a signed request.
 	
-	- parameter url: The URL to request a resource from
-	- returns: A mutable URL request preconfigured and signed
+	- parameter forURL: The URL to request a resource from
+	- returns:          A URL request preconfigured and signed
 	*/
-	func signedRequest(url: NSURL) -> NSMutableURLRequest? {
+	func signedRequest(forURL url: URL) -> URLRequest? {
 		return oauth?.request(forURL: url)
 	}
 }
