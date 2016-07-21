@@ -88,7 +88,7 @@ public class Server: FHIROpenServer {
 	- parameter auth:    A dictionary with authentication settings, passed on to the `Auth` initializer
 	*/
 	public required init(baseURL base: NSURL, auth: OAuth2JSON? = nil) {
-		aud = base.absoluteString
+		aud = base.description		// FIXME: `description` instead of `absoluteString` for compatibility between Swift 2.2 + 2.3
 		authSettings = auth
 		super.init(baseURL: base, auth: auth)
 		didSetAuthSettings()
