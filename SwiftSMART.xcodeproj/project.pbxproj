@@ -349,6 +349,7 @@
 		EEF47D371B1E483A0057D838 /* OAuth2Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF47D341B1E483A0057D838 /* OAuth2Base.swift */; };
 		EEF47D381B1E483A0057D838 /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF47D351B1E483A0057D838 /* OAuth2DynReg.swift */; };
 		EEF47D391B1E483A0057D838 /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF47D351B1E483A0057D838 /* OAuth2DynReg.swift */; };
+		EEF7BC3C1D465FA400DCF872 /* OAuth2Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB4810B1CDBEB4F0088D7F3 /* OAuth2Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1520,6 +1521,7 @@
 				EE56A4FB1ABB0B7900FA99EB /* AuditEvent.swift in Sources */,
 				EE56A5691ABB0B7900FA99EB /* Group.swift in Sources */,
 				EE56A56B1ABB0B7900FA99EB /* HealthcareService.swift in Sources */,
+				EEF7BC3C1D465FA400DCF872 /* OAuth2Logger.swift in Sources */,
 				EE56A53B1ABB0B7900FA99EB /* DocumentManifest.swift in Sources */,
 				EE02F8081ACF2FC500179969 /* Flag.swift in Sources */,
 				EE56A6141ABB0B9E00FA99EB /* OAuth2CodeGrant.swift in Sources */,

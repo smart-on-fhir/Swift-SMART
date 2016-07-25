@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 2.2.4
+
+- Support resolving bundled references
+- Some logging improvements
+
 
 ## 2.2.3
 
