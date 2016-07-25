@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "2.2.3"
+  s.version      = "2.2.4"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
