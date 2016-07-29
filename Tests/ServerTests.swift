@@ -32,7 +32,7 @@ class ServerTests: XCTestCase {
 	
 	func testMetadataLoading() {
 		var server = Server(base: "https://api.ioio")		// invalid TLD, so this should definitely fail
-		let exp1 = self.expectation(withDescription: "Metadata fetch expectation 1")
+		let exp1 = self.expectation(description: "Metadata fetch expectation 1")
 		server.getConformance { error in
 			XCTAssertNotNil(error, "Must raise an error when fetching metatada fails")
 			exp1.fulfill()
@@ -40,7 +40,7 @@ class ServerTests: XCTestCase {
 		
 		let fileURL = URL(fileURLWithPath: "\(#file)".smart_deletingLastPathComponent)
 		server = Server(baseURL: fileURL)
-		let exp2 = self.expectation(withDescription: "Metadata fetch expectation 2")
+		let exp2 = self.expectation(description: "Metadata fetch expectation 2")
 		server.getConformance { error in
 			XCTAssertNil(error, "Expecting filesystem-fetching to succeed")
 			XCTAssertNotNil(server.auth, "Server is OAuth2 protected, must have `Auth` instance")
@@ -53,7 +53,7 @@ class ServerTests: XCTestCase {
 			exp2.fulfill()
 		}
 		
-		waitForExpectations(withTimeout: 20, handler: nil)
+		waitForExpectations(timeout: 20, handler: nil)
 	}
 }
 

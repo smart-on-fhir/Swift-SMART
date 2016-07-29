@@ -109,11 +109,11 @@ public class PatientListViewController: UITableViewController {
 	public override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		if !didSelectPatientFlag {
-			didSelectPatient(patient: nil)
+			didSelect(patient: nil)
 		}
 	}
 	
-	public func dismissFromModal(sender: AnyObject?) {
+	public func dismissFromModal(_ sender: AnyObject?) {
 		presentingViewController?.dismiss(animated: nil != sender)
 	}
 	
@@ -132,7 +132,7 @@ public class PatientListViewController: UITableViewController {
 		}
 	}
 	
-	func didSelectPatient(patient: Patient?) {
+	func didSelect(patient: Patient?) {
 		didSelectPatientFlag = true
 		onPatientSelect?(patient: patient)
 		
@@ -168,7 +168,7 @@ public class PatientListViewController: UITableViewController {
 	
 	public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let patient = patientList?[indexPath] {
-			didSelectPatient(patient: patient)
+			didSelect(patient: patient)
 		}
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
@@ -198,9 +198,9 @@ extension Patient {
 
 extension PatientList {
 	
-	subscript(indexPath: NSIndexPath) -> Patient? {
-		if let section = self[indexPath.section] {
-			return section[indexPath.row]
+	subscript(indexPath: IndexPath) -> Patient? {
+		if let section = self[(indexPath as NSIndexPath).section] {
+			return section[(indexPath as NSIndexPath).row]
 		}
 		return nil
 	}
