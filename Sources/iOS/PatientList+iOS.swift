@@ -61,7 +61,7 @@ public class PatientListViewController: UITableViewController {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleFootnote)
-		label.textColor = UIColor.lightGray()
+		label.textColor = UIColor.lightGray
 		label.textAlignment = .center
 		
 		header.addSubview(label)
@@ -136,7 +136,7 @@ public class PatientListViewController: UITableViewController {
 		didSelectPatientFlag = true
 		onPatientSelect?(patient: patient)
 		
-		if !(parent ?? self).isBeingDismissed() {
+		if !(parent ?? self).isBeingDismissed {
 			dismiss(animated: true)
 		}
 	}
@@ -225,9 +225,9 @@ class PatientTableViewCell: UITableViewCell {
 		
 		// birthday and age
 		if let bdate = patient?.birthDate {
-			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.gray()])
+			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.gray])
 			attr.setAttributes([
-					NSForegroundColorAttributeName: UIColor.black()
+					NSForegroundColorAttributeName: UIColor.black
 				], range: NSMakeRange(0, 4))
 			detailTextLabel?.attributedText = attr
 		}

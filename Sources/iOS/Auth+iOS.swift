@@ -18,16 +18,17 @@ extension Auth {
 	- parameter properties: SMART authorization properties to use
 	*/
 	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
-		authContext = UIApplication.shared().keyWindow?.rootViewController
+		authContext = UIApplication.shared.keyWindow?.rootViewController
 		
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
 		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .patientSelectNative
+		// TODO: update
 		oauth.authorize(params: ["aud": server.aud])
 	}
 	
-	func authDidFailInternal(withError error: ErrorProtocol?) {
-		if let props = authProperties where props.granularity == .patientSelectNative {		// not auto-dismissing, must do it ourselves
+	func authDidFailInternal(withError error: Error?) {
+		if let props = authProperties, props.granularity == .patientSelectNative {		// not auto-dismissing, must do it ourselves
 			if let vc = oauth?.authConfig.authorizeContext as? UIViewController {
 				vc.dismiss(animated: true)
 			}
@@ -40,7 +41,7 @@ extension Auth {
 	- parameter withParameters: Additional authorization parameters to pass through
 	*/
 	func showPatientList(withParameters parameters: OAuth2JSON) {
-		if let root = authContext as? UIViewController ?? UIApplication.shared().keyWindow?.rootViewController {
+		if let root = authContext as? UIViewController ?? UIApplication.shared.keyWindow?.rootViewController {
 			
 			// instantiate patient list view
 			let view = PatientListViewController(list: PatientListAll(), server: self.server)

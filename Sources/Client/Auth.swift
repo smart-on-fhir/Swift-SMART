@@ -55,7 +55,7 @@ class Auth {
 	var authContext: AnyObject?
 	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((parameters: OAuth2JSON?, error: ErrorProtocol?) -> ())?
+	var authCallback: ((parameters: OAuth2JSON?, error: Error?) -> ())?
 	
 	
 	/**
@@ -144,6 +144,7 @@ class Auth {
 		
 		// configure the OAuth2 instance's callbacks
 		if let oa = oauth {
+			// TODO: update
 			oa.onAuthorize = authDidSucceed
 			oa.onFailure = authDidFail
 			oa.logger = server.logger
@@ -175,7 +176,7 @@ class Auth {
 	- parameter withProperties: The authorization properties to use
 	- parameter callback:       The callback to call when authorization finishes (or is aborted)
 	*/
-	func authorize(withProperties properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: ErrorProtocol?) -> Void) {
+	func authorize(withProperties properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: Error?) -> Void) {
 		if nil != authCallback {
 			abort()
 		}
@@ -225,7 +226,7 @@ class Auth {
 	}
 	
 	func handleRedirect(_ redirect: URL) -> Bool {
-		guard let oauth = oauth where nil != authCallback else {
+		guard let oauth = oauth, nil != authCallback else {
 			return false
 		}
 		do {
@@ -237,7 +238,7 @@ class Auth {
 	}
 	
 	internal func authDidSucceed(withParameters parameters: OAuth2JSON) {
-		if let props = authProperties where props.granularity == .patientSelectNative {
+		if let props = authProperties, props.granularity == .patientSelectNative {
 			server.logger?.debug("SMART", msg: "Showing native patient selector after authorizing with parameters \(parameters)")
 			showPatientList(withParameters: parameters)
 		}
@@ -247,7 +248,7 @@ class Auth {
 		}
 	}
 	
-	internal func authDidFail(withError error: ErrorProtocol?) {
+	internal func authDidFail(withError error: Error?) {
 		server.logger?.debug("SMART", msg: "Failed to authorize with error: \(error)")
 		authDidFailInternal(withError: error)
 		processAuthCallback(parameters: nil, error: error)
@@ -262,7 +263,7 @@ class Auth {
 		oauth?.forgetClient()
 	}
 	
-	func processAuthCallback(parameters: OAuth2JSON?, error: ErrorProtocol?) {
+	func processAuthCallback(parameters: OAuth2JSON?, error: Error?) {
 		if nil != authCallback {
 			authCallback!(parameters: parameters, error: error)
 			authCallback = nil

@@ -247,7 +247,7 @@ public class PatientListSection {
 	}
 	
 	subscript(index: Int) -> Patient? {
-		if let patients = patients where patients.count > index {
+		if let patients = patients, patients.count > index {
 			return patients[index]
 		}
 		return nil

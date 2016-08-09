@@ -88,7 +88,7 @@ public class Server: FHIROpenServer {
 	- parameter auth:    A dictionary with authentication settings, passed on to the `Auth` initializer
 	*/
 	public required init(baseURL base: URL, auth: OAuth2JSON? = nil) {
-		aud = base.absoluteString!
+		aud = base.absoluteString
 		authSettings = auth
 		super.init(baseURL: base, auth: auth)
 		didSetAuthSettings()
@@ -105,7 +105,7 @@ public class Server: FHIROpenServer {
 	}
 	
 	func didSetAuthSettings() {
-		if !instantiateAuthFromAuthSettings(), let verbose = authSettings?["verbose"] as? Bool where verbose {
+		if !instantiateAuthFromAuthSettings(), let verbose = authSettings?["verbose"] as? Bool, verbose {
 			logger = OAuth2DebugLogger()
 		}
 	}
@@ -161,7 +161,7 @@ public class Server: FHIROpenServer {
 	// MARK: - Authorization
 	
 	public var authClientCredentials: (id: String, secret: String?, name: String?)? {
-		if let clientId = auth?.oauth?.clientId where !clientId.isEmpty {
+		if let clientId = auth?.oauth?.clientId, !clientId.isEmpty {
 			return (id: clientId, secret: auth?.oauth?.clientSecret, name: auth?.oauth?.clientName)
 		}
 		return nil
@@ -223,7 +223,7 @@ public class Server: FHIROpenServer {
 	- parameter callback:       Callback to call when authorization is complete, providing the chosen patient (if the patient scope was
 	                            provided) or an error, if any
 	*/
-	public func authorize(withProperties properties: SMARTAuthProperties, callback: ((patient: Patient?, error: ErrorProtocol?) -> Void)) {
+	public func authorize(withProperties properties: SMARTAuthProperties, callback: ((patient: Patient?, error: Error?) -> Void)) {
 		ready() { error in
 			if self.mustAbortAuthorization {
 				self.mustAbortAuthorization = false
@@ -290,7 +290,7 @@ public class Server: FHIROpenServer {
 	
 	- parameter callback: The callback to call when completed or failed; if both json and error is nil no registration was attempted
 	*/
-	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: ErrorProtocol?) -> Void)) {
+	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: Error?) -> Void)) {
 		ready() { error in
 			if nil != error || nil == self.auth {
 				callback(json: nil, error: error ?? FHIRError.error("Client error, no auth instance created"))

@@ -113,7 +113,7 @@ public class Client {
 	
 	- parameter callback: The callback to call if the server is ready or an error has occurred
 	*/
-	public func ready(callback: (error: ErrorProtocol?) -> ()) {
+	public func ready(callback: (error: Error?) -> ()) {
 		server.ready(callback: callback)
 	}
 	
@@ -126,7 +126,7 @@ public class Client {
 	- parameter callback: The callback that is called when authorization finishes, with a patient resource (if launch/patient was specified
 	                      or an error
 	*/
-	public func authorize(callback: (patient: Patient?, error: ErrorProtocol?) -> ()) {
+	public func authorize(callback: (patient: Patient?, error: Error?) -> ()) {
 		server.mustAbortAuthorization = false
 		server.authorize(withProperties: self.authProperties, callback: callback)
 	}
@@ -181,17 +181,18 @@ public class Client {
 	
 	If the server needs authentication and the URL is not in the receiver's baseURL, this is probably going to fail. You usually use this
 	method if a resource has attachments that live on the same server, e.g. Patient.photo.url.
+	
+	- parameter from:     The URL to read data from
+	- parameter accept:   The accept header to send along
+	- parameter callback: Callback called once the response comes back
 	*/
-	public func getData(_ url: URL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
+	public func getData(from url: URL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
 		let handler = FHIRServerDataRequestHandler(.GET, contentType: accept)
 		if nil != url.host {
 			server.performRequest(withURL: url, handler: handler, callback: callback)
 		}
-		else if let path = url.path {
-			server.performRequest(againstPath: path, handler: handler, callback: callback)
-		}
 		else {
-			callback(response: FHIRServerDataResponse(error: FHIRError.resourceLocationUnknown))
+			server.performRequest(againstPath: url.path, handler: handler, callback: callback)
 		}
 	}
 }

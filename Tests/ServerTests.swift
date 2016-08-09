@@ -19,7 +19,7 @@ class ServerTests: XCTestCase {
 		XCTAssertEqual("https://api.io/", server.baseURL.absoluteString)
 		XCTAssertEqual("https://api.io", server.aud)
 		
-		let metaURL = Bundle(for: self.dynamicType).urlForResource("metadata", withExtension: "")
+		let metaURL = Bundle(for: self.dynamicType).url(forResource: "metadata", withExtension: "")
 		XCTAssertNotNil(metaURL, "Need file `metadata` for unit tests")
 		let metaData = try? Data(contentsOf: metaURL!)
 		let meta = try JSONSerialization.jsonObject(with: metaData!, options: []) as! FHIRJSON
