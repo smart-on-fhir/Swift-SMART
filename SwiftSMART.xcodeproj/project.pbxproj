@@ -318,54 +318,6 @@
 		EE56A6281ABB6A6F00FA99EB /* ProcessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */; };
 		EE56A6291ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
 		EE56A62A1ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
-		EE65DB9B1CB3E47300E25C72 /* ActionDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB831CB3E47200E25C72 /* ActionDefinition.swift */; };
-		EE65DB9C1CB3E47300E25C72 /* ActionDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB831CB3E47200E25C72 /* ActionDefinition.swift */; };
-		EE65DB9D1CB3E47300E25C72 /* CareTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB841CB3E47200E25C72 /* CareTeam.swift */; };
-		EE65DB9E1CB3E47300E25C72 /* CareTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB841CB3E47200E25C72 /* CareTeam.swift */; };
-		EE65DB9F1CB3E47300E25C72 /* CodeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB851CB3E47200E25C72 /* CodeSystem.swift */; };
-		EE65DBA01CB3E47300E25C72 /* CodeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB851CB3E47200E25C72 /* CodeSystem.swift */; };
-		EE65DBA11CB3E47300E25C72 /* CompartmentDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB861CB3E47200E25C72 /* CompartmentDefinition.swift */; };
-		EE65DBA21CB3E47300E25C72 /* CompartmentDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB861CB3E47200E25C72 /* CompartmentDefinition.swift */; };
-		EE65DBA31CB3E47300E25C72 /* DataRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB871CB3E47200E25C72 /* DataRequirement.swift */; };
-		EE65DBA41CB3E47300E25C72 /* DataRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB871CB3E47200E25C72 /* DataRequirement.swift */; };
-		EE65DBA51CB3E47300E25C72 /* DecisionSupportRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB881CB3E47200E25C72 /* DecisionSupportRule.swift */; };
-		EE65DBA61CB3E47300E25C72 /* DecisionSupportRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB881CB3E47200E25C72 /* DecisionSupportRule.swift */; };
-		EE65DBA71CB3E47300E25C72 /* DecisionSupportServiceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB891CB3E47200E25C72 /* DecisionSupportServiceModule.swift */; };
-		EE65DBA81CB3E47300E25C72 /* DecisionSupportServiceModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB891CB3E47200E25C72 /* DecisionSupportServiceModule.swift */; };
-		EE65DBA91CB3E47300E25C72 /* ExpansionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8A1CB3E47200E25C72 /* ExpansionProfile.swift */; };
-		EE65DBAA1CB3E47300E25C72 /* ExpansionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8A1CB3E47200E25C72 /* ExpansionProfile.swift */; };
-		EE65DBAB1CB3E47300E25C72 /* GuidanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8B1CB3E47200E25C72 /* GuidanceResponse.swift */; };
-		EE65DBAC1CB3E47300E25C72 /* GuidanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8B1CB3E47200E25C72 /* GuidanceResponse.swift */; };
-		EE65DBAD1CB3E47300E25C72 /* ImagingExcerpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8C1CB3E47200E25C72 /* ImagingExcerpt.swift */; };
-		EE65DBAE1CB3E47300E25C72 /* ImagingExcerpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8C1CB3E47200E25C72 /* ImagingExcerpt.swift */; };
-		EE65DBAF1CB3E47300E25C72 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8D1CB3E47200E25C72 /* Library.swift */; };
-		EE65DBB01CB3E47300E25C72 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8D1CB3E47200E25C72 /* Library.swift */; };
-		EE65DBB11CB3E47300E25C72 /* Linkage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8E1CB3E47200E25C72 /* Linkage.swift */; };
-		EE65DBB21CB3E47300E25C72 /* Linkage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8E1CB3E47200E25C72 /* Linkage.swift */; };
-		EE65DBB31CB3E47300E25C72 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8F1CB3E47200E25C72 /* Measure.swift */; };
-		EE65DBB41CB3E47300E25C72 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB8F1CB3E47200E25C72 /* Measure.swift */; };
-		EE65DBB51CB3E47300E25C72 /* MeasureReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB901CB3E47200E25C72 /* MeasureReport.swift */; };
-		EE65DBB61CB3E47300E25C72 /* MeasureReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB901CB3E47200E25C72 /* MeasureReport.swift */; };
-		EE65DBB71CB3E47300E25C72 /* ModuleDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB911CB3E47200E25C72 /* ModuleDefinition.swift */; };
-		EE65DBB81CB3E47300E25C72 /* ModuleDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB911CB3E47200E25C72 /* ModuleDefinition.swift */; };
-		EE65DBB91CB3E47300E25C72 /* ModuleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB921CB3E47200E25C72 /* ModuleMetadata.swift */; };
-		EE65DBBA1CB3E47300E25C72 /* ModuleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB921CB3E47200E25C72 /* ModuleMetadata.swift */; };
-		EE65DBBB1CB3E47300E25C72 /* OrderSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB931CB3E47200E25C72 /* OrderSet.swift */; };
-		EE65DBBC1CB3E47300E25C72 /* OrderSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB931CB3E47200E25C72 /* OrderSet.swift */; };
-		EE65DBBD1CB3E47300E25C72 /* ParameterDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB941CB3E47300E25C72 /* ParameterDefinition.swift */; };
-		EE65DBBE1CB3E47300E25C72 /* ParameterDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB941CB3E47300E25C72 /* ParameterDefinition.swift */; };
-		EE65DBBF1CB3E47300E25C72 /* PractitionerRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB951CB3E47300E25C72 /* PractitionerRole.swift */; };
-		EE65DBC01CB3E47300E25C72 /* PractitionerRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB951CB3E47300E25C72 /* PractitionerRole.swift */; };
-		EE65DBC11CB3E47300E25C72 /* ProtocolFHIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB961CB3E47300E25C72 /* ProtocolFHIR.swift */; };
-		EE65DBC21CB3E47300E25C72 /* ProtocolFHIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB961CB3E47300E25C72 /* ProtocolFHIR.swift */; };
-		EE65DBC31CB3E47300E25C72 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB971CB3E47300E25C72 /* Sequence.swift */; };
-		EE65DBC41CB3E47300E25C72 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB971CB3E47300E25C72 /* Sequence.swift */; };
-		EE65DBC51CB3E47300E25C72 /* StructureMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB981CB3E47300E25C72 /* StructureMap.swift */; };
-		EE65DBC61CB3E47300E25C72 /* StructureMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB981CB3E47300E25C72 /* StructureMap.swift */; };
-		EE65DBC71CB3E47300E25C72 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB991CB3E47300E25C72 /* Task.swift */; };
-		EE65DBC81CB3E47300E25C72 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB991CB3E47300E25C72 /* Task.swift */; };
-		EE65DBC91CB3E47300E25C72 /* TriggerDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB9A1CB3E47300E25C72 /* TriggerDefinition.swift */; };
-		EE65DBCA1CB3E47300E25C72 /* TriggerDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB9A1CB3E47300E25C72 /* TriggerDefinition.swift */; };
 		EE8EE6BF1B1290AA005B90C5 /* OAuth2Authorizer+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BD1B1290AA005B90C5 /* OAuth2Authorizer+iOS.swift */; };
 		EE8EE6C01B1290AA005B90C5 /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BE1B1290AA005B90C5 /* OAuth2WebViewController.swift */; };
 		EE8EE6C31B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6C21B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift */; };
@@ -629,30 +581,6 @@
 		EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessRequest.swift; sourceTree = "<group>"; };
 		EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessResponse.swift; sourceTree = "<group>"; };
 		EE56A62C1ABB6D7700FA99EB /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
-		EE65DB831CB3E47200E25C72 /* ActionDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionDefinition.swift; sourceTree = "<group>"; };
-		EE65DB841CB3E47200E25C72 /* CareTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareTeam.swift; sourceTree = "<group>"; };
-		EE65DB851CB3E47200E25C72 /* CodeSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSystem.swift; sourceTree = "<group>"; };
-		EE65DB861CB3E47200E25C72 /* CompartmentDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompartmentDefinition.swift; sourceTree = "<group>"; };
-		EE65DB871CB3E47200E25C72 /* DataRequirement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRequirement.swift; sourceTree = "<group>"; };
-		EE65DB881CB3E47200E25C72 /* DecisionSupportRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionSupportRule.swift; sourceTree = "<group>"; };
-		EE65DB891CB3E47200E25C72 /* DecisionSupportServiceModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionSupportServiceModule.swift; sourceTree = "<group>"; };
-		EE65DB8A1CB3E47200E25C72 /* ExpansionProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpansionProfile.swift; sourceTree = "<group>"; };
-		EE65DB8B1CB3E47200E25C72 /* GuidanceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidanceResponse.swift; sourceTree = "<group>"; };
-		EE65DB8C1CB3E47200E25C72 /* ImagingExcerpt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingExcerpt.swift; sourceTree = "<group>"; };
-		EE65DB8D1CB3E47200E25C72 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
-		EE65DB8E1CB3E47200E25C72 /* Linkage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Linkage.swift; sourceTree = "<group>"; };
-		EE65DB8F1CB3E47200E25C72 /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
-		EE65DB901CB3E47200E25C72 /* MeasureReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureReport.swift; sourceTree = "<group>"; };
-		EE65DB911CB3E47200E25C72 /* ModuleDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDefinition.swift; sourceTree = "<group>"; };
-		EE65DB921CB3E47200E25C72 /* ModuleMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleMetadata.swift; sourceTree = "<group>"; };
-		EE65DB931CB3E47200E25C72 /* OrderSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSet.swift; sourceTree = "<group>"; };
-		EE65DB941CB3E47300E25C72 /* ParameterDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterDefinition.swift; sourceTree = "<group>"; };
-		EE65DB951CB3E47300E25C72 /* PractitionerRole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PractitionerRole.swift; sourceTree = "<group>"; };
-		EE65DB961CB3E47300E25C72 /* ProtocolFHIR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtocolFHIR.swift; sourceTree = "<group>"; };
-		EE65DB971CB3E47300E25C72 /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
-		EE65DB981CB3E47300E25C72 /* StructureMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureMap.swift; sourceTree = "<group>"; };
-		EE65DB991CB3E47300E25C72 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		EE65DB9A1CB3E47300E25C72 /* TriggerDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerDefinition.swift; sourceTree = "<group>"; };
 		EE74D04B195C112300393DCA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EE7907B01B1566A100B1B279 /* SMART.podspec */ = {isa = PBXFileReference; lastKnownFileType = file; path = SMART.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EE8EE6BD1B1290AA005B90C5 /* OAuth2Authorizer+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuth2Authorizer+iOS.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -879,7 +807,6 @@
 			isa = PBXGroup;
 			children = (
 				EEEE30CC1BB1FD53008866E2 /* Account.swift */,
-				EE65DB831CB3E47200E25C72 /* ActionDefinition.swift */,
 				EE56A4621ABB0B7900FA99EB /* Address.swift */,
 				EE56A4631ABB0B7900FA99EB /* Age.swift */,
 				EE56A4651ABB0B7900FA99EB /* AllergyIntolerance.swift */,
@@ -894,16 +821,13 @@
 				EE56A46C1ABB0B7900FA99EB /* BodySite.swift */,
 				EE56A46D1ABB0B7900FA99EB /* Bundle.swift */,
 				EE56A46E1ABB0B7900FA99EB /* CarePlan.swift */,
-				EE65DB841CB3E47200E25C72 /* CareTeam.swift */,
 				EE56A61F1ABB6A6F00FA99EB /* Claim.swift */,
 				EE56A4701ABB0B7900FA99EB /* ClaimResponse.swift */,
 				EE56A6201ABB6A6F00FA99EB /* ClinicalImpression.swift */,
 				EE56A4721ABB0B7900FA99EB /* CodeableConcept.swift */,
-				EE65DB851CB3E47200E25C72 /* CodeSystem.swift */,
 				EE56A4731ABB0B7900FA99EB /* Coding.swift */,
 				EE56A4741ABB0B7900FA99EB /* Communication.swift */,
 				EE56A4751ABB0B7900FA99EB /* CommunicationRequest.swift */,
-				EE65DB861CB3E47200E25C72 /* CompartmentDefinition.swift */,
 				EE56A4761ABB0B7900FA99EB /* Composition.swift */,
 				EE56A4771ABB0B7900FA99EB /* ConceptMap.swift */,
 				EE56A4781ABB0B7900FA99EB /* Condition.swift */,
@@ -913,10 +837,7 @@
 				EE56A47D1ABB0B7900FA99EB /* Count.swift */,
 				EE56A47E1ABB0B7900FA99EB /* Coverage.swift */,
 				EE56A47F1ABB0B7900FA99EB /* DataElement.swift */,
-				EE65DB871CB3E47200E25C72 /* DataRequirement.swift */,
 				EE3907B41C3E8287005BFF3D /* DateAndTime.swift */,
-				EE65DB881CB3E47200E25C72 /* DecisionSupportRule.swift */,
-				EE65DB891CB3E47200E25C72 /* DecisionSupportServiceModule.swift */,
 				EEEE30CE1BB1FD53008866E2 /* DetectedIssue.swift */,
 				EE56A4811ABB0B7900FA99EB /* Device.swift */,
 				EE56A4821ABB0B7900FA99EB /* DeviceComponent.swift */,
@@ -938,7 +859,6 @@
 				EE56A4911ABB0B7900FA99EB /* EnrollmentRequest.swift */,
 				EE56A4921ABB0B7900FA99EB /* EnrollmentResponse.swift */,
 				EE56A4931ABB0B7900FA99EB /* EpisodeOfCare.swift */,
-				EE65DB8A1CB3E47200E25C72 /* ExpansionProfile.swift */,
 				EE56A4941ABB0B7900FA99EB /* ExplanationOfBenefit.swift */,
 				EE56A4951ABB0B7900FA99EB /* Extension.swift */,
 				EE02F8031ACF2FC500179969 /* FamilyMemberHistory.swift */,
@@ -952,23 +872,17 @@
 				EE02F8041ACF2FC500179969 /* Flag.swift */,
 				EE56A49F1ABB0B7900FA99EB /* Goal.swift */,
 				EE56A4A01ABB0B7900FA99EB /* Group.swift */,
-				EE65DB8B1CB3E47200E25C72 /* GuidanceResponse.swift */,
 				EE56A4A11ABB0B7900FA99EB /* HealthcareService.swift */,
 				EE56A4A21ABB0B7900FA99EB /* HumanName.swift */,
 				EE56A4A31ABB0B7900FA99EB /* Identifier.swift */,
-				EE65DB8C1CB3E47200E25C72 /* ImagingExcerpt.swift */,
 				EE56A4A41ABB0B7900FA99EB /* ImagingObjectSelection.swift */,
 				EE56A4A51ABB0B7900FA99EB /* ImagingStudy.swift */,
 				EE56A4A61ABB0B7900FA99EB /* Immunization.swift */,
 				EE56A4A71ABB0B7900FA99EB /* ImmunizationRecommendation.swift */,
 				EEEE30CF1BB1FD53008866E2 /* ImplementationGuide.swift */,
 				EE3907BD1C3E8287005BFF3D /* JSON-extensions.swift */,
-				EE65DB8D1CB3E47200E25C72 /* Library.swift */,
-				EE65DB8E1CB3E47200E25C72 /* Linkage.swift */,
 				EE56A4AA1ABB0B7900FA99EB /* List.swift */,
 				EE56A4AB1ABB0B7900FA99EB /* Location.swift */,
-				EE65DB8F1CB3E47200E25C72 /* Measure.swift */,
-				EE65DB901CB3E47200E25C72 /* MeasureReport.swift */,
 				EE56A4AC1ABB0B7900FA99EB /* Media.swift */,
 				EE56A4AD1ABB0B7900FA99EB /* Medication.swift */,
 				EE56A4AE1ABB0B7900FA99EB /* MedicationAdministration.swift */,
@@ -977,8 +891,6 @@
 				EE56A4B11ABB0B7900FA99EB /* MedicationStatement.swift */,
 				EE56A4B21ABB0B7900FA99EB /* MessageHeader.swift */,
 				EE56A4B31ABB0B7900FA99EB /* Meta.swift */,
-				EE65DB911CB3E47200E25C72 /* ModuleDefinition.swift */,
-				EE65DB921CB3E47200E25C72 /* ModuleMetadata.swift */,
 				EE56A4B41ABB0B7900FA99EB /* Money.swift */,
 				EE56A4B51ABB0B7900FA99EB /* NamingSystem.swift */,
 				EE56A4B61ABB0B7900FA99EB /* Narrative.swift */,
@@ -988,9 +900,7 @@
 				EE56A4BA1ABB0B7900FA99EB /* OperationOutcome.swift */,
 				EE56A4BC1ABB0B7900FA99EB /* Order.swift */,
 				EE56A4BD1ABB0B7900FA99EB /* OrderResponse.swift */,
-				EE65DB931CB3E47200E25C72 /* OrderSet.swift */,
 				EE56A4BE1ABB0B7900FA99EB /* Organization.swift */,
-				EE65DB941CB3E47300E25C72 /* ParameterDefinition.swift */,
 				EE56A4C01ABB0B7900FA99EB /* Parameters.swift */,
 				EE56A4C11ABB0B7900FA99EB /* Patient.swift */,
 				EE56A4C21ABB0B7900FA99EB /* PaymentNotice.swift */,
@@ -998,12 +908,10 @@
 				EE56A4C51ABB0B7900FA99EB /* Period.swift */,
 				EE56A4C61ABB0B7900FA99EB /* Person.swift */,
 				EE56A4C81ABB0B7900FA99EB /* Practitioner.swift */,
-				EE65DB951CB3E47300E25C72 /* PractitionerRole.swift */,
 				EE56A4C91ABB0B7900FA99EB /* Procedure.swift */,
 				EE56A4CA1ABB0B7900FA99EB /* ProcedureRequest.swift */,
 				EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */,
 				EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */,
-				EE65DB961CB3E47300E25C72 /* ProtocolFHIR.swift */,
 				EE56A4CC1ABB0B7900FA99EB /* Provenance.swift */,
 				EE56A4CD1ABB0B7900FA99EB /* Quantity.swift */,
 				EE56A4CE1ABB0B7900FA99EB /* Questionnaire.swift */,
@@ -1018,20 +926,16 @@
 				EE56A4D91ABB0B7900FA99EB /* SampledData.swift */,
 				EE56A4DA1ABB0B7900FA99EB /* Schedule.swift */,
 				EE56A4DB1ABB0B7900FA99EB /* SearchParameter.swift */,
-				EE65DB971CB3E47300E25C72 /* Sequence.swift */,
 				EE56A4DC1ABB0B7900FA99EB /* Signature.swift */,
 				EE56A4DD1ABB0B7900FA99EB /* Slot.swift */,
 				EE56A4DE1ABB0B7900FA99EB /* Specimen.swift */,
 				EE56A4E11ABB0B7900FA99EB /* StructureDefinition.swift */,
-				EE65DB981CB3E47300E25C72 /* StructureMap.swift */,
 				EE56A4E21ABB0B7900FA99EB /* Subscription.swift */,
 				EE56A4E31ABB0B7900FA99EB /* Substance.swift */,
 				EEEE30D31BB1FD53008866E2 /* SupplyDelivery.swift */,
 				EEEE30D41BB1FD53008866E2 /* SupplyRequest.swift */,
-				EE65DB991CB3E47300E25C72 /* Task.swift */,
 				EEEE30D51BB1FD53008866E2 /* TestScript.swift */,
 				EE56A4E61ABB0B7900FA99EB /* Timing.swift */,
-				EE65DB9A1CB3E47300E25C72 /* TriggerDefinition.swift */,
 				EE56A4E71ABB0B7900FA99EB /* ValueSet.swift */,
 				EE56A4E91ABB0B7900FA99EB /* VisionPrescription.swift */,
 			);
@@ -1328,13 +1232,11 @@
 				EE56A5241ABB0B7900FA99EB /* Coverage.swift in Sources */,
 				EE56A5C21ABB0B7A00FA99EB /* Quantity.swift in Sources */,
 				EE56A5901ABB0B7900FA99EB /* Money.swift in Sources */,
-				EE65DBC31CB3E47300E25C72 /* Sequence.swift in Sources */,
 				EE56A5801ABB0B7900FA99EB /* Media.swift in Sources */,
 				EE56A5021ABB0B7900FA99EB /* Bundle.swift in Sources */,
 				EE56A5441ABB0B7900FA99EB /* EligibilityRequest.swift in Sources */,
 				EE43B1C619546DB20017679A /* Client.swift in Sources */,
 				EE56A5041ABB0B7900FA99EB /* CarePlan.swift in Sources */,
-				EE65DBB31CB3E47300E25C72 /* Measure.swift in Sources */,
 				EE56A5D01ABB0B7A00FA99EB /* ReferralRequest.swift in Sources */,
 				EE56A5761ABB0B7900FA99EB /* ImmunizationRecommendation.swift in Sources */,
 				EE56A58A1ABB0B7900FA99EB /* MedicationStatement.swift in Sources */,
@@ -1345,17 +1247,14 @@
 				EE56A5741ABB0B7900FA99EB /* Immunization.swift in Sources */,
 				EE56A51C1ABB0B7900FA99EB /* ContactPoint.swift in Sources */,
 				EE56A5921ABB0B7900FA99EB /* NamingSystem.swift in Sources */,
-				EE65DBA71CB3E47300E25C72 /* DecisionSupportServiceModule.swift in Sources */,
 				EE56A5A81ABB0B7A00FA99EB /* Parameters.swift in Sources */,
 				EE02F8071ACF2FC500179969 /* Flag.swift in Sources */,
 				EE56A4FA1ABB0B7900FA99EB /* AuditEvent.swift in Sources */,
-				EE65DBA91CB3E47300E25C72 /* ExpansionProfile.swift in Sources */,
 				EEDDAC621A89237900844B48 /* PatientListQuery.swift in Sources */,
 				EE56A4F81ABB0B7900FA99EB /* Attachment.swift in Sources */,
 				EE9B32061ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */,
 				EEEE30DF1BB1FD53008866E2 /* TestScript.swift in Sources */,
 				EE56A4EC1ABB0B7900FA99EB /* Address.swift in Sources */,
-				EE65DBB91CB3E47300E25C72 /* ModuleMetadata.swift in Sources */,
 				EE56A54E1ABB0B7900FA99EB /* EpisodeOfCare.swift in Sources */,
 				EE56A59C1ABB0B7A00FA99EB /* OperationOutcome.swift in Sources */,
 				EE56A5D41ABB0B7A00FA99EB /* Resource.swift in Sources */,
@@ -1364,7 +1263,6 @@
 				EE56A5DA1ABB0B7A00FA99EB /* SampledData.swift in Sources */,
 				EE43B1C719546DB20017679A /* Server.swift in Sources */,
 				EE8EE6BF1B1290AA005B90C5 /* OAuth2Authorizer+iOS.swift in Sources */,
-				EE65DBA11CB3E47300E25C72 /* CompartmentDefinition.swift in Sources */,
 				EE56A5C01ABB0B7A00FA99EB /* Provenance.swift in Sources */,
 				EE56A5961ABB0B7A00FA99EB /* NutritionOrder.swift in Sources */,
 				EE56A52E1ABB0B7900FA99EB /* DeviceMetric.swift in Sources */,
@@ -1379,7 +1277,6 @@
 				EE01F97A1C591640003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EE13CDE11D4A61B9005537E9 /* OAuth2Error.swift in Sources */,
 				EE56A5BC1ABB0B7A00FA99EB /* ProcedureRequest.swift in Sources */,
-				EE65DBAD1CB3E47300E25C72 /* ImagingExcerpt.swift in Sources */,
 				EE13CDD11D4A61B9005537E9 /* extensions.swift in Sources */,
 				EE13CE031D4A61D1005537E9 /* OAuth2DynReg.swift in Sources */,
 				EE13CDF91D4A61D1005537E9 /* OAuth2CodeGrant.swift in Sources */,
@@ -1387,7 +1284,6 @@
 				EE56A5E41ABB0B7A00FA99EB /* Specimen.swift in Sources */,
 				EE3907D91C3E855D005BFF3D /* Element+Extensions.swift in Sources */,
 				EE56A5421ABB0B7900FA99EB /* ElementDefinition.swift in Sources */,
-				EE65DB9B1CB3E47300E25C72 /* ActionDefinition.swift in Sources */,
 				EE56A5EE1ABB0B7A00FA99EB /* Substance.swift in Sources */,
 				EE3907DD1C3E855D005BFF3D /* FHIRServerDataResponse.swift in Sources */,
 				EE56A5D81ABB0B7A00FA99EB /* RiskAssessment.swift in Sources */,
@@ -1401,7 +1297,6 @@
 				EE13CE071D4A61D1005537E9 /* OAuth2PasswordGrant.swift in Sources */,
 				EE56A5A41ABB0B7A00FA99EB /* Organization.swift in Sources */,
 				EE9B31F91ACADAF700980AA9 /* Resource+REST.swift in Sources */,
-				EE65DBBF1CB3E47300E25C72 /* PractitionerRole.swift in Sources */,
 				EE56A5F61ABB0B7A00FA99EB /* ValueSet.swift in Sources */,
 				EE56A5101ABB0B7900FA99EB /* Communication.swift in Sources */,
 				EE56A5681ABB0B7900FA99EB /* Group.swift in Sources */,
@@ -1423,7 +1318,6 @@
 				EE56A53A1ABB0B7900FA99EB /* DocumentManifest.swift in Sources */,
 				EE56A4EE1ABB0B7900FA99EB /* Age.swift in Sources */,
 				EE56A5321ABB0B7900FA99EB /* DeviceUseStatement.swift in Sources */,
-				EE65DBB71CB3E47300E25C72 /* ModuleDefinition.swift in Sources */,
 				EE13CDD71D4A61B9005537E9 /* OAuth2AuthRequest.swift in Sources */,
 				EE56A50E1ABB0B7900FA99EB /* Coding.swift in Sources */,
 				EE56A5941ABB0B7A00FA99EB /* Narrative.swift in Sources */,
@@ -1432,23 +1326,16 @@
 				EE56A5841ABB0B7900FA99EB /* MedicationAdministration.swift in Sources */,
 				EE3907C11C3E8287005BFF3D /* FHIRAbstractBase.swift in Sources */,
 				EE56A51A1ABB0B7900FA99EB /* Conformance.swift in Sources */,
-				EE65DBAF1CB3E47300E25C72 /* Library.swift in Sources */,
 				EE56A5A01ABB0B7A00FA99EB /* Order.swift in Sources */,
 				EE56A6231ABB6A6F00FA99EB /* Claim.swift in Sources */,
 				EE13CDD91D4A61B9005537E9 /* OAuth2Backing.swift in Sources */,
-				EE65DB9D1CB3E47300E25C72 /* CareTeam.swift in Sources */,
 				EE56A54C1ABB0B7900FA99EB /* EnrollmentResponse.swift in Sources */,
-				EE65DBBB1CB3E47300E25C72 /* OrderSet.swift in Sources */,
-				EE65DBBD1CB3E47300E25C72 /* ParameterDefinition.swift in Sources */,
 				EE56A5B41ABB0B7A00FA99EB /* Person.swift in Sources */,
-				EE65DBC11CB3E47300E25C72 /* ProtocolFHIR.swift in Sources */,
 				EE56A5FA1ABB0B7A00FA99EB /* VisionPrescription.swift in Sources */,
 				EE56A5721ABB0B7900FA99EB /* ImagingStudy.swift in Sources */,
 				EE56A5821ABB0B7900FA99EB /* Medication.swift in Sources */,
 				EE56A6291ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */,
-				EE65DBB11CB3E47300E25C72 /* Linkage.swift in Sources */,
 				EE56A5E21ABB0B7A00FA99EB /* Slot.swift in Sources */,
-				EE65DB9F1CB3E47300E25C72 /* CodeSystem.swift in Sources */,
 				EE56A56E1ABB0B7900FA99EB /* Identifier.swift in Sources */,
 				EE56A52C1ABB0B7900FA99EB /* DeviceComponent.swift in Sources */,
 				EE9B32031ACADE9900980AA9 /* Reference+Resolving.swift in Sources */,
@@ -1457,7 +1344,6 @@
 				EE56A5A21ABB0B7A00FA99EB /* OrderResponse.swift in Sources */,
 				EE3907C61C3E8287005BFF3D /* FHIRServerResponse.swift in Sources */,
 				EE56A5AA1ABB0B7A00FA99EB /* Patient.swift in Sources */,
-				EE65DBC51CB3E47300E25C72 /* StructureMap.swift in Sources */,
 				EE56A5521ABB0B7900FA99EB /* Extension.swift in Sources */,
 				EEEE30D61BB1FD53008866E2 /* Account.swift in Sources */,
 				EE56A53E1ABB0B7900FA99EB /* DomainResource.swift in Sources */,
@@ -1480,12 +1366,10 @@
 				EE56A5341ABB0B7900FA99EB /* DiagnosticOrder.swift in Sources */,
 				EE3907C21C3E8287005BFF3D /* FHIRAbstractBase+Factory.swift in Sources */,
 				EEEE30DD1BB1FD53008866E2 /* SupplyDelivery.swift in Sources */,
-				EE65DBA31CB3E47300E25C72 /* DataRequirement.swift in Sources */,
 				EE56A5C81ABB0B7A00FA99EB /* Range.swift in Sources */,
 				EE8EE6D11B1294AA005B90C5 /* Keychain.swift in Sources */,
 				EE02F8051ACF2FC500179969 /* FamilyMemberHistory.swift in Sources */,
 				EE56A58C1ABB0B7900FA99EB /* MessageHeader.swift in Sources */,
-				EE65DBA51CB3E47300E25C72 /* DecisionSupportRule.swift in Sources */,
 				EE56A58E1ABB0B7900FA99EB /* Meta.swift in Sources */,
 				EE02F8121ACF30B000179969 /* PatientList+iOS.swift in Sources */,
 				EE56A5D21ABB0B7A00FA99EB /* RelatedPerson.swift in Sources */,
@@ -1494,7 +1378,6 @@
 				EE56A5121ABB0B7900FA99EB /* CommunicationRequest.swift in Sources */,
 				EE3907C71C3E8287005BFF3D /* FHIRTypes.swift in Sources */,
 				EE56A5B81ABB0B7A00FA99EB /* Practitioner.swift in Sources */,
-				EE65DBAB1CB3E47300E25C72 /* GuidanceResponse.swift in Sources */,
 				EE13CDD51D4A61B9005537E9 /* OAuth2AuthorizerUI.swift in Sources */,
 				EEEE30D71BB1FD53008866E2 /* Annotation.swift in Sources */,
 				EE4D58FC1A826097005F5C7A /* PatientList.swift in Sources */,
@@ -1507,7 +1390,6 @@
 				EE56A4FE1ABB0B7900FA99EB /* Binary.swift in Sources */,
 				EE56A5981ABB0B7A00FA99EB /* Observation.swift in Sources */,
 				EE13CDDB1D4A61B9005537E9 /* OAuth2Base.swift in Sources */,
-				EE65DBB51CB3E47300E25C72 /* MeasureReport.swift in Sources */,
 				EE13CDE51D4A61B9005537E9 /* OAuth2Logger.swift in Sources */,
 				EE56A56A1ABB0B7900FA99EB /* HealthcareService.swift in Sources */,
 				EE56A5481ABB0B7900FA99EB /* Encounter.swift in Sources */,
@@ -1515,9 +1397,7 @@
 				EE56A56C1ABB0B7900FA99EB /* HumanName.swift in Sources */,
 				EE56A5F41ABB0B7A00FA99EB /* Timing.swift in Sources */,
 				EE56A5DC1ABB0B7A00FA99EB /* Schedule.swift in Sources */,
-				EE65DBC71CB3E47300E25C72 /* Task.swift in Sources */,
 				EE56A5221ABB0B7900FA99EB /* Count.swift in Sources */,
-				EE65DBC91CB3E47300E25C72 /* TriggerDefinition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,7 +1414,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE65DB9E1CB3E47300E25C72 /* CareTeam.swift in Sources */,
 				EE56A52B1ABB0B7900FA99EB /* Device.swift in Sources */,
 				EE02F80B1ACF2FDB00179969 /* FHIRSearch.swift in Sources */,
 				EE3907D11C3E846D005BFF3D /* FHIRServerResponse.swift in Sources */,
@@ -1543,7 +1422,6 @@
 				EE3907CF1C3E846D005BFF3D /* FHIRError.swift in Sources */,
 				EE56A5C91ABB0B7A00FA99EB /* Range.swift in Sources */,
 				EE56A6261ABB6A6F00FA99EB /* ClinicalImpression.swift in Sources */,
-				EE65DB9C1CB3E47300E25C72 /* ActionDefinition.swift in Sources */,
 				EE56A5C51ABB0B7A00FA99EB /* Questionnaire.swift in Sources */,
 				EE56A52D1ABB0B7900FA99EB /* DeviceComponent.swift in Sources */,
 				EE56A4F31ABB0B7900FA99EB /* AllergyIntolerance.swift in Sources */,
@@ -1567,7 +1445,6 @@
 				EE56A5DD1ABB0B7A00FA99EB /* Schedule.swift in Sources */,
 				EE56A5A51ABB0B7A00FA99EB /* Organization.swift in Sources */,
 				EE56A5D11ABB0B7A00FA99EB /* ReferralRequest.swift in Sources */,
-				EE65DBA61CB3E47300E25C72 /* DecisionSupportRule.swift in Sources */,
 				EE3907D01C3E846D005BFF3D /* FHIRServer.swift in Sources */,
 				EE56A5B31ABB0B7A00FA99EB /* Period.swift in Sources */,
 				EE56A51F1ABB0B7900FA99EB /* Contract.swift in Sources */,
@@ -1595,7 +1472,6 @@
 				EE8EE6C31B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift in Sources */,
 				EE9EE25F1ACB3E18004DBCBB /* FHIROperation.swift in Sources */,
 				EE56A53D1ABB0B7900FA99EB /* DocumentReference.swift in Sources */,
-				EE65DBAC1CB3E47300E25C72 /* GuidanceResponse.swift in Sources */,
 				EE56A5F51ABB0B7A00FA99EB /* Timing.swift in Sources */,
 				EE3907E01C3E855D005BFF3D /* Resource+Instantiation.swift in Sources */,
 				EE56A5011ABB0B7900FA99EB /* BodySite.swift in Sources */,
@@ -1613,8 +1489,6 @@
 				EE4D58FD1A826097005F5C7A /* PatientList.swift in Sources */,
 				EE3907DA1C3E855D005BFF3D /* Element+Extensions.swift in Sources */,
 				EE56A5A31ABB0B7A00FA99EB /* OrderResponse.swift in Sources */,
-				EE65DBBE1CB3E47300E25C72 /* ParameterDefinition.swift in Sources */,
-				EE65DBAE1CB3E47300E25C72 /* ImagingExcerpt.swift in Sources */,
 				EE3907DE1C3E855D005BFF3D /* FHIRServerDataResponse.swift in Sources */,
 				EE56A57D1ABB0B7900FA99EB /* List.swift in Sources */,
 				EE56A5AD1ABB0B7A00FA99EB /* PaymentNotice.swift in Sources */,
@@ -1631,19 +1505,15 @@
 				EE56A4FF1ABB0B7900FA99EB /* Binary.swift in Sources */,
 				EECAA7261A5D3DE60062C64B /* Server.swift in Sources */,
 				EE56A5531ABB0B7900FA99EB /* Extension.swift in Sources */,
-				EE65DBA41CB3E47300E25C72 /* DataRequirement.swift in Sources */,
 				EE56A5A91ABB0B7A00FA99EB /* Parameters.swift in Sources */,
 				EE56A5191ABB0B7900FA99EB /* Condition.swift in Sources */,
-				EE65DBBC1CB3E47300E25C72 /* OrderSet.swift in Sources */,
 				EE56A58F1ABB0B7900FA99EB /* Meta.swift in Sources */,
 				EE13CDDE1D4A61B9005537E9 /* OAuth2ClientConfig.swift in Sources */,
-				EE65DBBA1CB3E47300E25C72 /* ModuleMetadata.swift in Sources */,
 				EEDDAC5D1A8921F500844B48 /* PatientListOrder.swift in Sources */,
 				EE56A5671ABB0B7900FA99EB /* Goal.swift in Sources */,
 				EE56A5711ABB0B7900FA99EB /* ImagingObjectSelection.swift in Sources */,
 				EE56A5171ABB0B7900FA99EB /* ConceptMap.swift in Sources */,
 				EE56A59D1ABB0B7A00FA99EB /* OperationOutcome.swift in Sources */,
-				EE65DBA81CB3E47300E25C72 /* DecisionSupportServiceModule.swift in Sources */,
 				EEEE31491BB2F520008866E2 /* SupplyRequest.swift in Sources */,
 				EE13CDD41D4A61B9005537E9 /* OAuth2AuthConfig.swift in Sources */,
 				EE56A5E31ABB0B7A00FA99EB /* Slot.swift in Sources */,
@@ -1656,19 +1526,12 @@
 				EE13CDE41D4A61B9005537E9 /* OAuth2KeychainAccount.swift in Sources */,
 				EE56A5451ABB0B7900FA99EB /* EligibilityRequest.swift in Sources */,
 				EE56A54F1ABB0B7900FA99EB /* EpisodeOfCare.swift in Sources */,
-				EE65DBA21CB3E47300E25C72 /* CompartmentDefinition.swift in Sources */,
 				EE56A5411ABB0B7900FA99EB /* Duration.swift in Sources */,
-				EE65DBB61CB3E47300E25C72 /* MeasureReport.swift in Sources */,
 				EE56A5491ABB0B7900FA99EB /* Encounter.swift in Sources */,
-				EE65DBB21CB3E47300E25C72 /* Linkage.swift in Sources */,
-				EE65DBC81CB3E47300E25C72 /* Task.swift in Sources */,
 				EE56A5391ABB0B7900FA99EB /* Distance.swift in Sources */,
-				EE65DBCA1CB3E47300E25C72 /* TriggerDefinition.swift in Sources */,
-				EE65DBC41CB3E47300E25C72 /* Sequence.swift in Sources */,
 				EE56A5911ABB0B7900FA99EB /* Money.swift in Sources */,
 				EE13CDE61D4A61B9005537E9 /* OAuth2Logger.swift in Sources */,
 				EE56A5811ABB0B7900FA99EB /* Media.swift in Sources */,
-				EE65DBB41CB3E47300E25C72 /* Measure.swift in Sources */,
 				EE56A5E11ABB0B7A00FA99EB /* Signature.swift in Sources */,
 				EE56A5091ABB0B7900FA99EB /* ClaimResponse.swift in Sources */,
 				EE3907D41C3E848F005BFF3D /* FHIROpenServer.swift in Sources */,
@@ -1678,7 +1541,6 @@
 				EE9B32071ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */,
 				EEEE314A1BB2F520008866E2 /* TestScript.swift in Sources */,
 				EE56A6241ABB6A6F00FA99EB /* Claim.swift in Sources */,
-				EE65DBA01CB3E47300E25C72 /* CodeSystem.swift in Sources */,
 				EE13CDFA1D4A61D1005537E9 /* OAuth2CodeGrant.swift in Sources */,
 				EE56A5311ABB0B7900FA99EB /* DeviceUseRequest.swift in Sources */,
 				EE3907CA1C3E846D005BFF3D /* DateAndTime.swift in Sources */,
@@ -1689,8 +1551,6 @@
 				EE56A5991ABB0B7A00FA99EB /* Observation.swift in Sources */,
 				EE9B31FA1ACADAF700980AA9 /* Resource+REST.swift in Sources */,
 				EE56A5BB1ABB0B7A00FA99EB /* Procedure.swift in Sources */,
-				EE65DBC61CB3E47300E25C72 /* StructureMap.swift in Sources */,
-				EE65DBB01CB3E47300E25C72 /* Library.swift in Sources */,
 				EE56A5471ABB0B7900FA99EB /* EligibilityResponse.swift in Sources */,
 				EE3907CE1C3E846D005BFF3D /* FHIRAbstractResource.swift in Sources */,
 				EE56A5271ABB0B7900FA99EB /* DataElement.swift in Sources */,
@@ -1707,7 +1567,6 @@
 				EE56A5AB1ABB0B7A00FA99EB /* Patient.swift in Sources */,
 				EE3907CB1C3E846D005BFF3D /* Element.swift in Sources */,
 				EE13CDF41D4A61D1005537E9 /* OAuth2.swift in Sources */,
-				EE65DBC21CB3E47300E25C72 /* ProtocolFHIR.swift in Sources */,
 				EE02F8061ACF2FC500179969 /* FamilyMemberHistory.swift in Sources */,
 				EE01F97B1C59166C003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EE56A52F1ABB0B7900FA99EB /* DeviceMetric.swift in Sources */,
@@ -1717,9 +1576,7 @@
 				EEEE31461BB2F520008866E2 /* MedicationOrder.swift in Sources */,
 				EE56A5951ABB0B7A00FA99EB /* Narrative.swift in Sources */,
 				EE3907C91C3E846D005BFF3D /* BackboneElement.swift in Sources */,
-				EE65DBAA1CB3E47300E25C72 /* ExpansionProfile.swift in Sources */,
 				EE56A50F1ABB0B7900FA99EB /* Coding.swift in Sources */,
-				EE65DBB81CB3E47300E25C72 /* ModuleDefinition.swift in Sources */,
 				EE56A58D1ABB0B7900FA99EB /* MessageHeader.swift in Sources */,
 				EE56A5CB1ABB0B7A00FA99EB /* Ratio.swift in Sources */,
 				EE56A5131ABB0B7900FA99EB /* CommunicationRequest.swift in Sources */,
@@ -1727,7 +1584,6 @@
 				EE13CDD21D4A61B9005537E9 /* extensions.swift in Sources */,
 				EE56A5DB1ABB0B7A00FA99EB /* SampledData.swift in Sources */,
 				EE56A5051ABB0B7900FA99EB /* CarePlan.swift in Sources */,
-				EE65DBC01CB3E47300E25C72 /* PractitionerRole.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
