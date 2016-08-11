@@ -9,6 +9,9 @@
 import Foundation
 
 
+/**
+The OAuth2-type to use.
+*/
 enum AuthType: String {
 	case none = "none"
 	case implicitGrant = "implicit"
@@ -142,11 +145,8 @@ class Auth {
 				oauth = nil
 		}
 		
-		// configure the OAuth2 instance's callbacks
+		// configure the OAuth2 instance's logger
 		if let oa = oauth {
-			// TODO: update
-			oa.onAuthorize = authDidSucceed
-			oa.onFailure = authDidFail
 			oa.logger = server.logger
 		}
 	}
@@ -250,7 +250,6 @@ class Auth {
 	
 	internal func authDidFail(withError error: Error?) {
 		server.logger?.debug("SMART", msg: "Failed to authorize with error: \(error)")
-		authDidFailInternal(withError: error)
 		processAuthCallback(parameters: nil, error: error)
 	}
 	

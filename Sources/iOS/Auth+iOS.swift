@@ -23,14 +23,18 @@ extension Auth {
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
 		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .patientSelectNative
-		// TODO: update
-		oauth.authorize(params: ["aud": server.aud])
-	}
-	
-	func authDidFailInternal(withError error: Error?) {
-		if let props = authProperties, props.granularity == .patientSelectNative {		// not auto-dismissing, must do it ourselves
-			if let vc = oauth?.authConfig.authorizeContext as? UIViewController {
-				vc.dismiss(animated: true)
+		
+		oauth.authorize(params: ["aud": server.aud]) { parameters, error in
+			if let error = error {
+				if properties.granularity == .patientSelectNative {   // not auto-dismissing, must do it ourselves
+					if let vc = oauth.authConfig.authorizeContext as? UIViewController {
+						vc.dismiss(animated: true)
+					}
+				}
+				self.authDidFail(withError: error)
+			}
+			else {
+				self.authDidSucceed(withParameters: parameters ?? OAuth2JSON())
 			}
 		}
 	}
@@ -41,35 +45,34 @@ extension Auth {
 	- parameter withParameters: Additional authorization parameters to pass through
 	*/
 	func showPatientList(withParameters parameters: OAuth2JSON) {
-		if let root = authContext as? UIViewController ?? UIApplication.shared.keyWindow?.rootViewController {
-			
-			// instantiate patient list view
-			let view = PatientListViewController(list: PatientListAll(), server: self.server)
-			view.title = self.oauth?.authConfig.ui.title
-			let dismiss = #selector(PatientListViewController.dismissFromModal(_:))
-			view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: view, action: dismiss)
-			view.onPatientSelect = { patient in
-				var params = parameters
-				if let patient = patient {
-					params["patient"] = patient.id
-					params["patient_resource"] = patient
-				}
-				self.processAuthCallback(parameters: params, error: nil)
+		guard let root = authContext as? UIViewController ?? UIApplication.shared.keyWindow?.rootViewController else {
+			authDidFail(withError: OAuth2Error.invalidAuthorizationContext)
+			return
+		}
+		
+		// instantiate patient list view
+		let view = PatientListViewController(list: PatientListAll(), server: self.server)
+		view.title = self.oauth?.authConfig.ui.title
+		let dismiss = #selector(PatientListViewController.dismissFromModal(_:))
+		view.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: view, action: dismiss)
+		view.onPatientSelect = { patient in
+			var params = parameters
+			if let patient = patient {
+				params["patient"] = patient.id
+				params["patient_resource"] = patient
 			}
-			
-			// present on root view controller
-			let navi = UINavigationController(rootViewController: view)
-			if nil != root.presentedViewController {		// assumes the login screen is the presented view
-				root.dismiss(animated: false) {
-					root.present(navi, animated: false, completion: nil)
-				}
-			}
-			else {
-				root.present(navi, animated: true, completion: nil)
+			self.processAuthCallback(parameters: params, error: nil)
+		}
+		
+		// present on root view controller
+		let navi = UINavigationController(rootViewController: view)
+		if nil != root.presentedViewController {		// assumes the login screen is the presented view
+			root.dismiss(animated: false) {
+				root.present(navi, animated: false, completion: nil)
 			}
 		}
 		else {
-			authDidFail(withError: OAuth2Error.invalidAuthorizationContext)
+			root.present(navi, animated: true, completion: nil)
 		}
 	}
 }

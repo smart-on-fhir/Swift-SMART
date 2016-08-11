@@ -10,17 +10,17 @@ import Foundation
 
 
 /**
-    Representing the FHIR resource server a client connects to.
-    
-    This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
-    settings dictionary provided upon `Client` initalization or from the server's Conformance statement.
+Representing the FHIR resource server a client connects to.
 
-    The server's `Conformance` statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the
-	`Auth` instance or validating/executing operations.
+This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
+settings dictionary provided upon `Client` initalization or from the server's Conformance statement.
 
-    A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
-    session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
- */
+The server's `Conformance` statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the
+`Auth` instance or validating/executing operations.
+
+A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
+session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
+*/
 public class Server: FHIROpenServer {
 	
 	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
@@ -113,6 +113,11 @@ public class Server: FHIROpenServer {
 	
 	// MARK: - Requests
 	
+	/**
+	Instantiate the server's default URLSession.
+	
+	- returns: The URLSession created
+	*/
 	public override func createDefaultSession() -> URLSession {
 		if let delegate = sessionDelegate {
 			return Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: delegate, delegateQueue: nil)
@@ -120,6 +125,12 @@ public class Server: FHIROpenServer {
 		return super.createDefaultSession()
 	}
 	
+	/**
+	Return a URLRequest for the given url, possibly already signed, that can be further configured.
+	
+	- parameter url: The URL the request will work against
+	- returns:       A preconfigured URLRequest
+	*/
 	public override func configurableRequest(forURL url: URL) -> URLRequest {
 		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(forURL: url)
 	}
@@ -160,6 +171,7 @@ public class Server: FHIROpenServer {
 	
 	// MARK: - Authorization
 	
+	/// The auth credentials currently in use by the receiver.
 	public var authClientCredentials: (id: String, secret: String?, name: String?)? {
 		if let clientId = auth?.oauth?.clientId, !clientId.isEmpty {
 			return (id: clientId, secret: auth?.oauth?.clientSecret, name: auth?.oauth?.clientName)
@@ -168,7 +180,7 @@ public class Server: FHIROpenServer {
 	}
 	
 	/**
-	Attempt to instantiate our `Auth` instance from `authSettings`.
+	Attempt to instantiate our `Auth` instance from `authSettings` and assign to our `auth` ivar.
 	*/
 	func instantiateAuthFromAuthSettings() -> Bool {
 		var authType: AuthType? = nil
