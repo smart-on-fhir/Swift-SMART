@@ -296,7 +296,7 @@ public class Server: FHIROpenServer {
 				callback(json: nil, error: error ?? FHIRError.error("Client error, no auth instance created"))
 			}
 			else if let oauth = self.auth?.oauth {
-				oauth.registerClientIfNeeded(callback)
+				oauth.registerClientIfNeeded(callback: callback)
 			}
 			else {
 				callback(json: nil, error: nil)

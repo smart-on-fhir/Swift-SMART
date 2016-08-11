@@ -166,10 +166,10 @@ public class Client {
 	/**
 	Request a JSON resource at the given path from the client's server.
 	
-	- parameter path: The path relative to the server's base URL to request
+	- parameter path:     The path relative to the server's base URL to request
 	- parameter callback: The callback to execute once the request finishes
 	*/
-	public func getJSON(_ path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func getJSON(at path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
 		server.performRequest(againstPath: path, handler: handler) { response in
 			callback(response: response as! FHIRServerJSONResponse)
@@ -182,7 +182,7 @@ public class Client {
 	If the server needs authentication and the URL is not in the receiver's baseURL, this is probably going to fail. You usually use this
 	method if a resource has attachments that live on the same server, e.g. Patient.photo.url.
 	
-	- parameter from:     The URL to read data from
+	- parameter url:      The URL to read data from
 	- parameter accept:   The accept header to send along
 	- parameter callback: Callback called once the response comes back
 	*/
