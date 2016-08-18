@@ -12,10 +12,10 @@ import Foundation
 /**
 A query that returns a list of patients.
 */
-public class PatientListQuery {
+open class PatientListQuery {
 	
 	/// The FHIR search element that produces the desired patient list
-	public let search: FHIRSearch
+	open let search: FHIRSearch
 	
 	var isDone = false
 	
@@ -33,19 +33,19 @@ public class PatientListQuery {
 		isDone = false
 	}
 	
-	func execute(onServer server: FHIRServer, order: PatientListOrder, callback: (bundle: Bundle?, error: FHIRError?) -> Void) {
+	func execute(onServer server: FHIRServer, order: PatientListOrder, callback: @escaping (Bundle?, FHIRError?) -> Void) {
 		if isDone {
-			callback(bundle: nil, error: nil)
+			callback(nil, nil)
 			return
 		}
 		
-		let cb: (bundle: Bundle?, error: FHIRError?) -> Void = { bundle, error in
+		let cb: (Bundle?, FHIRError?) -> Void = { bundle, error in
 			if nil != error || nil == bundle {
-				callback(bundle: nil, error: error)
+				callback(nil, error)
 			}
 			else {
 				self.isDone = !self.search.hasMore
-				callback(bundle: bundle, error: nil)
+				callback(bundle, nil)
 			}
 		}
 		

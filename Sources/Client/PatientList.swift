@@ -25,19 +25,19 @@ public enum PatientListStatus: Int {
  *
  *  You can use subscript syntax to safely retrieve a patient from the list: patientList[5]
  */
-public class PatientList {
+open class PatientList {
 	
 	/// Current list status.
-	public var status: PatientListStatus = .unknown {
+	open var status: PatientListStatus = .unknown {
 		didSet {
 			onStatusUpdate?(lastStatusError)
 			lastStatusError = nil
 		}
 	}
-	private var lastStatusError: FHIRError? = nil
+	fileprivate var lastStatusError: FHIRError? = nil
 	
 	/// A block executed whenever the receiver's status changes.
-	public var onStatusUpdate: ((FHIRError?) -> Void)?
+	open var onStatusUpdate: ((FHIRError?) -> Void)?
 	
 	/// The patients currently in this list.
 	var patients: [Patient]? {
@@ -50,31 +50,31 @@ public class PatientList {
 	}
 	
 	/// A block to be called when the `patients` property changes.
-	public var onPatientUpdate: ((Void) -> Void)?
+	open var onPatientUpdate: ((Void) -> Void)?
 	
-	private(set) public var expectedNumberOfPatients: UInt = 0
+	fileprivate(set) open var expectedNumberOfPatients: UInt = 0
 	
 	/// The number of patients currently in the list.
-	public var actualNumberOfPatients: UInt {
+	open var actualNumberOfPatients: UInt {
 		return UInt(patients?.count ?? 0)
 	}
 	
 	var sections: [PatientListSection] = []
 	
-	public var numSections: Int {
+	open var numSections: Int {
 		return sections.count
 	}
 	
-	internal(set) public var sectionIndexTitles: [String] = []
+	open internal(set) var sectionIndexTitles: [String] = []
 	
 	/// How to order the list.
-	public var order = PatientListOrder.nameFamilyASC
+	open var order = PatientListOrder.nameFamilyASC
 	
 	/// The query used to create the list.
-	public let query: PatientListQuery
+	open let query: PatientListQuery
 	
 	/// Indicating whether not all patients have yet been loaded.
-	public var hasMore: Bool {
+	open var hasMore: Bool {
 		return query.search.hasMore
 	}
 	
@@ -141,7 +141,7 @@ public class PatientList {
 	
 	- parameter fromServer: A FHIRServer instance to query the patients from
 	*/
-	public func retrieve(fromServer server: FHIRServer) {
+	open func retrieve(fromServer server: FHIRServer) {
 		patients = nil
 		expectedNumberOfPatients = 0
 		query.reset()
@@ -153,7 +153,7 @@ public class PatientList {
 	
 	- parameter fromServer: A FHIRServer instance to retrieve the batch from
 	*/
-	public func retrieveMore(fromServer server: FHIRServer) {
+	open func retrieveMore(fromServer server: FHIRServer) {
 		retrieveBatch(fromServer: server, appendPatients: true)
 	}
 	
@@ -209,7 +209,7 @@ public class PatientList {
 /**
 A patient list holding all available patients.
 */
-public class PatientListAll: PatientList {
+open class PatientListAll: PatientList {
 	
 	public init() {
 		let search = FHIRSearch(query: [])
@@ -224,16 +224,16 @@ public class PatientListAll: PatientList {
 Patients are divided into sections, e.g. by first letter of their family name. This class holds patients belonging
 to one section.
 */
-public class PatientListSection {
+open class PatientListSection {
 	
-	public var title: String
+	open var title: String
 	var patients: [Patient]?
 	var numPatients: UInt {
 		return UInt(patients?.count ?? 0)
 	}
 	
 	/// How many patients are in sections coming before this one. Only valid in context of a PatientList.
-	public var offset: Int = 0
+	open var offset: Int = 0
 	
 	public init(title: String) {
 		self.title = title

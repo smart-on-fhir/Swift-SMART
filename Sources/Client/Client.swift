@@ -53,13 +53,13 @@ let smart = Client(
 There are many other options that you can pass to `settings`, take a look at `init(baseURL:settings:)`. Also see our [programming
 guide](https://github.com/smart-on-fhir/Swift-SMART/wiki/Client) for more information.
 */
-public class Client {
+open class Client {
 	
 	/// The server this client connects to.
 	public final let server: Server
 	
 	/// Set the authorize type you want, e.g. to use a built in web view for authentication and patient selection.
-	public var authProperties = SMARTAuthProperties()
+	open var authProperties = SMARTAuthProperties()
 	
 	
 	/**
@@ -113,7 +113,7 @@ public class Client {
 	
 	- parameter callback: The callback to call if the server is ready or an error has occurred
 	*/
-	public func ready(callback: (error: Error?) -> ()) {
+	open func ready(callback: @escaping (Error?) -> ()) {
 		server.ready(callback: callback)
 	}
 	
@@ -126,37 +126,37 @@ public class Client {
 	- parameter callback: The callback that is called when authorization finishes, with a patient resource (if launch/patient was specified
 	                      or an error
 	*/
-	public func authorize(callback: (patient: Patient?, error: Error?) -> ()) {
+	open func authorize(callback: @escaping (_ patient: Patient?, _ error: Error?) -> ()) {
 		server.mustAbortAuthorization = false
 		server.authorize(withProperties: self.authProperties, callback: callback)
 	}
 	
 	/// Will return true while the client is waiting for the authorization callback.
-	public var awaitingAuthCallback: Bool {
+	open var awaitingAuthCallback: Bool {
 		get { return nil != server.auth?.authCallback }
 	}
 	
 	/**
 	Call this with the redirect URL when intercepting the redirect callback in the app delegate.
 	
-	- parameter toURL: The URL that was being redirected to
+	- parameter to: The URL that was being redirected to
 	*/
-	public func didRedirect(toURL: URL) -> Bool {
-		return server.auth?.handleRedirect(toURL) ?? false
+	open func didRedirect(to url: URL) -> Bool {
+		return server.auth?.handleRedirect(url) ?? false
 	}
 	
 	/** Stops any request currently in progress. */
-	public func abort() {
+	open func abort() {
 		server.abort()
 	}
 	
 	/** Resets state and authorization data. */
-	public func reset() {
+	open func reset() {
 		server.reset()
 	}
 	
 	/** Throws away local client registration data. */
-	public func forgetClientRegistration() {
+	open func forgetClientRegistration() {
 		server.forgetClientRegistration()
 	}
 	
@@ -169,11 +169,11 @@ public class Client {
 	- parameter path:     The path relative to the server's base URL to request
 	- parameter callback: The callback to execute once the request finishes
 	*/
-	public func getJSON(at path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	open func getJSON(at path: String, callback: ((_ response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequest(againstPath: path, handler: handler) { response in
-			callback(response: response as! FHIRServerJSONResponse)
-		}
+		server.performRequest(againstPath: path, handler: handler, callback: { response in
+			callback(response as! FHIRServerJSONResponse)
+		})
 	}
 	
 	/**
@@ -186,7 +186,7 @@ public class Client {
 	- parameter accept:   The accept header to send along
 	- parameter callback: Callback called once the response comes back
 	*/
-	public func getData(from url: URL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
+	open func getData(from url: URL, accept: String, callback: ((_ response: FHIRServerResponse) -> Void)) {
 		let handler = FHIRServerDataRequestHandler(.GET, contentType: accept)
 		if nil != url.host {
 			server.performRequest(withURL: url, handler: handler, callback: callback)

@@ -12,7 +12,7 @@ import UIKit
 /**
 A table view controller than can display a list of patients, dynamically fetching more patient batches as the user scrolls.
 */
-public class PatientListViewController: UITableViewController {
+open class PatientListViewController: UITableViewController {
 	
 	/// The patient list to display.
 	var patientList: PatientList?
@@ -27,7 +27,7 @@ public class PatientListViewController: UITableViewController {
 	}
 	
 	/// Block to execute when a patient has been selected.
-	var onPatientSelect: ((patient: Patient?) -> Void)?
+	var onPatientSelect: ((Patient?) -> Void)?
 	
 	var didSelectPatientFlag = false
 	
@@ -55,12 +55,12 @@ public class PatientListViewController: UITableViewController {
 	
 	// MARK: - View Tasks
 	
-	public override func viewDidLoad() {
+	override open func viewDidLoad() {
 		self.tableView.register(PatientTableViewCell.self, forCellReuseIdentifier: "PatientCell")
 		let header = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 320.0, height: 30.0))
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleFootnote)
+		label.font = UIFont.preferredFont(forTextStyle: .footnote)
 		label.textColor = UIColor.lightGray
 		label.textAlignment = .center
 		
@@ -99,21 +99,21 @@ public class PatientListViewController: UITableViewController {
 		}
 	}
 	
-	public override func viewWillAppear(_ animated: Bool) {
+	override open func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		if 0 == patientList?.actualNumberOfPatients {
 			patientList?.retrieve(fromServer: server!)
 		}
 	}
 	
-	public override func viewWillDisappear(_ animated: Bool) {
+	override open func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		if !didSelectPatientFlag {
-			didSelect(patient: nil)
+			didSelect(nil)
 		}
 	}
 	
-	public func dismissFromModal(_ sender: AnyObject?) {
+	open func dismissFromModal(_ sender: AnyObject?) {
 		presentingViewController?.dismiss(animated: nil != sender)
 	}
 	
@@ -132,9 +132,9 @@ public class PatientListViewController: UITableViewController {
 		}
 	}
 	
-	func didSelect(patient: Patient?) {
+	func didSelect(_ patient: Patient?) {
 		didSelectPatientFlag = true
-		onPatientSelect?(patient: patient)
+		onPatientSelect?(patient)
 		
 		if !(parent ?? self).isBeingDismissed {
 			dismiss(animated: true)
@@ -144,21 +144,21 @@ public class PatientListViewController: UITableViewController {
 	
 	// MARK: - Table View
 	
-	public override func numberOfSections(in: UITableView) -> Int {
+	override open func numberOfSections(in: UITableView) -> Int {
 		return patientList?.numSections ?? 0
 	}
 	
-	public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if let section = patientList?[section] {
 			return Int(section.numPatients)
 		}
 		return 0
 	}
 	
-	public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "PatientCell", for: indexPath) as! PatientTableViewCell
 		if let section = patientList?[indexPath.section] {
-			cell.represent(patient: section[indexPath.row])
+			cell.represent(section[indexPath.row])
 			
 			let marker = min(patientList!.expectedNumberOfPatients, UInt(section.offset + indexPath.row + 10))
 			runningOutOfPatients = (marker > patientList!.actualNumberOfPatients)
@@ -166,9 +166,9 @@ public class PatientListViewController: UITableViewController {
 		return cell
 	}
 	
-	public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if let patient = patientList?[indexPath] {
-			didSelect(patient: patient)
+			didSelect(patient)
 		}
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
@@ -176,14 +176,14 @@ public class PatientListViewController: UITableViewController {
 	
 	// MARK: - Table View Sections
 	
-	public override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if let section = patientList?[section] {
 			return section.title
 		}
 		return nil
 	}
 	
-	override public func sectionIndexTitles(for: UITableView) -> [String]? {
+	override open func sectionIndexTitles(for: UITableView) -> [String]? {
 		return patientList?.sectionIndexTitles
 	}
 }
@@ -220,7 +220,7 @@ class PatientTableViewCell: UITableViewCell {
 		super.init(coder: aDecoder)
 	}
 	
-	func represent(patient: Patient?) {
+	func represent(_ patient: Patient?) {
 		textLabel?.text = patient?.displayNameFamilyGiven
 		
 		// birthday and age

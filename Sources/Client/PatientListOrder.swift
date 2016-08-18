@@ -138,17 +138,17 @@ extension Patient {
 		var comps = calendar.dateComponents([.year, .month], from: birthDate!.nsDate, to: Date())
 		
 		// babies
-		if comps.year < 1 {
-			if comps.month < 1 {
+		if let year = comps.year, year < 1 {
+			if let month = comps.month, month < 1 {
 				comps = calendar.dateComponents([.day], from: birthDate!.nsDate, to: Date())
-				if comps.day < 1 {
+				if let day = comps.day, day < 1 {
 					return "just born".fhir_localized
 				}
 				let str = (1 == comps.day) ? "day old".fhir_localized : "days old".fhir_localized
-				return "\(comps.day!) \(str)"
+				return "\(comps.day ?? 0) \(str)"
 			}
 			let str = (1 == comps.day) ? "month old".fhir_localized : "months old".fhir_localized
-			return "\(comps.month!) \(str)"
+			return "\(comps.month ?? 0) \(str)"
 		}
 		
 		// kids and adults
