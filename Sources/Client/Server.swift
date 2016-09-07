@@ -135,7 +135,7 @@ open class Server: FHIROpenServer {
 		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(for: url)
 	}
 	
-	override open func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((_ response: FHIRServerResponse) -> Void)) {
+	override open func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
 		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")
 		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
 		super.performPreparedRequest(request as URLRequest, withSession: session, handler: handler) { response in
@@ -231,11 +231,11 @@ open class Server: FHIROpenServer {
 	/**
 	Ensures that the receiver is ready, then calls the auth method's `authorize()` method.
 	
-	- parameter withProperties: The auth properties to use
-	- parameter callback:       Callback to call when authorization is complete, providing the chosen patient (if the patient scope was
-	                            provided) or an error, if any
+	- parameter properties: The auth properties to use
+	- parameter callback:   Callback to call when authorization is complete, providing the chosen patient (if the patient scope was
+	                        provided) or an error, if any
 	*/
-	open func authorize(withProperties properties: SMARTAuthProperties, callback: ((_ patient: Patient?, _ error: Error?) -> Void)) {
+	open func authorize(with properties: SMARTAuthProperties, callback: @escaping ((_ patient: Patient?, _ error: Error?) -> Void)) {
 		ready() { error in
 			if self.mustAbortAuthorization {
 				self.mustAbortAuthorization = false
@@ -245,7 +245,7 @@ open class Server: FHIROpenServer {
 				callback(nil, error ?? FHIRError.error("Client error, no auth instance created"))
 			}
 			else {
-				self.auth!.authorize(withProperties: properties) { parameters, error in
+				self.auth!.authorize(with: properties) { parameters, error in
 					if self.mustAbortAuthorization {
 						self.mustAbortAuthorization = false
 						callback(nil, nil)
@@ -302,7 +302,7 @@ open class Server: FHIROpenServer {
 	
 	- parameter callback: The callback to call when completed or failed; if both json and error is nil no registration was attempted
 	*/
-	open func registerIfNeeded(callback: ((_ json: OAuth2JSON?, _ error: Error?) -> Void)) {
+	open func registerIfNeeded(callback: @escaping ((_ json: OAuth2JSON?, _ error: Error?) -> Void)) {
 		ready() { error in
 			if nil != error || nil == self.auth {
 				callback(nil, error ?? FHIRError.error("Client error, no auth instance created"))

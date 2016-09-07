@@ -173,10 +173,10 @@ class Auth {
 	If selecting a patient is part of the authorization flow, will add a "patient" key with the patient-id to the returned dictionary. On
 	native patient selection adds a "patient_resource" key with the patient resource.
 	
-	- parameter withProperties: The authorization properties to use
-	- parameter callback:       The callback to call when authorization finishes (or is aborted)
+	- parameter properties: The authorization properties to use
+	- parameter callback:   The callback to call when authorization finishes (or is aborted)
 	*/
-	func authorize(withProperties properties: SMARTAuthProperties, callback: ((_ parameters: OAuth2JSON?, _ error: Error?) -> Void)) {
+	func authorize(with properties: SMARTAuthProperties, callback: @escaping ((_ parameters: OAuth2JSON?, _ error: Error?) -> Void)) {
 		if nil != authCallback {
 			abort()
 		}
