@@ -357,6 +357,8 @@
 		EE9B32071ACAE6A900980AA9 /* FHIRServerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B32051ACAE6A900980AA9 /* FHIRServerRequestHandler.swift */; };
 		EE9EE25E1ACB3E18004DBCBB /* FHIROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EE25D1ACB3E18004DBCBB /* FHIROperation.swift */; };
 		EE9EE25F1ACB3E18004DBCBB /* FHIROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EE25D1ACB3E18004DBCBB /* FHIROperation.swift */; };
+		EEC75B211D818DBE000EDF83 /* OAuth2Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9ABA261D803D2800BA8B54 /* OAuth2Requestable.swift */; };
+		EEC75B261D818DC3000EDF83 /* OAuth2Securable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9ABA271D803D2800BA8B54 /* OAuth2Securable.swift */; };
 		EECAA6FE1A5D3DE60062C64B /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		EECAA7261A5D3DE60062C64B /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		EECAA7461A5D3DE60062C64B /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
@@ -1561,6 +1563,7 @@
 				EE56A5CF1ABB0B7A00FA99EB /* Reference.swift in Sources */,
 				EE56A54D1ABB0B7900FA99EB /* EnrollmentResponse.swift in Sources */,
 				EE56A62A1ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */,
+				EEC75B211D818DBE000EDF83 /* OAuth2Requestable.swift in Sources */,
 				EE56A6281ABB6A6F00FA99EB /* ProcessRequest.swift in Sources */,
 				EE13CE081D4A61D1005537E9 /* OAuth2PasswordGrant.swift in Sources */,
 				EE56A57F1ABB0B7900FA99EB /* Location.swift in Sources */,
@@ -1608,6 +1611,7 @@
 				EE56A4F51ABB0B7900FA99EB /* Appointment.swift in Sources */,
 				EE13CE041D4A61D1005537E9 /* OAuth2DynReg.swift in Sources */,
 				EE56A56F1ABB0B7900FA99EB /* Identifier.swift in Sources */,
+				EEC75B261D818DC3000EDF83 /* OAuth2Securable.swift in Sources */,
 				EE13CDD81D4A61B9005537E9 /* OAuth2AuthRequest.swift in Sources */,
 				EE56A5B51ABB0B7A00FA99EB /* Person.swift in Sources */,
 				EED260F51D65C2EC00DCE40E /* UsageContext.swift in Sources */,
