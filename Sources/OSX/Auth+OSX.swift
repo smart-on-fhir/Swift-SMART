@@ -12,7 +12,7 @@ import Cocoa
 extension Auth {
 	
 	/** Show the authorization view controller corresponding to the auth properties. */
-	func authorizeWith(_ oauth: OAuth2, properties: SMARTAuthProperties) {
+	func authorize(with oauth: OAuth2, properties: SMARTAuthProperties) {
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
 		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .patientSelectNative

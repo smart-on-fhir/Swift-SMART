@@ -214,8 +214,8 @@ class Auth {
 			}
 			oa.scope = scope
 			
-			// start authorization (method implemented in iOS and OS X extensions)
-			authorizeWith(oa, properties: properties)
+			// start authorization (method implemented in iOS and macOS extensions)
+			authorize(with: oa, properties: properties)
 		}
 			
 		// open server?

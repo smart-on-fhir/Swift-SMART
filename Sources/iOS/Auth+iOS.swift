@@ -17,7 +17,7 @@ extension Auth {
 	- parameter oauth: The OAuth2 instance to use for authorization
 	- parameter properties: SMART authorization properties to use
 	*/
-	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
+	func authorize(with oauth: OAuth2, properties: SMARTAuthProperties) {
 		authContext = UIApplication.shared.keyWindow?.rootViewController
 		
 		oauth.authConfig.authorizeContext = authContext
