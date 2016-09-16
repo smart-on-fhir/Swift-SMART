@@ -42,7 +42,10 @@ class Auth {
 	/// The authentication object, used internally.
 	var oauth: OAuth2? {
 		didSet {
-			if nil == server.logger, let logger = oauth?.logger {
+			if let logger = server.logger {
+				oauth?.logger = logger
+			}
+			else if let logger = oauth?.logger {
 				server.logger = logger
 			}
 		}
@@ -212,7 +215,7 @@ class Auth {
 			oa.scope = scope
 			
 			// start authorization (method implemented in iOS and OS X extensions)
-			authorizeWith(oauth: oa, properties: properties)
+			authorizeWith(oa, properties: properties)
 		}
 			
 		// open server?

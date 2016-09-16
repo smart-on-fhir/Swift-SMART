@@ -320,6 +320,10 @@
 		EE6055D01D8BDCF5009F905C /* OAuth2RequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CC1D8BDCF5009F905C /* OAuth2RequestPerformer.swift */; };
 		EE6055D11D8BDCF5009F905C /* OAuth2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CD1D8BDCF5009F905C /* OAuth2Response.swift */; };
 		EE6055D21D8BDCF5009F905C /* OAuth2Securable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CE1D8BDCF5009F905C /* OAuth2Securable.swift */; };
+		EE6055DB1D8BFA22009F905C /* OAuth2Securable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CE1D8BDCF5009F905C /* OAuth2Securable.swift */; };
+		EE6055DC1D8BFA22009F905C /* OAuth2Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CB1D8BDCF5009F905C /* OAuth2Requestable.swift */; };
+		EE6055DD1D8BFA22009F905C /* OAuth2RequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CC1D8BDCF5009F905C /* OAuth2RequestPerformer.swift */; };
+		EE6055DE1D8BFA22009F905C /* OAuth2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055CD1D8BDCF5009F905C /* OAuth2Response.swift */; };
 		EE8EE6BF1B1290AA005B90C5 /* OAuth2Authorizer+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BD1B1290AA005B90C5 /* OAuth2Authorizer+iOS.swift */; };
 		EE8EE6C01B1290AA005B90C5 /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6BE1B1290AA005B90C5 /* OAuth2WebViewController.swift */; };
 		EE8EE6C31B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8EE6C21B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift */; };
@@ -805,7 +809,7 @@
 				EE13CDC51D4A61B9005537E9 /* Base */,
 				EE13CDE71D4A61D1005537E9 /* Flows */,
 				EE8EE6BC1B1290AA005B90C5 /* iOS */,
-				EE8EE6C11B1290B7005B90C5 /* OSX */,
+				EE8EE6C11B1290B7005B90C5 /* macOS */,
 				EE8EE6C61B1294AA005B90C5 /* Keychain */,
 			);
 			name = OAuth2;
@@ -972,13 +976,13 @@
 			path = OAuth2/Sources/iOS;
 			sourceTree = "<group>";
 		};
-		EE8EE6C11B1290B7005B90C5 /* OSX */ = {
+		EE8EE6C11B1290B7005B90C5 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				EE8EE6C21B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift */,
 				EE01F97C1C591717003AEA7E /* OAuth2WebViewController.swift */,
 			);
-			name = OSX;
+			name = macOS;
 			path = OAuth2/Sources/macOS;
 			sourceTree = "<group>";
 		};
@@ -1492,6 +1496,7 @@
 				EE13CE041D4A61D1005537E9 /* OAuth2DynReg.swift in Sources */,
 				EE56A56F1ABB0B7900FA99EB /* Identifier.swift in Sources */,
 				EE13CDD81D4A61B9005537E9 /* OAuth2AuthRequest.swift in Sources */,
+				EE6055DB1D8BFA22009F905C /* OAuth2Securable.swift in Sources */,
 				EE56A5B51ABB0B7A00FA99EB /* Person.swift in Sources */,
 				EE56A5EB1ABB0B7A00FA99EB /* StructureDefinition.swift in Sources */,
 				EE3907CC1C3E846D005BFF3D /* FHIRAbstractBase.swift in Sources */,
@@ -1502,6 +1507,7 @@
 				EE3907DE1C3E855D005BFF3D /* FHIRServerDataResponse.swift in Sources */,
 				EE56A57D1ABB0B7900FA99EB /* List.swift in Sources */,
 				EE56A5AD1ABB0B7A00FA99EB /* PaymentNotice.swift in Sources */,
+				EE6055DE1D8BFA22009F905C /* OAuth2Response.swift in Sources */,
 				EE56A4FD1ABB0B7900FA99EB /* Basic.swift in Sources */,
 				EE56A5FB1ABB0B7A00FA99EB /* VisionPrescription.swift in Sources */,
 				EE56A58B1ABB0B7900FA99EB /* MedicationStatement.swift in Sources */,
@@ -1530,6 +1536,7 @@
 				EEEE31421BB2F520008866E2 /* Account.swift in Sources */,
 				EE56A4ED1ABB0B7900FA99EB /* Address.swift in Sources */,
 				EE56A5831ABB0B7900FA99EB /* Medication.swift in Sources */,
+				EE6055DC1D8BFA22009F905C /* OAuth2Requestable.swift in Sources */,
 				EE01F97E1C59171C003AEA7E /* OAuth2WebViewController.swift in Sources */,
 				EE3907D31C3E846D005BFF3D /* JSON-extensions.swift in Sources */,
 				EE56A5DF1ABB0B7A00FA99EB /* SearchParameter.swift in Sources */,
@@ -1580,6 +1587,7 @@
 				EE02F8061ACF2FC500179969 /* FamilyMemberHistory.swift in Sources */,
 				EE01F97B1C59166C003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EE56A52F1ABB0B7900FA99EB /* DeviceMetric.swift in Sources */,
+				EE6055DD1D8BFA22009F905C /* OAuth2RequestPerformer.swift in Sources */,
 				EE56A5F71ABB0B7A00FA99EB /* ValueSet.swift in Sources */,
 				EEEE31431BB2F520008866E2 /* Annotation.swift in Sources */,
 				EE13CDDC1D4A61B9005537E9 /* OAuth2Base.swift in Sources */,
