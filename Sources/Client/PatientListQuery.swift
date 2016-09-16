@@ -33,19 +33,19 @@ public class PatientListQuery {
 		isDone = false
 	}
 	
-	func execute(onServer server: FHIRServer, order: PatientListOrder, callback: (bundle: Bundle?, error: FHIRError?) -> Void) {
+	func execute(onServer server: FHIRServer, order: PatientListOrder, callback: @escaping (_ bundle: Bundle?, _ error: FHIRError?) -> Void) {
 		if isDone {
-			callback(bundle: nil, error: nil)
+			callback(nil, nil)
 			return
 		}
 		
-		let cb: (bundle: Bundle?, error: FHIRError?) -> Void = { bundle, error in
+		let cb: (_ bundle: Bundle?, _ error: FHIRError?) -> Void = { bundle, error in
 			if nil != error || nil == bundle {
-				callback(bundle: nil, error: error)
+				callback(nil, error)
 			}
 			else {
 				self.isDone = !self.search.hasMore
-				callback(bundle: bundle, error: nil)
+				callback(bundle, nil)
 			}
 		}
 		

@@ -27,7 +27,7 @@ public class PatientListViewController: UITableViewController {
 	}
 	
 	/// Block to execute when a patient has been selected.
-	var onPatientSelect: ((patient: Patient?) -> Void)?
+	var onPatientSelect: ((_ patient: Patient?) -> Void)?
 	
 	var didSelectPatientFlag = false
 	
@@ -60,7 +60,7 @@ public class PatientListViewController: UITableViewController {
 		let header = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 320.0, height: 30.0))
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyleFootnote)
+		label.font = UIFont.preferredFont(forTextStyle: .footnote)
 		label.textColor = UIColor.lightGray
 		label.textAlignment = .center
 		
@@ -134,7 +134,7 @@ public class PatientListViewController: UITableViewController {
 	
 	func didSelect(patient: Patient?) {
 		didSelectPatientFlag = true
-		onPatientSelect?(patient: patient)
+		onPatientSelect?(patient)
 		
 		if !(parent ?? self).isBeingDismissed {
 			dismiss(animated: true)

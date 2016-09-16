@@ -120,17 +120,17 @@ public class Server: FHIROpenServer {
 		return super.createDefaultSession()
 	}
 	
-	public override func configurableRequest(forURL url: URL) -> URLRequest {
-		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(forURL: url)
+	public override func configurableRequest(for url: URL) -> URLRequest {
+		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(for: url)
 	}
 	
-	public override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
+	public override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
 		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")
 		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
 		super.performPreparedRequest(request as URLRequest, withSession: session, handler: handler) { response in
 			self.logger?.trace("SMART", msg: "RESPONSE\n\(response.debugDescription)\n---")
 			self.logger?.debug("SMART", msg: "<---  \(response.status) (\(response.body?.count ?? 0) Byte)")
-			callback(response: response)
+			callback(response)
 		}
 	}
 	
@@ -199,19 +199,19 @@ public class Server: FHIROpenServer {
 	init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri" and a "client_id" or "registration_uri") or
 	after the conformance statement has been fetched.
 	*/
-	public func ready(callback: (error: FHIRError?) -> ()) {
+	public func ready(callback: @escaping (_ error: FHIRError?) -> ()) {
 		if nil != auth || instantiateAuthFromAuthSettings() {
-			callback(error: nil)
+			callback(nil)
 			return
 		}
 		
 		// if we haven't initialized the auth instance we likely didn't fetch the server metadata yet
 		getConformance { error in
 			if nil != self.auth {
-				callback(error: nil)
+				callback(nil)
 			}
 			else {
-				callback(error: error ?? FHIRError.error("Failed to detect the authorization method from server metadata"))
+				callback(error ?? FHIRError.error("Failed to detect the authorization method from server metadata"))
 			}
 		}
 	}
@@ -223,35 +223,35 @@ public class Server: FHIROpenServer {
 	- parameter callback:       Callback to call when authorization is complete, providing the chosen patient (if the patient scope was
 	                            provided) or an error, if any
 	*/
-	public func authorize(withProperties properties: SMARTAuthProperties, callback: ((patient: Patient?, error: Error?) -> Void)) {
+	public func authorize(withProperties properties: SMARTAuthProperties, callback: @escaping ((_ patient: Patient?, _ error: Error?) -> Void)) {
 		ready() { error in
 			if self.mustAbortAuthorization {
 				self.mustAbortAuthorization = false
-				callback(patient: nil, error: nil)
+				callback(nil, nil)
 			}
 			else if nil != error || nil == self.auth {
-				callback(patient: nil, error: error ?? FHIRError.error("Client error, no auth instance created"))
+				callback(nil, error ?? FHIRError.error("Client error, no auth instance created"))
 			}
 			else {
 				self.auth!.authorize(withProperties: properties) { parameters, error in
 					if self.mustAbortAuthorization {
 						self.mustAbortAuthorization = false
-						callback(patient: nil, error: nil)
+						callback(nil, nil)
 					}
 					else if let error = error {
-						callback(patient: nil, error: error)
+						callback(nil, error)
 					}
 					else if let patient = parameters?["patient_resource"] as? Patient {		// native patient list auth flow will deliver a Patient instance
-						callback(patient: patient, error: nil)
+						callback(patient, nil)
 					}
 					else if let patientId = parameters?["patient"] as? String {
 						Patient.read(patientId, server: self) { resource, error in
 							self.logger?.debug("SMART", msg: "Did read patient \(resource) with error \(error)")
-							callback(patient: resource as? Patient, error: error)
+							callback(resource as? Patient, error)
 						}
 					}
 					else {
-						callback(patient: nil, error: nil)
+						callback(nil, nil)
 					}
 				}
 			}
@@ -290,16 +290,16 @@ public class Server: FHIROpenServer {
 	
 	- parameter callback: The callback to call when completed or failed; if both json and error is nil no registration was attempted
 	*/
-	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: Error?) -> Void)) {
+	public func registerIfNeeded(callback: @escaping ((_ json: OAuth2JSON?, _ error: Error?) -> Void)) {
 		ready() { error in
 			if nil != error || nil == self.auth {
-				callback(json: nil, error: error ?? FHIRError.error("Client error, no auth instance created"))
+				callback(nil, error ?? FHIRError.error("Client error, no auth instance created"))
 			}
 			else if let oauth = self.auth?.oauth {
-				oauth.registerClientIfNeeded(callback)
+				oauth.registerClientIfNeeded(callback: callback)
 			}
 			else {
-				callback(json: nil, error: nil)
+				callback(nil, nil)
 			}
 		}
 	}

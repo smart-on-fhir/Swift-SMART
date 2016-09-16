@@ -113,7 +113,7 @@ public class Client {
 	
 	- parameter callback: The callback to call if the server is ready or an error has occurred
 	*/
-	public func ready(callback: (error: Error?) -> ()) {
+	public func ready(callback: @escaping (_ error: Error?) -> ()) {
 		server.ready(callback: callback)
 	}
 	
@@ -126,7 +126,7 @@ public class Client {
 	- parameter callback: The callback that is called when authorization finishes, with a patient resource (if launch/patient was specified
 	                      or an error
 	*/
-	public func authorize(callback: (patient: Patient?, error: Error?) -> ()) {
+	public func authorize(callback: @escaping (_ patient: Patient?, _ error: Error?) -> ()) {
 		server.mustAbortAuthorization = false
 		server.authorize(withProperties: self.authProperties, callback: callback)
 	}
@@ -139,10 +139,11 @@ public class Client {
 	/**
 	Call this with the redirect URL when intercepting the redirect callback in the app delegate.
 	
-	- parameter toURL: The URL that was being redirected to
+	- parameter url: The URL that was being redirected to
+	- returns:       A bool indicating whether the redirect URL was handled
 	*/
-	public func didRedirect(toURL: URL) -> Bool {
-		return server.auth?.handleRedirect(toURL) ?? false
+	public func didRedirect(to url: URL) -> Bool {
+		return server.auth?.handleRedirect(url) ?? false
 	}
 	
 	/** Stops any request currently in progress. */
@@ -169,10 +170,10 @@ public class Client {
 	- parameter path: The path relative to the server's base URL to request
 	- parameter callback: The callback to execute once the request finishes
 	*/
-	public func getJSON(_ path: String, callback: ((response: FHIRServerJSONResponse) -> Void)) {
+	public func getJSON(_ path: String, callback: @escaping ((_ response: FHIRServerJSONResponse) -> Void)) {
 		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequest(againstPath: path, handler: handler) { response in
-			callback(response: response as! FHIRServerJSONResponse)
+		server.performRequest(against: path, handler: handler) { response in
+			callback(response as! FHIRServerJSONResponse)
 		}
 	}
 	
@@ -186,13 +187,13 @@ public class Client {
 	- parameter accept:   The accept header to send along
 	- parameter callback: Callback called once the response comes back
 	*/
-	public func getData(from url: URL, accept: String, callback: ((response: FHIRServerResponse) -> Void)) {
+	public func getData(from url: URL, accept: String, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
 		let handler = FHIRServerDataRequestHandler(.GET, contentType: accept)
 		if nil != url.host {
-			server.performRequest(withURL: url, handler: handler, callback: callback)
+			server.performRequest(on: url, handler: handler, callback: callback)
 		}
 		else {
-			server.performRequest(againstPath: url.path, handler: handler, callback: callback)
+			server.performRequest(against: url.path, handler: handler, callback: callback)
 		}
 	}
 }

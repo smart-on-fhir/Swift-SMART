@@ -55,7 +55,7 @@ class Auth {
 	var authContext: AnyObject?
 	
 	/// The closure to call when authorization finishes.
-	var authCallback: ((parameters: OAuth2JSON?, error: Error?) -> ())?
+	var authCallback: ((_ parameters: OAuth2JSON?, _ error: Error?) -> ())?
 	
 	
 	/**
@@ -176,7 +176,7 @@ class Auth {
 	- parameter withProperties: The authorization properties to use
 	- parameter callback:       The callback to call when authorization finishes (or is aborted)
 	*/
-	func authorize(withProperties properties: SMARTAuthProperties, callback: (parameters: OAuth2JSON?, error: Error?) -> Void) {
+	func authorize(withProperties properties: SMARTAuthProperties, callback: @escaping (_ parameters: OAuth2JSON?, _ error: Error?) -> Void) {
 		if nil != authCallback {
 			abort()
 		}
@@ -265,7 +265,7 @@ class Auth {
 	
 	func processAuthCallback(parameters: OAuth2JSON?, error: Error?) {
 		if nil != authCallback {
-			authCallback!(parameters: parameters, error: error)
+			authCallback!(parameters, error)
 			authCallback = nil
 		}
 	}
