@@ -12,6 +12,12 @@ Changelog
 - Update to Swift 3.0
 
 
+## 2.4
+
+- Update to FHIR `1.6.0.9663`
+- (still on Swift 2.2)
+
+
 ## 2.3
 
 - Update to Swift 2.3
