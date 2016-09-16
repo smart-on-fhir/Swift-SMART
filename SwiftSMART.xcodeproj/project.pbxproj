@@ -306,6 +306,10 @@
 		EE56A6281ABB6A6F00FA99EB /* ProcessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */; };
 		EE56A6291ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
 		EE56A62A1ABB6A6F00FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */; };
+		EE6055E71D8C87DA009F905C /* OAuth2RequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055E51D8C87DA009F905C /* OAuth2RequestPerformer.swift */; };
+		EE6055E81D8C87DA009F905C /* OAuth2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055E61D8C87DA009F905C /* OAuth2Response.swift */; };
+		EE6055ED1D8C87E4009F905C /* OAuth2RequestPerformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055E51D8C87DA009F905C /* OAuth2RequestPerformer.swift */; };
+		EE6055EE1D8C87E4009F905C /* OAuth2Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6055E61D8C87DA009F905C /* OAuth2Response.swift */; };
 		EE65DB9D1CB3E47300E25C72 /* CareTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB841CB3E47200E25C72 /* CareTeam.swift */; };
 		EE65DB9E1CB3E47300E25C72 /* CareTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB841CB3E47200E25C72 /* CareTeam.swift */; };
 		EE65DB9F1CB3E47300E25C72 /* CodeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE65DB851CB3E47200E25C72 /* CodeSystem.swift */; };
@@ -472,7 +476,7 @@
 		EE02F8141ACF30E100179969 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
 		EE02F8171ACF30EA00179969 /* Auth+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+OSX.swift"; sourceTree = "<group>"; };
 		EE1391C01AC582D9002C7B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		EE13AA921A5D44D100B901FD /* SwiftSMART-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftSMART-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE13AA921A5D44D100B901FD /* SwiftSMART-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftSMART-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE13AAA11A5D47B200B901FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		EE13CDC61D4A61B9005537E9 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		EE13CDC71D4A61B9005537E9 /* OAuth2AuthConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2AuthConfig.swift; sourceTree = "<group>"; };
@@ -625,6 +629,8 @@
 		EE56A6211ABB6A6F00FA99EB /* ProcessRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessRequest.swift; sourceTree = "<group>"; };
 		EE56A6221ABB6A6F00FA99EB /* ProcessResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessResponse.swift; sourceTree = "<group>"; };
 		EE56A62C1ABB6D7700FA99EB /* SwiftFHIR.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftFHIR.xcodeproj; path = "Swift-FHIR/SwiftFHIR.xcodeproj"; sourceTree = "<group>"; };
+		EE6055E51D8C87DA009F905C /* OAuth2RequestPerformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2RequestPerformer.swift; sourceTree = "<group>"; };
+		EE6055E61D8C87DA009F905C /* OAuth2Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Response.swift; sourceTree = "<group>"; };
 		EE65DB841CB3E47200E25C72 /* CareTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareTeam.swift; sourceTree = "<group>"; };
 		EE65DB851CB3E47200E25C72 /* CodeSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSystem.swift; sourceTree = "<group>"; };
 		EE65DB861CB3E47200E25C72 /* CompartmentDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompartmentDefinition.swift; sourceTree = "<group>"; };
@@ -729,13 +735,13 @@
 			path = Sources/iOS;
 			sourceTree = "<group>";
 		};
-		EE02F8161ACF30EA00179969 /* OSX */ = {
+		EE02F8161ACF30EA00179969 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				EE02F8171ACF30EA00179969 /* Auth+OSX.swift */,
 			);
-			name = OSX;
-			path = Sources/OSX;
+			name = macOS;
+			path = Sources/macOS;
 			sourceTree = "<group>";
 		};
 		EE13CDC51D4A61B9005537E9 /* Base */ = {
@@ -744,6 +750,8 @@
 				EE13CDCB1D4A61B9005537E9 /* OAuth2Base.swift */,
 				EE9ABA271D803D2800BA8B54 /* OAuth2Securable.swift */,
 				EE9ABA261D803D2800BA8B54 /* OAuth2Requestable.swift */,
+				EE6055E51D8C87DA009F905C /* OAuth2RequestPerformer.swift */,
+				EE6055E61D8C87DA009F905C /* OAuth2Response.swift */,
 				EE13CDC71D4A61B9005537E9 /* OAuth2AuthConfig.swift */,
 				EE13CDCC1D4A61B9005537E9 /* OAuth2ClientConfig.swift */,
 				EE13CDCE1D4A61B9005537E9 /* OAuth2Error.swift */,
@@ -834,7 +842,7 @@
 				EE74D04B195C112300393DCA /* README.md */,
 				EE43B1AA19546D880017679A /* Client */,
 				EE02F8101ACF30B000179969 /* iOS */,
-				EE02F8161ACF30EA00179969 /* OSX */,
+				EE02F8161ACF30EA00179969 /* macOS */,
 				EE43B1AB19546D880017679A /* Supporting Files */,
 				EE56A45F1ABB0B5B00FA99EB /* SwiftFHIR */,
 				EE56A4601ABB0B6200FA99EB /* OAuth2 */,
@@ -851,7 +859,7 @@
 				EE43B1A919546D880017679A /* SMART.framework */,
 				EE43B1B319546D880017679A /* SwiftSMART-iOSTests.xctest */,
 				EECAA7831A5D3DE60062C64B /* SMART.framework */,
-				EE13AA921A5D44D100B901FD /* SwiftSMART-OSXTests.xctest */,
+				EE13AA921A5D44D100B901FD /* SwiftSMART-macOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -873,7 +881,7 @@
 				EE13CDC51D4A61B9005537E9 /* Base */,
 				EE13CDE71D4A61D1005537E9 /* Flows */,
 				EE8EE6BC1B1290AA005B90C5 /* iOS */,
-				EE8EE6C11B1290B7005B90C5 /* OSX */,
+				EE8EE6C11B1290B7005B90C5 /* macOS */,
 				EE8EE6C61B1294AA005B90C5 /* Keychain */,
 			);
 			name = OAuth2;
@@ -1046,9 +1054,9 @@
 			isa = PBXGroup;
 			children = (
 				EE56A6341ABB6D7700FA99EB /* SwiftFHIR.framework */,
-				EE56A6361ABB6D7700FA99EB /* SwiftFHIRTests.xctest */,
+				EE56A6361ABB6D7700FA99EB /* SwiftFHIR-macOSTests.xctest */,
 				EE56A6381ABB6D7700FA99EB /* SwiftFHIR.framework */,
-				EE56A63A1ABB6D7700FA99EB /* SwiftFHIRiOSTests.xctest */,
+				EE56A63A1ABB6D7700FA99EB /* SwiftFHIR-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1063,13 +1071,13 @@
 			path = OAuth2/Sources/iOS;
 			sourceTree = "<group>";
 		};
-		EE8EE6C11B1290B7005B90C5 /* OSX */ = {
+		EE8EE6C11B1290B7005B90C5 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				EE8EE6C21B1290B7005B90C5 /* OAuth2Authorizer+macOS.swift */,
 				EE01F97C1C591717003AEA7E /* OAuth2WebViewController.swift */,
 			);
-			name = OSX;
+			name = macOS;
 			path = OAuth2/Sources/macOS;
 			sourceTree = "<group>";
 		};
@@ -1121,9 +1129,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EE13AA911A5D44D100B901FD /* SwiftSMART-OSXTests */ = {
+		EE13AA911A5D44D100B901FD /* SwiftSMART-macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SwiftSMART-OSXTests" */;
+			buildConfigurationList = EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SwiftSMART-macOSTests" */;
 			buildPhases = (
 				EE13AA8E1A5D44D100B901FD /* Sources */,
 				EE13AA8F1A5D44D100B901FD /* Frameworks */,
@@ -1134,9 +1142,9 @@
 			dependencies = (
 				EE13AA9A1A5D44D100B901FD /* PBXTargetDependency */,
 			);
-			name = "SwiftSMART-OSXTests";
+			name = "SwiftSMART-macOSTests";
 			productName = "SMART-on-FHIR-OSXTests";
-			productReference = EE13AA921A5D44D100B901FD /* SwiftSMART-OSXTests.xctest */;
+			productReference = EE13AA921A5D44D100B901FD /* SwiftSMART-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EE43B1A819546D880017679A /* SwiftSMART-iOS */ = {
@@ -1176,9 +1184,9 @@
 			productReference = EE43B1B319546D880017679A /* SwiftSMART-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EECAA6F21A5D3DE60062C64B /* SwiftSMART-OSX */ = {
+		EECAA6F21A5D3DE60062C64B /* SwiftSMART-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SwiftSMART-OSX" */;
+			buildConfigurationList = EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SwiftSMART-macOS" */;
 			buildPhases = (
 				EECAA6F51A5D3DE60062C64B /* Sources */,
 				EECAA77B1A5D3DE60062C64B /* Frameworks */,
@@ -1189,7 +1197,7 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftSMART-OSX";
+			name = "SwiftSMART-macOS";
 			productName = "SMART-on-FHIR-iOS";
 			productReference = EECAA7831A5D3DE60062C64B /* SMART.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1243,8 +1251,8 @@
 			targets = (
 				EE43B1A819546D880017679A /* SwiftSMART-iOS */,
 				EE43B1B219546D880017679A /* SwiftSMART-iOSTests */,
-				EECAA6F21A5D3DE60062C64B /* SwiftSMART-OSX */,
-				EE13AA911A5D44D100B901FD /* SwiftSMART-OSXTests */,
+				EECAA6F21A5D3DE60062C64B /* SwiftSMART-macOS */,
+				EE13AA911A5D44D100B901FD /* SwiftSMART-macOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1257,10 +1265,10 @@
 			remoteRef = EE56A6331ABB6D7700FA99EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE56A6361ABB6D7700FA99EB /* SwiftFHIRTests.xctest */ = {
+		EE56A6361ABB6D7700FA99EB /* SwiftFHIR-macOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = SwiftFHIRTests.xctest;
+			path = "SwiftFHIR-macOSTests.xctest";
 			remoteRef = EE56A6351ABB6D7700FA99EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1271,10 +1279,10 @@
 			remoteRef = EE56A6371ABB6D7700FA99EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		EE56A63A1ABB6D7700FA99EB /* SwiftFHIRiOSTests.xctest */ = {
+		EE56A63A1ABB6D7700FA99EB /* SwiftFHIR-iOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = SwiftFHIRiOSTests.xctest;
+			path = "SwiftFHIR-iOSTests.xctest";
 			remoteRef = EE56A6391ABB6D7700FA99EB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1334,6 +1342,7 @@
 				EE56A5C21ABB0B7A00FA99EB /* Quantity.swift in Sources */,
 				EE56A5901ABB0B7900FA99EB /* Money.swift in Sources */,
 				EE65DBC31CB3E47300E25C72 /* Sequence.swift in Sources */,
+				EE6055E81D8C87DA009F905C /* OAuth2Response.swift in Sources */,
 				EE56A5801ABB0B7900FA99EB /* Media.swift in Sources */,
 				EE56A5021ABB0B7900FA99EB /* Bundle.swift in Sources */,
 				EE56A5441ABB0B7900FA99EB /* EligibilityRequest.swift in Sources */,
@@ -1441,6 +1450,7 @@
 				EE56A51A1ABB0B7900FA99EB /* Conformance.swift in Sources */,
 				EE65DBAF1CB3E47300E25C72 /* Library.swift in Sources */,
 				EE56A6231ABB6A6F00FA99EB /* Claim.swift in Sources */,
+				EE6055E71D8C87DA009F905C /* OAuth2RequestPerformer.swift in Sources */,
 				EED260EE1D65C2EC00DCE40E /* NutritionRequest.swift in Sources */,
 				EE65DB9D1CB3E47300E25C72 /* CareTeam.swift in Sources */,
 				EE56A54C1ABB0B7900FA99EB /* EnrollmentResponse.swift in Sources */,
@@ -1553,6 +1563,7 @@
 				EE56A4F31ABB0B7900FA99EB /* AllergyIntolerance.swift in Sources */,
 				EE56A4EF1ABB0B7900FA99EB /* Age.swift in Sources */,
 				EED260E71D65C2EC00DCE40E /* Contributor.swift in Sources */,
+				EE6055EE1D8C87E4009F905C /* OAuth2Response.swift in Sources */,
 				EE56A51D1ABB0B7900FA99EB /* ContactPoint.swift in Sources */,
 				EE13CDF61D4A61D1005537E9 /* OAuth2ClientCredentials.swift in Sources */,
 				EE56A51B1ABB0B7900FA99EB /* Conformance.swift in Sources */,
@@ -1568,6 +1579,7 @@
 				EE13CE081D4A61D1005537E9 /* OAuth2PasswordGrant.swift in Sources */,
 				EE56A57F1ABB0B7900FA99EB /* Location.swift in Sources */,
 				EE56A5751ABB0B7900FA99EB /* Immunization.swift in Sources */,
+				EE6055ED1D8C87E4009F905C /* OAuth2RequestPerformer.swift in Sources */,
 				EE56A5DD1ABB0B7A00FA99EB /* Schedule.swift in Sources */,
 				EE56A5A51ABB0B7A00FA99EB /* Organization.swift in Sources */,
 				EE56A5D11ABB0B7A00FA99EB /* ReferralRequest.swift in Sources */,
@@ -1742,7 +1754,7 @@
 /* Begin PBXTargetDependency section */
 		EE13AA9A1A5D44D100B901FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EECAA6F21A5D3DE60062C64B /* SwiftSMART-OSX */;
+			target = EECAA6F21A5D3DE60062C64B /* SwiftSMART-macOS */;
 			targetProxy = EE13AA991A5D44D100B901FD /* PBXContainerItemProxy */;
 		};
 		EE27D4261965F40700752038 /* PBXTargetDependency */ = {
@@ -2015,7 +2027,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SwiftSMART-OSXTests" */ = {
+		EE13AA9B1A5D44D100B901FD /* Build configuration list for PBXNativeTarget "SwiftSMART-macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE13AA9C1A5D44D100B901FD /* Debug */,
@@ -2051,7 +2063,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SwiftSMART-OSX" */ = {
+		EECAA7801A5D3DE60062C64B /* Build configuration list for PBXNativeTarget "SwiftSMART-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EECAA7811A5D3DE60062C64B /* Debug */,

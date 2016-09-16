@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
                BuildableName = "SMART.framework"
-               BlueprintName = "SwiftSMART-OSX"
+               BlueprintName = "SwiftSMART-macOS"
                ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE13AA911A5D44D100B901FD"
-               BuildableName = "SwiftSMART-OSXTests.xctest"
-               BlueprintName = "SwiftSMART-OSXTests"
+               BuildableName = "SwiftSMART-macOSTests.xctest"
+               BlueprintName = "SwiftSMART-macOSTests"
                ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE13AA911A5D44D100B901FD"
-               BuildableName = "SwiftSMART-OSXTests.xctest"
-               BlueprintName = "SwiftSMART-OSXTests"
+               BuildableName = "SwiftSMART-macOSTests.xctest"
+               BlueprintName = "SwiftSMART-macOSTests"
                ReferencedContainer = "container:SwiftSMART.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,7 +58,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
             BuildableName = "SMART.framework"
-            BlueprintName = "SwiftSMART-OSX"
+            BlueprintName = "SwiftSMART-macOS"
             ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -80,7 +80,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
             BuildableName = "SMART.framework"
-            BlueprintName = "SwiftSMART-OSX"
+            BlueprintName = "SwiftSMART-macOS"
             ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -98,7 +98,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EECAA6F21A5D3DE60062C64B"
             BuildableName = "SMART.framework"
-            BlueprintName = "SwiftSMART-OSX"
+            BlueprintName = "SwiftSMART-macOS"
             ReferencedContainer = "container:SwiftSMART.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

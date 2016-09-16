@@ -139,7 +139,7 @@ open class Client {
 	/**
 	Call this with the redirect URL when intercepting the redirect callback in the app delegate.
 	
-	- parameter to: The URL that was being redirected to
+	- parameter url: The URL that was redirected to
 	*/
 	open func didRedirect(to url: URL) -> Bool {
 		return server.auth?.handleRedirect(url) ?? false
