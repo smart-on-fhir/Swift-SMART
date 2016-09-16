@@ -45,7 +45,10 @@ class Auth {
 	/// The authentication object, used internally.
 	var oauth: OAuth2? {
 		didSet {
-			if nil == server.logger, let logger = oauth?.logger {
+			if let logger = server.logger {
+				oauth?.logger = logger
+			}
+			else if let logger = oauth?.logger {
 				server.logger = logger
 			}
 		}
