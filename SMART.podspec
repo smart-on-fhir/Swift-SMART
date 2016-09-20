@@ -41,6 +41,7 @@ Pod::Spec.new do |s|
                             "Swift-FHIR/Sources/Client/Reference+Resolving.swift",
                             "Swift-FHIR/Sources/Client/Resource+Instantiation.swift",
                             "Swift-FHIR/Sources/Client/Resource+REST.swift",
+                            "Swift-FHIR/Sources/Client/Patient+SMART.swift",
                             "OAuth2/SwiftKeychain/Keychain/Keychain.swift",
                             "OAuth2/Sources/Base/*.swift"
   s.ios.source_files      = "Sources/iOS/*.swift",
