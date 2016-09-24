@@ -92,7 +92,7 @@ open class Client {
 	- parameter baseURL:  The server's base URL
 	- parameter settings: Client settings, mostly concerning authorization
 	*/
-	public convenience init(baseURL: String, settings: OAuth2JSON) {
+	public convenience init(baseURL: URL, settings: OAuth2JSON) {
 		var sett = settings
 		if let redirect = settings["redirect"] as? String {
 			sett["redirect_uris"] = [redirect]
@@ -100,7 +100,7 @@ open class Client {
 		if nil == settings["title"] {
 			sett["title"] = "SMART"
 		}
-		let srv = Server(base: baseURL, auth: sett)
+		let srv = Server(baseURL: baseURL, auth: sett)
 		self.init(server: srv)
 	}
 	

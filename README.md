@@ -54,7 +54,7 @@ import SMART
 
 // create the client
 let smart = Client(
-    baseURL: "https://fhir-api-dstu2.smarthealthit.org",
+    baseURL: URL(string: "https://fhir-api-dstu2.smarthealthit.org")!,
     settings: [
         //"client_id": "my_mobile_app",       // if you have one
         "redirect": "smartapp://callback",    // must be registered

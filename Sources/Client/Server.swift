@@ -94,16 +94,6 @@ open class Server: FHIROpenServer {
 		didSetAuthSettings()
 	}
 	
-	/**
-	Convenience initializer that allows to specify the base URL as a string.
-	
-	- parameter baseURL: The base URL of the server
-	- parameter auth: A dictionary with authentication settings
-	*/
-	public convenience init(base: String, auth: OAuth2JSON? = nil) {
-		self.init(baseURL: URL(string: base)!, auth: auth)			// yes, this will crash on invalid URL
-	}
-	
 	func didSetAuthSettings() {
 		if !instantiateAuthFromAuthSettings(), let verbose = authSettings?["verbose"] as? Bool, verbose {
 			logger = OAuth2DebugLogger()
@@ -134,6 +124,9 @@ open class Server: FHIROpenServer {
 	override open func configurableRequest(for url: URL) -> URLRequest {
 		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(for: url)
 	}
+	
+	
+	// MARK: - FHIROpenServer
 	
 	override open func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
 		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")

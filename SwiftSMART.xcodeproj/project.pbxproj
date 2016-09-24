@@ -18,7 +18,7 @@
 		EE02F80B1ACF2FDB00179969 /* FHIRSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8091ACF2FDB00179969 /* FHIRSearch.swift */; };
 		EE02F8121ACF30B000179969 /* PatientList+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8111ACF30B000179969 /* PatientList+iOS.swift */; };
 		EE02F8151ACF30E100179969 /* Auth+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8141ACF30E100179969 /* Auth+iOS.swift */; };
-		EE02F8181ACF30EA00179969 /* Auth+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8171ACF30EA00179969 /* Auth+OSX.swift */; };
+		EE02F8181ACF30EA00179969 /* Auth+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F8171ACF30EA00179969 /* Auth+macOS.swift */; };
 		EE13AA9E1A5D453000B901FD /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE29E701195838DD008882C8 /* ServerTests.swift */; };
 		EE13AA9F1A5D453A00B901FD /* ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1BA19546D880017679A /* ClientTests.swift */; };
 		EE13AAA01A5D474C00B901FD /* SMART.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EECAA7831A5D3DE60062C64B /* SMART.framework */; };
@@ -474,7 +474,7 @@
 		EE02F8091ACF2FDB00179969 /* FHIRSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearch.swift; sourceTree = "<group>"; };
 		EE02F8111ACF30B000179969 /* PatientList+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PatientList+iOS.swift"; sourceTree = "<group>"; };
 		EE02F8141ACF30E100179969 /* Auth+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+iOS.swift"; sourceTree = "<group>"; };
-		EE02F8171ACF30EA00179969 /* Auth+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+OSX.swift"; sourceTree = "<group>"; };
+		EE02F8171ACF30EA00179969 /* Auth+macOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Auth+macOS.swift"; sourceTree = "<group>"; };
 		EE1391C01AC582D9002C7B18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		EE13AA921A5D44D100B901FD /* SwiftSMART-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftSMART-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE13AAA11A5D47B200B901FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -738,7 +738,7 @@
 		EE02F8161ACF30EA00179969 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				EE02F8171ACF30EA00179969 /* Auth+OSX.swift */,
+				EE02F8171ACF30EA00179969 /* Auth+macOS.swift */,
 			);
 			name = macOS;
 			path = Sources/macOS;
@@ -1602,7 +1602,7 @@
 				EE9B32041ACADE9900980AA9 /* Reference+Resolving.swift in Sources */,
 				EE13CDE21D4A61B9005537E9 /* OAuth2Error.swift in Sources */,
 				EE56A5871ABB0B7900FA99EB /* MedicationDispense.swift in Sources */,
-				EE02F8181ACF30EA00179969 /* Auth+OSX.swift in Sources */,
+				EE02F8181ACF30EA00179969 /* Auth+macOS.swift in Sources */,
 				EE56A5D51ABB0B7A00FA99EB /* Resource.swift in Sources */,
 				EE56A5BD1ABB0B7A00FA99EB /* ProcedureRequest.swift in Sources */,
 				EED260ED1D65C2EC00DCE40E /* ImagingManifest.swift in Sources */,
