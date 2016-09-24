@@ -17,7 +17,7 @@ extension Auth {
 	- parameter oauth: The OAuth2 instance to use for authorization
 	- parameter properties: SMART authorization properties to use
 	*/
-	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties) {
+	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties, callback: @escaping ((OAuth2JSON?, OAuth2Error?) -> Void)) {
 		authContext = UIApplication.shared.keyWindow?.rootViewController
 		
 		oauth.authConfig.authorizeContext = authContext
@@ -25,17 +25,12 @@ extension Auth {
 		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .patientSelectNative
 		
 		oauth.authorize(params: ["aud": server.aud]) { parameters, error in
-			if let error = error {
-				if properties.granularity == .patientSelectNative {   // not auto-dismissing, must do it ourselves
-					if let vc = oauth.authConfig.authorizeContext as? UIViewController {
-						vc.dismiss(animated: true)
-					}
-				}
-				self.authDidFail(withError: error)
+			if nil != error,
+				properties.granularity == .patientSelectNative,   // not auto-dismissing, must do it ourselves
+				let vc = oauth.authConfig.authorizeContext as? UIViewController {
+				vc.dismiss(animated: true)
 			}
-			else {
-				self.authDidSucceed(withParameters: parameters ?? OAuth2JSON())
-			}
+			callback(parameters, error)
 		}
 	}
 	

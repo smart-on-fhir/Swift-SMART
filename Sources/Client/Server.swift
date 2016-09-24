@@ -21,7 +21,7 @@ The server's `Conformance` statement is automatically downloaded the first time 
 A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
 session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
 */
-open class Server: FHIROpenServer {
+open class Server: FHIROpenServer, OAuth2RequestPerformer {
 	
 	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
 	public final let aud: String
@@ -128,13 +128,13 @@ open class Server: FHIROpenServer {
 	
 	// MARK: - FHIROpenServer
 	
-	override open func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
+	open override func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
 		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")
 		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
-		super.performPreparedRequest(request as URLRequest, withSession: session, handler: handler) { response in
+		return super.perform(request: request) { data, response, error in
 			self.logger?.trace("SMART", msg: "RESPONSE\n\(response.debugDescription)\n---")
-			self.logger?.debug("SMART", msg: "<---  \(response.status) (\(response.body?.count ?? 0) Byte)")
-			callback(response)
+			self.logger?.debug("SMART", msg: "<---  \((response as? HTTPURLResponse)?.statusCode ?? 999) (\(data?.count ?? 0) Byte)")
+			completionHandler(data, response, error)
 		}
 	}
 	

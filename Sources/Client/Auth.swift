@@ -215,7 +215,14 @@ class Auth {
 			oa.scope = scope
 			
 			// start authorization (method implemented in iOS and OS X extensions)
-			authorizeWith(oauth: oa, properties: properties)
+			authorizeWith(oauth: oa, properties: properties) { parameters, error in
+				if let error = error {
+					self.authDidFail(withError: error)
+				}
+				else {
+					self.authDidSucceed(withParameters: parameters ?? OAuth2JSON())
+				}
+			}
 		}
 			
 		// open server?
@@ -229,7 +236,7 @@ class Auth {
 	}
 	
 	func handleRedirect(_ redirect: URL) -> Bool {
-		guard let oauth = oauth, nil != authCallback else {
+		guard let oauth = oauth, oauth.isAuthorizing else {
 			return false
 		}
 		do {
