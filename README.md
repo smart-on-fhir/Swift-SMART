@@ -1,6 +1,6 @@
 <p align="center"><img src="./assets/banner.png" alt=""></p>
 
-Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**](http://docs.smarthealthit.org).
+Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**][smart].
 Written in _Swift 2_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 7 or newer.
 
 
@@ -89,7 +89,7 @@ Installation
 The suggested approach is to add _Swift-SMART_ as a git submodule to your project.
 Find detailed instructions on how this is done on the [Installation page][installation].
 
-The framework is also available via _CocoaPods_ under the name [“SMART”][pod].
+The framework can also be installed via _Carthage_ and is also available via _CocoaPods_ under the name [“SMART”][pod].
 
 [installation]: https://github.com/smart-on-fhir/Swift-SMART/wiki/Installation
 [pod]: https://cocoapods.org/pods/SMART
@@ -99,3 +99,6 @@ License
 -------
 
 This work is [Apache 2](./LICENSE.txt) licensed: [NOTICE.txt](./NOTICE.txt).
+FHIR® is the registered trademark of [HL7][] and is used with the permission of HL7.
+
+[hl7]: http://hl7.org/
