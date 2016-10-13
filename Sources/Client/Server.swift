@@ -10,18 +10,18 @@ import Foundation
 
 
 /**
-    Representing the FHIR resource server a client connects to.
-    
-    This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
-    settings dictionary provided upon `Client` initalization or from the server's Conformance statement.
+Representing the FHIR resource server a client connects to.
 
-    The server's `Conformance` statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the
-	`Auth` instance or validating/executing operations.
+This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
+settings dictionary provided upon `Client` initalization or from the server's Conformance statement.
 
-    A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
-    session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
- */
-public class Server: FHIROpenServer {
+The server's `Conformance` statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the
+`Auth` instance or validating/executing operations.
+
+A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
+session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
+*/
+open class Server: FHIROpenServer {
 	
 	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
 	final let aud: String
@@ -74,7 +74,7 @@ public class Server: FHIROpenServer {
 	}
 	
 	/// The logger to use.
-	public var logger: OAuth2Logger? {
+	open var logger: OAuth2Logger? {
 		didSet {
 			auth?.oauth?.logger = logger
 		}
@@ -113,18 +113,18 @@ public class Server: FHIROpenServer {
 	
 	// MARK: - Requests
 	
-	public override func createDefaultSession() -> URLSession {
+	open override func createDefaultSession() -> URLSession {
 		if let delegate = sessionDelegate {
 			return Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: delegate, delegateQueue: nil)
 		}
 		return super.createDefaultSession()
 	}
 	
-	public override func configurableRequest(for url: URL) -> URLRequest {
+	open override func configurableRequest(for url: URL) -> URLRequest {
 		return auth?.signedRequest(forURL: url) ?? super.configurableRequest(for: url)
 	}
 	
-	public override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
+	open override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
 		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")
 		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
 		super.performPreparedRequest(request as URLRequest, withSession: session, handler: handler) { response in
@@ -137,14 +137,14 @@ public class Server: FHIROpenServer {
 	
 	// MARK: - Server Conformance
 	
-	public override func didSetConformance(_ conformance: Conformance) {
+	open override func didSetConformance(_ conformance: Conformance) {
 		if nil == name && nil != conformance.name {
 			name = conformance.name
 		}
 		super.didSetConformance(conformance)
 	}
 	
-	public override func didFindConformanceRestStatement(_ rest: ConformanceRest) {
+	open override func didFindConformanceRestStatement(_ rest: ConformanceRest) {
 		super.didFindConformanceRestStatement(rest)
 		
 		// initialize Auth; if we can't find a suitable Auth we'll use one for "no auth"
