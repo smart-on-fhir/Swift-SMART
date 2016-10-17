@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "2.8.0"
+  s.version      = "2.8.1"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
@@ -24,12 +24,11 @@ Pod::Spec.new do |s|
   s.author       = { "Pascal Pfiffner" => "phase.of.matter@gmail.com" }
 
   s.source            = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "#{s.version}", :submodules => true }
-  s.prepare_command   = "git submodule update --init --recursive"  # The :submodules flag above is not recursive :P
 
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.9"
 
-  s.pod_target_xcconfig   = { 'OTHER_SWIFT_FLAGS' => '-DNO_MODEL_IMPORT -DNO_KEYCHAIN_IMPORT' }
+  s.pod_target_xcconfig   = { 'OTHER_SWIFT_FLAGS' => '-DNO_MODEL_IMPORT -DNO_MODULE_IMPORT -DNO_KEYCHAIN_IMPORT' }
   s.source_files          = "Sources/Client/*.swift",
                             "Swift-FHIR/Sources/Models/*.swift",
                             "Swift-FHIR/Sources/Client/DomainResource+Containment.swift",
@@ -42,9 +41,10 @@ Pod::Spec.new do |s|
                             "Swift-FHIR/Sources/Client/Resource+Instantiation.swift",
                             "Swift-FHIR/Sources/Client/Resource+REST.swift",
                             "OAuth2/SwiftKeychain/Keychain/Keychain.swift",
-                            "OAuth2/Sources/Base/*.swift"
+                            "OAuth2/Sources/Base/*.swift",
+                            "OAuth2/Sources/Flows/*.swift"
   s.ios.source_files      = "Sources/iOS/*.swift",
                             "OAuth2/Sources/iOS/*.swift"
   s.osx.source_files      = "Sources/OSX/*.swift",
-                            "OAuth2/Sources/OSX/*.swift"
+                            "OAuth2/Sources/macOS/*.swift"
 end
