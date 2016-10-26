@@ -1,16 +1,16 @@
 {
-  "resourceType": "Conformance",
+  "resourceType": "CapabilityStatement",
   "text": {
     "status": "generated",
-    "div": "<div>Generated Conformance Statement -- see structured representation.</div>"
+    "div": "<div>Generated Capability Statement -- see structured representation.</div>"
   },
-  "version": "1.0.1.7108",
-  "name": "SMART on FHIR Conformance Statement",
+  "version": "1.7.0.10073",
+  "name": "SMART on FHIR Capability Statement",
   "publisher": "SMART on FHIR",
   "description": "Describes capabilities of this SMART on FHIR server",
   "status": "draft",
   "date": "2015-09-23T04:49:25.469-00:00",
-  "fhirVersion": "1.0.1",
+  "fhirVersion": "1.7.0",
   "kind": "instance",
   "acceptUnknown": "no",
   "format": [
@@ -37,15 +37,15 @@
           "extension": [
           {
             "url": "register",
-            "valueUri": "https://authorize-dstu2.smarthealthit.org/register"
+            "valueUri": "https://authorize.smarthealthit.org/register"
           },
           {
             "url": "authorize",
-            "valueUri": "https://authorize-dstu2.smarthealthit.org/authorize"
+            "valueUri": "https://authorize.smarthealthit.org/authorize"
             },
             {
               "url": "token",
-              "valueUri": "https://authorize-dstu2.smarthealthit.org/token"
+              "valueUri": "https://authorize.smarthealthit.org/token"
             }
             ],
             "url": "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"

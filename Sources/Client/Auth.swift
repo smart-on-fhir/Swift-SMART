@@ -81,13 +81,13 @@ class Auth {
 	}
 	
 	/**
-	Convenience initializer from the server conformance's rest.security statement.
+	Convenience initializer from the server cabability statement's rest.security parts.
 	
-	- parameter fromConformanceSecurity: The server conformance's rest.security statement to inspect
-	- parameter server:                  The server to use
-	- parameter settings:                Settings, mostly passed on to the OAuth2 instance
+	- parameter fromCapabilitySecurity: The server cabability statement's rest.security pieces to inspect
+	- parameter server:                 The server to use
+	- parameter settings:               Settings, mostly passed on to the OAuth2 instance
 	*/
-	convenience init?(fromConformanceSecurity security: ConformanceRestSecurity, server: Server, settings: OAuth2JSON?) {
+	convenience init?(fromCapabilitySecurity security: CapabilityStatementRestSecurity, server: Server, settings: OAuth2JSON?) {
 		var authSettings = settings ?? OAuth2JSON(minimumCapacity: 3)
 		
 		if let services = security.service {

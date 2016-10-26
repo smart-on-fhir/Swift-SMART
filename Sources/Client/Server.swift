@@ -13,10 +13,10 @@ import Foundation
 Representing the FHIR resource server a client connects to.
 
 This implementation holds on to an `Auth` instance to handle authentication. It is automatically instantiated with properties from the
-settings dictionary provided upon `Client` initalization or from the server's Conformance statement.
+settings dictionary provided upon `Client` initalization or from the server's cabability statement.
 
-The server's `Conformance` statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the
-`Auth` instance or validating/executing operations.
+The server's cabability statement is automatically downloaded the first time it's needed for various tasks, such as instantiating the `Auth`
+instance or validating/executing operations.
 
 A server manages its own NSURLSession, either with an optional delegate provided via `sessionDelegate` or simply the system shared
 session. Subclasses can change this behavior by overriding `createDefaultSession` or any of the other request-related methods.
@@ -26,7 +26,7 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 	/// The service URL as a string, as specified during initalization to be used as `aud` parameter.
 	public final let aud: String
 	
-	/// An optional name of the server; will be read from conformance statement unless manually assigned.
+	/// An optional name of the server; will be read from cabability statement unless manually assigned.
 	public final var name: String?
 	
 	/// The authorization to use with the server.
@@ -139,21 +139,21 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 	}
 	
 	
-	// MARK: - Server Conformance
+	// MARK: - Server Capability Statement
 	
-	override open func didSetConformance(_ conformance: Conformance) {
-		if nil == name && nil != conformance.name {
-			name = conformance.name
+	override open func didSetCapabilityStatement(_ cabability: CapabilityStatement) {
+		if nil == name && nil != cabability.name {
+			name = cabability.name
 		}
-		super.didSetConformance(conformance)
+		super.didSetCapabilityStatement(cabability)
 	}
 	
-	override open func didFindConformanceRestStatement(_ rest: ConformanceRest) {
-		super.didFindConformanceRestStatement(rest)
+	override open func didFindCapabilityStatementRest(_ rest: CapabilityStatementRest) {
+		super.didFindCapabilityStatementRest(rest)
 		
 		// initialize Auth; if we can't find a suitable Auth we'll use one for "no auth"
 		if let security = rest.security {
-			auth = Auth(fromConformanceSecurity: security, server: self, settings: authSettings)
+			auth = Auth(fromCapabilitySecurity: security, server: self, settings: authSettings)
 		}
 		if nil == auth {
 			auth = Auth(type: .none, server: self, settings: authSettings)
@@ -202,7 +202,7 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 	
 	Being "ready" in this case entails holding on to an `Auth` instance. Such an instance is automatically created if either the client
 	init settings are sufficient (i.e. contain an "authorize_uri" and optionally a "token_uri" and a "client_id" or "registration_uri") or
-	after the conformance statement has been fetched.
+	after the cabability statement has been fetched.
 	*/
 	open func ready(callback: @escaping (FHIRError?) -> ()) {
 		if nil != auth || instantiateAuthFromAuthSettings() {
@@ -211,7 +211,7 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 		}
 		
 		// if we haven't initialized the auth instance we likely didn't fetch the server metadata yet
-		getConformance { error in
+		getCapabilityStatement() { error in
 			if nil != self.auth {
 				callback(nil)
 			}
