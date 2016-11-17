@@ -115,7 +115,7 @@ extension Patient {
 			let family = humanName.family?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1 }
 			if nil == given {
 				if nil != family {
-					let prefix = ("male" == gender) ? "Mr.".fhir_localized : "Ms.".fhir_localized
+					let prefix = (.male == gender) ? "Mr.".fhir_localized : "Ms.".fhir_localized
 					return "\(prefix) \(family!)"
 				}
 			}
