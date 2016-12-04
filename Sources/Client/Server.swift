@@ -125,7 +125,7 @@ open class Server: FHIROpenServer {
 	}
 	
 	open override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
-		logger?.debug("SMART", msg: "--->  \(request.httpMethod) \(request.url?.description ?? "No URL")")
+		logger?.debug("SMART", msg: "--->  \(request.httpMethod ?? "METHOD") \(request.url?.description ?? "No URL")")
 		logger?.trace("SMART", msg: "REQUEST\n\(request.debugDescription)\n---")
 		super.performPreparedRequest(request as URLRequest, withSession: session, handler: handler) { response in
 			self.logger?.trace("SMART", msg: "RESPONSE\n\(response.debugDescription)\n---")

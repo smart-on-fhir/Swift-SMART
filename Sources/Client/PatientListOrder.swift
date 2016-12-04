@@ -145,21 +145,21 @@ extension Patient {
 					return "just born".fhir_localized
 				}
 				let str = (1 == comps.day) ? "day old".fhir_localized : "days old".fhir_localized
-				return "\(comps.day) \(str)"
+				return "\(comps.day ?? 0) \(str)"
 			}
 			let str = (1 == comps.day) ? "month old".fhir_localized : "months old".fhir_localized
-			return "\(comps.month) \(str)"
+			return "\(comps.month ?? 0) \(str)"
 		}
 		
 		// kids and adults
 		if 0 != comps.month {
 			let yr = (1 == comps.year) ? "yr".fhir_localized : "yrs".fhir_localized
 			let mth = (1 == comps.month) ? "mth".fhir_localized : "mths".fhir_localized
-			return "\(comps.year) \(yr), \(comps.month) \(mth)"
+			return "\(comps.year ?? 0) \(yr), \(comps.month ?? 0) \(mth)"
 		}
 		
 		let yr = (1 == comps.year) ? "year old".fhir_localized : "years old".fhir_localized
-		return "\(comps.year) \(yr)"
+		return "\(comps.year ?? 0) \(yr)"
 	}
 }
 
