@@ -192,7 +192,7 @@ open class PatientListViewController: UITableViewController {
 extension Patient {
 	
 	var genderSymbol: String {
-		return ("male" == gender) ? "♂" : "♀"
+		return (.male == gender) ? "♂" : "♀"
 	}
 }
 
