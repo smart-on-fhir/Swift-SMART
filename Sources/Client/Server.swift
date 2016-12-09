@@ -142,8 +142,8 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 	// MARK: - Server Capability Statement
 	
 	override open func didSetCapabilityStatement(_ cabability: CapabilityStatement) {
-		if nil == name && nil != cabability.name {
-			name = cabability.name
+		if nil == name, let cName = cabability.name?.string {
+			name = cName
 		}
 		super.didSetCapabilityStatement(cabability)
 	}

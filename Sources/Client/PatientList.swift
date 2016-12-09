@@ -170,11 +170,11 @@ open class PatientList {
 				}
 				else {
 					var patients: [Patient]? = nil
-					var expTotal: UInt? = nil
+					var expTotal: Int32? = nil
 					
 					// extract patient resources from the search result bundle
 					if let bndle = bundle {
-						if let total = bndle.total {
+						if let total = bndle.total?.int {
 							expTotal = total
 						}
 						
@@ -190,7 +190,7 @@ open class PatientList {
 					
 					callOnMainThread() {
 						if let total = expTotal {
-							this.expectedNumberOfPatients = total
+							this.expectedNumberOfPatients = UInt(total)
 						}
 						// when patients is nil, only set this.patients to nil if appendPatients is false
 						// otherwise we might reset the list to no patients when hitting a 404 or a timeout

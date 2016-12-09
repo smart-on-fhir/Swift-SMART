@@ -91,8 +91,8 @@ extension Patient {
 	}
 	
 	func compareNameFamily(toPatient: Patient) -> Int {
-		let a = name?.first?.family?.first ?? "ZZZ"
-		let b = toPatient.name?.first?.family?.first ?? "ZZZ"
+		let a = name?.first?.family?.string ?? "ZZZ"
+		let b = toPatient.name?.first?.family?.string ?? "ZZZ"
 		if a < b {
 			return -1
 		}
@@ -111,19 +111,17 @@ extension Patient {
 	
 	var displayNameFamilyGiven: String {
 		if let humanName = name?.first {
-			let given = humanName.given?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1 }
-			let family = humanName.family?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1 }
-			if nil == given {
-				if nil != family {
-					let prefix = (.male == gender) ? "Mr.".fhir_localized : "Ms.".fhir_localized
-					return "\(prefix) \(family!)"
+			let given = humanName.given?.reduce(nil) { (nil != $0 ? ($0! + " ") : "") + $1.string }
+			let family = humanName.family
+			if let given = given {
+				if let family = family?.string {
+					return "\(family), \(given)"
 				}
+				return given
 			}
-			else {
-				if nil != family {
-					return "\(family!), \(given!)"
-				}
-				return given!
+			else if let family = family?.string {
+				let prefix = (.male == gender) ? "Mr.".fhir_localized : "Ms.".fhir_localized
+				return "\(prefix) \(family)"
 			}
 		}
 		return "Unnamed Patient".fhir_localized

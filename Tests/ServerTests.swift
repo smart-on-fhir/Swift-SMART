@@ -24,7 +24,7 @@ class ServerTests: XCTestCase {
 		let metaData = try? Data(contentsOf: metaURL!)
 		let meta = try JSONSerialization.jsonObject(with: metaData!, options: []) as! FHIRJSON
 		XCTAssertNotNil(meta, "Should parse `metadata`")
-		let cabability = CapabilityStatement(json: meta)
+		let cabability = try? CapabilityStatement(json: meta)
 		
 		server.cabability = cabability
 		XCTAssertNotNil(server.cabability, "Should store all metadata")
@@ -48,7 +48,7 @@ class ServerTests: XCTestCase {
 				XCTAssertTrue(auth.type == AuthType.codeGrant, "Should use code grant auth type, not \(server.auth!.type.rawValue)")
 				XCTAssertNotNil(auth.settings, "Server `Auth` instance must have settings dictionary")
 				XCTAssertNotNil(auth.settings?["token_uri"], "Must read token_uri")
-				XCTAssertEqual(auth.settings?["token_uri"] as? String, "https://authorize-dstu2.smarthealthit.org/token", "token_uri must be “https://authorize-dstu2.smarthealthit.org/token”")
+				XCTAssertEqual(auth.settings?["token_uri"] as? String, "https://authorize.smarthealthit.org/token", "token_uri must be “https://authorize.smarthealthit.org/token”")
 			}
 			exp2.fulfill()
 		}
