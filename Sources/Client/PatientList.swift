@@ -174,7 +174,7 @@ open class PatientList {
 					
 					// extract patient resources from the search result bundle
 					if let bndle = bundle {
-						if let total = bndle.total?.int {
+						if let total = bndle.total?.int32 {
 							expTotal = total
 						}
 						
