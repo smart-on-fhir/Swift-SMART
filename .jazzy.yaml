@@ -1,12 +1,12 @@
 # Jazzy config
-module_name: SMART
-author_name: SMART Health IT
+module: SMART
+author: SMART Health IT
 author_url:  http://www.smarthealthit.org
 
 root_url:    http://smart-on-fhir.github.io/Swift-SMART
 github_url:  https://github.com/smart-on-fhir/Swift-SMART
 
-theme_directory: fullwidth
+theme: fullwidth
 custom_categories:
   - name: Client
     children:
@@ -14,6 +14,7 @@ custom_categories:
     - SMARTAuthProperties
     - SMARTAuthGranularity
     - FHIRError
+    - FHIRJSON
     - FHIRJSONError
     - FHIRJSONErrorType
 
@@ -22,16 +23,20 @@ custom_categories:
     - Server
     - FHIRServer
     - FHIROpenServer
-    - FHIRSearch
+    - FHIRErrorCallback
     - FHIROperation
     - FHIROperationContext
-    - FHIRRequestType
-    - FHIRServerRequestHandler
+    - FHIRRequestHeaderField
+    - FHIRRequestHeaders
+    - FHIRRequestMethod
+    - FHIRResourceErrorCallback
+    - FHIRSearch
     - FHIRServerDataRequestHandler
-    - FHIRServerJSONRequestHandler
-    - FHIRServerResponse
     - FHIRServerDataResponse
+    - FHIRServerJSONRequestHandler
     - FHIRServerJSONResponse
+    - FHIRServerRequestHandler
+    - FHIRServerResponse
 
   - name: Patient List
     children:
@@ -47,22 +52,40 @@ custom_categories:
     children:
     - OAuth2
     - OAuth2AuthConfig
+    - OAuth2AuthRequest
+    - OAuth2Authorizer
+    - OAuth2AuthorizerUI
+    - OAuth2Base
     - OAuth2ClientConfig
     - OAuth2ClientCredentials
-    - OAuth2ImplicitGrant
     - OAuth2CodeGrant
-    - OAuth2Request
+    - OAuth2CodeGrantBasicAuth
+    - OAuth2ContextStore
+    - OAuth2DataTaskRequestPerformer
+    - OAuth2DebugLogger
+    - OAuth2DebugURLSessionDelegate
+    - OAuth2DynReg
     - OAuth2EndpointAuthMethod
-    - OAuth2WebViewController
-    - OAuth2Base
     - OAuth2Error
+    - OAuth2HTTPContentType
+    - OAuth2HTTPMethod
+    - OAuth2Headers
+    - OAuth2ImplicitGrant
+    - OAuth2JSON
+    - OAuth2LogLevel
+    - OAuth2Logger
+    - OAuth2PasswordGrant
+    - OAuth2RequestParams
+    - OAuth2RequestPerformer
+    - OAuth2Requestable
+    - OAuth2Response
+    - OAuth2Securable
+    - OAuth2StringDict
+    - OAuth2WebViewController
 
   - name: Keychain
     children:
     - Keychain
-    - KeychainItem
-    - KeychainService
-    - KeychainQuery
-    - BaseKey
-    - GenericKey
-    - ArchiveKey
+    - KeychainItemType
+    - KeychainServiceType
+    - KeychainGenericPasswordType
