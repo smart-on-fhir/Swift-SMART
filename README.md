@@ -84,6 +84,26 @@ smart.authorize() { patient, error in
 }
 ```
 
+For authorization to work with Safari/SFViewController, you also need to:
+
+1. register the scheme (such as `smartapp` in the example here) in your app's `Info.plist` and
+2. intercept the callback in your app delegate, like so:
+
+```swift
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    func application(_ app: UIApplication, open url: URL,
+        options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        
+        // "smart" is your SMART `Client` instance
+        if smart.awaitingAuthCallback {
+            return smart.didRedirect(to: url)
+        }
+        return false
+    }
+}
+```
+
 
 Installation
 ------------
