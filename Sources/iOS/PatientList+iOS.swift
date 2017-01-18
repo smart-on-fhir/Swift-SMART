@@ -199,8 +199,8 @@ extension Patient {
 extension PatientList {
 	
 	subscript(indexPath: IndexPath) -> Patient? {
-		if let section = self[(indexPath as NSIndexPath).section] {
-			return section[(indexPath as NSIndexPath).row]
+		if let section = self[indexPath.section] {
+			return section[indexPath.row]
 		}
 		return nil
 	}
