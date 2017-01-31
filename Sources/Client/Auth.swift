@@ -135,22 +135,14 @@ class Auth {
 	*/
 	func configure(withSettings settings: OAuth2JSON) {
 		switch type {
-			case .codeGrant:
-				oauth = OAuth2CodeGrant(settings: settings)
-			case .implicitGrant:
-				oauth = OAuth2ImplicitGrant(settings: settings)
-			case .clientCredentials:
-				oauth = OAuth2ClientCredentials(settings: settings)
-			default:
-				oauth = nil
-		}
-		
-		// configure the OAuth2 instance's callbacks
-		if let oa = oauth {
-			// TODO: update
-			oa.onAuthorize = authDidSucceed
-			oa.onFailure = authDidFail
-			oa.logger = server.logger
+		case .codeGrant:
+			oauth = OAuth2CodeGrant(settings: settings)
+		case .implicitGrant:
+			oauth = OAuth2ImplicitGrant(settings: settings)
+		case .clientCredentials:
+			oauth = OAuth2ClientCredentials(settings: settings)
+		default:
+			oauth = nil
 		}
 	}
 	
@@ -252,7 +244,9 @@ class Auth {
 	}
 	
 	internal func authDidFail(withError error: Error?) {
-		server.logger?.debug("SMART", msg: "Failed to authorize with error: \(error)")
+		if let error = error {
+			server.logger?.debug("SMART", msg: "Failed to authorize with error: \(error)")
+		}
 		authDidFailInternal(withError: error)
 		processAuthCallback(parameters: nil, error: error)
 	}

@@ -78,7 +78,7 @@ public class Client {
 	- `client_id`:      If you have a client-id; otherwise, if the server supports OAuth2 dynamic client registration, will register itself
 	- `redirect`:       After-auth redirect URL (string). Must be registered on the server and in your app's Info.plist (URL handler)
 	- `redirect_uris`:  Array of redirect URL (strings); will be created if you supply "redirect"
-	- `scope`:          Authorization scope, defaults to "user/ *.* openid profile" plus launch scope, if needed
+	- `scope`:          Authorization scope, defaults to "user/\*.* openid profile" plus launch scope, if needed
 	- `authorize_uri`:  Optional; if present will NOT use the authorization endpoints defined in the server's metadata. Know what you do!
 	- `token_uri`:      Optional; if present will NOT use the authorization endpoints defined in the server's metadata. Know what you do!
 	- `authorize_type`: Optional; inferred to be "authorization_code" or "implicit". Can also be "client_credentials" for a 2-legged

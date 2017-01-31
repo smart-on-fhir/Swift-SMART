@@ -16,8 +16,14 @@ extension Auth {
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
 		oauth.authConfig.authorizeEmbeddedAutoDismiss = properties.granularity != .patientSelectNative
-		// TODO: update
-		oauth.authorize(params: ["aud": server.aud])
+		oauth.authorize(params: ["aud": server.aud]) { json, error in
+			if let error = error {
+				self.authDidFail(withError: error)
+			}
+			else {
+				self.authDidSucceed(withParameters: json ?? [:])
+			}
+		}
 	}
 	
 	func authDidFailInternal(withError: Error?) {
