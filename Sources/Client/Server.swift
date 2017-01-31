@@ -137,6 +137,10 @@ open class Server: FHIROpenServer {
 	
 	// MARK: - Server Conformance
 	
+	open override func conformancePath() -> String {
+		return "metadata"
+	}
+	
 	open override func didSetConformance(_ conformance: Conformance) {
 		if nil == name && nil != conformance.name {
 			name = conformance.name
