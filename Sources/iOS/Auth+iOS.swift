@@ -14,10 +14,11 @@ extension Auth {
 	/**
 	Make the current root view controller the authorization context and show the view controller corresponding to the auth properties.
 	
-	- parameter oauth: The OAuth2 instance to use for authorization
+	- parameter oauth:      The OAuth2 instance to use for authorization
 	- parameter properties: SMART authorization properties to use
+	- parameter callback:   The callback that is called when authorization completes or fails
 	*/
-	func authorizeWith(oauth: OAuth2, properties: SMARTAuthProperties, callback: @escaping ((OAuth2JSON?, OAuth2Error?) -> Void)) {
+	func authorize(with oauth: OAuth2, properties: SMARTAuthProperties, callback: @escaping ((OAuth2JSON?, OAuth2Error?) -> Void)) {
 		authContext = UIApplication.shared.keyWindow?.rootViewController
 		
 		oauth.authConfig.authorizeContext = authContext
