@@ -2,6 +2,16 @@ Changelog
 =========
 
 
+## 2.8.2
+
+- Do not request summary of `Conformance`, which does not include rest.security
+
+
+## 2.8.1
+
+- Make `Server` open to allow subclassing
+
+
 ## 2.8
 
 - Update to Swift 3.0
