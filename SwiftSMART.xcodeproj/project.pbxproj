@@ -446,6 +446,8 @@
 		EEEE31481BB2F520008866E2 /* SupplyDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE30D31BB1FD53008866E2 /* SupplyDelivery.swift */; };
 		EEEE31491BB2F520008866E2 /* SupplyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE30D41BB1FD53008866E2 /* SupplyRequest.swift */; };
 		EEEE314A1BB2F520008866E2 /* TestScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEE30D51BB1FD53008866E2 /* TestScript.swift */; };
+		EEF90D871E4346CD00A545AE /* ValueSet+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF90D861E4346CD00A545AE /* ValueSet+Localization.swift */; };
+		EEF90D881E4346CD00A545AE /* ValueSet+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF90D861E4346CD00A545AE /* ValueSet+Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -738,6 +740,7 @@
 		EEEE312A1BB2961C008866E2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EEEE312C1BB29621008866E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		EEEE31331BB2AB67008866E2 /* generate-docs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "generate-docs.sh"; sourceTree = SOURCE_ROOT; };
+		EEF90D861E4346CD00A545AE /* ValueSet+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ValueSet+Localization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1165,6 +1168,7 @@
 				EE3907D71C3E855D005BFF3D /* FHIRServerDataResponse.swift */,
 				EE3907D51C3E855D005BFF3D /* Element+Extensions.swift */,
 				EEDB873B1E1BEE5300E53FD4 /* FHIRString+Localization.swift */,
+				EEF90D861E4346CD00A545AE /* ValueSet+Localization.swift */,
 				EE9B31F71ACADAF700980AA9 /* Resource+REST.swift */,
 				EE3907D81C3E855D005BFF3D /* Resource+Instantiation.swift */,
 				EE9B32021ACADE9900980AA9 /* Reference+Resolving.swift */,
@@ -1438,6 +1442,7 @@
 				EE56A4FA1ABB0B7900FA99EB /* AuditEvent.swift in Sources */,
 				EE86F3FD1DFAA42200922994 /* Base64Binary.swift in Sources */,
 				EED260EA1D65C2EC00DCE40E /* Endpoint.swift in Sources */,
+				EEF90D871E4346CD00A545AE /* ValueSet+Localization.swift in Sources */,
 				EE65DBA91CB3E47300E25C72 /* ExpansionProfile.swift in Sources */,
 				EEDDAC621A89237900844B48 /* PatientListQuery.swift in Sources */,
 				EE86F4131DFAA42200922994 /* ResearchSubject.swift in Sources */,
@@ -1837,6 +1842,7 @@
 				EE56A5951ABB0B7A00FA99EB /* Narrative.swift in Sources */,
 				EE3907C91C3E846D005BFF3D /* BackboneElement.swift in Sources */,
 				EE65DBAA1CB3E47300E25C72 /* ExpansionProfile.swift in Sources */,
+				EEF90D881E4346CD00A545AE /* ValueSet+Localization.swift in Sources */,
 				EE7240041DC14E6600C398BA /* MetadataResource.swift in Sources */,
 				EE56A50F1ABB0B7900FA99EB /* Coding.swift in Sources */,
 				EE56A58D1ABB0B7900FA99EB /* MessageHeader.swift in Sources */,
