@@ -12,6 +12,7 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
+ **3.0** |       3.0 | `2.0.0.xxxxx` | STU 3 (_planned_)
  **2.9** |       3.0 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016
  **2.8** |       3.0 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.4** |       2.2 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016
