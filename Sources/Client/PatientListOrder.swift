@@ -15,13 +15,13 @@ An enum to define how a list of patients should be ordered.
 public enum PatientListOrder: String {
 	
 	/// Order by given name, family name, birthday.
-	case nameGivenASC = "given:asc,family:asc,birthdate:asc"
+	case nameGivenASC = "given,family,birthdate"
 	
 	// Order by family name, given name, birthday.
-	case nameFamilyASC = "family:asc,given:asc,birthdate:asc"
+	case nameFamilyASC = "family,given,birthdate"
 	
 	/// Order by birthdate, family name, given name.
-	case birthDateASC = "birthdate:asc,family:asc,given:asc"
+	case birthDateASC = "birthdate,family,given"
 	
 	/**
 	Applies the receiver's ordering to a given list of patients.

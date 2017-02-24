@@ -51,13 +51,7 @@ open class PatientListQuery {
 		
 		// starting fresh, add sorting and page count URL parameters
 		if !isDone && !search.hasMore {
-			var sort = [(String, String)]()
-			let parts = order.rawValue.characters.split() { $0 == "," }.map() { String($0) }
-			for part in parts {
-				let exp = part.characters.split() { $0 == ":" }.map() { String($0) }
-				sort.append((exp[0], exp[1]))
-			}
-			search.sort = sort
+			search.sort = order.rawValue
 			search.perform(server, callback: cb)
 		}
 		

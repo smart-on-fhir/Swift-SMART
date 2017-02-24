@@ -170,7 +170,7 @@ open class Client {
 	- parameter callback: The callback to execute once the request finishes
 	*/
 	open func getJSON(at path: String, callback: @escaping ((_ response: FHIRServerJSONResponse) -> Void)) {
-		let handler = FHIRServerJSONRequestHandler(.GET)
+		let handler = FHIRJSONRequestHandler(.GET)
 		server.performRequest(against: path, handler: handler, callback: { response in
 			callback(response as! FHIRServerJSONResponse)
 		})
@@ -187,7 +187,7 @@ open class Client {
 	- parameter callback: Callback called once the response comes back
 	*/
 	open func getData(from url: URL, accept: String, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
-		let handler = FHIRServerDataRequestHandler(.GET, contentType: accept)
+		let handler = FHIRDataRequestHandler(.GET, contentType: accept)
 		if nil != url.host {
 			server.performRequest(on: url, handler: handler, callback: callback)
 		}
