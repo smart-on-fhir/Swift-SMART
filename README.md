@@ -1,18 +1,21 @@
 <p align="center"><img src="./assets/banner.png" alt=""></p>
 
 Swift-SMART is a full client implementation of the 🔥FHIR specification for building apps that interact with healthcare data through [**SMART on FHIR**][smart].
-Written in _Swift 3_ it is compatible with **iOS 8** and **OS X 10.9** and newer and requires Xcode 8 or newer.
+Written in _Swift 3_ it is compatible with **iOS 8** and **OS X 10.10** and newer and requires Xcode 8 or newer.
 
 
 ### Versioning
 
 Due to the complications of combining two volatile technologies, here's an overview of which version numbers use which **Swift** and **FHIR versions**.
-The `master` branch should always compile and is on (point releases of) these main versions.
-See the `develop` branch or specific `feature/x` branches for new Swift or FHIR versions, and check the [tags](https://github.com/smart-on-fhir/Swift-FHIR/releases).
+
+- The [`master`](https://github.com/smart-on-fhir/Swift-SMART) branch should always compile and is on (point releases of) these main versions.
+- The [`develop`](https://github.com/smart-on-fhir/Swift-SMART/tree/develop) branch should be on versions corresponding to the latest freezes and may be updated from time to time with the latest and greatest CI build.
+
+See [tags/releases](https://github.com/smart-on-fhir/Swift-SMART/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
- **3.0** |       3.0 | `2.0.0.xxxxx` | STU 3 (_planned_)
+ **3.0** |       3.0 | `3.0.0.11832` | STU 3
  **2.9** |       3.0 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016
  **2.8** |       3.0 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.4** |       2.2 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016

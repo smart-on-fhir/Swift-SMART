@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## 3.0
+
+- Update to FHIR **STU-3** (`3.0.0.11832`)
+
+
 ## 2.9
 
 - Update to FHIR `1.6.0.9663`
