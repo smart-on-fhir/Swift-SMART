@@ -1,12 +1,12 @@
 # Jazzy config
-module_name: SMART
-author_name: SMART Health IT
+module: SMART
+author: SMART Health IT
 author_url:  http://www.smarthealthit.org
 
 root_url:    http://smart-on-fhir.github.io/Swift-SMART
 github_url:  https://github.com/smart-on-fhir/Swift-SMART
 
-theme_directory: fullwidth
+theme: fullwidth
 custom_categories:
   - name: Client
     children:
@@ -14,21 +14,23 @@ custom_categories:
     - SMARTAuthProperties
     - SMARTAuthGranularity
     - FHIRError
-    - FHIRJSONError
-    - FHIRJSONErrorType
+    - FHIRJSON
+    - FHIRErrorCallback
+    - FHIRResourceErrorCallback
 
   - name: Server Interaction
     children:
     - Server
     - FHIRServer
     - FHIROpenServer
+    - FHIRMinimalServer
     - FHIRSearch
     - FHIROperation
     - FHIROperationContext
-    - FHIRRequestType
-    - FHIRServerRequestHandler
-    - FHIRServerDataRequestHandler
-    - FHIRServerJSONRequestHandler
+    - FHIRRequestHandler
+    - FHIRBaseRequestHandler
+    - FHIRDataRequestHandler
+    - FHIRJSONRequestHandler
     - FHIRServerResponse
     - FHIRServerDataResponse
     - FHIRServerJSONResponse
@@ -47,22 +49,32 @@ custom_categories:
     children:
     - OAuth2
     - OAuth2AuthConfig
+    - OAuth2AuthRequest
+    - OAuth2Authorizer
+    - OAuth2Base
     - OAuth2ClientConfig
     - OAuth2ClientCredentials
-    - OAuth2ImplicitGrant
     - OAuth2CodeGrant
-    - OAuth2Request
+    - OAuth2CodeGrantBasicAuth
+    - OAuth2ContextStore
+    - OAuth2CustomAuthorizer
+    - OAuth2DataTaskRequestPerformer
+    - OAuth2DebugLogger
+    - OAuth2DebugURLSessionDelegate
+    - OAuth2DynReg
     - OAuth2EndpointAuthMethod
-    - OAuth2WebViewController
-    - OAuth2Base
     - OAuth2Error
-
-  - name: Keychain
-    children:
+    - OAuth2Headers
+    - OAuth2HTTPContentType
+    - OAuth2HTTPMethod
+    - OAuth2ImplicitGrant
+    - OAuth2JSON
+    - OAuth2LogLevel
+    - OAuth2PasswordGrant
+    - OAuth2Requestable
+    - OAuth2Response
+    - OAuth2RequestParams
+    - OAuth2Securable
+    - OAuth2StringDict
+    - OAuth2WebViewController
     - Keychain
-    - KeychainItem
-    - KeychainService
-    - KeychainQuery
-    - BaseKey
-    - GenericKey
-    - ArchiveKey
