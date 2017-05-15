@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## 3.0.1
+
+- Address Swift 3.1 compiler warnings
+
+
 ## 3.0
 
 - Update to FHIR **STU-3** (`3.0.0.11832`)
