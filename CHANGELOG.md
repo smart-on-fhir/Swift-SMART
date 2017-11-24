@@ -2,6 +2,10 @@ Changelog
 =========
 
 
+## 3.2.0
+
+- Address Swift 3.2 compiler warnings
+
 ## 3.0.1
 
 - Address Swift 3.1 compiler warnings

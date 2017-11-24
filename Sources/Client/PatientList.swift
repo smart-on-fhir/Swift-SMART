@@ -107,7 +107,7 @@ open class PatientList {
 			var lastTitle: Character = "$"
 			var lastSection = PatientListSection(title: "")
 			for patient in patients {
-				let pre: Character = patient.displayNameFamilyGiven.characters.first ?? "$"    // TODO: use another method depending on current ordering
+				let pre: Character = patient.displayNameFamilyGiven.first ?? "$"    // TODO: use another method depending on current ordering
 				if pre != lastTitle {
 					lastTitle = pre
 					lastSection = PatientListSection(title: String(lastTitle))
