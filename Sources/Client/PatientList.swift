@@ -50,7 +50,7 @@ open class PatientList {
 	}
 	
 	/// A block to be called when the `patients` property changes.
-	open var onPatientUpdate: ((Void) -> Void)?
+	open var onPatientUpdate: (() -> Void)?
 	
 	fileprivate(set) open var expectedNumberOfPatients: UInt = 0
 	
