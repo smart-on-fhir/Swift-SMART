@@ -19,6 +19,8 @@ public struct SMARTAuthProperties {
 	
 	/// How granular the authorize flow should be.
 	public var granularity = SMARTAuthGranularity.patientSelectNative
+	
+	public init() {  }
 }
 
 
