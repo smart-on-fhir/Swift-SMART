@@ -44,6 +44,10 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 			}
 		}
 	}
+    
+    public var idToken: String? {
+        get { return auth?.oauth?.idToken }
+    }
 	
 	/// Settings to be applied to the Auth instance.
 	var authSettings: OAuth2JSON? {
