@@ -45,13 +45,14 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 		}
 	}
     
+    /// Authenticated Identity and profile token; assigned when scoped with `openid` and `profile`.
     public var idToken: String? {
         get { return auth?.oauth?.idToken }
     }
 	
 	/// Settings to be applied to the Auth instance.
 	var authSettings: OAuth2JSON? {
-		didSet {
+        didSet {
 			didSetAuthSettings()
 		}
 	}
