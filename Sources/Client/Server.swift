@@ -52,7 +52,7 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 
 	/// Settings to be applied to the Auth instance.
 	var authSettings: OAuth2JSON? {
-        didSet {
+		didSet {
 			didSetAuthSettings()
 		}
 	}
