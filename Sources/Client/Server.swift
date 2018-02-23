@@ -52,6 +52,11 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 		}
 	}
 	
+	/// Authenticated identity and profile token of end user; Assigned when scopes `openid` and `profile` are used.
+	public var idToken: String? {
+		get { return auth?.oauth?.idToken }
+	}
+	
 	var mustAbortAuthorization = false
 	
 	/// An optional NSURLSessionDelegate.

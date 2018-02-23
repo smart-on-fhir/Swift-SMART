@@ -27,7 +27,7 @@ open class PatientListViewController: UITableViewController {
 	}
 	
 	/// Block to execute when a patient has been selected.
-	var onPatientSelect: ((Patient?) -> Void)?
+	public var onPatientSelect: ((Patient?) -> Void)?
 	
 	var didSelectPatientFlag = false
 	
