@@ -106,7 +106,7 @@ class Auth {
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
 		if let smartauth = security.extensions(forURI: "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris")?.first?.extension_fhir {
 			for subext in smartauth where nil != subext.url {
-				switch subext.url?.absoluteString ?? "" {
+				switch subext.url?.string ?? "" {
 				case "authorize":
 					authSettings["authorize_uri"] = subext.valueUri?.absoluteString
 				case "token":

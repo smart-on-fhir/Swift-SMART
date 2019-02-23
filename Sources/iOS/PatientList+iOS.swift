@@ -37,7 +37,7 @@ open class PatientListViewController: UITableViewController {
 		}
 	}
 	
-	lazy var activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+	lazy var activity = UIActivityIndicatorView(style: .gray)
 	
 	weak var headerLabel: UILabel?
 	
@@ -74,7 +74,8 @@ open class PatientListViewController: UITableViewController {
 		patientList?.onStatusUpdate = { [weak self] error in
 			if let this = self {
 				if let error = error {
-					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, delegate: nil, cancelButtonTitle: "OK").show()
+					let alertController = UIAlertController(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, preferredStyle: .alert)
+					this.present(alertController, animated: true, completion: nil)
 				}
 				if nil != this.patientList && .loading == this.patientList!.status {
 					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity)
@@ -113,6 +114,7 @@ open class PatientListViewController: UITableViewController {
 		}
 	}
 	
+	@objc
 	open func dismissFromModal(_ sender: AnyObject?) {
 		presentingViewController?.dismiss(animated: nil != sender)
 	}
@@ -212,7 +214,7 @@ extension PatientList {
  */
 class PatientTableViewCell: UITableViewCell {
 	
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 	}
 
@@ -225,10 +227,10 @@ class PatientTableViewCell: UITableViewCell {
 		
 		// birthday and age
 		if let bdate = patient?.birthDate {
-			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.gray])
-			attr.setAttributes([
-					NSForegroundColorAttributeName: UIColor.black
-				], range: NSMakeRange(0, 4))
+			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.gray]))
+			attr.setAttributes(convertToOptionalNSAttributedStringKeyDictionary([
+					convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.black
+				]), range: NSMakeRange(0, 4))
 			detailTextLabel?.attributedText = attr
 		}
 		else {
@@ -249,3 +251,14 @@ class PatientTableViewCell: UITableViewCell {
 	}
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
