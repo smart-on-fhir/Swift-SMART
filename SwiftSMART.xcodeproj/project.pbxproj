@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B4081C1E222AEFB2005A1CFE /* CONTRIBUTORS.md in Resources */ = {isa = PBXBuildFile; fileRef = B4081C1D222AEFB2005A1CFE /* CONTRIBUTORS.md */; };
+		B4081C27222B0030005A1CFE /* CONTRIBUTORS.md in Resources */ = {isa = PBXBuildFile; fileRef = B4081C26222B0030005A1CFE /* CONTRIBUTORS.md */; };
 		B4FA91CF2220F5CD00BD72A1 /* ChargeItemDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA90FC2220F5B100BD72A1 /* ChargeItemDefinition.swift */; };
 		B4FA91D12220F5CD00BD72A1 /* ClaimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA90FD2220F5B100BD72A1 /* ClaimResponse.swift */; };
 		B4FA91D32220F5CD00BD72A1 /* MedicationDispense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA90FE2220F5B100BD72A1 /* MedicationDispense.swift */; };
@@ -599,7 +599,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4081C1D222AEFB2005A1CFE /* CONTRIBUTORS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTORS.md; sourceTree = "<group>"; };
+		B4081C26222B0030005A1CFE /* CONTRIBUTORS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTORS.md; sourceTree = SOURCE_ROOT; };
 		B4FA90FC2220F5B100BD72A1 /* ChargeItemDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeItemDefinition.swift; sourceTree = "<group>"; };
 		B4FA90FD2220F5B100BD72A1 /* ClaimResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimResponse.swift; sourceTree = "<group>"; };
 		B4FA90FE2220F5B100BD72A1 /* MedicationDispense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationDispense.swift; sourceTree = "<group>"; };
@@ -995,9 +995,9 @@
 		EE43B1AB19546D880017679A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B4081C26222B0030005A1CFE /* CONTRIBUTORS.md */,
 				EE7907B01B1566A100B1B279 /* SMART.podspec */,
 				EE1F49B61C0672810095BF0F /* CHANGELOG.md */,
-				B4081C1D222AEFB2005A1CFE /* CONTRIBUTORS.md */,
 				EEEE31331BB2AB67008866E2 /* generate-docs.sh */,
 				EE1391C01AC582D9002C7B18 /* Info.plist */,
 			);
@@ -1569,7 +1569,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4081C1E222AEFB2005A1CFE /* CONTRIBUTORS.md in Resources */,
+				B4081C27222B0030005A1CFE /* CONTRIBUTORS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
