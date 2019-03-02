@@ -245,7 +245,9 @@ class Auth {
 	internal func authDidSucceed(withParameters parameters: OAuth2JSON) {
 		if let props = authProperties, props.granularity == .patientSelectNative {
 			server.logger?.debug("SMART", msg: "Showing native patient selector after authorizing with parameters \(parameters)")
-			showPatientList(withParameters: parameters)
+			callOnMainThread() {
+				showPatientList(withParameters: parameters)
+			}
 		}
 		else {
 			server.logger?.debug("SMART", msg: "Did authorize with parameters \(parameters)")

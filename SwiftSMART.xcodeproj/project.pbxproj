@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4081C1E222AEFB2005A1CFE /* CONTRIBUTORS.md in Resources */ = {isa = PBXBuildFile; fileRef = B4081C1D222AEFB2005A1CFE /* CONTRIBUTORS.md */; };
 		B4FA91CF2220F5CD00BD72A1 /* ChargeItemDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA90FC2220F5B100BD72A1 /* ChargeItemDefinition.swift */; };
 		B4FA91D12220F5CD00BD72A1 /* ClaimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA90FD2220F5B100BD72A1 /* ClaimResponse.swift */; };
 		B4FA91D32220F5CD00BD72A1 /* MedicationDispense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FA90FE2220F5B100BD72A1 /* MedicationDispense.swift */; };
@@ -598,87 +599,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B4FA8CCD2220F15700BD72A1 /* FHIRString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRString.swift; sourceTree = "<group>"; };
-		B4FA8CCF2220F15700BD72A1 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
-		B4FA8CD02220F15700BD72A1 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
-		B4FA8CD82220F15A00BD72A1 /* EnrollmentResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentResponse.swift; sourceTree = "<group>"; };
-		B4FA8CDD2220F15C00BD72A1 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
-		B4FA8CDF2220F15C00BD72A1 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		B4FA8CE12220F15D00BD72A1 /* RelatedArtifact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedArtifact.swift; sourceTree = "<group>"; };
-		B4FA8CE22220F15D00BD72A1 /* RequestGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestGroup.swift; sourceTree = "<group>"; };
-		B4FA8CE62220F15E00BD72A1 /* ResearchSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResearchSubject.swift; sourceTree = "<group>"; };
-		B4FA8CE72220F15E00BD72A1 /* DiagnosticReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticReport.swift; sourceTree = "<group>"; };
-		B4FA8CE92220F15E00BD72A1 /* DocumentManifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentManifest.swift; sourceTree = "<group>"; };
-		B4FA8CF32220F16000BD72A1 /* GraphDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphDefinition.swift; sourceTree = "<group>"; };
-		B4FA8CF72220F16100BD72A1 /* DomainResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainResource.swift; sourceTree = "<group>"; };
-		B4FA8CF82220F16100BD72A1 /* FHIRURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRURL.swift; sourceTree = "<group>"; };
-		B4FA8CFB2220F16200BD72A1 /* Narrative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Narrative.swift; sourceTree = "<group>"; };
-		B4FA8D002220F16300BD72A1 /* FHIRInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRInteger.swift; sourceTree = "<group>"; };
-		B4FA8D012220F16300BD72A1 /* Consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
-		B4FA8D022220F16300BD72A1 /* CodeableConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeableConcept.swift; sourceTree = "<group>"; };
-		B4FA8D032220F16300BD72A1 /* SampledData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampledData.swift; sourceTree = "<group>"; };
-		B4FA8D052220F16400BD72A1 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		B4FA8D122220F16700BD72A1 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
-		B4FA8D152220F16800BD72A1 /* Appointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
-		B4FA8D192220F16900BD72A1 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
-		B4FA8D1B2220F16900BD72A1 /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
-		B4FA8D1C2220F16900BD72A1 /* QuestionnaireResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireResponse.swift; sourceTree = "<group>"; };
-		B4FA8D1D2220F16A00BD72A1 /* CarePlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan.swift; sourceTree = "<group>"; };
-		B4FA8D1F2220F16A00BD72A1 /* GuidanceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidanceResponse.swift; sourceTree = "<group>"; };
-		B4FA8D202220F16B00BD72A1 /* SearchParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameter.swift; sourceTree = "<group>"; };
-		B4FA8D212220F16B00BD72A1 /* AllergyIntolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergyIntolerance.swift; sourceTree = "<group>"; };
-		B4FA8D222220F16B00BD72A1 /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
-		B4FA8D232220F16B00BD72A1 /* MedicationAdministration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationAdministration.swift; sourceTree = "<group>"; };
-		B4FA8D262220F16C00BD72A1 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
-		B4FA8D282220F16D00BD72A1 /* Quantity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quantity.swift; sourceTree = "<group>"; };
-		B4FA8D292220F16D00BD72A1 /* Contributor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
-		B4FA8D2B2220F16D00BD72A1 /* ElementDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D302220F16E00BD72A1 /* ActivityDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D362220F16F00BD72A1 /* OperationOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationOutcome.swift; sourceTree = "<group>"; };
-		B4FA8D3B2220F17000BD72A1 /* SupplyDelivery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupplyDelivery.swift; sourceTree = "<group>"; };
-		B4FA8D3C2220F17100BD72A1 /* FHIRBool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRBool.swift; sourceTree = "<group>"; };
-		B4FA8D3E2220F17100BD72A1 /* DeviceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceRequest.swift; sourceTree = "<group>"; };
-		B4FA8D3F2220F17100BD72A1 /* Flag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
-		B4FA8D422220F17200BD72A1 /* MedicationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationRequest.swift; sourceTree = "<group>"; };
-		B4FA8D472220F17300BD72A1 /* FHIRServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServer.swift; sourceTree = "<group>"; };
-		B4FA8D492220F17300BD72A1 /* CompartmentDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompartmentDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D4A2220F17300BD72A1 /* FHIRAbstractBase+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRAbstractBase+Factory.swift"; sourceTree = "<group>"; };
-		B4FA8D4C2220F17400BD72A1 /* Coverage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coverage.swift; sourceTree = "<group>"; };
-		B4FA8D4D2220F17400BD72A1 /* ChargeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeItem.swift; sourceTree = "<group>"; };
-		B4FA8D4E2220F17400BD72A1 /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
-		B4FA8D4F2220F17500BD72A1 /* FHIRRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRRequest.swift; sourceTree = "<group>"; };
-		B4FA8D502220F17500BD72A1 /* ImmunizationRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmunizationRecommendation.swift; sourceTree = "<group>"; };
-		B4FA8D532220F17500BD72A1 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
-		B4FA8D582220F17600BD72A1 /* Communication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communication.swift; sourceTree = "<group>"; };
-		B4FA8D5A2220F17700BD72A1 /* ExplanationOfBenefit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationOfBenefit.swift; sourceTree = "<group>"; };
-		B4FA8D5C2220F17700BD72A1 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		B4FA8D5D2220F17700BD72A1 /* BackboneElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackboneElement.swift; sourceTree = "<group>"; };
-		B4FA8D622220F17800BD72A1 /* TestScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScript.swift; sourceTree = "<group>"; };
-		B4FA8D632220F17900BD72A1 /* ClaimResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimResponse.swift; sourceTree = "<group>"; };
-		B4FA8D652220F17900BD72A1 /* ContactPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactPoint.swift; sourceTree = "<group>"; };
-		B4FA8D672220F17A00BD72A1 /* ImagingStudy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingStudy.swift; sourceTree = "<group>"; };
-		B4FA8D6A2220F17A00BD72A1 /* DateAndTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTime.swift; sourceTree = "<group>"; };
-		B4FA8D722220F17C00BD72A1 /* FamilyMemberHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyMemberHistory.swift; sourceTree = "<group>"; };
-		B4FA8D732220F17C00BD72A1 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
-		B4FA8D742220F17C00BD72A1 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		B4FA8D762220F17D00BD72A1 /* Practitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Practitioner.swift; sourceTree = "<group>"; };
-		B4FA8D792220F17E00BD72A1 /* PaymentReconciliation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentReconciliation.swift; sourceTree = "<group>"; };
-		B4FA8D7A2220F17E00BD72A1 /* StructureDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D802220F17F00BD72A1 /* ConceptMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptMap.swift; sourceTree = "<group>"; };
-		B4FA8D842220F18000BD72A1 /* ParameterDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D852220F18100BD72A1 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
-		B4FA8D862220F18100BD72A1 /* FHIREnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIREnum.swift; sourceTree = "<group>"; };
-		B4FA8D882220F18100BD72A1 /* MessageDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D892220F18200BD72A1 /* Meta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
-		B4FA8D8A2220F18200BD72A1 /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
-		B4FA8D902220F18400BD72A1 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
-		B4FA8D952220F18500BD72A1 /* TriggerDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerDefinition.swift; sourceTree = "<group>"; };
-		B4FA8D962220F18500BD72A1 /* HumanName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumanName.swift; sourceTree = "<group>"; };
-		B4FA8D972220F18500BD72A1 /* Basic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
-		B4FA8D982220F18600BD72A1 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
-		B4FA8D992220F18600BD72A1 /* Resource+Meta.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Resource+Meta.swift"; sourceTree = "<group>"; };
-		B4FA8D9A2220F18600BD72A1 /* AdverseEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdverseEvent.swift; sourceTree = "<group>"; };
-		B4FA8D9D2220F18700BD72A1 /* CodeSystems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSystems.swift; sourceTree = "<group>"; };
+		B4081C1D222AEFB2005A1CFE /* CONTRIBUTORS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTORS.md; sourceTree = "<group>"; };
 		B4FA90FC2220F5B100BD72A1 /* ChargeItemDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChargeItemDefinition.swift; sourceTree = "<group>"; };
 		B4FA90FD2220F5B100BD72A1 /* ClaimResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimResponse.swift; sourceTree = "<group>"; };
 		B4FA90FE2220F5B100BD72A1 /* MedicationDispense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationDispense.swift; sourceTree = "<group>"; };
@@ -1000,94 +921,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B4FA90F62220F4EB00BD72A1 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				B4FA8D302220F16E00BD72A1 /* ActivityDefinition.swift */,
-				B4FA8D9A2220F18600BD72A1 /* AdverseEvent.swift */,
-				B4FA8D212220F16B00BD72A1 /* AllergyIntolerance.swift */,
-				B4FA8D152220F16800BD72A1 /* Appointment.swift */,
-				B4FA8D222220F16B00BD72A1 /* Attachment.swift */,
-				B4FA8D5D2220F17700BD72A1 /* BackboneElement.swift */,
-				B4FA8D972220F18500BD72A1 /* Basic.swift */,
-				B4FA8D8A2220F18200BD72A1 /* Bundle.swift */,
-				B4FA8D1D2220F16A00BD72A1 /* CarePlan.swift */,
-				B4FA8D4D2220F17400BD72A1 /* ChargeItem.swift */,
-				B4FA8D632220F17900BD72A1 /* ClaimResponse.swift */,
-				B4FA8D022220F16300BD72A1 /* CodeableConcept.swift */,
-				B4FA8D9D2220F18700BD72A1 /* CodeSystems.swift */,
-				B4FA8D582220F17600BD72A1 /* Communication.swift */,
-				B4FA8D492220F17300BD72A1 /* CompartmentDefinition.swift */,
-				B4FA8D802220F17F00BD72A1 /* ConceptMap.swift */,
-				B4FA8D012220F16300BD72A1 /* Consent.swift */,
-				B4FA8D652220F17900BD72A1 /* ContactPoint.swift */,
-				B4FA8D292220F16D00BD72A1 /* Contributor.swift */,
-				B4FA8D4C2220F17400BD72A1 /* Coverage.swift */,
-				B4FA8D6A2220F17A00BD72A1 /* DateAndTime.swift */,
-				B4FA8D742220F17C00BD72A1 /* Device.swift */,
-				B4FA8D3E2220F17100BD72A1 /* DeviceRequest.swift */,
-				B4FA8CE72220F15E00BD72A1 /* DiagnosticReport.swift */,
-				B4FA8CE92220F15E00BD72A1 /* DocumentManifest.swift */,
-				B4FA8CF72220F16100BD72A1 /* DomainResource.swift */,
-				B4FA8CCF2220F15700BD72A1 /* Duration.swift */,
-				B4FA8D2B2220F16D00BD72A1 /* ElementDefinition.swift */,
-				B4FA8D052220F16400BD72A1 /* Endpoint.swift */,
-				B4FA8CD82220F15A00BD72A1 /* EnrollmentResponse.swift */,
-				B4FA8D5A2220F17700BD72A1 /* ExplanationOfBenefit.swift */,
-				B4FA8D722220F17C00BD72A1 /* FamilyMemberHistory.swift */,
-				B4FA8D4A2220F17300BD72A1 /* FHIRAbstractBase+Factory.swift */,
-				B4FA8D3C2220F17100BD72A1 /* FHIRBool.swift */,
-				B4FA8D862220F18100BD72A1 /* FHIREnum.swift */,
-				B4FA8D002220F16300BD72A1 /* FHIRInteger.swift */,
-				B4FA8D4F2220F17500BD72A1 /* FHIRRequest.swift */,
-				B4FA8D472220F17300BD72A1 /* FHIRServer.swift */,
-				B4FA8CCD2220F15700BD72A1 /* FHIRString.swift */,
-				B4FA8CF82220F16100BD72A1 /* FHIRURL.swift */,
-				B4FA8D3F2220F17100BD72A1 /* Flag.swift */,
-				B4FA8CF32220F16000BD72A1 /* GraphDefinition.swift */,
-				B4FA8D1F2220F16A00BD72A1 /* GuidanceResponse.swift */,
-				B4FA8D962220F18500BD72A1 /* HumanName.swift */,
-				B4FA8D672220F17A00BD72A1 /* ImagingStudy.swift */,
-				B4FA8D502220F17500BD72A1 /* ImmunizationRecommendation.swift */,
-				B4FA8D532220F17500BD72A1 /* Library.swift */,
-				B4FA8CDD2220F15C00BD72A1 /* List.swift */,
-				B4FA8D1B2220F16900BD72A1 /* Measure.swift */,
-				B4FA8D122220F16700BD72A1 /* Media.swift */,
-				B4FA8D232220F16B00BD72A1 /* MedicationAdministration.swift */,
-				B4FA8D422220F17200BD72A1 /* MedicationRequest.swift */,
-				B4FA8D882220F18100BD72A1 /* MessageDefinition.swift */,
-				B4FA8D892220F18200BD72A1 /* Meta.swift */,
-				B4FA8D4E2220F17400BD72A1 /* Money.swift */,
-				B4FA8CFB2220F16200BD72A1 /* Narrative.swift */,
-				B4FA8D262220F16C00BD72A1 /* Observation.swift */,
-				B4FA8D362220F16F00BD72A1 /* OperationOutcome.swift */,
-				B4FA8D842220F18000BD72A1 /* ParameterDefinition.swift */,
-				B4FA8D902220F18400BD72A1 /* Patient.swift */,
-				B4FA8D792220F17E00BD72A1 /* PaymentReconciliation.swift */,
-				B4FA8D5C2220F17700BD72A1 /* Person.swift */,
-				B4FA8D762220F17D00BD72A1 /* Practitioner.swift */,
-				B4FA8D732220F17C00BD72A1 /* Procedure.swift */,
-				B4FA8D282220F16D00BD72A1 /* Quantity.swift */,
-				B4FA8D1C2220F16900BD72A1 /* QuestionnaireResponse.swift */,
-				B4FA8D982220F18600BD72A1 /* Ratio.swift */,
-				B4FA8CE12220F15D00BD72A1 /* RelatedArtifact.swift */,
-				B4FA8CE22220F15D00BD72A1 /* RequestGroup.swift */,
-				B4FA8CE62220F15E00BD72A1 /* ResearchSubject.swift */,
-				B4FA8D992220F18600BD72A1 /* Resource+Meta.swift */,
-				B4FA8D032220F16300BD72A1 /* SampledData.swift */,
-				B4FA8D202220F16B00BD72A1 /* SearchParameter.swift */,
-				B4FA8CD02220F15700BD72A1 /* Slot.swift */,
-				B4FA8D7A2220F17E00BD72A1 /* StructureDefinition.swift */,
-				B4FA8D192220F16900BD72A1 /* Subscription.swift */,
-				B4FA8D3B2220F17000BD72A1 /* SupplyDelivery.swift */,
-				B4FA8CDF2220F15C00BD72A1 /* Task.swift */,
-				B4FA8D622220F17800BD72A1 /* TestScript.swift */,
-				B4FA8D952220F18500BD72A1 /* TriggerDefinition.swift */,
-				B4FA8D852220F18100BD72A1 /* ValueSet.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		EE02F8101ACF30B000179969 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1164,6 +997,7 @@
 			children = (
 				EE7907B01B1566A100B1B279 /* SMART.podspec */,
 				EE1F49B61C0672810095BF0F /* CHANGELOG.md */,
+				B4081C1D222AEFB2005A1CFE /* CONTRIBUTORS.md */,
 				EEEE31331BB2AB67008866E2 /* generate-docs.sh */,
 				EE1391C01AC582D9002C7B18 /* Info.plist */,
 			);
@@ -1214,7 +1048,6 @@
 				EE43B5C8195497A10017679A /* Frameworks */,
 				EE55C26A1948906000849670 /* Products */,
 				EE56A62C1ABB6D7700FA99EB /* SwiftFHIR.xcodeproj */,
-				B4FA90F62220F4EB00BD72A1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1736,6 +1569,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4081C1E222AEFB2005A1CFE /* CONTRIBUTORS.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
