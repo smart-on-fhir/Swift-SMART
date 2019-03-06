@@ -227,10 +227,9 @@ class PatientTableViewCell: UITableViewCell {
 		
 		// birthday and age
 		if let bdate = patient?.birthDate {
-			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.gray]))
-			attr.setAttributes(convertToOptionalNSAttributedStringKeyDictionary([
-					convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.black
-				]), range: NSMakeRange(0, 4))
+			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes:
+				[NSAttributedString.Key.foregroundColor: UIColor.gray])
+			attr.setAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], range: NSMakeRange(0, 4))
 			detailTextLabel?.attributedText = attr
 		}
 		else {
@@ -251,14 +250,3 @@ class PatientTableViewCell: UITableViewCell {
 	}
 }
 
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
-	return input.rawValue
-}
