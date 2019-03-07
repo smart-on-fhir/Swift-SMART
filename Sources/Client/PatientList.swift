@@ -71,7 +71,7 @@ open class PatientList {
 	open var order = PatientListOrder.nameFamilyASC
 	
 	/// The query used to create the list.
-	open let query: PatientListQuery
+	public let query: PatientListQuery
 	
 	/// Indicating whether not all patients have yet been loaded.
 	open var hasMore: Bool {

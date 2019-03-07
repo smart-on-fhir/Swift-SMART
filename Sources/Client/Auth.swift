@@ -106,7 +106,7 @@ class Auth {
 		// SMART OAuth2 endpoints are at rest[0].security.extension[#].valueUri
 		if let smartauth = security.extensions(forURI: "http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris")?.first?.extension_fhir {
 			for subext in smartauth where nil != subext.url {
-				switch subext.url?.absoluteString ?? "" {
+				switch subext.url?.string ?? "" {
 				case "authorize":
 					authSettings["authorize_uri"] = subext.valueUri?.absoluteString
 				case "token":
@@ -245,7 +245,9 @@ class Auth {
 	internal func authDidSucceed(withParameters parameters: OAuth2JSON) {
 		if let props = authProperties, props.granularity == .patientSelectNative {
 			server.logger?.debug("SMART", msg: "Showing native patient selector after authorizing with parameters \(parameters)")
-			showPatientList(withParameters: parameters)
+			callOnMainThread() {
+				showPatientList(withParameters: parameters)
+			}
 		}
 		else {
 			server.logger?.debug("SMART", msg: "Did authorize with parameters \(parameters)")
