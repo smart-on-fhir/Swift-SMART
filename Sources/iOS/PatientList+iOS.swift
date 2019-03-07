@@ -75,6 +75,7 @@ open class PatientListViewController: UITableViewController {
 			if let this = self {
 				if let error = error {
 					let alertController = UIAlertController(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, preferredStyle: .alert)
+					alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
 					this.present(alertController, animated: true, completion: nil)
 				}
 				if nil != this.patientList && .loading == this.patientList!.status {
