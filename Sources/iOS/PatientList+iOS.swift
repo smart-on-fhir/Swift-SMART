@@ -27,7 +27,7 @@ open class PatientListViewController: UITableViewController {
 	}
 	
 	/// Block to execute when a patient has been selected.
-	var onPatientSelect: ((Patient?) -> Void)?
+	public var onPatientSelect: ((Patient?) -> Void)?
 	
 	var didSelectPatientFlag = false
 	
@@ -37,7 +37,7 @@ open class PatientListViewController: UITableViewController {
 		}
 	}
 	
-	lazy var activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+	lazy var activity = UIActivityIndicatorView(style: .gray)
 	
 	weak var headerLabel: UILabel?
 	
@@ -74,7 +74,9 @@ open class PatientListViewController: UITableViewController {
 		patientList?.onStatusUpdate = { [weak self] error in
 			if let this = self {
 				if let error = error {
-					UIAlertView(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, delegate: nil, cancelButtonTitle: "OK").show()
+					let alertController = UIAlertController(title: NSLocalizedString("Loading Patients Failed", comment: ""), message: error.description, preferredStyle: .alert)
+					alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
+					this.present(alertController, animated: true, completion: nil)
 				}
 				if nil != this.patientList && .loading == this.patientList!.status {
 					this.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: this.activity)
@@ -113,6 +115,7 @@ open class PatientListViewController: UITableViewController {
 		}
 	}
 	
+	@objc
 	open func dismissFromModal(_ sender: AnyObject?) {
 		presentingViewController?.dismiss(animated: nil != sender)
 	}
@@ -212,7 +215,7 @@ extension PatientList {
  */
 class PatientTableViewCell: UITableViewCell {
 	
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 	}
 
@@ -225,10 +228,9 @@ class PatientTableViewCell: UITableViewCell {
 		
 		// birthday and age
 		if let bdate = patient?.birthDate {
-			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes: [NSForegroundColorAttributeName: UIColor.gray])
-			attr.setAttributes([
-					NSForegroundColorAttributeName: UIColor.black
-				], range: NSMakeRange(0, 4))
+			let attr = NSMutableAttributedString(string: "\(bdate.description)  (\(patient!.currentAge))", attributes:
+				[NSAttributedString.Key.foregroundColor: UIColor.gray])
+			attr.setAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], range: NSMakeRange(0, 4))
 			detailTextLabel?.attributedText = attr
 		}
 		else {

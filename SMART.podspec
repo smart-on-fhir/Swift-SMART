@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "SMART"
-  s.version      = "3.2.0"
+  s.version      = "4.0.0"
   s.summary      = "Swift SMART on FHIR framework for iOS and OS X"
   s.description  = <<-DESC
                    Swift SMART on FHIR framework for iOS and OS X.
@@ -26,8 +26,8 @@ Pod::Spec.new do |s|
   s.source            = { :git => "https://github.com/smart-on-fhir/Swift-SMART.git", :tag => "#{s.version}", :submodules => true }
   s.prepare_command   = "git submodule update --init --recursive"  # The :submodules flag above is not recursive :P
 
-  s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
+  s.ios.deployment_target = "11.0"
+  s.osx.deployment_target = "10.13"
 
   s.pod_target_xcconfig   = { 'OTHER_SWIFT_FLAGS' => '-DNO_MODEL_IMPORT -DNO_MODULE_IMPORT -DNO_KEYCHAIN_IMPORT' }
   s.source_files          = "Sources/Client/*.swift",

@@ -15,7 +15,7 @@ A query that returns a list of patients.
 open class PatientListQuery {
 	
 	/// The FHIR search element that produces the desired patient list
-	open let search: FHIRSearch
+	public let search: FHIRSearch
 	
 	var isDone = false
 	

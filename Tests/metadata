@@ -4,15 +4,14 @@
     "status": "generated",
     "div": "<div>Generated Capability Statement -- see structured representation.</div>"
   },
-  "version": "1.7.0.10073",
+  "version": "4.0.0",
   "name": "SMART on FHIR Capability Statement",
   "publisher": "SMART on FHIR",
   "description": "Describes capabilities of this SMART on FHIR server",
   "status": "draft",
   "date": "2015-09-23T04:49:25.469-00:00",
-  "fhirVersion": "1.7.0",
+  "fhirVersion": "4.0.0",
   "kind": "instance",
-  "acceptUnknown": "no",
   "format": [
     "xml",
     "json"
@@ -68,15 +67,11 @@
       "operation": [
         {
           "name": "transaction",
-          "definition": {
-            "reference": "UnknownServerPath/transaction"
-          }
+          "definition": "UnknownServerPath/transaction"
         },
         {
 		  "name": "history-system",
-          "definition": {
-            "reference": "UnknownServerPath/history-system"
-          }
+          "definition": "UnknownServerPath/history-system"
         }
       ]
     }
