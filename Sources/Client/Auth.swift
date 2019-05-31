@@ -210,12 +210,14 @@ class Auth {
 			oa.scope = scope
 			
 			// start authorization (method implemented in iOS and OS X extensions)
-			authorize(with: oa, properties: properties) { parameters, error in
-				if let error = error {
-					self.authDidFail(withError: error)
-				}
-				else {
-					self.authDidSucceed(withParameters: parameters ?? OAuth2JSON())
+			callOnMainThread {
+				authorize(with: oa, properties: properties) { parameters, error in
+					if let error = error {
+						self.authDidFail(withError: error)
+					}
+					else {
+						self.authDidSucceed(withParameters: parameters ?? OAuth2JSON())
+					}
 				}
 			}
 		}
