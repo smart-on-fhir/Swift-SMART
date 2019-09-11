@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 4.2
+
+- Add support for Swift Package Manager; deprecate CocoaPod support.
+
+
 ## 4.1
 
 - Update to Swift 5.0

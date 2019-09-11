@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 SMART Health IT. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 
@@ -72,4 +73,6 @@ extension Auth {
 		}
 	}
 }
+
+#endif
 
