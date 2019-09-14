@@ -17,8 +17,7 @@ let package = Package(
     ],
     dependencies: [
 		.package(url: "https://github.com/smart-on-fhir/Swift-FHIR", "4.2.0"..<"5.0.0"),
-//		.package(url: "https://github.com/p2/OAuth2", "5.1.0"..<"6.0.0"),
-		.package(url: "https://github.com/clinical-cloud/OAuth2", .branch("swift-package")),
+		.package(url: "https://github.com/p2/OAuth2", "5.1.0"..<"6.0.0"),
     ],
     targets: [
 		.target(
