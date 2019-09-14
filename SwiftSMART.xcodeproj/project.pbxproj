@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B4081C27222B0030005A1CFE /* CONTRIBUTORS.md in Resources */ = {isa = PBXBuildFile; fileRef = B4081C26222B0030005A1CFE /* CONTRIBUTORS.md */; };
-		B4BC3F84232822AE0097F26D /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = B4BC3F83232822AE0097F26D /* FHIR */; };
-		B4BC3F87232822D40097F26D /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B4BC3F86232822D40097F26D /* OAuth2 */; };
+		B450BD21232D96B800BA3D89 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B450BD20232D96B800BA3D89 /* OAuth2 */; };
+		B450BD23232D96E100BA3D89 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B450BD22232D96E100BA3D89 /* OAuth2 */; };
 		B4BC3F8D2328240C0097F26D /* SMART.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3F8C2328240C0097F26D /* SMART.swift */; };
 		B4BC3F8E2328240C0097F26D /* SMART.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BC3F8C2328240C0097F26D /* SMART.swift */; };
-		B4BC3F90232824640097F26D /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = B4BC3F8F232824640097F26D /* FHIR */; };
-		B4BC3F92232824640097F26D /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = B4BC3F91232824640097F26D /* OAuth2 */; };
+		B4BC3FA3232954E90097F26D /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = B4BC3FA2232954E90097F26D /* FHIR */; };
+		B4BC3FA5232954FB0097F26D /* FHIR in Frameworks */ = {isa = PBXBuildFile; productRef = B4BC3FA4232954FB0097F26D /* FHIR */; };
 		B4FA93752220F63100BD72A1 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C319546DB20017679A /* Client.swift */; };
 		B4FA93762220F63100BD72A1 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C419546DB20017679A /* Server.swift */; };
 		B4FA93772220F63100BD72A1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE43B1C219546DB20017679A /* Auth.swift */; };
@@ -109,8 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4BC3F84232822AE0097F26D /* FHIR in Frameworks */,
-				B4BC3F87232822D40097F26D /* OAuth2 in Frameworks */,
+				B4BC3FA3232954E90097F26D /* FHIR in Frameworks */,
+				B450BD21232D96B800BA3D89 /* OAuth2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,8 +127,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4BC3F90232824640097F26D /* FHIR in Frameworks */,
-				B4BC3F92232824640097F26D /* OAuth2 in Frameworks */,
+				B4BC3FA5232954FB0097F26D /* FHIR in Frameworks */,
+				B450BD23232D96E100BA3D89 /* OAuth2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,8 +297,8 @@
 			);
 			name = "SwiftSMART-iOS";
 			packageProductDependencies = (
-				B4BC3F83232822AE0097F26D /* FHIR */,
-				B4BC3F86232822D40097F26D /* OAuth2 */,
+				B4BC3FA2232954E90097F26D /* FHIR */,
+				B450BD20232D96B800BA3D89 /* OAuth2 */,
 			);
 			productName = "SMART-on-FHIR-iOS";
 			productReference = EE43B1A919546D880017679A /* SMART.framework */;
@@ -338,8 +338,8 @@
 			);
 			name = "SwiftSMART-macOS";
 			packageProductDependencies = (
-				B4BC3F8F232824640097F26D /* FHIR */,
-				B4BC3F91232824640097F26D /* OAuth2 */,
+				B4BC3FA4232954FB0097F26D /* FHIR */,
+				B450BD22232D96E100BA3D89 /* OAuth2 */,
 			);
 			productName = "SMART-on-FHIR-iOS";
 			productReference = EECAA7831A5D3DE60062C64B /* SMART.framework */;
@@ -384,8 +384,8 @@
 			);
 			mainGroup = EE55C2601948906000849670;
 			packageReferences = (
-				B4BC3F82232822AE0097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */,
-				B4BC3F85232822D40097F26D /* XCRemoteSwiftPackageReference "OAuth2" */,
+				B4BC3FA1232954E90097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */,
+				B450BD1F232D96B800BA3D89 /* XCRemoteSwiftPackageReference "OAuth2" */,
 			);
 			productRefGroup = EE55C26A1948906000849670 /* Products */;
 			projectDirPath = "";
@@ -867,44 +867,44 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B4BC3F82232822AE0097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */ = {
+		B450BD1F232D96B800BA3D89 /* XCRemoteSwiftPackageReference "OAuth2" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/clinical-cloud/Swift-FHIR.git";
+			repositoryURL = "https://github.com/p2/OAuth2.git";
 			requirement = {
-				branch = "swift-package";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
 			};
 		};
-		B4BC3F85232822D40097F26D /* XCRemoteSwiftPackageReference "OAuth2" */ = {
+		B4BC3FA1232954E90097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/clinical-cloud/OAuth2.git";
+			repositoryURL = "https://github.com/smart-on-fhir/Swift-FHIR.git";
 			requirement = {
-				branch = "swift-package";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B4BC3F83232822AE0097F26D /* FHIR */ = {
+		B450BD20232D96B800BA3D89 /* OAuth2 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B4BC3F82232822AE0097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */;
-			productName = FHIR;
-		};
-		B4BC3F86232822D40097F26D /* OAuth2 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B4BC3F85232822D40097F26D /* XCRemoteSwiftPackageReference "OAuth2" */;
+			package = B450BD1F232D96B800BA3D89 /* XCRemoteSwiftPackageReference "OAuth2" */;
 			productName = OAuth2;
 		};
-		B4BC3F8F232824640097F26D /* FHIR */ = {
+		B450BD22232D96E100BA3D89 /* OAuth2 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B4BC3F82232822AE0097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */;
+			package = B450BD1F232D96B800BA3D89 /* XCRemoteSwiftPackageReference "OAuth2" */;
+			productName = OAuth2;
+		};
+		B4BC3FA2232954E90097F26D /* FHIR */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4BC3FA1232954E90097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */;
 			productName = FHIR;
 		};
-		B4BC3F91232824640097F26D /* OAuth2 */ = {
+		B4BC3FA4232954FB0097F26D /* FHIR */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B4BC3F85232822D40097F26D /* XCRemoteSwiftPackageReference "OAuth2" */;
-			productName = OAuth2;
+			package = B4BC3FA1232954E90097F26D /* XCRemoteSwiftPackageReference "Swift-FHIR" */;
+			productName = FHIR;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

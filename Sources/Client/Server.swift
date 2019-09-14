@@ -57,6 +57,11 @@ open class Server: FHIROpenServer, OAuth2RequestPerformer {
 		get { return auth?.oauth?.idToken }
 	}
 	
+	/// The refresh token provided with the access token; Issuing a refresh token is optional at the discretion of the authorization server.
+	public var refreshToken: String? {
+		get { return auth?.oauth?.refreshToken }
+	}
+	
 	var mustAbortAuthorization = false
 	
 	/// An optional NSURLSessionDelegate.
