@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 SMART Health IT. All rights reserved.
 //
 
+#if os(macOS)
 import Cocoa
 
 
@@ -30,4 +31,6 @@ extension Auth {
 		fatalError("Not yet implemented")
 	}
 }
+
+#endif
 

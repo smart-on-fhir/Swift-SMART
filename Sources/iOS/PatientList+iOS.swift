@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 SMART Health IT. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 
@@ -250,4 +251,6 @@ class PatientTableViewCell: UITableViewCell {
 		}
 	}
 }
+
+#endif
 
