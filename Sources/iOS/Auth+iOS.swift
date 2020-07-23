@@ -20,7 +20,17 @@ extension Auth {
 	- parameter callback:   The callback that is called when authorization completes or fails
 	*/
 	func authorize(with oauth: OAuth2, properties: SMARTAuthProperties, callback: @escaping ((OAuth2JSON?, OAuth2Error?) -> Void)) {
-		authContext = UIApplication.shared.keyWindow?.rootViewController
+		
+		let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+		authContext = rootViewController
+		
+		if var topController = rootViewController {
+			while let presentedViewController = topController.presentedViewController {
+				topController = presentedViewController
+			}
+			
+			authContext = topController
+		}
 		
 		oauth.authConfig.authorizeContext = authContext
 		oauth.authConfig.authorizeEmbedded = properties.embedded
